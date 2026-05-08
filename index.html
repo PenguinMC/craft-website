@@ -219,7 +219,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .hero-inner {
   position: relative; z-index: 2;
   max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut);
-  display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px;
+  display: grid; grid-template-columns: 1fr; gap: 0;
   align-items: center; width: 100%;
 }
 @media (max-width: 980px) { .hero-inner { grid-template-columns: 1fr; gap: 40px; } }
@@ -917,53 +917,6 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
         <div><div class="stat-num">KCHS</div><div class="stat-label">Signature &amp; Atlantic</div></div>
       </div>
     </div>
-    <aside class="hero-card">
-      <div class="hero-card-label"><span class="hcl-dot"></span>CRAFT vs The Industry · KCHS</div>
-      <div class="hero-card-title">The numbers, <span class="accent">side-by-side.</span></div>
-
-      <div class="hcv">
-        <div class="hcv-row">
-          <div class="hcv-label">First-Time Pass Rate</div>
-          <div class="hcv-cells">
-            <div class="hcv-craft"><span class="hcv-num">95%</span><span class="hcv-tag">CRAFT</span></div>
-            <div class="hcv-them"><span class="hcv-them-num">~75%</span><span class="hcv-tag">National avg</span></div>
-          </div>
-        </div>
-
-        <div class="hcv-row">
-          <div class="hcv-label">Hours to PPL</div>
-          <div class="hcv-cells">
-            <div class="hcv-craft"><span class="hcv-num">~50</span><span class="hcv-tag">CRAFT avg</span></div>
-            <div class="hcv-them"><span class="hcv-them-num">60&ndash;75</span><span class="hcv-tag">National avg</span></div>
-          </div>
-        </div>
-
-        <div class="hcv-row">
-          <div class="hcv-label">DPE Wait</div>
-          <div class="hcv-cells">
-            <div class="hcv-craft"><span class="hcv-num">Weeks</span><span class="hcv-tag">Built into our schedule</span></div>
-            <div class="hcv-them"><span class="hcv-them-num">4&ndash;6 mo</span><span class="hcv-tag">Industry typical</span></div>
-          </div>
-        </div>
-
-        <div class="hcv-row">
-          <div class="hcv-label">Fleet Avionics</div>
-          <div class="hcv-cells">
-            <div class="hcv-craft"><span class="hcv-num">G1000 NXi</span><span class="hcv-tag">All Diamond, Jet-A</span></div>
-            <div class="hcv-them"><span class="hcv-them-num">Steam</span><span class="hcv-tag">Most schools, 100LL</span></div>
-          </div>
-        </div>
-
-        <div class="hcv-row">
-          <div class="hcv-label">Sim-First Method</div>
-          <div class="hcv-cells">
-            <div class="hcv-craft"><span class="hcv-num">2 AATD</span><span class="hcv-tag">$70/hr · in-house</span></div>
-            <div class="hcv-them"><span class="hcv-them-num">Maybe 1</span><span class="hcv-tag">If you&rsquo;re lucky</span></div>
-          </div>
-        </div>
-      </div>
-      <a href="#discovery" class="btn btn-primary btn-block btn-arrow">Book Discovery Flight</a>
-    </aside>
   </div>
 </header>
 
