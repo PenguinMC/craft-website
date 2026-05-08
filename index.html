@@ -601,31 +601,27 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   background: linear-gradient(180deg, #2a1011 0%, #1a0c0d 100%);
   border-color: rgba(230,48,39,0.4);
 }
-.acc-card.feat::before {
-  content: "★ MOST POPULAR" !important;
-  position: absolute !important;
-  top: -14px !important; left: 24px !important;
-  right: auto !important; bottom: auto !important;
-  width: auto !important; height: auto !important;
-  z-index: 5 !important;
-  background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%) !important;
-  color: var(--white) !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 10px !important; font-weight: 700 !important; letter-spacing: 0.22em !important;
-  line-height: 1 !important;
-  padding: 7px 12px !important;
-  border-radius: 4px !important;
-  box-shadow: 0 8px 22px rgba(230,48,39,0.5), 0 0 0 1px rgba(255,255,255,0.12), inset 0 1px 0 rgba(255,255,255,0.18) !important;
-  text-transform: uppercase !important;
-  white-space: nowrap !important;
-  display: inline-block !important;
+/* MOST POPULAR pill — real DOM span (.acc-popular) so it can't inherit
+   from the general .acc-card::before sweep rule above. */
+.acc-popular {
+  position: absolute;
+  top: -14px; left: 24px;
+  z-index: 5;
+  display: inline-block;
+  padding: 7px 12px;
+  background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%);
+  color: var(--white);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: 4px;
+  box-shadow: 0 8px 22px rgba(230,48,39,0.5), 0 0 0 1px rgba(255,255,255,0.12), inset 0 1px 0 rgba(255,255,255,0.18);
 }
-.acc-card.feat::after {
-  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--beacon), transparent);
-  border-radius: 8px 8px 0 0;
-  z-index: 2;
-}
+.acc-popular::before { content: "★"; margin-right: 6px; color: rgba(255,255,255,0.9); }
+@media (max-width: 480px) { .acc-popular { top: -12px; left: 16px; font-size: 9px; padding: 6px 10px; } }
+.acc-card.feat { overflow: visible; }
 .acc-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); margin-bottom: 10px; }
 .acc-card h3 { font-family: var(--display); font-weight: 800; font-size: 32px; letter-spacing: -0.005em; text-transform: uppercase; line-height: 1; margin-bottom: 10px; }
 .acc-time { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
@@ -1349,17 +1345,18 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
       </div>
       <!-- Card 2 (middle, featured): Accelerated IFR -->
       <div class="acc-card feat">
-        <div class="acc-tag">★ 95% First-Time Pass Rate</div>
+        <span class="acc-popular">Most Popular</span>
+        <div class="acc-tag">95% First-Time Pass Rate</div>
         <h3>Accelerated <span class="accent">IFR</span></h3>
-        <div class="acc-time"><strong>1 week</strong> · 62 flight hrs · BYO-aircraft option · DPE on standby</div>
+        <div class="acc-time"><strong>7 days</strong> · 30 hrs combined · BYO-aircraft option · DPE on standby</div>
         <ul class="acc-list">
-          <li>40 hrs DA40 NG (or your aircraft)</li>
-          <li>20 hrs Redbird AATD procedures</li>
-          <li>Single-instructor consistency</li>
-          <li>For PPL holders ready to commit</li>
+          <li>15 hrs DA40 NG (or your aircraft)</li>
+          <li>Up to 20 hrs Redbird AATD (50% sim credit)</li>
+          <li>Dedicated CFII · single-instructor consistency</li>
+          <li>For PPL holders with the IFR written done</li>
           <li><strong>95% first-time pass rate</strong></li>
         </ul>
-        <a href="/accelerated" class="btn btn-primary btn-block btn-arrow">See Pricing &amp; Details</a>
+        <a href="/ifr" class="btn btn-primary btn-block btn-arrow">See Pricing &amp; Details</a>
       </div>
       <!-- Card 3 (right): Multi-Engine Accelerated -->
       <div class="acc-card">
