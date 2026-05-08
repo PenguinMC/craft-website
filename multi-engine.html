@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Multi-Engine — Add-On · CMEL · MEI · ATP Prep | CRAFT Flight Training</title>
+<meta name="description" content="CRAFT's multi-engine programs in the Diamond DA42-VI — Multi-Engine Add-On, Commercial Multi Initial, MEI, and Accelerated ATP Checkride Prep. Jet-A diesel twin." />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/shared.css">
+<style>
+.cs-hero { position: relative; min-height: 64vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
+.cs-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.08) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.7; animation: csGrid 30s linear infinite; }
+@keyframes csGrid { 0%{background-position:0 0,0 0} 100%{background-position:64px 64px,64px 64px} }
+.cs-hero-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%); pointer-events: none; }
+.cs-hero-sweep { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); filter: blur(0.5px); opacity: 0.5; animation: csSweep 7s ease-in-out infinite; }
+@keyframes csSweep { 0%,100% { transform: translateY(10vh); opacity: 0; } 10% { opacity: 0.6; } 50% { transform: translateY(45vh); opacity: 0.4; } 90% { opacity: 0.6; } }
+.cs-hero-inner { position: relative; z-index: 5; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%; }
+.cs-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 28px; }
+.cs-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 8px var(--beacon); animation: csDot 1.4s ease-in-out infinite; display: inline-block; }
+@keyframes csDot { 0%,100%{opacity:1} 50%{opacity:0.35} }
+.cs-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(54px, 8vw, 120px); line-height: 0.92; letter-spacing: -0.015em; text-transform: uppercase; margin: 0 0 22px; }
+.cs-hero h1 .accent { color: var(--beacon); }
+.cs-hero p { font-size: clamp(15px, 1.4vw, 18px); color: rgba(255,255,255,0.78); max-width: 700px; line-height: 1.6; margin-bottom: 30px; }
+.cs-hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 760px; border-top: 1px solid rgba(230,48,39,0.2); padding-top: 24px; }
+@media (max-width: 720px) { .cs-hero-stats { grid-template-columns: repeat(2,1fr); } }
+.cs-hero-stat-num { font-family: var(--display); font-weight: 900; font-size: 36px; color: var(--white); line-height: 1; letter-spacing: -0.02em; }
+.cs-hero-stat-num .accent { color: var(--beacon); }
+.cs-hero-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; color: rgba(255,255,255,0.45); text-transform: uppercase; margin-top: 6px; }
+
+.cs-sec { padding: var(--section-py) 0; position: relative; overflow: hidden; }
+.cs-sec.dark { background: var(--ink); }
+.cs-sec.appr { background: var(--approach); }
+.cs-sec-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.5; pointer-events: none; }
+.cs-sec-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.cs-sec-head { text-align: center; margin-bottom: 50px; }
+.cs-sec-head .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 6px 12px; border-radius: 4px; margin-bottom: 18px; }
+.cs-sec-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5.5vw, 72px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 12px; }
+.cs-sec-head h2 .accent { color: var(--beacon); }
+.cs-sec-head p { max-width: 700px; margin: 0 auto; font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+/* Track cards */
+.cs-tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 880px) { .cs-tracks { grid-template-columns: 1fr; } }
+.cs-track { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 14px; padding: 32px; position: relative; overflow: hidden; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); }
+.cs-track::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.cs-track:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.5); box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); }
+.cs-track-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+.cs-track-tag { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); padding: 4px 10px; border-radius: 3px; background: rgba(230,48,39,0.1); border: 1px solid rgba(230,48,39,0.3); }
+.cs-track h3 { font-family: var(--display); font-weight: 900; font-size: 36px; line-height: 1; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--white); }
+.cs-track h3 .accent { color: var(--beacon); }
+.cs-track-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-bottom: 16px; }
+.cs-track-blurb { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.6; margin-bottom: 18px; }
+.cs-track-list { list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 8px; }
+.cs-track-list li { padding-left: 20px; position: relative; font-size: 13px; color: rgba(255,255,255,0.74); line-height: 1.55; }
+.cs-track-list li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--beacon); font-weight: 700; }
+.cs-track-foot { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; }
+.cs-track-price { font-family: var(--display); font-weight: 900; font-size: 44px; color: var(--white); line-height: 1; letter-spacing: -0.02em; }
+.cs-track-price .accent { color: var(--beacon); }
+.cs-track-price-suf { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.16em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-top: 4px; display: block; }
+.cs-track-time { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: rgba(255,255,255,0.65); text-transform: uppercase; }
+.cs-track-time .accent { color: var(--beacon); }
+
+/* Common-included row */
+.cs-incl { background: linear-gradient(135deg, rgba(230,48,39,0.05) 0%, var(--approach) 100%); border: 1px solid rgba(230,48,39,0.2); border-radius: 14px; padding: 36px; }
+.cs-incl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+@media (max-width: 720px) { .cs-incl-grid { grid-template-columns: 1fr; } }
+.cs-incl h3 { font-family: var(--display); font-weight: 900; font-size: 24px; line-height: 1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 14px; }
+.cs-incl h3 .accent { color: var(--beacon); }
+.cs-incl ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.cs-incl li { padding-left: 22px; position: relative; font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.55; }
+.cs-incl li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--beacon); font-weight: 700; }
+
+/* Aircraft callout */
+.cs-ac { background: linear-gradient(135deg, var(--ink) 0%, var(--approach) 100%); border: 1px solid rgba(230,48,39,0.25); border-radius: 14px; padding: 40px; text-align: center; position: relative; overflow: hidden; }
+.cs-ac::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.cs-ac h3 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 4.5vw, 56px); line-height: 1; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 14px; }
+.cs-ac h3 .accent { color: var(--beacon); }
+.cs-ac p { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.65; max-width: 680px; margin: 0 auto 18px; }
+.cs-ac-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+.cs-ac-pill { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; padding: 8px 14px; border-radius: 4px; background: rgba(230,48,39,0.08); border: 1px solid rgba(230,48,39,0.3); color: var(--beacon); }
+
+/* Payment + insurance band */
+.cs-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 880px) { .cs-meta-grid { grid-template-columns: 1fr; } }
+.cs-meta { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 12px; padding: 28px; position: relative; overflow: hidden; }
+.cs-meta::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.cs-meta h3 { font-family: var(--display); font-weight: 900; font-size: 24px; line-height: 1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 14px; }
+.cs-meta h3 .accent { color: var(--beacon); }
+.cs-meta p { font-size: 14px; color: rgba(255,255,255,0.76); line-height: 1.6; margin: 0 0 8px; }
+.cs-meta strong { color: var(--white); font-weight: 600; }
+.cs-meta ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.cs-meta li { padding-left: 20px; position: relative; font-size: 14px; color: rgba(255,255,255,0.76); line-height: 1.55; }
+.cs-meta li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--beacon); font-weight: 700; }
+
+.cs-dpe { background: linear-gradient(135deg, rgba(230,48,39,0.08) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.2); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+.cs-dpe-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.6; }
+.cs-dpe-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
+.cs-dpe h2 { font-family: var(--display); font-weight: 900; font-size: clamp(44px, 6vw, 84px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 20px; }
+.cs-dpe h2 .accent { color: var(--beacon); }
+.cs-dpe p { font-size: clamp(15px, 1.4vw, 17px); color: rgba(255,255,255,0.78); line-height: 1.7; margin: 0 auto 22px; max-width: 720px; }
+.cs-dpe blockquote { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 4vw, 48px); line-height: 1; letter-spacing: -0.005em; text-transform: uppercase; color: var(--beacon); margin: 28px 0 8px; border: none; padding: 0; }
+
+.cs-cta { background: var(--ink); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+.cs-cta-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.05) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; }
+.cs-cta-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
+.cs-cta h2 { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6vw, 78px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 18px; }
+.cs-cta h2 .accent { color: var(--beacon); }
+.cs-cta p { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 28px; }
+.cs-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand"><img src="/assets/craft-logo.png" alt="CRAFT Flight Training" /></a>
+    <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
+    <div class="nav-links" id="nav-links">
+      <div class="nav-item"><button class="nav-link">Train <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Get Started</div>
+            <a href="/discovery-flight" class="nav-dd-item"><div class="nav-dd-icon">✈</div><div><div class="nav-dd-title">Discovery Flight</div><div class="nav-dd-desc">$325 · Your first hour at the controls</div></div></a>
+          </div>
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Programs</div>
+            <a href="/accelerated" class="nav-dd-item"><div class="nav-dd-icon">⚡</div><div><div class="nav-dd-title">Accelerated</div><div class="nav-dd-desc">IFR · CPL · CFI · Multi · Bundles</div></div></a>
+            <a href="/flight-school" class="nav-dd-item"><div class="nav-dd-icon">🎓</div><div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">Private · Instrument · Commercial · Instructor</div></div></a>
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">📺</div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">$70/hr Redbird AATD · 2 sims</div></div></a>
+          </div>
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Courses</div>
+            <a href="/ifr" class="nav-dd-item"><div class="nav-dd-icon">⌖</div><div><div class="nav-dd-title">Instrument (IFR)</div><div class="nav-dd-desc">7-day finish · DA40NG · Redbird</div></div></a>
+            <a href="/commercial" class="nav-dd-item"><div class="nav-dd-icon">⌗</div><div><div class="nav-dd-title">Commercial</div><div class="nav-dd-desc">6-day accelerated · DA40NG</div></div></a>
+            <a href="/multi-engine" class="nav-dd-item"><div class="nav-dd-icon">⏚</div><div><div class="nav-dd-title">Multi-Engine</div><div class="nav-dd-desc">Add-on · CMEL · MEI · ATP prep</div></div></a>
+            <a href="/cfi" class="nav-dd-item"><div class="nav-dd-icon">▷</div><div><div class="nav-dd-title">CFI</div><div class="nav-dd-desc">10–12 day initial · right-seat</div></div></a>
+            <a href="/cfii" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">CFI-I</div><div class="nav-dd-desc">3-day add-on · instrument instructor</div></div></a>
+          </div>
+          <div class="nav-dd-section">
+            <a href="/cost-calculator" class="nav-dd-item"><div class="nav-dd-icon">⌗</div><div><div class="nav-dd-title">Cost Calculator</div><div class="nav-dd-desc">Get your personalized estimate</div></div></a>
+            <a href="/financing" class="nav-dd-item"><div class="nav-dd-icon">$</div><div><div class="nav-dd-title">Financing</div><div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div></div></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item"><button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Fleet</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · all tail numbers</div></div></a>
+          <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Two AATD Redbird sims · $70/hr</div></div></a>
+        </div></div>
+      </div>
+      <div class="nav-item"><button class="nav-link">Company <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/company" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
+          <a href="/team" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Team</div><div class="nav-dd-desc">Meet our instructors and staff</div></div></a>
+          <a href="/careers" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">Careers</div><div class="nav-dd-desc">Join the bench · upload your resume</div></div></a>
+          <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon">✉</div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
+          <a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say</div></div></a>
+        </div></div>
+      </div>
+    </div>
+    <a href="/discovery-flight" class="btn btn-primary btn-sm btn-arrow">Discovery Flight</a>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <div class="cs-hero-grid"></div>
+  <div class="cs-hero-vignette"></div>
+  <div class="cs-hero-sweep"></div>
+  <div class="cs-hero-inner">
+    <span class="cs-eyebrow">Multi-Engine · Diamond DA42-VI</span>
+    <h1>Two engines.<br><span class="accent">No drama.</span></h1>
+    <p>Every multi-engine course at CRAFT runs in the Diamond DA42-VI &mdash; Jet-A diesel twin, single-lever digital engine controls, G1000 with GFC700 autopilot. Modern systems means cleaner training, fewer surprises, and a smoother bridge to airline-style operations.</p>
+    <div class="cs-hero-stats">
+      <div><div class="cs-hero-stat-num"><span class="accent">DA42</span>-VI</div><div class="cs-hero-stat-lbl">Diesel · Jet-A · G1000</div></div>
+      <div><div class="cs-hero-stat-num"><span class="accent">4</span> tracks</div><div class="cs-hero-stat-lbl">Add-On · CMEL · MEI · ATP</div></div>
+      <div><div class="cs-hero-stat-num"><span class="accent">3–10</span> days</div><div class="cs-hero-stat-lbl">Course Dependent</div></div>
+      <div><div class="cs-hero-stat-num">DPE in <span class="accent">weeks</span></div><div class="cs-hero-stat-lbl">Not Months</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="cs-sec dark">
+  <div class="cs-sec-grid-bg"></div>
+  <div class="cs-sec-inner">
+    <div class="cs-sec-head">
+      <span class="eyebrow">Pick Your Track</span>
+      <h2>Four ways<br><span class="accent">into the twin.</span></h2>
+      <p>The FAR doesn't set a minimum hour requirement for most multi-engine ratings. The numbers below are baseline packages &mdash; we tailor to your experience and proficiency.</p>
+    </div>
+    <div class="cs-tracks">
+
+      <article class="cs-track">
+        <div class="cs-track-head">
+          <div>
+            <span class="cs-track-tag">Track 01 · Add-On</span>
+            <h3>Multi-Engine <span class="accent">Add-On</span></h3>
+            <div class="cs-track-meta">3 days + checkride day · No FAA written</div>
+          </div>
+        </div>
+        <p class="cs-track-blurb">Add-on rating to an existing Private or Commercial certificate. No knowledge test, no minimum time &mdash; you just have to demonstrate proficiency. Most pilots reach checkride-ready in 8–12 hours.</p>
+        <ul class="cs-track-list">
+          <li>Up to 8 hours dual instruction in the DA42-VI</li>
+          <li>Use of the Redbird FMX simulator</li>
+          <li>3 hours of aircraft for the checkride</li>
+          <li>Already instrument-rated? Most pilots add multi-instrument privileges</li>
+        </ul>
+        <div class="cs-track-foot">
+          <div>
+            <div class="cs-track-price"><span class="accent">$</span>9,000</div>
+            <div class="cs-track-price-suf">Course Price</div>
+          </div>
+          <div class="cs-track-time"><span class="accent">3</span> days · 4-day finish</div>
+        </div>
+      </article>
+
+      <article class="cs-track">
+        <div class="cs-track-head">
+          <div>
+            <span class="cs-track-tag">Track 02 · CPL Initial</span>
+            <h3>Commercial Multi-Engine <span class="accent">Initial</span></h3>
+            <div class="cs-track-meta">10 days + checkride day · CMEL Initial</div>
+          </div>
+        </div>
+        <p class="cs-track-blurb">For pilots with a Private + Instrument and 250 hours total time who want to earn commercial privileges in a twin. Most efficient path if your end goal is the airlines &mdash; counts toward the 50 hours of multi for ATP.</p>
+        <ul class="cs-track-list">
+          <li>Up to 35 hours dual instruction in the DA42-VI</li>
+          <li>Use of the Redbird FMX simulator</li>
+          <li>Aircraft use for the checkride</li>
+          <li>Add Commercial Single-Engine afterward in ~6 hours</li>
+        </ul>
+        <div class="cs-track-foot">
+          <div>
+            <div class="cs-track-price"><span class="accent">$</span>25,500</div>
+            <div class="cs-track-price-suf">Course Price</div>
+          </div>
+          <div class="cs-track-time"><span class="accent">10</span> days · 11-day finish</div>
+        </div>
+      </article>
+
+      <article class="cs-track">
+        <div class="cs-track-head">
+          <div>
+            <span class="cs-track-tag">Track 03 · Instructor</span>
+            <h3>Multi-Engine <span class="accent">Instructor</span></h3>
+            <div class="cs-track-meta">3 days + checkride day · MEI</div>
+          </div>
+        </div>
+        <p class="cs-track-blurb">FAR 61.183(j) requires 15 hours PIC in the same class. Already a single-engine CFI? You can finish in about 8 hours. Course assumes 15 PIC multi hours already &mdash; otherwise additional hours are added at the hourly rate.</p>
+        <ul class="cs-track-list">
+          <li>Up to 8 hours dual instruction in the DA42-VI</li>
+          <li>Use of the Redbird FMX simulator</li>
+          <li>3 hours of aircraft for the checkride</li>
+          <li>Hold CFII? You automatically pick up multi-instrument instructing</li>
+        </ul>
+        <div class="cs-track-foot">
+          <div>
+            <div class="cs-track-price"><span class="accent">$</span>9,000</div>
+            <div class="cs-track-price-suf">Course Price</div>
+          </div>
+          <div class="cs-track-time"><span class="accent">3</span> days · 4-day finish</div>
+        </div>
+      </article>
+
+      <article class="cs-track">
+        <div class="cs-track-head">
+          <div>
+            <span class="cs-track-tag">Track 04 · ATP Prep</span>
+            <h3>Accelerated <span class="accent">ATP</span> Checkride Prep</h3>
+            <div class="cs-track-meta">3 days · ATP CTP must be complete</div>
+          </div>
+        </div>
+        <p class="cs-track-blurb">Finish-up training for the Airline Transport Pilot practical test. You've already done the ATP CTP and passed the knowledge test &mdash; we polish you for the ride.</p>
+        <ul class="cs-track-list">
+          <li>Up to 6 hours dual instruction in the DA42-VI</li>
+          <li>Use of the Redbird FMX simulator</li>
+          <li>Aircraft use for the checkride</li>
+          <li>Not IFR current? Ask about an IPC before the course</li>
+        </ul>
+        <div class="cs-track-foot">
+          <div>
+            <div class="cs-track-price"><span class="accent">$</span>7,750</div>
+            <div class="cs-track-price-suf">Course Price</div>
+          </div>
+          <div class="cs-track-time"><span class="accent">3</span> days</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="cs-sec appr">
+  <div class="cs-sec-grid-bg"></div>
+  <div class="cs-sec-inner">
+    <div class="cs-ac">
+      <span class="cs-eyebrow">The Aircraft</span>
+      <h3>Diamond <span class="accent">DA42-VI.</span></h3>
+      <p>Modern, twin-diesel, single-lever digital engine control. The aircraft pilots fly when they want a clean transition into PT6-style turbine operations. G1000 panel, GFC700 autopilot, and a Redbird FMX configured to the same DA42 controls and avionics.</p>
+      <div class="cs-ac-pills">
+        <span class="cs-ac-pill">Jet-A Diesel</span>
+        <span class="cs-ac-pill">Single-Lever Power</span>
+        <span class="cs-ac-pill">G1000 NXi</span>
+        <span class="cs-ac-pill">GFC 700 AP</span>
+        <span class="cs-ac-pill">FADEC</span>
+        <span class="cs-ac-pill">Redbird FMX Match</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-sec dark">
+  <div class="cs-sec-grid-bg"></div>
+  <div class="cs-sec-inner">
+    <div class="cs-sec-head">
+      <span class="eyebrow">Across All Tracks</span>
+      <h2>What's <span class="accent">in.</span><br>What's <span class="accent">out.</span></h2>
+    </div>
+    <div class="cs-incl-grid">
+      <div class="cs-incl">
+        <h3>Always <span class="accent">Included</span></h3>
+        <ul>
+          <li>Dual instruction in the aircraft for the hours listed in each course</li>
+          <li>Aircraft rental during the checkride</li>
+          <li>Dedicated instruction from experienced Multi-Engine Instructors</li>
+          <li>Option to bring your own twin &mdash; ask for a quote</li>
+          <li>Bring-a-friend savings options</li>
+          <li>Military, law enforcement, and healthcare discounts available</li>
+        </ul>
+      </div>
+      <div class="cs-incl">
+        <h3>Not <span class="accent">Included</span></h3>
+        <ul>
+          <li>Aircraft and instructor hours beyond the included course hours</li>
+          <li>Examiner checkride fee, paid in cash &mdash; <strong>$1,500</strong></li>
+          <li>Non-owned renter's insurance</li>
+          <li>Lodging (corporate rates available 5–10 minutes from KCHS)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-sec appr">
+  <div class="cs-sec-grid-bg"></div>
+  <div class="cs-sec-inner">
+    <div class="cs-meta-grid">
+      <div class="cs-meta">
+        <h3>Renter's <span class="accent">Insurance</span></h3>
+        <p>All pilots must carry an active non-owned renter's policy with at least <strong>$10,000 hull coverage.</strong></p>
+        <p>We recommend Starr Gate &mdash; about <strong>$60</strong> for a month of $25,000 hull coverage, which is plenty for the duration of multi training.</p>
+      </div>
+      <div class="cs-meta">
+        <h3>Payment <span class="accent">Schedule</span></h3>
+        <ul>
+          <li>50% due at reservation to lock the slot and aircraft</li>
+          <li>Remaining balance due at course start</li>
+          <li>Examiner fee due at the start of the checkride, paid in cash</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-dpe">
+  <div class="cs-dpe-bg"></div>
+  <div class="cs-dpe-inner">
+    <span class="cs-eyebrow">DPE Availability</span>
+    <h2>Weeks.<br><span class="accent">Not months.</span></h2>
+    <p>The biggest reason "accelerated" stops being accelerated isn't instruction &mdash; it's checkrides. At CRAFT, DPE availability is built into the planning process for every program. Exact timing varies, but checkrides are typically scheduled in weeks, not months.</p>
+    <blockquote>"Train. Test. Finish."</blockquote>
+    <p style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:8px">Accelerated training isn't about rushing. It's about removing the biggest bottleneck in the system.</p>
+  </div>
+</section>
+
+<section class="cs-cta">
+  <div class="cs-cta-bg"></div>
+  <div class="cs-cta-inner">
+    <span class="cs-eyebrow">Pick Your Track</span>
+    <h2>Tell us where<br><span class="accent">you're starting.</span></h2>
+    <p>Hours, ratings, target window. We'll match you to the right multi track and a DA42 slot.</p>
+    <div class="cs-cta-btns">
+      <a href="/contact" class="btn btn-primary btn-arrow">Start Multi Training</a>
+      <a href="/cost-calculator" class="btn btn-ghost">Run the Numbers</a>
+      <a href="/financing" class="btn btn-ghost">Financing Options</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><img src="/assets/craft-logo.png" alt="CRAFT" /></div>
+        <p class="footer-tag">Charleston's accelerated flight school. Sim-first, Diamond Jet-A, KCHS-based. 95% first-time pass rate. DPE in weeks, not months.</p>
+      </div>
+      <div class="footer-col"><h4>Train</h4><ul>
+        <li><a href="/discovery-flight">Discovery Flight</a></li>
+        <li><a href="/accelerated">Accelerated Programs</a></li>
+        <li><a href="/ifr">Instrument (IFR)</a></li>
+        <li><a href="/commercial">Commercial</a></li>
+        <li><a href="/multi-engine">Multi-Engine</a></li>
+        <li><a href="/cfi">CFI</a></li>
+        <li><a href="/cfii">CFI-I</a></li>
+        <li><a href="/sim-membership">Sim Membership</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Aircraft</h4><ul>
+        <li><a href="/fleet">The Fleet</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="/company">About CRAFT</a></li>
+        <li><a href="/team">The Team</a></li>
+        <li><a href="/careers">Careers</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CRAFT Flight Training, LLC · FAA Part 61 · Signature &amp; Atlantic FBO · KCHS</span>
+      <span><a href="/contact">Privacy</a> · <a href="/contact">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/chatbot.js" defer></script>
+<script>
+document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
+document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
+</script>
+</body>
+</html>
