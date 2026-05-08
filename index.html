@@ -723,6 +723,22 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .footer-bottom a { color: rgba(255,255,255,0.6); }
 .footer-bottom a:hover { color: var(--beacon); }
 
+
+/* Hero card: CRAFT vs Industry comparison panel */
+.hero-card-label { display: inline-flex; align-items: center; gap: 10px; }
+.hcl-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 8px var(--beacon); animation: hclBlink 1.4s ease-in-out infinite; }
+@keyframes hclBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+.hero-card-title .accent { color: var(--beacon); }
+.hcv { display: grid; gap: 14px; margin-bottom: 24px; }
+.hcv-row { display: grid; gap: 8px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.hcv-row:last-child { border-bottom: none; padding-bottom: 0; }
+.hcv-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); text-transform: uppercase; }
+.hcv-cells { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: end; }
+.hcv-craft, .hcv-them { display: flex; flex-direction: column; gap: 2px; }
+.hcv-num { font-family: var(--display); font-weight: 900; font-size: 26px; line-height: 1; letter-spacing: -0.01em; color: var(--white); }
+.hcv-them-num { font-family: var(--display); font-weight: 600; font-size: 19px; line-height: 1; letter-spacing: 0; color: rgba(255,255,255,0.45); text-decoration: line-through; text-decoration-color: rgba(230,48,39,0.5); text-decoration-thickness: 1.5px; }
+.hcv-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-top: 2px; }
+.hcv-craft .hcv-tag { color: var(--beacon); }
 </style>
 </head>
 <body>
@@ -902,15 +918,49 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
       </div>
     </div>
     <aside class="hero-card">
-      <div class="hero-card-label">What Makes Us Different</div>
-      <div class="hero-card-title">Sim-first. Diamond. Done in weeks.</div>
-      <div class="hero-card-sub">Charleston's accelerated flight school at Signature &amp; Atlantic FBO · KCHS</div>
-      <div class="hero-card-rows">
-        <div class="hcr"><span class="hcr-l">Method</span><span class="hcr-r">Sim-first</span></div>
-        <div class="hcr"><span class="hcr-l">Aircraft</span><span class="hcr-r">Diamond Jet-A</span></div>
-        <div class="hcr"><span class="hcr-l">Pass rate</span><span class="hcr-r">95%</span></div>
-        <div class="hcr"><span class="hcr-l">DPE wait</span><span class="hcr-r urgent">Weeks</span></div>
-        <div class="hcr"><span class="hcr-l">FBO</span><span class="hcr-r">Signature &amp; Atlantic · KCHS</span></div>
+      <div class="hero-card-label"><span class="hcl-dot"></span>CRAFT vs The Industry · KCHS</div>
+      <div class="hero-card-title">The numbers, <span class="accent">side-by-side.</span></div>
+
+      <div class="hcv">
+        <div class="hcv-row">
+          <div class="hcv-label">First-Time Pass Rate</div>
+          <div class="hcv-cells">
+            <div class="hcv-craft"><span class="hcv-num">95%</span><span class="hcv-tag">CRAFT</span></div>
+            <div class="hcv-them"><span class="hcv-them-num">~75%</span><span class="hcv-tag">National avg</span></div>
+          </div>
+        </div>
+
+        <div class="hcv-row">
+          <div class="hcv-label">Hours to PPL</div>
+          <div class="hcv-cells">
+            <div class="hcv-craft"><span class="hcv-num">~50</span><span class="hcv-tag">CRAFT avg</span></div>
+            <div class="hcv-them"><span class="hcv-them-num">60&ndash;75</span><span class="hcv-tag">National avg</span></div>
+          </div>
+        </div>
+
+        <div class="hcv-row">
+          <div class="hcv-label">DPE Wait</div>
+          <div class="hcv-cells">
+            <div class="hcv-craft"><span class="hcv-num">Weeks</span><span class="hcv-tag">Built into our schedule</span></div>
+            <div class="hcv-them"><span class="hcv-them-num">4&ndash;6 mo</span><span class="hcv-tag">Industry typical</span></div>
+          </div>
+        </div>
+
+        <div class="hcv-row">
+          <div class="hcv-label">Fleet Avionics</div>
+          <div class="hcv-cells">
+            <div class="hcv-craft"><span class="hcv-num">G1000 NXi</span><span class="hcv-tag">All Diamond, Jet-A</span></div>
+            <div class="hcv-them"><span class="hcv-them-num">Steam</span><span class="hcv-tag">Most schools, 100LL</span></div>
+          </div>
+        </div>
+
+        <div class="hcv-row">
+          <div class="hcv-label">Sim-First Method</div>
+          <div class="hcv-cells">
+            <div class="hcv-craft"><span class="hcv-num">2 AATD</span><span class="hcv-tag">$70/hr · in-house</span></div>
+            <div class="hcv-them"><span class="hcv-them-num">Maybe 1</span><span class="hcv-tag">If you&rsquo;re lucky</span></div>
+          </div>
+        </div>
       </div>
       <a href="#discovery" class="btn btn-primary btn-block btn-arrow">Book Discovery Flight</a>
     </aside>
