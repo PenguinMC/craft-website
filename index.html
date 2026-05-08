@@ -314,8 +314,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   padding: 14px var(--gut);
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
-.brand { display: flex; align-items: center; }
-.brand img { height: 44px; width: auto; }
+.brand { display: flex; align-items: center; flex-shrink: 0; }
+.brand img { display: block; height: 44px; width: auto; max-width: 100%; object-fit: contain; aspect-ratio: 815 / 200; }
+@media (max-width: 480px) { .brand img { height: 36px; } }
 .nav-links { display: flex; gap: 8px; align-items: center; }
 .nav-item { position: relative; }
 .nav-link {
@@ -601,10 +602,22 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   border-color: rgba(230,48,39,0.4);
 }
 .acc-card.feat::before {
-  content: "MOST POPULAR"; position: absolute; top: -10px; left: 24px;
-  background: var(--beacon); color: var(--white);
-  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
-  padding: 4px 10px; border-radius: 3px;
+  content: "★ MOST POPULAR"; position: absolute; top: -14px; left: 24px;
+  z-index: 3;
+  background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%);
+  color: var(--white);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+  padding: 6px 12px; border-radius: 4px;
+  box-shadow: 0 8px 22px rgba(230,48,39,0.5), 0 0 0 1px rgba(255,255,255,0.12), inset 0 1px 0 rgba(255,255,255,0.18);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.acc-card.feat::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--beacon), transparent);
+  border-radius: 8px 8px 0 0;
+  z-index: 2;
 }
 .acc-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); margin-bottom: 10px; }
 .acc-card h3 { font-family: var(--display); font-weight: 800; font-size: 32px; letter-spacing: -0.005em; text-transform: uppercase; line-height: 1; margin-bottom: 10px; }
