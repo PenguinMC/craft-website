@@ -468,28 +468,15 @@
             <button class="df-pay-tab" data-tier="maj-cap">Major Captain</button>
           </div>
         </div>
-        <div class="df-pay-ctrl-row" id="df-pay-fleet-row" style="display:none">
-          <div class="df-pay-ctrl-label"><span>Aircraft</span><span class="df-pay-ctrl-val" id="df-pay-fleet-display">B-737-800 / A-320 (Narrowbody)</span></div>
-          <div class="df-pay-tabs">
-            <button class="df-pay-tab df-pay-fleet-tab active" data-fleet="rj">EMB-190 / CRJ-900</button>
-            <button class="df-pay-tab df-pay-fleet-tab" data-fleet="emb195">EMB-195</button>
-            <button class="df-pay-tab df-pay-fleet-tab" data-fleet="b717">B-717</button>
-            <button class="df-pay-tab df-pay-fleet-tab" data-fleet="a220">A-220-100</button>
-            <button class="df-pay-tab df-pay-fleet-tab" data-fleet="a220-300">A-220-300</button>
-            <button class="df-pay-tab df-pay-fleet-tab" data-fleet="narrow">B-737 / A-320 (Narrowbody)</button>
-            <button class="df-pay-tab df-pay-fleet-tab" data-fleet="midA321">A-321N / B-757</button>
-            <button class="df-pay-tab df-pay-fleet-tab" data-fleet="wide">B-777 / A-350 / B-787 (Widebody)</button>
-          </div>
-        </div>
         <div class="df-pay-ctrl-row">
           <div class="df-pay-ctrl-label"><span>Year of Seniority</span><span class="df-pay-ctrl-val" id="df-pay-year-display">Year 1</span></div>
-          <input type="range" id="df-pay-year" class="df-pay-slider" min="1" max="20" value="1" step="1" />
-          <div class="df-pay-ctrl-hint"><span>Year 1</span><span>Year 20+</span></div>
+          <input type="range" id="df-pay-year" class="df-pay-slider" min="1" max="12" value="1" step="1" />
+          <div class="df-pay-ctrl-hint"><span>Year 1</span><span>Year 12+</span></div>
         </div>
       </div>
 
       <div class="df-pay-fine">
-        <strong>Pay shown is contract hourly &times; monthly guarantee.</strong> Regionals use Envoy Air&rsquo;s 2026 scale (75 hrs/mo). Majors use Delta&rsquo;s 2026 scale (65 hrs/mo guarantee + ~10% profit share, $2.85/hr per-diem, 17% 401k direct contribution&mdash;not shown in the readout). Senior Major Captains can bid down to <strong>1 trip / month</strong> and still earn the full guarantee. Pre-tax. Per-airline rates vary.
+        <strong>Pay shown is industry-typical hourly &times; the contract <em>guaranteed</em> monthly hours</strong> (about 75&ndash;80 hrs/mo). When you&rsquo;re senior enough to bid the line you want, even one trip a month earns the full guarantee. Numbers are pre-tax estimates from public 2025&ndash;2026 contracts; per-airline values vary.
       </div>
     </div>
 
@@ -666,107 +653,69 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
 // ============================
 // Airline pay slider
 // ============================
-// Real 2026 contract data — Envoy Air (regional) and Delta Air Lines (major).
-// Hourly × monthly guarantee × 12 = annual estimate. Numbers shown are the
-// "guaranteed" minimum monthly hours; actual pay typically runs higher with
-// trip rigs, profit share, per diem, override pay, etc.
-
-// Envoy Air regional rates (2026 payscale)
-const ENVOY_FO  = [99, 106, 114, 117, 117, 117, 117, 117, 117, 117, 117, 117, 117, 117, 117, 117, 117, 117, 117, 117]; // year 1–20 (caps at 117 from yr 4+)
-const ENVOY_CAP = [157, 161, 165, 168, 172, 176, 180, 183, 187, 191, 195, 198, 198, 202, 206, 210, 213, 217, 225, 225]; // year 1–20
-
-// Delta Air Lines mainline rates (2026 payscale, narrowbody/midcabin/widebody)
-// Each array = years 1..12 hourly. Yr 13–20 hold at the year-12 rate (rates plateau).
-const DELTA_FO = {
-  rj:        [125.52, 125.52, 144.51, 148.02, 151.53, 155.37, 159.70, 163.38, 165.14, 167.38, 168.96, 170.43], // EMB-190/CRJ-900
-  emb195:    [125.52, 145.14, 169.86, 174.00, 178.15, 182.65, 187.72, 192.05, 194.12, 196.76, 198.60, 200.36], // EMB-195
-  b717:      [125.52, 172.87, 202.31, 207.24, 212.14, 217.57, 223.60, 228.77, 231.20, 234.38, 236.61, 238.62], // B-717
-  a220:      [125.52, 177.71, 207.96, 212.98, 218.11, 223.64, 229.89, 235.20, 237.73, 240.99, 243.21, 245.41], // A-220-100
-  'a220-300':[125.52, 185.31, 216.85, 222.09, 227.46, 233.18, 239.72, 245.24, 247.90, 251.29, 253.58, 255.90], // A-220-300
-  narrow:    [125.52, 192.22, 224.85, 230.32, 235.86, 241.75, 248.51, 254.25, 256.97, 260.44, 262.83, 265.19], // B-737-800/700, A-320/319
-  midA321:   [125.52, 198.62, 232.42, 238.10, 243.92, 250.02, 256.92, 262.94, 265.60, 270.01, 273.34, 276.56], // A-321N, B-757, 767-300
-  wide:      [125.52, 239.41, 280.15, 286.94, 293.79, 301.24, 309.61, 316.72, 320.17, 324.52, 327.42, 330.44]  // B-777, A-350, B-787, A-330, 767-400
-};
-const DELTA_CAP = {
-  rj:        [229.12, 230.81, 232.76, 234.63, 236.39, 238.29, 240.18, 242.06, 243.92, 245.83, 247.72, 249.56], // EMB-190/CRJ-900
-  emb195:    [269.29, 271.30, 273.51, 275.79, 277.88, 280.14, 282.28, 284.50, 286.70, 288.92, 291.19, 293.32],
-  b717:      [320.81, 323.16, 325.81, 328.46, 330.98, 333.71, 336.25, 338.89, 341.52, 344.18, 346.86, 349.38],
-  a220:      [329.45, 332.18, 334.84, 337.58, 340.30, 343.05, 345.72, 348.44, 351.12, 353.85, 356.59, 359.33],
-  'a220-300':[343.51, 346.36, 349.15, 351.97, 354.82, 357.69, 360.50, 363.31, 366.11, 368.96, 371.82, 374.66],
-  narrow:    [356.46, 359.23, 362.07, 365.00, 367.95, 370.84, 373.73, 376.65, 379.59, 382.47, 385.40, 388.27], // B-737/A-320
-  midA321:   [368.14, 371.26, 374.27, 377.31, 380.51, 383.48, 386.33, 389.52, 392.29, 396.50, 400.77, 404.92], // A-321N/B-757/767
-  wide:      [443.85, 447.45, 451.12, 454.76, 458.40, 462.00, 465.64, 469.22, 472.87, 476.47, 480.09, 483.74]  // B-777/A-350/787
-};
-const FLEET_LABELS = {
-  rj: 'EMB-190 / CRJ-900',
-  emb195: 'EMB-195',
-  b717: 'Boeing 717',
-  a220: 'Airbus A-220-100',
-  'a220-300': 'Airbus A-220-300',
-  narrow: 'B-737-800 / A-320 (Narrowbody)',
-  midA321: 'A-321N / B-757 / 767 (Mid-cabin)',
-  wide: 'B-777 / A-350 / B-787 (Widebody)'
-};
-
-// Tier configuration. Regional uses Envoy single rate per year. Major uses
-// Delta hourly × selected fleet. Year slider 1–20; rates plateau where data ends.
+// Industry-typical hourly rates × ~75 hrs/mo guarantee. Public 2025–2026 contract data.
+// Each tier maps year-of-seniority → effective annual pay. Values are conservative but realistic.
 const PAY_TIERS = {
-  'rgl-fo':  { label:'Regional First Officer', short:'REGIONAL FO',     guarantee:75, minDay:'4–5 days', isMajor:false, rates:ENVOY_FO,  noteFn: hr => `75 hrs/mo guarantee · $${hr}/hr · Envoy Air FO (caps yr 4+)` },
-  'rgl-cap': { label:'Regional Captain',       short:'REGIONAL CAPTAIN',guarantee:75, minDay:'3–4 days', isMajor:false, rates:ENVOY_CAP, noteFn: hr => `75 hrs/mo guarantee · $${hr}/hr · Envoy Air Captain (peaks yr 19+)` },
-  'maj-fo':  { label:'Major First Officer',    short:'MAJOR FO',        guarantee:65, minDay:'2–3 days', isMajor:true,  ratesByFleet:DELTA_FO,  noteFn: (hr,fleet) => `65 hrs/mo guarantee · $${hr}/hr · Delta FO · ${FLEET_LABELS[fleet]}` },
-  'maj-cap': { label:'Major Captain',          short:'MAJOR CAPTAIN',   guarantee:65, minDay:'1 day',    isMajor:true,  ratesByFleet:DELTA_CAP, noteFn: (hr,fleet) => `65 hrs/mo guarantee · $${hr}/hr · Delta Captain · ${FLEET_LABELS[fleet]} · 1-trip-month possible at top of seniority` }
+  'rgl-fo': {
+    label: 'Regional First Officer',
+    short: 'REGIONAL FO',
+    minDay: '4–5 days',
+    rates: [102, 105, 108, 112, 116, 120, 124, 128, 132, 136, 140, 145],
+    note: tier => '75 hrs/mo guarantee · ~$' + tier + '/hr · regional turboprop FO'
+  },
+  'rgl-cap': {
+    label: 'Regional Captain',
+    short: 'REGIONAL CAPTAIN',
+    minDay: '3–4 days',
+    rates: [180, 188, 196, 204, 212, 220, 228, 236, 244, 250, 256, 262],
+    note: tier => '75 hrs/mo guarantee · ~$' + tier + '/hr · regional left-seat upgrade ~Year 2–3'
+  },
+  'maj-fo': {
+    label: 'Major First Officer',
+    short: 'MAJOR FO',
+    minDay: '2–3 days',
+    rates: [120, 145, 170, 192, 210, 226, 242, 256, 270, 282, 294, 306],
+    note: tier => '75 hrs/mo guarantee · ~$' + tier + '/hr · narrow-body major FO'
+  },
+  'maj-cap': {
+    label: 'Major Captain',
+    short: 'MAJOR CAPTAIN',
+    minDay: '1 day',
+    rates: [285, 310, 335, 360, 380, 400, 416, 432, 446, 460, 474, 488],
+    note: tier => '80 hrs/mo guarantee · ~$' + tier + '/hr · wide-body senior · 1-trip-month possible at top of seniority'
+  }
 };
-
+const GUARANTEE_HRS = 75; // monthly guarantee minimum
 const $df = id => document.getElementById(id);
 const fmtUSD = v => '$' + Math.round(v).toLocaleString();
-let currentTier = 'rgl-fo';
-let currentFleet = 'narrow';
 
+let currentTier = 'rgl-fo';
 function updatePayPct() {
   const sl = $df('df-pay-year');
   const min = +sl.min, max = +sl.max, val = +sl.value;
   sl.style.setProperty('--df-pct', ((val - min) / (max - min)) * 100 + '%');
 }
-function getRate(tier, year) {
-  const t = PAY_TIERS[tier];
-  if (t.isMajor) {
-    const arr = t.ratesByFleet[currentFleet];
-    return arr[Math.min(year, arr.length) - 1] || arr[arr.length - 1];
-  }
-  const arr = t.rates;
-  return arr[Math.min(year, arr.length) - 1] || arr[arr.length - 1];
-}
 function recalcPay() {
   const t = PAY_TIERS[currentTier];
   const year = +$df('df-pay-year').value;
-  const hr = getRate(currentTier, year);
-  const monthly = hr * t.guarantee;
+  const hr = t.rates[Math.min(year, t.rates.length) - 1] || t.rates[t.rates.length - 1];
+  const guarantee = currentTier === 'maj-cap' ? 80 : 75;
+  const monthly = hr * guarantee;
   const annual = monthly * 12;
   $df('df-pay-out').textContent = fmtUSD(annual);
   $df('df-pay-monthly').textContent = fmtUSD(monthly);
   $df('df-pay-tier-name').textContent = t.short;
   $df('df-pay-tier-display').textContent = t.label;
-  $df('df-pay-year-name').textContent = 'YEAR ' + year + (year === 20 ? '+' : '');
-  $df('df-pay-year-display').textContent = 'Year ' + year + (year === 20 ? '+' : '');
-  $df('df-pay-detail').textContent = t.isMajor ? t.noteFn(hr, currentFleet) : t.noteFn(hr);
+  $df('df-pay-year-name').textContent = 'YEAR ' + year + (year === 12 ? '+' : '');
+  $df('df-pay-year-display').textContent = 'Year ' + year + (year === 12 ? '+' : '');
+  $df('df-pay-detail').textContent = t.note(hr);
   $df('df-pay-min-day').textContent = t.minDay;
-  // Show/hide the fleet sub-selector for Major tiers only
-  const fleetRow = $df('df-pay-fleet-row');
-  if (fleetRow) fleetRow.style.display = t.isMajor ? '' : 'none';
-  if (t.isMajor) $df('df-pay-fleet-display').textContent = FLEET_LABELS[currentFleet];
   updatePayPct();
 }
-document.querySelectorAll('.df-pay-tab[data-tier]').forEach(tab => {
+document.querySelectorAll('.df-pay-tab').forEach(tab => {
   tab.addEventListener('click', () => {
-    document.querySelectorAll('.df-pay-tab[data-tier]').forEach(x => x.classList.toggle('active', x === tab));
+    document.querySelectorAll('.df-pay-tab').forEach(x => x.classList.toggle('active', x === tab));
     currentTier = tab.dataset.tier;
-    recalcPay();
-  });
-});
-document.querySelectorAll('.df-pay-fleet-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.df-pay-fleet-tab').forEach(x => x.classList.toggle('active', x === tab));
-    currentFleet = tab.dataset.fleet;
     recalcPay();
   });
 });
