@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CRAFT Flight Training — 95% First-Time Pass Rate · DPE in Weeks | Charleston, SC</title>
+<meta name="description" content="Charleston's accelerated flight school. Diamond Jet-A trainers, Redbird FMX simulator, Atlantic FBO at KCHS. 95% first-time pass rate, DPE availability measured in weeks not months." />
+<meta property="og:title" content="CRAFT Flight Training — 95% Pass Rate, DPE in Weeks" />
+<meta property="og:description" content="Charleston's accelerated flight school. Diamond Jet-A. DPE in weeks, not months." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="/og-image.jpg" />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --beacon: #E63027;
+  --beacon-dark: #B81E16;
+  --beacon-deep: #8A1410;
+  --approach: #14181F;
+  --ink: #0A0D12;
+  --runway: #1C2129;
+  --white: #FFFFFF;
+  --slate-200: #E5E7EB;
+  --slate-300: #C9CDD4;
+  --slate-500: #6E7480;
+  --slate-700: #353A45;
+  --display: 'Barlow Condensed', system-ui, -apple-system, sans-serif;
+  --body: 'Inter', system-ui, -apple-system, sans-serif;
+  --maxw: 1280px;
+  --gut: clamp(20px, 4vw, 64px);
+  --section-py: clamp(80px, 10vw, 140px);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--body);
+  background: var(--ink);
+  color: var(--white);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+.h-display { font-family: var(--display); font-weight: 800; line-height: 0.95; letter-spacing: -0.01em; text-transform: uppercase; }
+.eyebrow { font-family: var(--body); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); }
+.accent { color: var(--beacon); }
+.stroke {
+  -webkit-text-stroke: 1.5px var(--white);
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 28px;
+  font-family: var(--display); font-weight: 700; font-size: 16px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  border-radius: 4px;
+  transition: transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
+  white-space: nowrap;
+}
+.btn-primary { background: var(--beacon); color: var(--white); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 8px 24px rgba(230,48,39,0.35); }
+.btn-primary:hover { background: var(--beacon-dark); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.35); }
+.btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+.btn-light { background: var(--white); color: var(--ink); }
+.btn-light:hover { background: var(--slate-200); }
+.btn-sm { padding: 10px 18px; font-size: 13px; }
+.btn-block { width: 100%; justify-content: center; }
+.btn-arrow::after { content: "→"; }
+
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.section { padding: var(--section-py) 0; position: relative; }
+
+/* TOPO PATTERN */
+.topo-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; opacity: 0.5; z-index: 0; }
+.topo-bg svg { width: 100%; height: 100%; }
+.topo-on-dark path { stroke: rgba(255,255,255,0.07); stroke-width: 0.8; fill: none; }
+.topo-on-red path { stroke: rgba(255,255,255,0.14); stroke-width: 0.8; fill: none; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(20,24,31,0.85);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-inner {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 14px var(--gut);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.brand { display: flex; align-items: center; }
+.brand img { height: 44px; width: auto; }
+.nav-links { display: flex; gap: 8px; align-items: center; }
+.nav-item { position: relative; }
+.nav-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: rgba(255,255,255,0.9);
+  font-family: var(--display); font-weight: 600; font-size: 15px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 14px; border-radius: 6px;
+  transition: all .2s var(--ease);
+  cursor: pointer; background: none; border: none;
+}
+.nav-link:hover, .nav-item:hover .nav-link, .nav-item:focus-within .nav-link {
+  color: var(--white); background: rgba(255,255,255,0.05);
+}
+.nav-caret {
+  display: inline-block; font-size: 10px;
+  transition: transform .2s var(--ease);
+}
+.nav-item:hover .nav-caret { transform: rotate(180deg); }
+.nav-dropdown {
+  position: absolute; top: 100%; left: 0;
+  min-width: 360px; padding: 12px;
+  background: rgba(20,24,31,0.98);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity .2s var(--ease), transform .2s var(--ease), visibility .2s var(--ease);
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+  margin-top: 8px;
+  z-index: 110;
+}
+.nav-item:hover .nav-dropdown, .nav-item:focus-within .nav-dropdown {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.nav-dd-section { padding: 8px 0; }
+.nav-dd-section + .nav-dd-section { border-top: 1px solid rgba(255,255,255,0.06); margin-top: 4px; }
+.nav-dd-eyebrow {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); padding: 6px 12px 8px;
+}
+.nav-dd-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 10px 12px; border-radius: 8px;
+  transition: background .15s var(--ease);
+}
+.nav-dd-item:hover { background: rgba(230,48,39,0.08); }
+.nav-dd-icon {
+  flex: 0 0 38px; width: 38px; height: 38px;
+  display: grid; place-items: center;
+  background: rgba(230,48,39,0.12); color: var(--beacon);
+  border: 1px solid rgba(230,48,39,0.3);
+  border-radius: 8px; font-size: 18px;
+}
+.nav-dd-title { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); margin-bottom: 2px; }
+.nav-dd-desc { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.4; }
+.nav-mobile-toggle {
+  display: none; background: none; border: none;
+  color: var(--white); font-size: 22px; padding: 8px; cursor: pointer;
+}
+@media (max-width: 980px) {
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--approach); flex-direction: column; padding: 16px; gap: 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    max-height: calc(100vh - 70px); overflow-y: auto;
+  }
+  .nav-links.open { display: flex; }
+  .nav-mobile-toggle { display: block; }
+  .nav-item { width: 100%; }
+  .nav-link { width: 100%; justify-content: space-between; }
+  .nav-dropdown { position: static; opacity: 1; visibility: visible; transform: none;
+    box-shadow: none; background: transparent; border: none; min-width: 0;
+    margin: 0; padding: 0 0 0 16px; height: 0; overflow: hidden;
+  }
+  .nav-item.open .nav-dropdown { height: auto; padding: 8px 0 8px 16px; }
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--ink);
+  color: var(--white);
+  display: flex; align-items: center;
+  padding: 140px 0 100px;
+  overflow: hidden;
+}
+.hero-video-wrap {
+  position: absolute; inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #000 url('https://img.youtube.com/vi/OMPuQnDtDWk/maxresdefault.jpg') center/cover no-repeat;
+}
+.hero-video-wrap iframe, .hero-video-wrap video {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 100vw; height: 56.25vw;
+  min-height: 100vh; min-width: 177.77vh;
+  transform: translate(-50%, -50%);
+  border: 0; pointer-events: none;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(20,24,31,0.4) 0%, rgba(20,24,31,0.55) 50%, rgba(20,24,31,0.85) 100%),
+    linear-gradient(90deg, rgba(20,24,31,0.65) 0%, rgba(20,24,31,0.1) 60%, rgba(20,24,31,0.4) 100%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut);
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px;
+  align-items: center; width: 100%;
+}
+@media (max-width: 980px) { .hero-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(230,48,39,0.12); color: var(--beacon);
+  padding: 8px 14px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  border: 1px solid rgba(230,48,39,0.3); margin-bottom: 28px;
+}
+.hero h1 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95; letter-spacing: -0.015em; text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero-sub {
+  font-size: clamp(15px, 1.3vw, 18px);
+  color: rgba(255,255,255,0.85);
+  max-width: 540px; margin-bottom: 36px; line-height: 1.55;
+}
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+.hero-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1);
+  max-width: 540px;
+}
+.stat-num {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(28px, 3.5vw, 40px); color: var(--white); line-height: 1;
+}
+.stat-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-top: 6px;
+}
+
+/* HERO CARD */
+.hero-card {
+  position: relative;
+  background: linear-gradient(180deg, var(--runway) 0%, var(--ink) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; padding: 32px;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+}
+.hero-card::before {
+  content: ""; position: absolute; top: -1px; left: 24px; right: 24px;
+  height: 2px; background: var(--beacon);
+}
+.hero-card-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--beacon); margin-bottom: 12px;
+}
+.hero-card-title {
+  font-family: var(--display); font-weight: 800; font-size: 32px;
+  text-transform: uppercase; line-height: 1; margin-bottom: 6px;
+}
+.hero-card-sub { font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 24px; }
+.hero-card-rows { display: grid; gap: 14px; margin-bottom: 24px; }
+.hcr {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 14px; padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.hcr:last-child { border-bottom: none; padding-bottom: 0; }
+.hcr-l { color: rgba(255,255,255,0.6); }
+.hcr-r { font-family: var(--display); font-size: 16px; font-weight: 600; letter-spacing: 0.04em; color: var(--white); }
+.hcr-r.urgent { color: var(--beacon); }
+
+/* PROOF BAR */
+.proof {
+  background: var(--ink);
+  padding: 28px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.proof-inner {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut);
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 28px;
+}
+.proof-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.proof-items {
+  display: flex; gap: 40px; flex-wrap: wrap;
+  font-family: var(--display); font-size: 18px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.85);
+}
+.proof-items span:not(:last-child)::after {
+  content: "·"; margin-left: 40px; color: var(--beacon);
+}
+
+/* WEDGE */
+.wedge { background: var(--approach); }
+.wedge-grid {
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center;
+}
+@media (max-width: 980px) { .wedge-grid { grid-template-columns: 1fr; gap: 40px; } }
+.wedge h2 { font-size: clamp(40px, 5vw, 72px); margin: 16px 0 24px; color: var(--white); }
+.wedge p { font-size: 17px; color: rgba(255,255,255,0.75); margin-bottom: 20px; max-width: 560px; }
+.wedge-quote {
+  font-family: var(--display); font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 600; line-height: 1.15; color: var(--white);
+  border-left: 4px solid var(--beacon); padding: 8px 0 8px 24px;
+  margin: 28px 0; text-transform: none; letter-spacing: 0;
+}
+.wedge-visual {
+  position: relative; aspect-ratio: 4/5;
+  background: linear-gradient(180deg, var(--runway) 0%, var(--ink) 100%);
+  border-radius: 8px; overflow: hidden;
+  display: grid; place-items: center; padding: 40px; text-align: center;
+}
+.wedge-visual-num {
+  font-family: var(--display); font-weight: 900; font-size: clamp(120px, 18vw, 220px);
+  line-height: 0.85; color: var(--beacon); margin-bottom: 12px; letter-spacing: -0.03em;
+}
+.wedge-visual-label {
+  font-family: var(--display); font-weight: 700; font-size: 18px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--white);
+}
+.wedge-visual-cap {
+  position: absolute; left: 24px; right: 24px; bottom: 24px;
+  font-size: 13px; color: rgba(255,255,255,0.78); text-align: left;
+}
+
+/* ACCELERATED PROGRAMS */
+.acc { background: var(--approach); }
+.acc-head { text-align: center; margin-bottom: 64px; }
+.acc-head h2 { font-size: clamp(40px, 5.6vw, 84px); margin-top: 12px; max-width: 900px; margin-left: auto; margin-right: auto; }
+.acc-head p { margin-top: 20px; font-size: 17px; color: rgba(255,255,255,0.7); max-width: 640px; margin-left: auto; margin-right: auto; }
+.acc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 980px) { .acc-grid { grid-template-columns: 1fr; } }
+.acc-card {
+  background: var(--runway);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px; padding: 32px;
+  position: relative;
+  transition: transform .3s var(--ease), border-color .3s var(--ease);
+}
+.acc-card:hover { transform: translateY(-4px); border-color: var(--beacon); }
+.acc-card.feat {
+  background: linear-gradient(180deg, #2a1011 0%, #1a0c0d 100%);
+  border-color: rgba(230,48,39,0.4);
+}
+.acc-card.feat::before {
+  content: "MOST POPULAR"; position: absolute; top: -10px; left: 24px;
+  background: var(--beacon); color: var(--white);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  padding: 4px 10px; border-radius: 3px;
+}
+.acc-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); margin-bottom: 10px; }
+.acc-card h3 { font-family: var(--display); font-weight: 800; font-size: 32px; letter-spacing: -0.005em; text-transform: uppercase; line-height: 1; margin-bottom: 10px; }
+.acc-time { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+.acc-time strong { color: var(--white); font-weight: 600; }
+.acc-list { list-style: none; margin-bottom: 28px; display: grid; gap: 10px; }
+.acc-list li { font-size: 14px; color: rgba(255,255,255,0.78); padding-left: 24px; position: relative; }
+.acc-list li::before { content: "✓"; color: var(--beacon); position: absolute; left: 0; top: 0; font-weight: 700; }
+.acc-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; }
+.acc-price-num { font-family: var(--display); font-weight: 800; font-size: 36px; color: var(--white); line-height: 1; }
+.acc-price-suf { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+/* PATHWAY */
+.path { background: var(--ink); }
+.path-head { margin-bottom: 56px; max-width: 720px; }
+.path-head h2 { font-size: clamp(40px, 5vw, 72px); margin-top: 12px; }
+.path-head p { margin-top: 16px; font-size: 17px; color: rgba(255,255,255,0.7); }
+.path-track { position: relative; padding: 24px 0; }
+.path-line {
+  position: absolute; left: 5%; right: 5%; top: 50%;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.2) 0 8px, transparent 8px 16px);
+  transform: translateY(-50%); z-index: 0;
+}
+.path-stops { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; position: relative; z-index: 1; }
+@media (max-width: 880px) { .path-stops { grid-template-columns: repeat(2, 1fr); } .path-line { display: none; } }
+.path-stop { text-align: center; padding: 16px 8px; background: var(--ink); }
+.path-num {
+  width: 56px; height: 56px; margin: 0 auto 16px;
+  background: var(--runway); border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 50%; display: grid; place-items: center;
+  font-family: var(--display); font-weight: 800; font-size: 22px; color: var(--white);
+}
+.path-stop.start .path-num { background: var(--beacon); border-color: var(--beacon); }
+.path-stop.end .path-num { background: var(--white); color: var(--ink); border-color: var(--white); }
+.path-label { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 4px; }
+.path-time { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+.path-foot {
+  text-align: center; margin-top: 56px; padding: 28px;
+  background: var(--approach); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; color: rgba(255,255,255,0.85);
+}
+.path-foot strong { color: var(--beacon); font-weight: 700; }
+
+/* CALCULATOR */
+.calc { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); }
+.calc-head { text-align: center; max-width: 760px; margin: 0 auto 56px; }
+.calc-head h2 { font-size: clamp(40px, 5vw, 64px); margin: 12px 0 16px; }
+.calc-head p { font-size: 17px; color: rgba(255,255,255,0.7); }
+.calc-body { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; max-width: 1200px; margin: 0 auto; }
+@media (max-width: 980px) { .calc-body { grid-template-columns: 1fr; } }
+.calc-section { margin-bottom: 32px; }
+.calc-label {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-bottom: 16px;
+}
+.calc-label > span {
+  width: 24px; height: 24px; background: var(--beacon); color: var(--white);
+  border-radius: 50%; display: grid; place-items: center;
+  font-size: 11px; font-weight: 700; letter-spacing: 0; text-transform: none;
+}
+.calc-progs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 600px) { .calc-progs { grid-template-columns: 1fr; } }
+.calc-prog {
+  background: var(--approach);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 8px; padding: 14px 16px; cursor: pointer; text-align: left;
+  display: flex; flex-direction: column; gap: 4px;
+  color: var(--white); font-family: inherit;
+  transition: all .2s var(--ease);
+}
+.calc-prog:hover { border-color: var(--beacon); }
+.calc-prog.active { background: var(--white); color: var(--ink); border-color: var(--white); }
+.calc-prog-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; color: var(--beacon); text-transform: uppercase; }
+.calc-prog-name { font-family: var(--display); font-weight: 700; font-size: 17px; text-transform: uppercase; letter-spacing: 0.04em; }
+.calc-prog-time { font-size: 12px; color: rgba(255,255,255,0.55); }
+.calc-prog.active .calc-prog-time { color: rgba(10,13,18,0.6); }
+.calc-slider-row { display: flex; align-items: center; gap: 16px; }
+.calc-slider-row input[type=range] {
+  flex: 1; -webkit-appearance: none; appearance: none;
+  height: 4px; background: rgba(255,255,255,0.15); border-radius: 2px; outline: none;
+}
+.calc-slider-row input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 24px; height: 24px;
+  background: var(--beacon); border-radius: 50%; cursor: pointer;
+  box-shadow: 0 4px 12px rgba(230,48,39,0.4);
+}
+.calc-slider-row input[type=range]::-moz-range-thumb {
+  width: 24px; height: 24px; background: var(--beacon); border-radius: 50%; cursor: pointer; border: none;
+}
+.calc-slider-val { font-family: var(--display); font-weight: 800; font-size: 24px; color: var(--white); min-width: 80px; text-align: right; line-height: 1; }
+.calc-slider-val small { font-size: 11px; color: rgba(255,255,255,0.55); margin-left: 4px; letter-spacing: 0.1em; text-transform: uppercase; }
+.calc-slider-hint { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 12px; }
+.calc-fin { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.calc-fin-opt {
+  background: var(--approach);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 8px; padding: 16px; cursor: pointer; text-align: left;
+  display: flex; flex-direction: column; gap: 4px;
+  color: var(--white); font-family: inherit;
+  transition: all .2s var(--ease);
+}
+.calc-fin-opt:hover { border-color: var(--beacon); }
+.calc-fin-opt.active { background: var(--beacon); border-color: var(--beacon); color: var(--white); }
+.calc-fin-name { font-family: var(--display); font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 0.04em; }
+.calc-fin-sub { font-size: 12px; color: rgba(255,255,255,0.55); }
+.calc-fin-opt.active .calc-fin-sub { color: rgba(255,255,255,0.85); }
+.calc-result {
+  background: linear-gradient(180deg, var(--approach) 0%, var(--ink) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 36px;
+  position: sticky; top: 100px;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.4);
+}
+.calc-r-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); margin-bottom: 8px; }
+.calc-r-name { font-size: 32px; text-transform: uppercase; line-height: 1; margin-bottom: 8px; font-family: var(--display); font-weight: 800; }
+.calc-r-sub { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 28px; }
+.calc-r-total { margin-bottom: 28px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.calc-r-label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+.calc-r-num { font-family: var(--display); font-weight: 900; font-size: 64px; line-height: 1; letter-spacing: -0.01em; }
+.calc-r-monthly { margin-top: 8px; font-size: 14px; color: var(--beacon); font-weight: 600; }
+.calc-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: rgba(255,255,255,0.06); margin-bottom: 12px; }
+.calc-bar-seg { height: 100%; transition: width .3s ease; }
+.calc-bar-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+.calc-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: rgba(255,255,255,0.65); }
+.calc-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+.calc-rows { display: grid; gap: 8px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.calc-row { display: flex; justify-content: space-between; font-size: 13px; }
+.calc-row-l { color: rgba(255,255,255,0.65); }
+.calc-row-r { color: var(--white); font-weight: 600; font-family: var(--display); letter-spacing: 0.02em; }
+.calc-row.discount .calc-row-r { color: var(--beacon); }
+.calc-compare { margin-bottom: 28px; }
+.calc-compare-bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; margin-bottom: 14px; background: rgba(255,255,255,0.15); }
+.calc-compare-craft { background: var(--beacon); height: 100%; transition: width .4s ease; }
+.calc-compare-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.calc-compare-stats > div { display: flex; flex-direction: column; gap: 2px; }
+.calc-compare-num { font-family: var(--display); font-weight: 800; font-size: 16px; line-height: 1; }
+.calc-compare-lbl { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
+.calc-compare-num.industry { color: rgba(255,255,255,0.4); text-decoration: line-through; }
+.calc-compare-num.savings { color: #4ADE80; }
+.calc-ctas { display: flex; gap: 8px; flex-direction: column; }
+.calc-ctas .btn { width: 100%; justify-content: center; }
+
+/* DPE SECTION */
+.dpe { background: var(--approach); }
+.dpe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+@media (max-width: 980px) { .dpe-grid { grid-template-columns: 1fr; gap: 40px; } }
+.dpe h2 { font-size: clamp(40px, 5vw, 72px); margin: 12px 0 24px; }
+.dpe p { font-size: 17px; color: rgba(255,255,255,0.75); margin-bottom: 18px; max-width: 540px; }
+.dpe-stat { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+.dpe-stat-num { font-family: var(--display); font-weight: 900; font-size: 84px; color: var(--beacon); line-height: 0.9; letter-spacing: -0.02em; }
+.dpe-stat-lbl { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); }
+.dpe-card {
+  background: var(--ink);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 36px;
+}
+.dpe-card-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.dpe-card-row:last-child { border-bottom: none; }
+.dpe-card-l { font-size: 14px; color: rgba(255,255,255,0.7); }
+.dpe-card-r { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: 0.04em; }
+.dpe-card-r.bad { color: rgba(255,255,255,0.4); text-decoration: line-through; }
+.dpe-card-r.good { color: var(--beacon); }
+
+/* FLEET */
+.fleet { background: var(--ink); }
+.fleet-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 56px; flex-wrap: wrap; gap: 24px; }
+.fleet-head h2 { font-size: clamp(40px, 5.4vw, 80px); margin-top: 12px; max-width: 700px; }
+.fleet-head p { max-width: 380px; color: rgba(255,255,255,0.7); font-size: 15px; }
+.fleet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 880px) { .fleet-grid { grid-template-columns: 1fr; } }
+.fleet-card {
+  background: var(--runway);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px; padding: 36px;
+  position: relative; overflow: hidden;
+  min-height: 360px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.fleet-card::before {
+  content: ""; position: absolute; right: -40px; top: -40px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(230,48,39,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.fleet-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); margin-bottom: 12px; position: relative; z-index: 1; }
+.fleet-card h3 { font-family: var(--display); font-weight: 900; font-size: 44px; text-transform: uppercase; line-height: 0.95; margin-bottom: 8px; letter-spacing: -0.005em; position: relative; z-index: 1; }
+.fleet-card-sub { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 28px; position: relative; z-index: 1; }
+.fleet-specs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); position: relative; z-index: 1; }
+.fleet-spec-num { font-family: var(--display); font-weight: 800; font-size: 24px; line-height: 1; }
+.fleet-spec-lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px; }
+
+/* SIM */
+.sim { background: var(--approach); }
+.sim-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; }
+@media (max-width: 980px) { .sim-grid { grid-template-columns: 1fr; } }
+.sim h2 { font-size: clamp(40px, 5vw, 72px); margin: 12px 0 20px; }
+.sim p { font-size: 17px; color: rgba(255,255,255,0.75); margin-bottom: 18px; max-width: 540px; }
+.sim-bullets { list-style: none; margin: 28px 0 32px; display: grid; gap: 16px; }
+.sim-bullets li { padding-left: 36px; position: relative; font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+.sim-bullets li::before { content: "→"; position: absolute; left: 0; top: 0; font-family: var(--display); font-weight: 800; color: var(--beacon); font-size: 22px; line-height: 1; }
+.sim-bullets strong { color: var(--white); font-weight: 700; }
+.sim-visual {
+  position: relative; aspect-ratio: 4/5;
+  background: linear-gradient(135deg, var(--runway) 0%, var(--ink) 100%);
+  border-radius: 8px; overflow: hidden;
+  display: grid; place-items: center;
+}
+.sim-visual-tag {
+  position: absolute; top: 20px; left: 20px;
+  background: var(--beacon); color: var(--white);
+  padding: 6px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; border-radius: 3px;
+}
+.sim-visual-num { font-family: var(--display); font-weight: 900; font-size: clamp(80px, 12vw, 160px); line-height: 0.85; color: var(--white); text-align: center; }
+.sim-visual-num small { font-size: 0.4em; color: var(--beacon); }
+.sim-visual-cap { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 12px; color: rgba(255,255,255,0.85); text-align: center; }
+
+/* TESTIMONIAL */
+.testi { background: var(--ink); text-align: center; }
+.testi-mark { font-size: 80px; color: var(--beacon); line-height: 0.6; margin-bottom: 16px; font-family: Georgia, serif; }
+.testi-quote {
+  max-width: 880px; margin: 0 auto;
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(28px, 3.5vw, 44px); line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.testi-attr {
+  margin-top: 32px; font-size: 14px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55);
+}
+.testi-attr strong { color: var(--white); display: block; margin-bottom: 4px; font-size: 16px; letter-spacing: 0.04em; }
+
+/* LOCATION */
+.location { background: var(--approach); }
+.location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+@media (max-width: 980px) { .location-grid { grid-template-columns: 1fr; } }
+.location h2 { font-size: clamp(40px, 5vw, 72px); margin: 12px 0 20px; }
+.location p { color: rgba(255,255,255,0.75); font-size: 16px; margin-bottom: 18px; max-width: 480px; }
+.location-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); max-width: 480px; }
+.location-meta-num { font-family: var(--display); font-weight: 800; font-size: 24px; }
+.location-meta-lbl { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px; }
+.location-address {
+  margin-top: 32px; padding: 24px;
+  background: var(--ink); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+}
+.location-address-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--beacon); margin-bottom: 8px; }
+.location-address-line { font-family: var(--display); font-size: 18px; font-weight: 600; letter-spacing: 0.02em; line-height: 1.4; }
+.location-address-meta { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 8px; }
+.location-address-meta a { color: var(--beacon); }
+.location-map {
+  aspect-ratio: 4/5;
+  background: var(--ink);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  position: relative; overflow: hidden;
+}
+.location-map-pin {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -100%) rotate(-45deg);
+  width: 32px; height: 32px;
+  background: var(--beacon);
+  border-radius: 50% 50% 50% 0;
+  box-shadow: 0 0 0 8px rgba(230,48,39,0.18), 0 0 0 20px rgba(230,48,39,0.08);
+}
+.location-map-tag {
+  position: absolute; top: calc(50% - 70px); left: 50%; transform: translateX(-50%);
+  background: var(--white); color: var(--ink);
+  padding: 8px 14px; border-radius: 4px;
+  font-family: var(--display); font-weight: 700; font-size: 13px;
+  letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* FINAL CTA */
+.final-cta {
+  background: var(--beacon); color: var(--white);
+  text-align: center; padding: clamp(100px, 12vw, 160px) 0;
+  position: relative; overflow: hidden;
+}
+.final-cta-eyebrow { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 24px; position: relative; z-index: 2; }
+.final-cta h2 { font-family: var(--display); font-weight: 900; font-size: clamp(48px, 7vw, 110px); line-height: 0.92; letter-spacing: -0.015em; text-transform: uppercase; margin: 0 auto 32px; max-width: 1000px; position: relative; z-index: 2; }
+.final-cta h2 .stroke { -webkit-text-stroke: 2px var(--white); -webkit-text-fill-color: transparent; color: transparent; }
+.final-cta-sub { font-size: 18px; color: rgba(255,255,255,0.85); max-width: 600px; margin: 0 auto 40px; position: relative; z-index: 2; }
+.final-cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2; }
+.final-cta .btn-light:hover { background: var(--ink); color: var(--white); }
+
+/* FOOTER */
+.footer { background: var(--ink); color: rgba(255,255,255,0.6); padding: 80px 0 40px; position: relative; }
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; position: relative; z-index: 2; }
+@media (max-width: 880px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+.footer-brand { margin-bottom: 16px; }
+.footer-brand img { height: 50px; }
+.footer-tag { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 320px; line-height: 1.6; }
+.footer-contact { margin-top: 20px; font-size: 14px; }
+.footer-contact a { color: var(--white); display: block; margin-bottom: 6px; transition: color .2s var(--ease); }
+.footer-contact a:hover { color: var(--beacon); }
+.footer-contact-label { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
+.footer-col h4 { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 18px; }
+.footer-col ul { list-style: none; display: grid; gap: 10px; }
+.footer-col a { color: rgba(255,255,255,0.7); font-size: 14px; transition: color .2s var(--ease); }
+.footer-col a:hover { color: var(--beacon); }
+.footer-bottom { padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(255,255,255,0.4); position: relative; z-index: 2; }
+.footer-bottom a { color: rgba(255,255,255,0.6); }
+.footer-bottom a:hover { color: var(--beacon); }
+
+/* MOBILE STICKY */
+.mobile-cta { display: none; }
+@media (max-width: 880px) {
+  .mobile-cta {
+    display: flex; position: fixed; bottom: 16px; left: 16px; right: 16px;
+    z-index: 90; justify-content: center; box-shadow: 0 10px 30px rgba(230,48,39,0.4);
+  }
+  body { padding-bottom: 80px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPO PATTERN DEFS -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="topo" x="0" y="0" width="800" height="600" patternUnits="userSpaceOnUse">
+      <g class="topo-paths">
+        <path d="M -50 320 Q 100 280, 220 310 T 480 290 T 740 320 T 900 310" />
+        <path d="M -50 360 Q 110 320, 230 350 T 490 330 T 760 360 T 900 350" />
+        <path d="M -50 400 Q 120 360, 240 390 T 500 370 T 770 400 T 900 390" />
+        <path d="M -50 280 Q 90 240, 210 270 T 470 250 T 730 280 T 900 270" />
+        <path d="M -50 240 Q 80 200, 200 230 T 460 210 T 720 240 T 900 230" />
+        <path d="M -50 440 Q 130 400, 250 430 T 510 410 T 780 440 T 900 430" />
+        <path d="M -50 480 Q 140 440, 260 470 T 520 450 T 790 480 T 900 470" />
+        <path d="M -50 200 Q 70 160, 190 190 T 450 170 T 710 200 T 900 190" />
+        <path d="M -50 160 Q 60 120, 180 150 T 440 130 T 700 160 T 900 150" />
+        <path d="M -50 520 Q 150 480, 270 510 T 530 490 T 800 520 T 900 510" />
+      </g>
+    </pattern>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand">
+      <img src="/assets/craft-logo.png" alt="CRAFT Flight Training" />
+    </a>
+    <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
+    <div class="nav-links" id="nav-links">
+      <div class="nav-item">
+        <button class="nav-link">Train <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Get Started</div>
+            <a href="/discovery-flight" class="nav-dd-item">
+              <div class="nav-dd-icon">✈</div>
+              <div>
+                <div class="nav-dd-title">Discovery Flight</div>
+                <div class="nav-dd-desc">$325 · Your first hour at the controls</div>
+              </div>
+            </a>
+          </div>
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Programs</div>
+            <a href="/flight-school" class="nav-dd-item">
+              <div class="nav-dd-icon">🎓</div>
+              <div>
+                <div class="nav-dd-title">Flight School</div>
+                <div class="nav-dd-desc">Private · Instrument · Commercial · Instructor</div>
+              </div>
+            </a>
+            <a href="/sim-membership" class="nav-dd-item">
+              <div class="nav-dd-icon">📺</div>
+              <div>
+                <div class="nav-dd-title">Sim Membership</div>
+                <div class="nav-dd-desc">Train smarter, fly sharper · $49/hr Redbird FMX</div>
+              </div>
+            </a>
+          </div>
+          <div class="nav-dd-section">
+            <a href="/#calculator" class="nav-dd-item">
+              <div class="nav-dd-icon">⌗</div>
+              <div>
+                <div class="nav-dd-title">Cost Calculator</div>
+                <div class="nav-dd-desc">Get your personalized estimate</div>
+              </div>
+            </a>
+            <a href="/financing" class="nav-dd-item">
+              <div class="nav-dd-icon">$</div>
+              <div>
+                <div class="nav-dd-title">Financing</div>
+                <div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Our Fleet</div>
+            <a href="/aircraft#da40" class="nav-dd-item">
+              <div class="nav-dd-icon">⊕</div>
+              <div>
+                <div class="nav-dd-title">Diamond DA40 NG</div>
+                <div class="nav-dd-desc">Single-engine · G1000 NXi · Jet-A</div>
+              </div>
+            </a>
+            <a href="/aircraft#da42" class="nav-dd-item">
+              <div class="nav-dd-icon">⊕</div>
+              <div>
+                <div class="nav-dd-title">Diamond DA42-VI</div>
+                <div class="nav-dd-desc">Multi-engine · Twin AE 300 turbodiesels</div>
+              </div>
+            </a>
+            <a href="/sim-membership" class="nav-dd-item">
+              <div class="nav-dd-icon">▤</div>
+              <div>
+                <div class="nav-dd-title">Redbird FMX</div>
+                <div class="nav-dd-desc">Full-motion AATD simulator · $49/hr</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link">Company <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <a href="/company" class="nav-dd-item">
+              <div class="nav-dd-icon">★</div>
+              <div>
+                <div class="nav-dd-title">About CRAFT</div>
+                <div class="nav-dd-desc">Charleston's accelerated flight school</div>
+              </div>
+            </a>
+            <a href="/contact" class="nav-dd-item">
+              <div class="nav-dd-icon">✉</div>
+              <div>
+                <div class="nav-dd-title">Contact</div>
+                <div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div>
+              </div>
+            </a>
+            <a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener" class="nav-dd-item">
+              <div class="nav-dd-icon">★</div>
+              <div>
+                <div class="nav-dd-title">Reviews</div>
+                <div class="nav-dd-desc">What students say</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="/discovery-flight" class="btn btn-primary btn-sm btn-arrow">Discovery Flight</a>
+  </div>
+</nav>
+<script>
+// Mobile nav toggle + dropdown click on small screens
+document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+document.querySelectorAll('.nav-item .nav-link').forEach(b => {
+  b.addEventListener('click', e => {
+    if (window.innerWidth > 980) return;
+    e.preventDefault();
+    b.parentElement.classList.toggle('open');
+  });
+});
+</script>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-video-wrap">
+    <iframe id="hero-yt"
+      src="https://www.youtube.com/embed/OMPuQnDtDWk?autoplay=1&mute=1&loop=1&playlist=OMPuQnDtDWk&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1"
+      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow">● 95% First-Time Pass Rate · DPE in Weeks</span>
+      <h1>
+        Learn to fly<br>
+        <span class="accent">in the Safest</span><br>
+        Single Engine<br>
+        <span class="stroke">Airplane.</span>
+      </h1>
+      <p class="hero-sub">
+        Your first lesson. Your first solo. Your professional pilot career. CRAFT is the most direct path — 95% first-time pass rate, DPE availability in weeks, not months.
+      </p>
+      <div class="hero-cta">
+        <a href="#discovery" class="btn btn-primary btn-arrow">Book Discovery Flight</a>
+        <a href="#programs" class="btn btn-ghost">See Programs</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">95%</div><div class="stat-label">First-Time Pass Rate</div></div>
+        <div><div class="stat-num">Weeks</div><div class="stat-label">DPE Availability</div></div>
+        <div><div class="stat-num">KCHS</div><div class="stat-label">Atlantic FBO</div></div>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <div class="hero-card-label">What Makes Us Different</div>
+      <div class="hero-card-title">Sim-first. Diamond. Done in weeks.</div>
+      <div class="hero-card-sub">Charleston's accelerated flight school at Atlantic FBO · KCHS</div>
+      <div class="hero-card-rows">
+        <div class="hcr"><span class="hcr-l">Method</span><span class="hcr-r">Sim-first</span></div>
+        <div class="hcr"><span class="hcr-l">Aircraft</span><span class="hcr-r">Diamond Jet-A</span></div>
+        <div class="hcr"><span class="hcr-l">Pass rate</span><span class="hcr-r">95%</span></div>
+        <div class="hcr"><span class="hcr-l">DPE wait</span><span class="hcr-r urgent">Weeks</span></div>
+        <div class="hcr"><span class="hcr-l">FBO</span><span class="hcr-r">Atlantic · KCHS</span></div>
+      </div>
+      <a href="#discovery" class="btn btn-primary btn-block btn-arrow">Book Discovery Flight</a>
+    </aside>
+  </div>
+</header>
+
+<!-- PROOF BAR -->
+<section class="proof">
+  <div class="proof-inner">
+    <span class="proof-label">FAA Part 61 · Atlantic FBO · KCHS</span>
+    <div class="proof-items">
+      <span>Diamond DA40NG</span>
+      <span>DA42-VI Multi</span>
+      <span>Redbird FMX</span>
+      <span>VA Approved</span>
+    </div>
+  </div>
+</section>
+
+<!-- WEDGE -->
+<section class="section wedge">
+  <div class="container">
+    <div class="wedge-grid">
+      <div>
+        <span class="eyebrow">Our Method</span>
+        <h2 class="h-display">The airplane is a terrible <span class="accent">classroom.</span></h2>
+        <p>Most flight schools throw you in the cockpit at $255 an hour and call it training. We don't. Every CRAFT student starts with the Redbird FMX simulator — and only moves to the airplane once the muscle memory is locked in.</p>
+        <div class="wedge-quote">"Sim-first cuts 30+ hours off the average path to checkride — and saves you $15K doing it."</div>
+        <p>That's not a marketing claim. It's how every accelerated cohort we run finishes ahead of schedule and under budget.</p>
+      </div>
+      <div class="wedge-visual">
+        <div>
+          <div class="wedge-visual-num">30+</div>
+          <div class="wedge-visual-label">Hours Saved</div>
+        </div>
+        <div class="wedge-visual-cap">Avg. hours saved per student vs. national Part 61 benchmark — earned on the simulator before burning AvGas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCELERATED PROGRAMS -->
+<section class="section acc" id="programs">
+  <div class="container">
+    <div class="acc-head">
+      <span class="eyebrow">Programs</span>
+      <h2 class="h-display">Train like you mean it. <span class="accent">Finish like a pro.</span></h2>
+      <p>Bundle as Bronze, Silver, or Gold — or take individual programs accelerated. 95% first-time pass rate. DPE availability measured in weeks.</p>
+    </div>
+    <div class="acc-grid">
+      <!-- Card 1: PPL -->
+      <div class="acc-card">
+        <div class="acc-tag">Foundation · Part 61</div>
+        <h3>Private Pilot</h3>
+        <div class="acc-time"><strong>~3 months</strong> · 58 flight hrs · train at your pace</div>
+        <ul class="acc-list">
+          <li>50 hrs Diamond DA40NG ($255/hr)</li>
+          <li>6 hrs Redbird FMX simulator</li>
+          <li>74 hrs ground + flight instruction</li>
+          <li>ASA materials + written test prep</li>
+          <li>Checkride aircraft + DPE coordination</li>
+        </ul>
+        <div class="acc-price">
+          <span class="acc-price-num">$20,188</span>
+          <span class="acc-price-suf">all-in · DA40NG glass cockpit</span>
+        </div>
+        <a href="#discovery" class="btn btn-light btn-block btn-arrow">Reserve Seat</a>
+      </div>
+      <!-- Card 2: Bronze (featured) -->
+      <div class="acc-card feat">
+        <div class="acc-tag">Most Popular · Bundle</div>
+        <h3>Bronze Pro Pilot</h3>
+        <div class="acc-time"><strong>PPL → IFR → CPL</strong> · 270 hrs total · zero to commercial</div>
+        <ul class="acc-list">
+          <li>Private Pilot License ($20,188 value)</li>
+          <li>Accelerated IFR ($19,334 value)</li>
+          <li>Accelerated Commercial ($41,225 value)</li>
+          <li>116 hrs DA40NG + 30 hrs Redbird sim</li>
+          <li>Stratus &amp; Meritize financing supported</li>
+        </ul>
+        <div class="acc-price">
+          <span class="acc-price-num">$82,362</span>
+          <span class="acc-price-suf">vs. ~$95K piecemeal</span>
+        </div>
+        <a href="#discovery" class="btn btn-primary btn-block btn-arrow">Reserve Seat</a>
+      </div>
+      <!-- Card 3: Accelerated IFR -->
+      <div class="acc-card">
+        <div class="acc-tag">Accelerated</div>
+        <h3>Accelerated IFR</h3>
+        <div class="acc-time"><strong>1 week</strong> · 62 flight hrs · BYO aircraft option</div>
+        <ul class="acc-list">
+          <li>40 hrs DA40NG (or your aircraft)</li>
+          <li>20 hrs Redbird FMX procedures</li>
+          <li>Single-instructor consistency</li>
+          <li>For PPL holders ready to commit</li>
+          <li>BYO aircraft saves ~$10K</li>
+        </ul>
+        <div class="acc-price">
+          <span class="acc-price-num">$19,334</span>
+          <span class="acc-price-suf">all-in · DPE in weeks</span>
+        </div>
+        <a href="#discovery" class="btn btn-light btn-block btn-arrow">Reserve Seat</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATHWAY -->
+<section class="section path">
+  <div class="container">
+    <div class="path-head">
+      <span class="eyebrow">The Track</span>
+      <h2 class="h-display">From first lesson to <span class="accent">first paycheck.</span></h2>
+      <p>Each rating builds into the next. Bundle Bronze, Silver, or Gold — or take individual accelerated programs.</p>
+    </div>
+    <div class="path-track">
+      <div class="path-line"></div>
+      <div class="path-stops">
+        <div class="path-stop start">
+          <div class="path-num">01</div>
+          <div class="path-label">Discovery</div>
+          <div class="path-time">$325 · 60 min</div>
+        </div>
+        <div class="path-stop">
+          <div class="path-num">02</div>
+          <div class="path-label">PPL</div>
+          <div class="path-time">Part 61 · ~3 mo</div>
+        </div>
+        <div class="path-stop">
+          <div class="path-num">03</div>
+          <div class="path-label">Instrument</div>
+          <div class="path-time">Accelerated · 1 wk</div>
+        </div>
+        <div class="path-stop">
+          <div class="path-num">04</div>
+          <div class="path-label">Commercial</div>
+          <div class="path-time">Accelerated · 6 wk</div>
+        </div>
+        <div class="path-stop end">
+          <div class="path-num">05</div>
+          <div class="path-label">Multi + CFI</div>
+          <div class="path-time">Accelerated · 1–2 wk</div>
+        </div>
+      </div>
+    </div>
+    <div class="path-foot">Industry DPE wait: <strong>4–6 months.</strong> CRAFT DPE wait: <strong>weeks, not months.</strong></div>
+  </div>
+</section>
+
+<!-- DPE SECTION (CRAFT's wedge) -->
+<section class="section dpe">
+  <div class="container">
+    <div class="dpe-grid">
+      <div>
+        <span class="eyebrow">Our Wedge</span>
+        <h2 class="h-display">The bottleneck <span class="accent">stops here.</span></h2>
+        <p>The biggest reason "accelerated" training breaks down elsewhere isn't instruction — it's checkrides. Across most of the country, pilots wait 4–6 months for a Designated Pilot Examiner.</p>
+        <p>At CRAFT, DPE availability is built into how every program is planned. While exact timing varies, checkrides are typically scheduled in <strong>weeks, not months.</strong> You train, you test, you finish.</p>
+      </div>
+      <div class="dpe-card">
+        <div class="dpe-stat">
+          <div class="dpe-stat-num">95%</div>
+          <div class="dpe-stat-lbl">First-Time<br>Pass Rate</div>
+        </div>
+        <div class="dpe-card-row"><span class="dpe-card-l">Industry DPE wait</span><span class="dpe-card-r bad">4–6 months</span></div>
+        <div class="dpe-card-row"><span class="dpe-card-l">CRAFT DPE wait</span><span class="dpe-card-r good">Weeks</span></div>
+        <div class="dpe-card-row"><span class="dpe-card-l">National pass rate</span><span class="dpe-card-r bad">~75%</span></div>
+        <div class="dpe-card-row"><span class="dpe-card-l">CRAFT pass rate</span><span class="dpe-card-r good">95%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COST CALCULATOR -->
+<section class="section calc" id="calculator">
+  <div class="container">
+    <div class="calc-head">
+      <span class="eyebrow">Cost Calculator</span>
+      <h2 class="h-display">Real numbers, <span class="accent">not estimates.</span></h2>
+      <p>Pick a program. See exactly what you'd pay — broken down by aircraft, sim, instruction, and fees. Switch financing to see your monthly payment.</p>
+    </div>
+    <div class="calc-body">
+      <div class="calc-left">
+        <div class="calc-section">
+          <div class="calc-label"><span>1</span>Choose your program</div>
+          <div class="calc-progs" id="cc-progs">
+            <button class="calc-prog" data-k="ppl">
+              <span class="calc-prog-tag">Part 61</span>
+              <span class="calc-prog-name">Private Pilot</span>
+              <span class="calc-prog-time">~3 mo · 58 hrs</span>
+            </button>
+            <button class="calc-prog" data-k="acc-ifr">
+              <span class="calc-prog-tag">Accelerated</span>
+              <span class="calc-prog-name">Accelerated IFR</span>
+              <span class="calc-prog-time">1 wk · 62 hrs</span>
+            </button>
+            <button class="calc-prog" data-k="acc-cpl">
+              <span class="calc-prog-tag">Accelerated</span>
+              <span class="calc-prog-name">Accelerated CPL</span>
+              <span class="calc-prog-time">6 wk · 148 hrs</span>
+            </button>
+            <button class="calc-prog active" data-k="bronze">
+              <span class="calc-prog-tag">Popular · Bundle</span>
+              <span class="calc-prog-name">Bronze · Zero to CPL</span>
+              <span class="calc-prog-time">270 hrs total</span>
+            </button>
+            <button class="calc-prog" data-k="silver">
+              <span class="calc-prog-tag">Bundle</span>
+              <span class="calc-prog-name">Silver · + Multi</span>
+              <span class="calc-prog-time">281 hrs total</span>
+            </button>
+            <button class="calc-prog" data-k="gold">
+              <span class="calc-prog-tag">Bundle</span>
+              <span class="calc-prog-name">Gold · The Works</span>
+              <span class="calc-prog-time">332.5 hrs total</span>
+            </button>
+          </div>
+        </div>
+        <div class="calc-section">
+          <div class="calc-label"><span>2</span>Hours of prior experience</div>
+          <div class="calc-slider-row">
+            <input type="range" id="cc-prior" min="0" max="100" value="0" step="5" />
+            <div class="calc-slider-val"><span id="cc-prior-val">0</span><small>hrs</small></div>
+          </div>
+          <div class="calc-slider-hint">Logged hours from another school transfer at full credit. Slide to estimate your discount.</div>
+        </div>
+        <div class="calc-section">
+          <div class="calc-label"><span>3</span>How will you pay?</div>
+          <div class="calc-fin" id="cc-fin">
+            <button class="calc-fin-opt active" data-fin="cash">
+              <span class="calc-fin-name">Pay In Full</span>
+              <span class="calc-fin-sub">No financing</span>
+            </button>
+            <button class="calc-fin-opt" data-fin="financed">
+              <span class="calc-fin-name">Stratus / Meritize</span>
+              <span class="calc-fin-sub">$0 down · 84 mo</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result">
+          <div class="calc-r-eyebrow" id="cc-tag">Pro Pilot Bundle</div>
+          <div class="calc-r-name" id="cc-name">Bronze · Zero to CPL</div>
+          <div class="calc-r-sub" id="cc-sub">270 hrs · PPL + IFR + Commercial</div>
+          <div class="calc-r-total">
+            <div class="calc-r-label">Estimated all-in</div>
+            <div class="calc-r-num" id="cc-total">$82,362</div>
+            <div class="calc-r-monthly" id="cc-monthly" style="display:none">
+              <span id="cc-monthly-num">$980</span>/mo · 84 months · $0 down
+            </div>
+          </div>
+          <div class="calc-bar" id="cc-bar"></div>
+          <div class="calc-bar-legend" id="cc-bar-legend"></div>
+          <div class="calc-rows" id="cc-rows"></div>
+          <div class="calc-compare">
+            <div class="calc-compare-bar"><div class="calc-compare-craft" id="cc-bar-craft"></div></div>
+            <div class="calc-compare-stats">
+              <div><span class="calc-compare-num" id="cc-craft-num">$82,362</span><span class="calc-compare-lbl">CRAFT all-in</span></div>
+              <div><span class="calc-compare-num industry" id="cc-industry-num">$115,000</span><span class="calc-compare-lbl">Industry avg</span></div>
+              <div><span class="calc-compare-num savings" id="cc-savings">~$32,638</span><span class="calc-compare-lbl">You save</span></div>
+            </div>
+          </div>
+          <div class="calc-ctas">
+            <a href="#discovery" class="btn btn-primary btn-arrow">Book Discovery Flight</a>
+            <a href="tel:+18438006498" class="btn btn-ghost">Speak with a CFI</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section class="section fleet" id="fleet">
+  <div class="container">
+    <div class="fleet-head">
+      <div>
+        <span class="eyebrow">The Fleet</span>
+        <h2 class="h-display">Charleston's only <span class="accent">Diamond Jet-A</span> trainers.</h2>
+      </div>
+      <p>No ratty 172s. No 1980s avionics. Every CRAFT student trains in modern, glass-cockpit, Jet-A turbodiesels — the same platforms regional carriers transition from.</p>
+    </div>
+    <div class="fleet-grid">
+      <div class="fleet-card">
+        <div class="fleet-tag">Single-Engine · Glass</div>
+        <h3>Diamond DA40 NG</h3>
+        <div class="fleet-card-sub">Garmin G1000 NXi · 168 ktas · Jet-A turbodiesel</div>
+        <div class="fleet-specs">
+          <div><div class="fleet-spec-num">168</div><div class="fleet-spec-lbl">Cruise (kts)</div></div>
+          <div><div class="fleet-spec-num">940</div><div class="fleet-spec-lbl">Range (nm)</div></div>
+          <div><div class="fleet-spec-num">5.0</div><div class="fleet-spec-lbl">GPH (Jet-A)</div></div>
+        </div>
+      </div>
+      <div class="fleet-card">
+        <div class="fleet-tag">Multi-Engine · Glass</div>
+        <h3>Diamond DA42-VI</h3>
+        <div class="fleet-card-sub">G1000 NXi · 197 ktas · Twin AE 300 turbodiesels</div>
+        <div class="fleet-specs">
+          <div><div class="fleet-spec-num">197</div><div class="fleet-spec-lbl">Cruise (kts)</div></div>
+          <div><div class="fleet-spec-num">1,215</div><div class="fleet-spec-lbl">Range (nm)</div></div>
+          <div><div class="fleet-spec-num">11.4</div><div class="fleet-spec-lbl">GPH (Jet-A)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIM -->
+<section class="section sim" id="sim">
+  <div class="container">
+    <div class="sim-grid">
+      <div class="sim-visual">
+        <span class="sim-visual-tag">Redbird FMX</span>
+        <div>
+          <div class="sim-visual-num">$<small>49</small>/hr</div>
+          <div class="sim-visual-cap">Full-Motion Sim Rate</div>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">The Sim</span>
+        <h2 class="h-display">Master procedures <span class="accent">on the ground.</span></h2>
+        <p>The Redbird FMX is the same FAA-approved AATD the airlines use. We're the only flight school in Charleston that owns and operates one in-house — and it's how our students hit checkride minimums with real margin.</p>
+        <ul class="sim-bullets">
+          <li><strong>20 sim hours</strong> count toward IFR training and lock in flows before they cost you airplane time.</li>
+          <li><strong>Full-motion realism</strong> with weather, IMC, and emergency scenarios you can't legally practice in the airplane.</li>
+          <li><strong>$49/hr sim time</strong> vs. $255/hr in the DA40NG. Math is undefeated.</li>
+          <li><strong>Available for rated pilots</strong> for currency, IPC prep, and type-rating prep — not just students.</li>
+        </ul>
+        <a href="#discovery" class="btn btn-primary btn-arrow">Try the Sim — $99</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="section testi">
+  <div class="container">
+    <div class="testi-mark">❝</div>
+    <div class="testi-quote h-display" style="text-transform:none">
+      The CRAFT team got me from PPL through Commercial in under nine months. Sim-first isn't a gimmick — it's how I finished on schedule and under budget.
+    </div>
+    <div class="testi-attr">
+      <strong>Marcus W.</strong>
+      Bronze Pro Pilot · Class of 2025 · Now flying Part 135 · CHS-based
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="section location" id="location">
+  <div class="container">
+    <div class="location-grid">
+      <div>
+        <span class="eyebrow">Charleston, SC</span>
+        <h2 class="h-display">Atlantic FBO. <span class="accent">KCHS.</span> The real deal.</h2>
+        <p>CRAFT operates out of Atlantic Aviation at Charleston International — a Class C, controlled-airfield environment with daily Part 121 traffic. You're not learning at a sleepy grass strip. You're learning where you'll work.</p>
+        <p>Year-round VFR weather, a coastal training area, and approaches into KCHS, KJZI, KMKS, and KSCT mean you stack experience fast.</p>
+        <div class="location-meta">
+          <div><div class="location-meta-num">320+</div><div class="location-meta-lbl">VFR Days/Year</div></div>
+          <div><div class="location-meta-num">Class C</div><div class="location-meta-lbl">Controlled Tower</div></div>
+          <div><div class="location-meta-num">4 fields</div><div class="location-meta-lbl">Training Area</div></div>
+          <div><div class="location-meta-num">FBO</div><div class="location-meta-lbl">Atlantic Aviation</div></div>
+        </div>
+        <div class="location-address">
+          <div class="location-address-eyebrow">Visit Us</div>
+          <div class="location-address-line">6060 S. Aviation Ave, Suite 109<br>North Charleston, SC 29406</div>
+          <div class="location-address-meta">
+            <a href="tel:+18438006498">843.800.6498</a> · <a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a><br>
+            Mon–Sat 9am–4pm
+          </div>
+        </div>
+      </div>
+      <div class="location-map">
+        <iframe
+          src="https://www.google.com/maps?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406&output=embed"
+          style="position:absolute;inset:0;width:100%;height:100%;border:0;filter:invert(0.92) hue-rotate(180deg) saturate(0.85);"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </div>
+  </di

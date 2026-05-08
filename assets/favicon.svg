@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="8" fill="#C12420"/>
+  <g fill="#fff" transform="translate(32 32) rotate(35)">
+    <!-- fuselage -->
+    <rect x="-1.6" y="-22" width="3.2" height="40" rx="1.2"/>
+    <!-- nose taper -->
+    <polygon points="-1.6,-22 1.6,-22 0,-26"/>
+    <!-- main wings -->
+    <rect x="-22" y="-3.5" width="44" height="6" rx="2"/>
+    <!-- tail wings -->
+    <rect x="-9" y="13" width="18" height="3.5" rx="1"/>
+    <!-- vertical stabilizer -->
+    <rect x="-1.2" y="11" width="2.4" height="8" rx="0.6"/>
+    <!-- prop hub -->
+    <circle cx="0" cy="-26" r="1.6"/>
+  </g>
+</svg>

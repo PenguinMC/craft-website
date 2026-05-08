@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Flight — $325 · Sim, Flight & Debrief | CRAFT Flight Training</title>
+<meta name="description" content="30 minutes in our Redbird FMX simulator, one hour flying a Diamond DA40NG over Charleston, then a 15-minute debrief. $325 all-in. The first step toward your pilot license at CRAFT." />
+<meta property="og:title" content="Discovery Flight — $325 at CRAFT Flight Training" />
+<meta property="og:description" content="30 min Redbird sim + 1 hour flying a Diamond DA40NG over Charleston + 15 min debrief. No experience needed." />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/shared.css">
+<style>
+/* Page-specific Discovery Flight styles */
+.df-hero {
+  position: relative; min-height: 80vh;
+  background: var(--ink);
+  display: flex; align-items: center;
+  padding: 140px 0 100px; overflow: hidden;
+}
+.df-hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: #000 url('https://img.youtube.com/vi/OMPuQnDtDWk/maxresdefault.jpg') center/cover no-repeat;
+}
+.df-hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(20,24,31,0.55) 0%, rgba(20,24,31,0.7) 50%, rgba(20,24,31,0.95) 100%);
+}
+.df-hero-inner {
+  position: relative; z-index: 2;
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%;
+}
+.df-hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(230,48,39,0.12); color: var(--beacon);
+  padding: 8px 14px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  border: 1px solid rgba(230,48,39,0.3); margin-bottom: 28px;
+}
+.df-hero h1 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(48px, 8vw, 120px);
+  line-height: 0.92; letter-spacing: -0.015em; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.df-hero h1 .accent { color: var(--beacon); }
+.df-hero h1 .stroke {
+  -webkit-text-stroke: 1.5px var(--white);
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.df-hero-sub {
+  font-size: clamp(16px, 1.4vw, 19px);
+  color: rgba(255,255,255,0.85); max-width: 640px;
+  margin-bottom: 36px; line-height: 1.55;
+}
+.df-hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* What is */
+.df-what { background: var(--approach); padding: var(--section-py) 0; }
+.df-what-grid {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut);
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center;
+}
+@media (max-width: 980px) { .df-what-grid { grid-template-columns: 1fr; gap: 40px; } }
+.df-what h2 {
+  font-family: var(--display); font-weight: 800; font-size: clamp(40px, 5vw, 72px);
+  line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em;
+  margin: 16px 0 24px;
+}
+.df-what h2 .accent { color: var(--beacon); }
+.df-what p { font-size: 17px; color: rgba(255,255,255,0.78); margin-bottom: 18px; max-width: 540px; line-height: 1.6; }
+.df-what-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 28px; max-width: 480px; }
+.df-what-stat-num { font-family: var(--display); font-weight: 900; font-size: 56px; line-height: 1; color: var(--beacon); letter-spacing: -0.02em; }
+.df-what-stat-lbl { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 8px; }
+.df-what-visual {
+  position: relative; aspect-ratio: 4/5;
+  background: linear-gradient(135deg, var(--runway) 0%, var(--ink) 100%);
+  border-radius: 12px; overflow: hidden;
+  background-image: url('https://img.youtube.com/vi/OMPuQnDtDWk/maxresdefault.jpg');
+  background-size: cover; background-position: center;
+}
+.df-what-visual::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(20,24,31,0.85) 100%);
+}
+.df-what-visual-cap {
+  position: absolute; left: 24px; right: 24px; bottom: 24px; z-index: 2;
+  font-family: var(--display); font-weight: 700; font-size: 20px;
+  color: var(--white); text-transform: uppercase; letter-spacing: 0.04em;
+}
+
+/* Three steps */
+.df-steps { background: var(--ink); padding: var(--section-py) 0; }
+.df-steps-head { text-align: center; margin-bottom: 64px; max-width: 760px; margin-left: auto; margin-right: auto; padding: 0 var(--gut); }
+.df-steps-head h2 { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 5vw, 72px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 12px 0; }
+.df-steps-head h2 .accent { color: var(--beacon); }
+.df-steps-head p { font-size: 17px; color: rgba(255,255,255,0.7); margin-top: 16px; }
+.df-steps-grid {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut);
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+@media (max-width: 880px) { .df-steps-grid { grid-template-columns: 1fr; } }
+.df-step {
+  background: var(--approach);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 36px;
+  position: relative; min-height: 320px;
+  display: flex; flex-direction: column;
+}
+.df-step::before {
+  content: ""; position: absolute; top: -1px; left: 32px; right: 32px;
+  height: 2px; background: var(--beacon);
+}
+.df-step-num {
+  font-family: var(--display); font-weight: 900;
+  font-size: 64px; color: var(--beacon); line-height: 1;
+  margin-bottom: 16px; letter-spacing: -0.03em;
+}
+.df-step-title {
+  font-family: var(--display); font-weight: 800; font-size: 28px;
+  text-transform: uppercase; line-height: 1; margin-bottom: 8px; letter-spacing: -0.005em;
+}
+.df-step-time { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); margin-bottom: 16px; }
+.df-step-desc { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+
+/* Includes */
+.df-incl { background: var(--approach); padding: var(--section-py) 0; }
+.df-incl-grid {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut);
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start;
+}
+@media (max-width: 980px) { .df-incl-grid { grid-template-columns: 1fr; gap: 40px; } }
+.df-incl h2 { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 5vw, 72px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 12px 0 20px; }
+.df-incl h2 .accent { color: var(--beacon); }
+.df-incl p { font-size: 17px; color: rgba(255,255,255,0.78); margin-bottom: 16px; max-width: 480px; }
+.df-incl-list { list-style: none; display: grid; gap: 14px; }
+.df-incl-list li {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px 20px;
+  background: var(--ink);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.5;
+}
+.df-incl-tick { color: var(--beacon); font-weight: 700; flex: 0 0 24px; font-size: 18px; }
+
+/* Pricing */
+.df-pricing { background: var(--ink); padding: var(--section-py) 0; text-align: center; }
+.df-pricing-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); margin-bottom: 16px; }
+.df-pricing h2 { font-family: var(--display); font-weight: 900; font-size: clamp(80px, 12vw, 180px); line-height: 1; letter-spacing: -0.03em; color: var(--white); margin-bottom: 12px; }
+.df-pricing-sub { font-size: 18px; color: rgba(255,255,255,0.65); margin-bottom: 8px; }
+.df-pricing-note { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+
+/* FAQ */
+.df-faq { background: var(--approach); padding: var(--section-py) 0; }
+.df-faq-head { text-align: center; margin-bottom: 56px; padding: 0 var(--gut); }
+.df-faq-head h2 { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 5vw, 64px); text-transform: uppercase; letter-spacing: -0.01em; margin-top: 12px; line-height: 0.95; }
+.df-faq-head h2 .accent { color: var(--beacon); }
+.df-faq-list { max-width: 880px; margin: 0 auto; padding: 0 var(--gut); display: grid; gap: 12px; }
+.df-faq-item {
+  background: var(--ink);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; overflow: hidden;
+}
+.df-faq-q {
+  width: 100%; text-align: left;
+  padding: 24px 28px;
+  display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  font-family: var(--display); font-weight: 700; font-size: 20px;
+  text-transform: uppercase; letter-spacing: 0.02em; color: var(--white);
+  background: none; border: none; cursor: pointer;
+}
+.df-faq-q-mark { color: var(--beacon); font-size: 28px; transition: transform .25s var(--ease); flex: 0 0 auto; }
+.df-faq-item.open .df-faq-q-mark { transform: rotate(45deg); }
+.df-faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .3s var(--ease);
+  padding: 0 28px;
+  font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.7;
+}
+.df-faq-item.open .df-faq-a { max-height: 400px; padding: 0 28px 24px; }
+
+/* Booking */
+.df-book { background: var(--ink); padding: var(--section-py) 0; }
+.df-book-head { text-align: center; margin-bottom: 48px; max-width: 720px; margin-left: auto; margin-right: auto; padding: 0 var(--gut); }
+.df-book-head h2 { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 5vw, 64px); text-transform: uppercase; letter-spacing: -0.01em; margin: 12px 0; line-height: 0.95; }
+.df-book-head h2 .accent { color: var(--beacon); }
+.df-book-card {
+  max-width: 720px; margin: 0 auto; padding: 0 var(--gut);
+}
+.df-book-cta {
+  background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%);
+  border-radius: 12px; padding: 48px; text-align: center;
+  box-shadow: 0 30px 60px -20px rgba(230,48,39,0.4);
+}
+.df-book-cta h3 { font-family: var(--display); font-weight: 900; font-size: 40px; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1; margin-bottom: 12px; }
+.df-book-cta p { font-size: 16px; color: rgba(255,255,255,0.85); margin-bottom: 28px; }
+.df-book-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.df-book-buttons .btn-light { background: var(--ink); color: var(--white); }
+.df-book-buttons .btn-light:hover { background: rgba(0,0,0,0.7); }
+</style>
+</head>
+<body>
+
+<!-- Shared NAV (same as homepage) -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand"><img src="/assets/craft-logo.png" alt="CRAFT Flight Training" /></a>
+    <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
+    <div class="nav-links" id="nav-links">
+      <div class="nav-item">
+        <button class="nav-link">Train <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Get Started</div>
+            <a href="/discovery-flight" class="nav-dd-item">
+              <div class="nav-dd-icon">✈</div>
+              <div><div class="nav-dd-title">Discovery Flight</div><div class="nav-dd-desc">$325 · Your first hour at the controls</div></div>
+            </a>
+          </div>
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Programs</div>
+            <a href="/flight-school" class="nav-dd-item">
+              <div class="nav-dd-icon">🎓</div>
+              <div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">Private · Instrument · Commercial · Instructor</div></div>
+            </a>
+            <a href="/sim-membership" class="nav-dd-item">
+              <div class="nav-dd-icon">📺</div>
+              <div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">Train smarter, fly sharper · $49/hr Redbird FMX</div></div>
+            </a>
+          </div>
+          <div class="nav-dd-section">
+            <a href="/#calculator" class="nav-dd-item">
+              <div class="nav-dd-icon">⌗</div>
+              <div><div class="nav-dd-title">Cost Calculator</div><div class="nav-dd-desc">Get your personalized estimate</div></div>
+            </a>
+            <a href="/financing" class="nav-dd-item">
+              <div class="nav-dd-icon">$</div>
+              <div><div class="nav-dd-title">Financing</div><div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Our Fleet</div>
+            <a href="/aircraft#da40" class="nav-dd-item"><div class="nav-dd-icon">⊕</div><div><div class="nav-dd-title">Diamond DA40 NG</div><div class="nav-dd-desc">Single-engine · G1000 NXi · Jet-A</div></div></a>
+            <a href="/aircraft#da42" class="nav-dd-item"><div class="nav-dd-icon">⊕</div><div><div class="nav-dd-title">Diamond DA42-VI</div><div class="nav-dd-desc">Multi-engine · Twin AE 300 turbodiesels</div></div></a>
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Full-motion AATD simulator · $49/hr</div></div></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link">Company <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <a href="/company" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
+            <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon">✉</div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
+            <a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say</div></div></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#book" class="btn btn-primary btn-sm btn-arrow">Book Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="df-hero">
+  <div class="df-hero-bg"></div>
+  <div class="df-hero-overlay"></div>
+  <div class="df-hero-inner">
+    <span class="df-hero-eyebrow">● Discovery Flight · $325 · Sim + Flight + Debrief</span>
+    <h1>Your first hour<br><span class="accent">at the controls.</span></h1>
+    <p class="df-hero-sub">30 minutes in our state-of-the-art Redbird FMX simulator. One full hour flying a Diamond DA40NG over Charleston. Then 15 minutes to debrief and talk next steps. No experience needed. A real CFI in the right seat — and by the end you'll know whether this is for you, or whether it's already in your blood.</p>
+    <div class="df-hero-cta">
+      <a href="#book" class="btn btn-primary btn-arrow">Book Discovery Flight</a>
+      <a href="#what" class="btn btn-ghost">What to Expect</a>
+    </div>
+  </div>
+</header>
+
+<!-- WHAT IS A DISCOVERY FLIGHT -->
+<section class="df-what" id="what">
+  <div class="df-what-grid">
+    <div>
+      <span class="eyebrow">What Is a Discovery Flight?</span>
+      <h2>Honestly? <span class="accent">A test drive.</span></h2>
+      <p>A Discovery Flight is the cleanest way to find out if flight training is right for you — without committing to a $20K program first. Sim time, real flight time, and a real conversation. $325, all-in.</p>
+      <p>You start in the Redbird FMX to get oriented, then move to the actual DA40NG you'd train in. You're in the left seat — the pilot's seat. Your CFI handles takeoff and landing; everything in between is you on the controls.</p>
+      <div class="df-what-stats">
+        <div><div class="df-what-stat-num">30</div><div class="df-what-stat-lbl">Min Redbird Sim</div></div>
+        <div><div class="df-what-stat-num">60</div><div class="df-what-stat-lbl">Min in the Air</div></div>
+        <div><div class="df-what-stat-num">15</div><div class="df-what-stat-lbl">Min Debrief</div></div>
+        <div><div class="df-what-stat-num">$0</div><div class="df-what-stat-lbl">Pressure to Continue</div></div>
+      </div>
+    </div>
+    <div class="df-what-visual">
+      <div class="df-what-visual-cap">Diamond DA40NG · Charleston Coastline</div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE STEPS -->
+<section class="df-steps">
+  <div class="df-steps-head">
+    <span class="eyebrow">What You'll Do</span>
+    <h2>Three stages. <span class="accent">One unforgettable day.</span></h2>
+    <p>Show up at Atlantic Aviation 15 minutes early. The whole thing wraps in about two hours door-to-door — sim, flight, and debrief.</p>
+  </div>
+  <div class="df-steps-grid">
+    <div class="df-step">
+      <div class="df-step-num">01</div>
+      <div class="df-step-title">Redbird Sim</div>
+      <div class="df-step-time">30 minutes</div>
+      <div class="df-step-desc">Climb into our state-of-the-art Redbird FMX full-motion simulator. Your CFI walks you through the controls, the panel, and basic maneuvers — straight-and-level flight, gentle turns, climbs and descents — so you're already comfortable before you ever leave the ground.</div>
+    </div>
+    <div class="df-step">
+      <div class="df-step-num">02</div>
+      <div class="df-step-title">Fly Charleston</div>
+      <div class="df-step-time">1 hour airborne</div>
+      <div class="df-step-desc">A full hour at the controls of the Diamond DA40NG. CFI handles takeoff and landing — everything in between is you. Coastline, harbor, the bridges from above. Skills you just practiced in the sim, now over the real city. CFI is on the controls anytime you want.</div>
+    </div>
+    <div class="df-step">
+      <div class="df-step-num">03</div>
+      <div class="df-step-title">Debrief &amp; Next Steps</div>
+      <div class="df-step-time">15 minutes</div>
+      <div class="df-step-desc">Logbook entry signed by your CFI (these hours count toward your PPL). Honest conversation about how the flight went, what training looks like from here, and whether CRAFT is the right fit. No hard sell. Photo from the cockpit, sent to you afterward.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="df-incl">
+  <div class="df-incl-grid">
+    <div>
+      <span class="eyebrow">What's Included</span>
+      <h2>$325 covers <span class="accent">everything.</span></h2>
+      <p>No add-ons. No fuel surcharges. No "instructor fee" hidden at checkout. The number on the booking page is the number on your card statement.</p>
+      <p>And if you decide to enroll in any CRAFT program afterward, the $325 applies as credit toward your tuition.</p>
+    </div>
+    <ul class="df-incl-list">
+      <li><span class="df-incl-tick">✓</span><span>~1h 45min total — 30 sim / 60 flight / 15 debrief</span></li>
+      <li><span class="df-incl-tick">✓</span><span>30 minutes in the Redbird FMX full-motion simulator</span></li>
+      <li><span class="df-incl-tick">✓</span><span>One full hour flying a Diamond DA40NG over Charleston</span></li>
+      <li><span class="df-incl-tick">✓</span><span>Certified Flight Instructor in the right seat the entire time</span></li>
+      <li><span class="df-incl-tick">✓</span><span>Flight hours logged toward your Private Pilot License</span></li>
+      <li><span class="df-incl-tick">✓</span><span>Logbook entry, signed by your CFI</span></li>
+      <li><span class="df-incl-tick">✓</span><span>Photo of you in the left seat (sent after)</span></li>
+      <li><span class="df-incl-tick">✓</span><span>$325 credit toward enrollment in any CRAFT program</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="df-pricing">
+  <div class="container">
+    <div class="df-pricing-eyebrow">Honest Pricing</div>
+    <h2>$325</h2>
+    <div class="df-pricing-sub">All-in. Sim, flight, debrief. No surprises.</div>
+    <div class="df-pricing-note">If you decide flight training is right for you, the $325 applies as credit toward any CRAFT enrollment. If it's not for you, no follow-up. We're not going to hard-sell you.</div>
+    <a href="#book" class="btn btn-primary btn-arrow">Reserve Your Slot</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="df-faq">
+  <div class="df-faq-head">
+    <span class="eyebrow">Frequently Asked</span>
+    <h2>The questions <span class="accent">we get most.</span></h2>
+  </div>
+  <div class="df-faq-list">
+    <div class="df-faq-item"><button class="df-faq-q"><span>Do I need any experience?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">None. Most Discovery Flight passengers have never been in a small aircraft before. Your CFI handles everything you don't yet know — and you'll learn what you need to learn in the briefing.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>Will I really fly the plane?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">Yes. You'll be in the left seat (the pilot's seat) with hands on the controls for most of the flight. Your CFI handles takeoff and landing — though we'll let you try the takeoff if you're up for it. With a full hour airborne, you get serious stick time, not a quick lap.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>What if the weather is bad?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">We rebook at no cost. CRAFT only flies when conditions are clearly safe for a discovery flight — we're conservative on this and you'll never feel pressured. Charleston has 320+ VFR days a year, so rebooks are uncommon.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>Is this a sales pitch for flight school?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">It's an honest answer to "do I actually want to be a pilot?" If you decide flight training isn't for you, no follow-up. If it is, the $325 applies as credit toward any accelerated program. We don't make money on Discovery Flights — they cost more to operate than $325. We do them because some students stay.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>Can I bring someone?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">The DA40NG seats 4. One discovery passenger flies left seat. Up to 2 additional guests can ride in the back for $50 each. Family is welcome — kids 8+ can ride along. Spouses, parents, and skeptical-uncle types all encouraged.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>How do I get there?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">Atlantic Aviation FBO at Charleston International Airport (KCHS). Address: 6060 S. Aviation Ave, Suite 109, North Charleston, SC 29406. Free parking. Show up 15 minutes early. We'll meet you in the lobby.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>How long is the whole appointment?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">About two hours door-to-door. 30 minutes in the Redbird sim + 60 minutes flying + 15 minutes debrief = ~1h 45min core, plus arrive-early time and check-out. Block off 2½ hours and you're set.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>Is there an age limit?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">For the left-seat (pilot) experience: 8+. For ride-along passengers: any age, but we recommend 8+ since smaller kids may not enjoy it. Upper age limit: none. We have students starting in their 60s.</div></div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="df-book" id="book">
+  <div class="df-book-head">
+    <span class="eyebrow">Book Your Slot</span>
+    <h2>Pick a time. <span class="accent">Step into the cockpit.</span></h2>
+  </div>
+  <div class="df-book-card">
+    <div class="df-book-cta">
+      <h3>Ready to Fly?</h3>
+      <p>Click below to reserve your Discovery Flight slot through CRAFT's booking system. Confirmation comes within an hour.</p>
+      <div class="df-book-buttons">
+        <a href="https://crm.zoho.com/bookings/PhoneCallwithCRAFTFlightTraining?rid=d140b52a0ae2e975199286c011f7be4bfc05ce0adbd6d273e1cd3014940d0c7egid1cc0ee35648b21420be582fcc603d32b4f645b0e1a6c6ca3d889e35454c6ab90" class="btn btn-light btn-arrow" target="_blank" rel="noopener">Reserve Online</a>
+        <a href="tel:+18438006498" class="btn btn-ghost">Call 843.800.6498</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (shared) -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><img src="/assets/craft-logo.png" alt="CRAFT" /></div>
+        <p class="footer-tag">Charleston's accelerated flight school. Sim-first, Diamond Jet-A, KCHS-based. 95% first-time pass rate. DPE in weeks, not months.</p>
+        <div class="footer-contact">
+          <div class="footer-contact-label">Visit / Call / Email</div>
+          <a href="https://maps.google.com/?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406" target="_blank" rel="noopener">6060 S. Aviation Ave, Suite 109 · North Charleston, SC 29406</a>
+          <a href="tel:+18438006498">843.800.6498</a>
+          <a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a>
+          <span style="display:block;font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;">Mon–Sat 9am–4pm</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Train</h4>
+        <ul>
+          <li><a href="/discovery-flight">Discovery Flight</a></li>
+          <li><a href="/flight-school">Flight School</a></li>
+          <li><a href="/sim-membership">Sim Membership</a></li>
+          <li><a href="/#calculator">Cost Calculator</a></li>
+          <li><a href="/financing">Financing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Aircraft</h4>
+        <ul>
+          <li><a href="/aircraft#da40">Diamond DA40 NG</a></li>
+          <li><a href="/aircraft#da42">Diamond DA42-VI</a></li>
+          <li><a href="/sim-membership">Redbird FMX Sim</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/company">About CRAFT</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener">Reviews</a></li>
+          <li><a href="/discovery-flight">Book Discovery</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CRAFT Flight Training, LLC · FAA Part 61 · Atlantic FBO · KCHS</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">VA Approved</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="#book" class="btn btn-primary mobile-cta btn-arrow">Book Discovery Flight — $325</a>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.df-faq-q').fo
