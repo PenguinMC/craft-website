@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lost Comms — 404 | CRAFT Flight Training</title>
+<meta name="description" content="The page you were looking for never filed a flight plan. Squawk 7600 — let's get you back to base." />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/shared.css">
+<style>
+/* ============================
+   404 PAGE — LOST COMMS
+   ============================ */
+.lost {
+  position: relative; min-height: 100vh;
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  padding: 120px 0 80px;
+  overflow: hidden;
+}
+
+/* Animated grid background */
+.lost-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: 50% 50%;
+  opacity: 0.6;
+  animation: gridDrift 30s linear infinite;
+  z-index: 1;
+}
+@keyframes gridDrift {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 64px 64px, 64px 64px; }
+}
+
+/* Radial vignette + red wash */
+.lost-vignette {
+  position: absolute; inset: 0; z-index: 2;
+  background:
+    radial-gradient(60% 70% at 50% 40%, rgba(230,48,39,0.15) 0%, rgba(230,48,39,0) 60%),
+    radial-gradient(80% 100% at 50% 100%, rgba(10,13,18,0.9) 0%, rgba(10,13,18,0) 60%);
+  pointer-events: none;
+}
+
+/* Horizontal radar sweep line */
+.lost-sweep {
+  position: absolute; left: 0; right: 0; top: 0; height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--beacon) 50%, transparent 100%);
+  filter: blur(0.5px);
+  opacity: 0.5;
+  animation: sweep 6s ease-in-out infinite;
+  z-index: 3;
+}
+@keyframes sweep {
+  0%, 100% { transform: translateY(15vh); opacity: 0; }
+  10% { opacity: 0.6; }
+  50% { transform: translateY(85vh); opacity: 0.4; }
+  90% { opacity: 0.6; }
+}
+
+/* Floating airplane silhouette — flies across periodically */
+.lost-plane {
+  position: absolute;
+  top: 28%;
+  left: -120px;
+  width: 80px;
+  height: 80px;
+  z-index: 3;
+  opacity: 0.35;
+  animation: planeFly 18s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(230,48,39,0.5));
+}
+.lost-plane svg { width: 100%; height: 100%; transform: rotate(-12deg); }
+@keyframes planeFly {
+  0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0; }
+  5% { opacity: 0.35; }
+  50% { transform: translateX(50vw) translateY(-30px) rotate(2deg); opacity: 0.5; }
+  95% { opacity: 0.35; }
+  100% { transform: translateX(calc(100vw + 200px)) translateY(40px) rotate(-3deg); opacity: 0; }
+}
+
+/* Content */
+.lost-inner {
+  position: relative; z-index: 10;
+  text-align: center;
+  max-width: 720px;
+  padding: 0 var(--gut);
+  width: 100%;
+}
+
+/* Big outline 404 in background */
+.lost-404 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(180px, 28vw, 380px);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(230,48,39,0.18);
+  margin: 0 auto -30px;
+  user-select: none;
+  position: relative;
+  animation: glitch 7s ease-in-out infinite;
+}
+.lost-404::before, .lost-404::after {
+  content: "404";
+  position: absolute; inset: 0;
+  -webkit-text-stroke: 2px rgba(230,48,39,0.18);
+  pointer-events: none;
+}
+.lost-404::before {
+  animation: glitchA 3.2s steps(1) infinite;
+  color: transparent;
+  -webkit-text-stroke-color: rgba(230,48,39,0.4);
+  clip-path: inset(0 0 70% 0);
+}
+.lost-404::after {
+  animation: glitchB 4.5s steps(1) infinite;
+  color: transparent;
+  -webkit-text-stroke-color: rgba(255,255,255,0.12);
+  clip-path: inset(70% 0 0 0);
+}
+@keyframes glitch {
+  0%, 100% { filter: none; transform: translate(0,0); }
+  92% { filter: none; transform: translate(0,0); }
+  93% { transform: translate(-2px, 1px); filter: hue-rotate(-10deg); }
+  94% { transform: translate(2px, -1px); }
+  95% { transform: translate(0,0); filter: none; }
+  96% { transform: translate(1px, 1px); }
+  97% { transform: translate(0,0); }
+}
+@keyframes glitchA {
+  0%, 90%, 100% { transform: translate(0,0); }
+  91% { transform: translate(-3px, 0); }
+  93% { transform: translate(3px, -1px); }
+  95% { transform: translate(0,0); }
+}
+@keyframes glitchB {
+  0%, 88%, 100% { transform: translate(0,0); }
+  89% { transform: translate(2px, 1px); }
+  91% { transform: translate(-2px, 0); }
+  93% { transform: translate(0,0); }
+}
+
+/* Tower + squawk badge area */
+.lost-tower-wrap {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px;
+  margin-top: -120px;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 11;
+}
+@media (max-width: 600px) {
+  .lost-tower-wrap { margin-top: -80px; gap: 10px; }
+}
+
+/* Tower icon with pulse rings */
+.lost-tower {
+  position: relative;
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  background: rgba(230,48,39,0.08);
+  border: 1.5px solid rgba(230,48,39,0.35);
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.lost-tower::before, .lost-tower::after {
+  content: ""; position: absolute; inset: -8px;
+  border: 1.5px solid var(--beacon);
+  border-radius: 50%;
+  opacity: 0;
+  animation: pulse 2.4s ease-out infinite;
+}
+.lost-tower::after { animation-delay: 1.2s; }
+@keyframes pulse {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.lost-tower svg {
+  width: 38px; height: 38px;
+  color: var(--beacon);
+  position: relative; z-index: 2;
+}
+.lost-tower-dot {
+  position: absolute; top: 6px; right: 6px;
+  width: 10px; height: 10px;
+  background: var(--beacon);
+  border-radius: 50%;
+  z-index: 3;
+  box-shadow: 0 0 12px var(--beacon);
+  animation: blink 1.4s ease-in-out infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.85); }
+}
+
+/* SQUAWK 7600 badge */
+.lost-squawk {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--beacon);
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 4px;
+  background: rgba(230,48,39,0.05);
+  border: 1px solid rgba(230,48,39,0.25);
+}
+.lost-squawk-dash {
+  width: 24px; height: 1px; background: var(--beacon); opacity: 0.5;
+}
+
+/* Headline */
+.lost-h1 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(54px, 8vw, 96px);
+  line-height: 0.95; letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+}
+.lost-h1 .accent { color: var(--beacon); }
+
+.lost-sub {
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: rgba(255,255,255,0.6);
+  max-width: 520px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+
+/* Buttons — same as shared but tighter spacing */
+.lost-cta {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.btn-primary.glow {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 0 0 1px rgba(230,48,39,0.4),
+    0 0 24px rgba(230,48,39,0.45),
+    0 0 48px rgba(230,48,39,0.25);
+  animation: ctaPulse 3s ease-in-out infinite;
+}
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 0 0 1px rgba(230,48,39,0.4), 0 0 24px rgba(230,48,39,0.45), 0 0 48px rgba(230,48,39,0.25); }
+  50% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 0 0 1px rgba(230,48,39,0.6), 0 0 36px rgba(230,48,39,0.65), 0 0 72px rgba(230,48,39,0.35); }
+}
+
+/* Divider line */
+.lost-divider {
+  width: 80px; height: 2px; background: var(--beacon);
+  margin: 0 auto 28px; opacity: 0.7;
+}
+
+/* Tags row */
+.lost-tags {
+  display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+}
+.lost-tag { display: inline-flex; align-items: center; gap: 8px; }
+.lost-tag::before {
+  content: "●"; color: var(--beacon); font-size: 8px;
+  animation: tagBlink 2s ease-in-out infinite;
+}
+.lost-tag:nth-child(2)::before { animation-delay: 0.5s; }
+.lost-tag:nth-child(3)::before { animation-delay: 1s; }
+@keyframes tagBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Telemetry corner readouts */
+.lost-telemetry {
+  position: absolute;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: rgba(230,48,39,0.5);
+  text-transform: uppercase;
+  z-index: 5;
+  line-height: 1.6;
+  pointer-events: none;
+}
+.lost-telemetry-tl { top: 88px; left: 24px; text-align: left; }
+.lost-telemetry-br { bottom: 24px; right: 24px; text-align: right; }
+.lost-telemetry-line { display: flex; gap: 8px; align-items: center; justify-content: flex-start; }
+.lost-telemetry-br .lost-telemetry-line { justify-content: flex-end; }
+.lost-telemetry-key { color: rgba(255,255,255,0.3); }
+.lost-telemetry-val { color: var(--beacon); }
+.lost-blink { animation: blink 1.4s ease-in-out infinite; }
+@media (max-width: 720px) { .lost-telemetry { display: none; } }
+
+/* Fade-in entrance */
+.lost-inner > * { animation: fadeUp 0.8s var(--ease) backwards; }
+.lost-tower-wrap { animation: fadeUp 0.8s var(--ease) 0.05s backwards; }
+.lost-h1 { animation: fadeUp 0.8s var(--ease) 0.15s backwards; }
+.lost-sub { animation: fadeUp 0.8s var(--ease) 0.25s backwards; }
+.lost-cta { animation: fadeUp 0.8s var(--ease) 0.35s backwards; }
+.lost-divider { animation: fadeUp 0.8s var(--ease) 0.45s backwards; }
+.lost-tags { animation: fadeUp 0.8s var(--ease) 0.55s backwards; }
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .lost-grid, .lost-sweep, .lost-plane, .lost-404, .lost-404::before, .lost-404::after,
+  .lost-tower::before, .lost-tower::after, .lost-tower-dot,
+  .btn-primary.glow, .lost-tag::before, .lost-blink,
+  .lost-inner > *, .lost-tower-wrap, .lost-h1, .lost-sub, .lost-cta, .lost-divider, .lost-tags {
+    animation: none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Shared NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand"><img src="/assets/craft-logo.png" alt="CRAFT Flight Training" /></a>
+    <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
+    <div class="nav-links" id="nav-links">
+      <div class="nav-item">
+        <button class="nav-link">Train <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Get Started</div>
+            <a href="/discovery-flight" class="nav-dd-item">
+              <div class="nav-dd-icon">✈</div>
+              <div><div class="nav-dd-title">Discovery Flight</div><div class="nav-dd-desc">$325 · Your first hour at the controls</div></div>
+            </a>
+          </div>
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Programs</div>
+            <a href="/flight-school" class="nav-dd-item">
+              <div class="nav-dd-icon">🎓</div>
+              <div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">Private · Instrument · Commercial · Instructor</div></div>
+            </a>
+            <a href="/sim-membership" class="nav-dd-item">
+              <div class="nav-dd-icon">📺</div>
+              <div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">Train smarter, fly sharper · $49/hr Redbird FMX</div></div>
+            </a>
+          </div>
+          <div class="nav-dd-section">
+            <a href="/#calculator" class="nav-dd-item">
+              <div class="nav-dd-icon">⌗</div>
+              <div><div class="nav-dd-title">Cost Calculator</div><div class="nav-dd-desc">Get your personalized estimate</div></div>
+            </a>
+            <a href="/financing" class="nav-dd-item">
+              <div class="nav-dd-icon">$</div>
+              <div><div class="nav-dd-title">Financing</div><div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Our Fleet</div>
+            <a href="/aircraft#da40" class="nav-dd-item"><div class="nav-dd-icon">⊕</div><div><div class="nav-dd-title">Diamond DA40 NG</div><div class="nav-dd-desc">Single-engine · G1000 NXi · Jet-A</div></div></a>
+            <a href="/aircraft#da42" class="nav-dd-item"><div class="nav-dd-icon">⊕</div><div><div class="nav-dd-title">Diamond DA42-VI</div><div class="nav-dd-desc">Multi-engine · Twin AE 300 turbodiesels</div></div></a>
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Full-motion AATD simulator · $49/hr</div></div></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link">Company <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <a href="/company" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
+            <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon">✉</div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
+            <a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say</div></div></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="/discovery-flight" class="btn btn-primary btn-sm btn-arrow">Book Discovery</a>
+  </div>
+</nav>
+
+<!-- LOST COMMS 404 -->
+<main class="lost">
+  <div class="lost-grid"></div>
+  <div class="lost-vignette"></div>
+  <div class="lost-sweep"></div>
+
+  <!-- Floating airplane -->
+  <div class="lost-plane" aria-hidden="true">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="currentColor" style="color: var(--beacon);">
+      <g transform="translate(32 32) rotate(35)">
+        <rect x="-1.6" y="-22" width="3.2" height="40" rx="1.2"/>
+        <polygon points="-1.6,-22 1.6,-22 0,-26"/>
+        <rect x="-22" y="-3.5" width="44" height="6" rx="2"/>
+        <rect x="-9" y="13" width="18" height="3.5" rx="1"/>
+        <rect x="-1.2" y="11" width="2.4" height="8" rx="0.6"/>
+        <circle cx="0" cy="-26" r="1.6"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Top-left telemetry -->
+  <div class="lost-telemetry lost-telemetry-tl" aria-hidden="true">
+    <div class="lost-telemetry-line"><span class="lost-telemetry-key">FREQ</span><span class="lost-telemetry-val">121.500</span></div>
+    <div class="lost-telemetry-line"><span class="lost-telemetry-key">XPDR</span><span class="lost-telemetry-val lost-blink">7600</span></div>
+    <div class="lost-telemetry-line"><span class="lost-telemetry-key">STAT</span><span class="lost-telemetry-val">NO_FLIGHT_PLAN</span></div>
+  </div>
+
+  <!-- Bottom-right telemetry -->
+  <div class="lost-telemetry lost-telemetry-br" aria-hidden="true">
+    <div class="lost-telemetry-line"><span class="lost-telemetry-key">FBO</span><span class="lost-telemetry-val">ATLANTIC · KCHS</span></div>
+    <div class="lost-telemetry-line"><span class="lost-telemetry-key">FLEET</span><span class="lost-telemetry-val">DIAMOND · JET-A</span></div>
+    <div class="lost-telemetry-line"><span class="lost-telemetry-key">PASS</span><span class="lost-telemetry-val">95% FIRST-TIME</span></div>
+  </div>
+
+  <div class="lost-inner">
+    <div class="lost-404" data-text="404">404</div>
+
+    <div class="lost-tower-wrap">
+      <div class="lost-tower" aria-hidden="true">
+        <span class="lost-tower-dot"></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 6v15"/>
+          <path d="M9 21h6"/>
+          <path d="M5 6c2.5-2.5 4.5-2.5 7-2.5s4.5 0 7 2.5"/>
+          <path d="M7.5 8.5c1.5-1.5 3-1.5 4.5-1.5s3 0 4.5 1.5"/>
+          <circle cx="12" cy="11" r="1.2" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="lost-squawk"><span class="lost-squawk-dash"></span>SQUAWK 7600</span>
+    </div>
+
+    <h1 class="lost-h1">Lost <span class="accent">Comms.</span></h1>
+    <p class="lost-sub">We can't find the page you're looking for. It might've been moved, deleted, or maybe it never filed a flight plan. Either way — let's get you back on course.</p>
+
+    <div class="lost-cta">
+      <a href="/" class="btn btn-primary glow btn-arrow">Return to Base</a>
+      <a href="/contact" class="btn btn-ghost btn-arrow">Contact Tower</a>
+    </div>
+
+    <div class="lost-divider"></div>
+    <div class="lost-tags">
+      <span class="lost-tag">PART 61 AUTHORIZED</span>
+      <span class="lost-tag">DIAMOND JET-A FLEET</span>
+      <span class="lost-tag">KCHS · CHARLESTON SC</span>
+    </div>
+  </div>
+</main>
+
+<!-- Shared FOOTER (compact for 404) -->
+<footer class="footer" style="padding: 40px 0 24px;">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <span>© 2026 CRAFT Flight Training, LLC · Atlantic FBO · KCHS</span>
+      <span><a href="/">Home</a> · <a href="/discovery-flight">Discovery Flight</a> · <a href="/contact">Contact</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile nav (same as other pages)
+document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+document.querySelectorAll('.nav-item .nav-link').forEach(b => {
+  b.addEventListener('click', e => {
+    if (window.innerWidth > 980) return;
+    e.preventDefault();
+    b.parentElement.classList.toggle('open');
+  });
+});
+
+// Tiny "Konami" easter egg: typing "fly" anywhere on the 404 page returns home
+let buf = "";
+addEventListener("keydown", (e) => {
+  buf = (buf + (e.key || "")).slice(-3).toLowerCase();
+  if (buf === "fly") location.href = "/";
+});
+</script>
+
+</body>
+</html>
