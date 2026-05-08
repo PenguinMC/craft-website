@@ -279,9 +279,13 @@
               <option value="ppl">Private Pilot</option>
               <option value="ifr">Accelerated IFR</option>
               <option value="cpl">Accelerated Commercial</option>
-              <option value="cfi">CFI Initial</option>
-              <option value="cfii">CFII Add-On</option>
               <option value="me">Multi-Engine Add-On</option>
+              <option value="cmel">Commercial Multi-Engine Initial</option>
+              <option value="mei">Multi-Engine Instructor (MEI)</option>
+              <option value="atp">ATP Checkride Prep</option>
+              <option value="cfi">CFI Initial</option>
+              <option value="cfii">CFI-I (CFII) Add-On</option>
+              <option value="bundle">CFI + CFI-I Bundle</option>
             </select>
             <div class="cc-ctrl-hint"><span id="cc-program-fleet">DA40 NG · $255/hr wet</span></div>
           </div>
@@ -434,12 +438,16 @@ const RATE_PLANE_DA42 = 600;
 const RATE_INSTRUCTOR = 55;
 const RATE_SIM = 70;
 const PROGRAMS = {
-  ppl:  { name:"Private Pilot",         fleet:"DA40 NG · $255/hr wet",  rate:RATE_PLANE_DA40, fHrs:[40,50,80],  iHrs:[30,40,80], gHrs:[20,30,70], sHrs:[0,6,15],   fixed:{ name:"PPL", price:1495, items:["ASA Materials","FAA Written Exam","ForeFlight"] } },
-  ifr:  { name:"Accelerated IFR",       fleet:"DA40 NG · $255/hr wet · 1 week", rate:RATE_PLANE_DA40, fHrs:[30,40,60],  iHrs:[25,35,55], gHrs:[10,15,30], sHrs:[10,20,25], fixed:{ name:"IFR", price:1000, items:["ASA IFR Materials","FAA IFR Written"] } },
-  cpl:  { name:"Accelerated Commercial",fleet:"DA40 NG · $255/hr wet · ~6 wk",  rate:RATE_PLANE_DA40, fHrs:[60,100,150],iHrs:[40,50,80], gHrs:[15,25,40], sHrs:[5,10,25],  fixed:{ name:"CPL", price:1500, items:["ASA CPL Materials","FAA CPL Written","Cross-Country Block"] } },
-  cfi:  { name:"CFI Initial",           fleet:"DA40 NG · $255/hr wet · 10–12 days",  rate:RATE_PLANE_DA40, fHrs:[14,20,40],  iHrs:[14,18,30], gHrs:[40,53,70], sHrs:[2,4,15],   fixed:{ name:"CFI · DPE Fee", price:1500, items:["DPE checkride fee","FOI + CFI Written","Spin Endorsement","Lesson Plans"] } },
-  cfii: { name:"CFII Add-On",           fleet:"DA40 NG · $255/hr wet · 4 days", rate:RATE_PLANE_DA40, fHrs:[6,8,15],    iHrs:[8,12,20],  gHrs:[4,6,15],   sHrs:[2,6,15],   fixed:{ name:"CFII · DPE Fee", price:800, items:["DPE checkride fee","CFII Written","Materials"] } },
-  me:   { name:"Multi-Engine Add-On",   fleet:"DA42-VI · $600/hr wet · 4 days", rate:RATE_PLANE_DA42, fHrs:[6,10,15],   iHrs:[5,8,12],   gHrs:[3,5,10],   sHrs:[0,0,0],    fixed:{ name:"ME",  price:800,  items:["Multi Materials","Vmc Demo Prep"] } }
+  ppl: { name:"Private Pilot", fleet:"DA40 NG · $255/hr wet · ~50 hrs (FAA min 40, nat'l avg 60–75)", rate:RATE_PLANE_DA40, fHrs:[40,50,80], iHrs:[30,40,80], gHrs:[20,30,70], sHrs:[0,3,15], fixed:{ name:"PPL · CRAFT Materials", price:1495, items:["ASA Complete PPL Syllabus","FAA Written Exam ($160)","ForeFlight or Garmin Pilot"] } },
+  ifr: { name:"Accelerated IFR", fleet:"DA40 NG · 6 days + 7th-day checkride", rate:RATE_PLANE_DA40, fHrs:[15,17,30], iHrs:[20,30,40], gHrs:[5,10,20], sHrs:[10,20,25], fixed:{ name:"IFR Package · CRAFT Plane", price:9800, items:["Course base price (in our DA40 NG)","BYOP option: $5,850","DPE fee $650–$800 (not included)","Materials: Inst. Flying Hbk + Procedures + ACS + Oral guide + G1000 PFD"] } },
+  cpl: { name:"Accelerated Commercial", fleet:"DA40 NG · 5 days + 6th-day checkride", rate:RATE_PLANE_DA40, fHrs:[10,15,25], iHrs:[10,15,25], gHrs:[5,10,20], sHrs:[1,2,8], fixed:{ name:"CPL Package", price:8600, items:["Course base price (DA40 NG)","DPE fee ~$800 (not included)","Extra hours billed at $255/hr wet","Min 240 hrs total time prereq","ASA Commercial PTS + Oral Exam Guide"] } },
+  me: { name:"Multi-Engine Add-On", fleet:"DA42-VI · 3 days + 4th-day checkride", rate:RATE_PLANE_DA42, fHrs:[6,8,12], iHrs:[6,8,12], gHrs:[3,5,12], sHrs:[0,2,8], fixed:{ name:"Multi Add-On Package", price:9000, items:["Course base price (DA42-VI)","3 hrs aircraft for checkride","DPE fee $1,500 cash (not included)","$10K hull insurance required (~$60/mo Starr Gate)","Extra hrs $600/hr wet"] } },
+  cmel: { name:"Commercial Multi-Engine Initial (CMEL)", fleet:"DA42-VI · 10 days + 11th-day checkride", rate:RATE_PLANE_DA42, fHrs:[25,35,50], iHrs:[25,35,50], gHrs:[10,15,30], sHrs:[2,5,15], fixed:{ name:"CMEL Initial Package", price:25500, items:["Course base price (DA42-VI, 35 hrs dual)","Aircraft for checkride","250 hrs + IR prereq","DPE fee not included","Adds CSEL in ~6 hrs after"] } },
+  mei: { name:"Multi-Engine Instructor (MEI)", fleet:"DA42-VI · 3 days + 4th-day checkride", rate:RATE_PLANE_DA42, fHrs:[6,8,12], iHrs:[6,8,12], gHrs:[4,6,15], sHrs:[1,3,8], fixed:{ name:"MEI Add-On Package", price:9000, items:["Course base price (DA42-VI)","3 hrs aircraft for checkride","15 hrs ME PIC prereq","DPE fee not included","If CFII held → ME-Inst privileges automatic"] } },
+  atp: { name:"ATP Checkride Prep", fleet:"DA42-VI · 3-day accelerated", rate:RATE_PLANE_DA42, fHrs:[4,6,10], iHrs:[4,6,10], gHrs:[3,4,10], sHrs:[2,4,10], fixed:{ name:"ATP Prep Package", price:7750, items:["Course base price (DA42-VI)","Aircraft for checkride","CTP + ATP written required first","IFR currency required","DPE fee not included"] } },
+  cfi: { name:"CFI Initial", fleet:"DA40 NG · 10–12 days · 1-on-1 or 2-student max", rate:RATE_PLANE_DA40, fHrs:[14,18,30], iHrs:[14,18,30], gHrs:[40,53,70], sHrs:[2,4,15], fixed:{ name:"CFI Initial Package", price:12000, items:["Course base price (DA40 NG)","50+ hrs classroom (FOI, FIA, FARs, lesson plans)","Aircraft for checkride","Spin endorsement","DPE fee $1,500–$1,700 (not included)"] } },
+  cfii: { name:"CFI-I (CFII) Add-On", fleet:"DA40 NG · 3 days + 4th-day checkride", rate:RATE_PLANE_DA40, fHrs:[6,8,15], iHrs:[8,12,20], gHrs:[4,6,15], sHrs:[2,6,15], fixed:{ name:"CFI-I Package", price:5600, items:["Course base price (DA40 NG, G1000)","BYOP option: $3,200","Aircraft for checkride","DPE fee ~$800 (not included)","FII written required as prereq"] } },
+  bundle: { name:"CFI + CFI-I Bundle", fleet:"DA40 NG · ~14–16 days back-to-back · save $200", rate:RATE_PLANE_DA40, fHrs:[20,26,40], iHrs:[22,30,45], gHrs:[44,59,80], sHrs:[4,10,25], fixed:{ name:"CFI + CFI-I Bundle", price:16950, items:["CFI Initial $12,000 + CFI-I $4,950","Bundle savings $200","Two DPE fees apply ($1,500–1,700 + ~$800)","Spin endorsement + FII written prereqs"] } }
 };
 
 const $ = id => document.getElementById(id);
