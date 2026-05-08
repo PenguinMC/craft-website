@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Accelerated Programs — IFR · CPL · Multi · CFI · CFI-I | CRAFT Flight Training</title>
-<meta name="description" content="CRAFT's accelerated tracks at a glance — Instrument, Commercial, Multi-Engine, CFI, and CFI-I. Pick a course, jump to the full page. Charleston-based, Diamond Jet-A, DPE in weeks." />
+<title>Accelerated Programs — Rated in Weeks, Not Years | CRAFT Flight Training</title>
+<meta name="description" content="CRAFT's accelerated tracks at a glance — Instrument, Commercial, Multi-Engine, CFI, MEI, and CFI-I. Pick a course, jump to the full page. Charleston-based, Diamond Jet-A, DPE in weeks." />
 <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
@@ -15,22 +15,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/shared.css">
 <style>
-.acx-hero { position: relative; min-height: 56vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 70px; overflow: hidden; }
+/* HERO — restored "Rated in Weeks. Not Years." big-type style */
+.acx-hero { position: relative; min-height: 70vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
 .acx-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.7; animation: acxGrid 30s linear infinite; }
 @keyframes acxGrid { 0%{background-position:0 0,0 0} 100%{background-position:64px 64px,64px 64px} }
-.acx-hero-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%); pointer-events: none; }
+.acx-hero-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%), radial-gradient(80% 100% at 50% 100%, rgba(10,13,18,0.85) 0%, rgba(10,13,18,0) 60%); pointer-events: none; }
 .acx-hero-sweep { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); filter: blur(0.5px); opacity: 0.5; animation: acxSweep 7s ease-in-out infinite; }
 @keyframes acxSweep { 0%,100% { transform: translateY(10vh); opacity: 0; } 10% { opacity: 0.6; } 50% { transform: translateY(45vh); opacity: 0.4; } 90% { opacity: 0.6; } }
-.acx-hero-inner { position: relative; z-index: 5; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%; text-align: center; }
-.acx-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 24px; }
+.acx-hero-inner { position: relative; z-index: 5; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%; }
+.acx-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 28px; }
 .acx-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 8px var(--beacon); animation: acxDot 1.4s ease-in-out infinite; display: inline-block; }
 @keyframes acxDot { 0%,100%{opacity:1} 50%{opacity:0.35} }
-.acx-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(54px, 8vw, 110px); line-height: 0.92; letter-spacing: -0.015em; text-transform: uppercase; margin: 0 0 22px; }
+.acx-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(60px, 9.5vw, 140px); line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase; margin: 0 0 24px; }
 .acx-hero h1 .accent { color: var(--beacon); }
-.acx-hero p { font-size: clamp(15px, 1.4vw, 18px); color: rgba(255,255,255,0.78); max-width: 680px; margin: 0 auto 30px; line-height: 1.65; }
+.acx-hero h1 .stroke { -webkit-text-stroke: 1.5px var(--white); -webkit-text-fill-color: transparent; color: transparent; }
+.acx-hero p { font-size: clamp(15px, 1.4vw, 18px); color: rgba(255,255,255,0.78); max-width: 660px; line-height: 1.65; margin: 0 0 28px; }
+.acx-hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 720px; border-top: 1px solid rgba(230,48,39,0.2); padding-top: 24px; margin-top: 8px; }
+@media (max-width: 720px) { .acx-hero-stats { grid-template-columns: repeat(2,1fr); } }
+.acx-hero-stat-num { font-family: var(--display); font-weight: 900; font-size: 36px; color: var(--white); line-height: 1; letter-spacing: -0.02em; }
+.acx-hero-stat-num .accent { color: var(--beacon); }
+.acx-hero-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; color: rgba(255,255,255,0.45); text-transform: uppercase; margin-top: 4px; }
+.acx-hero-meta { position: absolute; bottom: 30px; right: var(--gut); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+.acx-hero-meta .accent { color: var(--beacon); }
+@media (max-width: 880px) { .acx-hero-meta { display: none; } }
 
 /* Course grid */
-.acx-grid-sec { background: var(--ink); padding: 30px 0 var(--section-py); }
+.acx-grid-sec { background: var(--ink); padding: 60px 0 var(--section-py); }
 .acx-grid { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
 .acx-card { position: relative; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 14px; padding: 32px; overflow: hidden; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); display: flex; flex-direction: column; animation: acxCardIn 0.7s var(--ease) backwards; }
 .acx-card:nth-child(1) { animation-delay: 0.05s; }
@@ -38,6 +48,7 @@
 .acx-card:nth-child(3) { animation-delay: 0.19s; }
 .acx-card:nth-child(4) { animation-delay: 0.26s; }
 .acx-card:nth-child(5) { animation-delay: 0.33s; }
+.acx-card:nth-child(6) { animation-delay: 0.40s; }
 @keyframes acxCardIn { 0%{opacity:0;transform:translateY(20px)} 100%{opacity:1;transform:translateY(0)} }
 .acx-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
 .acx-card:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.55); box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); }
@@ -136,10 +147,17 @@
   <div class="acx-hero-vignette"></div>
   <div class="acx-hero-sweep"></div>
   <div class="acx-hero-inner">
-    <span class="acx-eyebrow">Accelerated Programs · KCHS</span>
-    <h1>Five courses.<br>One <span class="accent">finish line.</span></h1>
-    <p>Pick your rating. Each track is a focused, finish-up program with a dedicated instructor, a Diamond aircraft, and a DPE lined up before you start. Hit a card to get the full breakdown.</p>
+    <span class="acx-eyebrow">Accelerated · Cohort-based · KCHS</span>
+    <h1>Rated in <span class="accent">weeks.</span><br>Not <span class="stroke">years.</span></h1>
+    <p>Most Part 61 schools spread your IFR over six months because that&rsquo;s how their economics work. We don&rsquo;t. CRAFT runs accelerated cohorts where your instructor is yours, the airplane is reserved, the sim time is built in, and the DPE is on standby. You finish on schedule &mdash; usually under budget.</p>
+    <div class="acx-hero-stats">
+      <div><div class="acx-hero-stat-num"><span class="accent">95%</span></div><div class="acx-hero-stat-lbl">First-Time Pass</div></div>
+      <div><div class="acx-hero-stat-num">1 wk</div><div class="acx-hero-stat-lbl">IFR · Accel.</div></div>
+      <div><div class="acx-hero-stat-num">~3 mo</div><div class="acx-hero-stat-lbl">PPL · Part 61</div></div>
+      <div><div class="acx-hero-stat-num">Wks</div><div class="acx-hero-stat-lbl">DPE Wait</div></div>
+    </div>
   </div>
+  <div class="acx-hero-meta">95% PASS · DPE IN <span class="accent">WEEKS</span> · ATL &amp; SIG FBO · KCHS</div>
 </header>
 
 <section class="acx-grid-sec">
@@ -183,8 +201,8 @@
         <span class="acx-card-tag">Track 03</span>
       </div>
       <h3>Multi-<span class="accent">Engine</span></h3>
-      <div class="acx-card-meta">Add-On · CMEL · MEI · ATP Prep</div>
-      <p class="acx-card-blurb">Four ways into the Diamond DA42-VI &mdash; Jet-A diesel twin with single-lever digital engine controls. Pick the rating you need: standard add-on, full Commercial Multi Initial, MEI for instructing twins, or finish-up ATP checkride prep.</p>
+      <div class="acx-card-meta">Add-On · CMEL · ATP Prep</div>
+      <p class="acx-card-blurb">Four ways into the Diamond DA42-VI &mdash; Jet-A diesel twin with single-lever digital engine controls. Pick the rating you need: standard add-on, full Commercial Multi Initial, or finish-up ATP checkride prep.</p>
       <div class="acx-card-specs">
         <div class="acx-card-spec"><div class="num"><span class="accent">4</span> tracks</div><div class="lbl">Pick Yours</div></div>
         <div class="acx-card-spec"><div class="num">From <span class="accent">$</span>7,750</div><div class="lbl">ATP Prep · 3 days</div></div>
@@ -223,6 +241,22 @@
         <div class="acx-card-spec"><div class="num">CFI <span class="accent">req</span>'d</div><div class="lbl">Active CFI</div></div>
       </div>
       <a href="/cfii" class="acx-card-cta">Learn More</a>
+    </article>
+
+    <article class="acx-card">
+      <div class="acx-card-head">
+        <div class="acx-card-icon">⌥</div>
+        <span class="acx-card-tag">Track 06</span>
+      </div>
+      <h3>MEI <span class="accent">Add-On</span></h3>
+      <div class="acx-card-meta">3-Day Multi Instructor · DA42-VI</div>
+      <p class="acx-card-blurb">The Multi-Engine Instructor add-on for pilots who already hold a CFI and want to teach in the twin. Three days in the DA42-VI plus Redbird FMX, checkride on day four. Hold a CFII? Multi-instrument privileges come with it automatically.</p>
+      <div class="acx-card-specs">
+        <div class="acx-card-spec"><div class="num"><span class="accent">3</span> days</div><div class="lbl">+ Day 4 Checkride</div></div>
+        <div class="acx-card-spec"><div class="num"><span class="accent">$</span>9,000</div><div class="lbl">Course Price</div></div>
+        <div class="acx-card-spec"><div class="num">15<span class="accent">hr</span> PIC</div><div class="lbl">Multi Required</div></div>
+      </div>
+      <a href="/multi-engine" class="acx-card-cta">Learn More</a>
     </article>
 
   </div>
