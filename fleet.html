@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Fleet — N650LA · N406BL · N162AT · N216DA · N970DA · N42MV | CRAFT Flight Training</title>
+<meta name="description" content="CRAFT's full Diamond Jet-A fleet at KCHS — five DA40NG single-engine trainers and one DA42-VI multi-engine. Every tail number, every spec, in one place." />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/shared.css">
+<style>
+/* ============================
+   FLEET PAGE
+   Cool, animated, tactical
+   ============================ */
+
+/* HERO */
+.fleet-hero {
+  position: relative; min-height: 56vh;
+  background: var(--ink);
+  display: flex; align-items: center;
+  padding: 140px 0 70px;
+  overflow: hidden;
+}
+.fleet-hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.7;
+  animation: fleetGridDrift 30s linear infinite;
+  z-index: 0;
+}
+@keyframes fleetGridDrift {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 64px 64px, 64px 64px; }
+}
+.fleet-hero-vignette {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%),
+    radial-gradient(80% 100% at 50% 100%, rgba(10,13,18,0.85) 0%, rgba(10,13,18,0) 60%);
+  pointer-events: none;
+}
+.fleet-hero-sweep {
+  position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 2;
+  background: linear-gradient(90deg, transparent, var(--beacon), transparent);
+  filter: blur(0.5px); opacity: 0.5;
+  animation: fleetSweep 7s ease-in-out infinite;
+}
+@keyframes fleetSweep {
+  0%, 100% { transform: translateY(10vh); opacity: 0; }
+  10% { opacity: 0.6; }
+  50% { transform: translateY(45vh); opacity: 0.4; }
+  90% { opacity: 0.6; }
+}
+.fleet-hero-inner {
+  position: relative; z-index: 5;
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%;
+}
+.fleet-hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.22em; color: var(--beacon);
+  text-transform: uppercase;
+  background: rgba(230,48,39,0.06);
+  border: 1px solid rgba(230,48,39,0.3);
+  padding: 8px 14px; border-radius: 4px;
+  margin-bottom: 28px;
+}
+.fleet-hero-eyebrow .ll-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--beacon);
+  box-shadow: 0 0 8px var(--beacon); animation: blink 1.4s ease-in-out infinite;
+}
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+.fleet-hero h1 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(54px, 8vw, 110px);
+  line-height: 0.92; letter-spacing: -0.015em; text-transform: uppercase;
+  margin: 0 0 20px;
+}
+.fleet-hero h1 .accent { color: var(--beacon); }
+.fleet-hero h1 .stroke { -webkit-text-stroke: 1.5px var(--white); -webkit-text-fill-color: transparent; color: transparent; }
+.fleet-hero p {
+  font-size: clamp(15px, 1.4vw, 18px);
+  color: rgba(255,255,255,0.75);
+  max-width: 620px; line-height: 1.6; margin-bottom: 32px;
+}
+
+/* Hero stats strip */
+.fleet-hero-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 8px; max-width: 720px;
+  border-top: 1px solid rgba(230,48,39,0.2);
+  padding-top: 24px;
+}
+@media (max-width: 720px) { .fleet-hero-stats { grid-template-columns: repeat(2,1fr); } }
+.fleet-hero-stat {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 4px 0;
+}
+.fleet-hero-stat-num {
+  font-family: var(--display); font-weight: 900;
+  font-size: 36px; color: var(--white); line-height: 1; letter-spacing: -0.02em;
+}
+.fleet-hero-stat-num .accent { color: var(--beacon); }
+.fleet-hero-stat-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.18em; color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+}
+
+/* FILTER BAR */
+.fleet-filter-bar {
+  position: sticky; top: 70px; z-index: 50;
+  background: rgba(10,13,18,0.92); backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(230,48,39,0.15);
+}
+.fleet-filter-inner {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 14px var(--gut);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.fleet-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.fleet-filter-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 8px 16px; border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: all .2s var(--ease);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.fleet-filter-btn:hover {
+  background: rgba(230,48,39,0.08); border-color: rgba(230,48,39,0.4); color: var(--white);
+}
+.fleet-filter-btn.active {
+  background: rgba(230,48,39,0.12); border-color: var(--beacon); color: var(--beacon);
+  box-shadow: 0 0 0 1px var(--beacon), 0 0 20px rgba(230,48,39,0.25);
+}
+.fleet-filter-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  padding: 1px 6px; border-radius: 2px;
+  background: rgba(230,48,39,0.18); color: var(--beacon);
+}
+.fleet-filter-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.4); text-transform: uppercase;
+}
+.fleet-filter-meta .accent { color: var(--beacon); }
+
+/* GRID */
+.fleet-section {
+  background: var(--ink);
+  padding: 60px 0 var(--section-py);
+  position: relative;
+  overflow: hidden;
+}
+.fleet-grid {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 0 var(--gut);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* CARD */
+.fleet-card {
+  position: relative;
+  background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%);
+  border: 1px solid rgba(230,48,39,0.18);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+  cursor: default;
+  animation: cardIn 0.7s var(--ease) backwards;
+}
+.fleet-card:nth-child(1) { animation-delay: 0.05s; }
+.fleet-card:nth-child(2) { animation-delay: 0.12s; }
+.fleet-card:nth-child(3) { animation-delay: 0.19s; }
+.fleet-card:nth-child(4) { animation-delay: 0.26s; }
+.fleet-card:nth-child(5) { animation-delay: 0.33s; }
+.fleet-card:nth-child(6) { animation-delay: 0.40s; }
+@keyframes cardIn {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.fleet-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(230,48,39,0.6);
+  box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4), 0 0 0 1px rgba(230,48,39,0.4);
+}
+.fleet-card.hidden { display: none; }
+/* Filter fade-in */
+.fleet-card.show-anim {
+  animation: cardIn 0.5s var(--ease);
+}
+
+/* CARD HEADER strip */
+.fc-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(10,13,18,0.6);
+}
+.fc-head-l { display: flex; align-items: center; gap: 10px; }
+.fc-status {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--beacon);
+  box-shadow: 0 0 10px var(--beacon);
+  animation: blink 1.6s ease-in-out infinite;
+}
+.fc-tail {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px; font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+.fc-type-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 3px;
+  background: rgba(230,48,39,0.12);
+  color: var(--beacon);
+  border: 1px solid rgba(230,48,39,0.3);
+}
+
+/* IMAGE / PLACEHOLDER ART */
+.fc-art {
+  position: relative;
+  aspect-ratio: 16/10;
+  background: linear-gradient(135deg, #1c2129 0%, #0a0d12 100%);
+  overflow: hidden;
+  display: grid; place-items: center;
+}
+.fc-art-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(230,48,39,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(230,48,39,0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.7;
+}
+.fc-art-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(230,48,39,0.18) 0%, transparent 70%);
+}
+/* Animated horizon line */
+.fc-art-horizon {
+  position: absolute; left: -10%; right: -10%; top: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(230,48,39,0.6), transparent);
+  filter: blur(0.5px);
+}
+.fc-art-horizon::before {
+  content: ""; position: absolute; left: 50%; top: -1px;
+  transform: translateX(-50%);
+  width: 80%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+}
+/* Cross-hairs */
+.fc-art-cross {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(transparent 49%, rgba(230,48,39,0.18) 50%, transparent 51%),
+    linear-gradient(90deg, transparent 49%, rgba(230,48,39,0.18) 50%, transparent 51%);
+  opacity: 0.4;
+}
+/* Big airplane silhouette */
+.fc-art-plane {
+  position: relative; z-index: 2;
+  width: 60%; max-width: 220px;
+  color: rgba(255,255,255,0.85);
+  filter: drop-shadow(0 8px 24px rgba(230,48,39,0.4));
+  transition: transform 1.2s var(--ease);
+}
+.fleet-card:hover .fc-art-plane { transform: translateX(8px) translateY(-4px) rotate(-3deg); }
+.fc-art-plane svg { width: 100%; height: auto; }
+/* Tail number watermark over the art */
+.fc-art-watermark {
+  position: absolute; bottom: 10px; right: 12px; z-index: 3;
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(28px, 4vw, 38px);
+  line-height: 1; letter-spacing: -0.01em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(230,48,39,0.5);
+  text-stroke: 1px rgba(230,48,39,0.5);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+/* Scan line effect on hover */
+.fc-art::after {
+  content: ""; position: absolute; left: 0; right: 0; top: -2px;
+  height: 2px; z-index: 4;
+  background: linear-gradient(90deg, transparent, var(--beacon), transparent);
+  filter: blur(0.5px); opacity: 0;
+  transition: opacity .2s;
+}
+.fleet-card:hover .fc-art::after {
+  opacity: 0.8;
+  animation: cardScan 1.6s ease-in-out infinite;
+}
+@keyframes cardScan {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.7; }
+  100% { transform: translateY(220px); opacity: 0; }
+}
+
+/* SPEC ROW */
+.fc-specs {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.fc-spec {
+  background: rgba(10,13,18,0.85);
+  padding: 16px 14px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.fc-spec-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.fc-spec-val {
+  font-family: var(--display); font-weight: 800;
+  font-size: 18px; line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--white);
+}
+.fc-spec-val.online { color: var(--beacon); display: flex; align-items: center; gap: 6px; }
+.fc-spec-val.online::before {
+  content: ""; display: inline-block;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--beacon); box-shadow: 0 0 6px var(--beacon);
+  animation: blink 1.6s ease-in-out infinite;
+}
+
+/* CARD FOOTER */
+.fc-foot {
+  padding: 14px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.fc-foot .accent { color: var(--beacon); }
+
+/* Telemetry stripes (top decoration) */
+.fleet-section::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(230,48,39,0.4), transparent);
+}
+
+/* GROUP HEADERS (for grouped layout) */
+.fleet-group {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 0 var(--gut) 16px;
+}
+.fleet-group + .fleet-section { padding-top: 16px; }
+.fleet-group-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  border-bottom: 1px solid rgba(230,48,39,0.18);
+  padding-bottom: 12px; margin-bottom: 24px;
+}
+.fleet-group-l { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fleet-group-title {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(28px, 3vw, 40px);
+  text-transform: uppercase; letter-spacing: -0.01em; line-height: 1;
+}
+.fleet-group-title .accent { color: var(--beacon); }
+.fleet-group-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--beacon);
+  padding: 4px 10px; border-radius: 3px;
+  background: rgba(230,48,39,0.1);
+  border: 1px solid rgba(230,48,39,0.3);
+}
+.fleet-group-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.4); text-transform: uppercase;
+}
+
+/* CTA BAND */
+.fleet-cta {
+  background: linear-gradient(135deg, rgba(230,48,39,0.08) 0%, rgba(10,13,18,1) 100%);
+  border-top: 1px solid rgba(230,48,39,0.2);
+  padding: var(--section-py) 0;
+  position: relative; overflow: hidden;
+}
+.fleet-cta-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.6;
+}
+.fleet-cta-inner {
+  position: relative; z-index: 2;
+  max-width: 720px; margin: 0 auto;
+  padding: 0 var(--gut); text-align: center;
+}
+.fleet-cta h2 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(36px, 5vw, 64px);
+  text-transform: uppercase; line-height: 0.95;
+  letter-spacing: -0.01em; margin-bottom: 18px;
+}
+.fleet-cta h2 .accent { color: var(--beacon); }
+.fleet-cta p { font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 28px; line-height: 1.6; }
+.fleet-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fleet-hero-grid, .fleet-hero-sweep, .fc-status, .fc-spec-val.online::before,
+  .fleet-card, .fleet-cta-grid, .fleet-hero-eyebrow .ll-dot {
+    animation: none !important;
+  }
+  .fleet-card:hover .fc-art-plane { transform: none; }
+  .fleet-card:hover .fc-art::after { animation: none; opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV (shared structure) -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand"><img src="/assets/craft-logo.png" alt="CRAFT Flight Training" /></a>
+    <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
+    <div class="nav-links" id="nav-links">
+      <div class="nav-item">
+        <button class="nav-link">Train <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Get Started</div>
+            <a href="/discovery-flight" class="nav-dd-item"><div class="nav-dd-icon">✈</div><div><div class="nav-dd-title">Discovery Flight</div><div class="nav-dd-desc">$325 · Your first hour at the controls</div></div></a>
+          </div>
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Programs</div>
+            <a href="/flight-school" class="nav-dd-item"><div class="nav-dd-icon">🎓</div><div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">Private · Instrument · Commercial · Instructor</div></div></a>
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">📺</div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">Train smarter, fly sharper · $49/hr Redbird FMX</div></div></a>
+          </div>
+          <div class="nav-dd-section">
+            <a href="/#calculator" class="nav-dd-item"><div class="nav-dd-icon">⌗</div><div><div class="nav-dd-title">Cost Calculator</div><div class="nav-dd-desc">Get your personalized estimate</div></div></a>
+            <a href="/financing" class="nav-dd-item"><div class="nav-dd-icon">$</div><div><div class="nav-dd-title">Financing</div><div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div></div></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Our Fleet</div>
+            <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">View All Tail Numbers</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · KCHS</div></div></a>
+            <a href="/aircraft#da40" class="nav-dd-item"><div class="nav-dd-icon">⊕</div><div><div class="nav-dd-title">Diamond DA40 NG</div><div class="nav-dd-desc">Single-engine · G1000 NXi · Jet-A</div></div></a>
+            <a href="/aircraft#da42" class="nav-dd-item"><div class="nav-dd-icon">⊕</div><div><div class="nav-dd-title">Diamond DA42-VI</div><div class="nav-dd-desc">Multi-engine · Twin AE 300 turbodiesels</div></div></a>
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Full-motion AATD simulator · $49/hr</div></div></a>
+          </div>
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Tail Numbers</div>
+            <a href="/fleet?type=da40" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">DA40 NG Fleet</div><div class="nav-dd-desc">N650LA · N406BL · N162AT · N216DA · N970DA</div></div></a>
+            <a href="/fleet?type=da42" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">DA42-VI Fleet</div><div class="nav-dd-desc">N42MV</div></div></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link">Company <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <a href="/company" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
+            <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon">✉</div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
+            <a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say</div></div></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="/discovery-flight" class="btn btn-primary btn-sm btn-arrow">Discovery Flight</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="fleet-hero">
+  <div class="fleet-hero-grid"></div>
+  <div class="fleet-hero-vignette"></div>
+  <div class="fleet-hero-sweep"></div>
+  <div class="fleet-hero-inner">
+    <span class="fleet-hero-eyebrow"><span class="ll-dot"></span>FLEET MANIFEST · KCHS · ALL ACTIVE</span>
+    <h1>Six tails. <span class="accent">One fuel.</span><br>Zero <span class="stroke">excuses.</span></h1>
+    <p>Every CRAFT student trains in modern, glass-cockpit, Jet-A turbodiesels — the same platforms regional carriers transition from. No 1970s 172s. No mixed-fuel paperwork. Just composite Diamonds and a full-motion Redbird, all parked at Atlantic FBO at Charleston International.</p>
+    <div class="fleet-hero-stats">
+      <div class="fleet-hero-stat"><div class="fleet-hero-stat-num"><span class="accent">6</span></div><div class="fleet-hero-stat-lbl">Total Aircraft</div></div>
+      <div class="fleet-hero-stat"><div class="fleet-hero-stat-num">5</div><div class="fleet-hero-stat-lbl">DA40 NG · SE</div></div>
+      <div class="fleet-hero-stat"><div class="fleet-hero-stat-num">1</div><div class="fleet-hero-stat-lbl">DA42-VI · ME</div></div>
+      <div class="fleet-hero-stat"><div class="fleet-hero-stat-num">100%</div><div class="fleet-hero-stat-lbl">Jet-A · Glass</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- FILTER BAR -->
+<div class="fleet-filter-bar">
+  <div class="fleet-filter-inner">
+    <div class="fleet-filters">
+      <button class="fleet-filter-btn active" data-filter="all">All Aircraft <span class="fleet-filter-count">06</span></button>
+      <button class="fleet-filter-btn" data-filter="da40">DA40 NG <span class="fleet-filter-count">05</span></button>
+      <button class="fleet-filter-btn" data-filter="da42">DA42-VI <span class="fleet-filter-count">01</span></button>
+    </div>
+    <div class="fleet-filter-meta">FBO <span class="accent">ATLANTIC</span> · KCHS · 32.8986°N 80.0405°W</div>
+  </div>
+</div>
+
+<!-- GRID -->
+<section class="fleet-section">
+  <div class="fleet-grid" id="fleet-grid">
+
+    <!-- =========== DA40NG #1: N650LA =========== -->
+    <article class="fleet-card" data-type="da40">
+      <div class="fc-head">
+        <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N650LA</span></div>
+        <span class="fc-type-badge">DA40 NG</span>
+      </div>
+      <div class="fc-art">
+        <div class="fc-art-grid"></div>
+        <div class="fc-art-glow"></div>
+        <div class="fc-art-cross"></div>
+        <div class="fc-art-horizon"></div>
+        <div class="fc-art-plane">
+          <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <g transform="translate(140 80)">
+              <ellipse cx="0" cy="0" rx="70" ry="9"/>
+              <polygon points="-70,0 -90,-3 -90,3"/>
+              <rect x="-3" y="-50" width="6" height="100" rx="2"/>
+              <ellipse cx="0" cy="0" rx="6" ry="55"/>
+              <polygon points="-10,40 10,40 14,52 -14,52"/>
+              <rect x="-1" y="36" width="2" height="20"/>
+              <circle cx="-90" cy="0" r="3"/>
+            </g>
+          </svg>
+        </div>
+        <div class="fc-art-watermark">N650LA</div>
+      </div>
+      <div class="fc-specs">
+        <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">168 KTS</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">PANEL</div><div class="fc-spec-val">G1000 NXi</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">STATUS</div><div class="fc-spec-val online">Active</div></div>
+      </div>
+      <div class="fc-foot"><span>Single-Engine · Composite</span><span class="accent">$255/hr</span></div>
+    </article>
+
+    <!-- =========== DA40NG #2: N406BL =========== -->
+    <article class="fleet-card" data-type="da40">
+      <div class="fc-head">
+        <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N406BL</span></div>
+        <span class="fc-type-badge">DA40 NG</span>
+      </div>
+      <div class="fc-art">
+        <div class="fc-art-grid"></div>
+        <div class="fc-art-glow"></div>
+        <div class="fc-art-cross"></div>
+        <div class="fc-art-horizon"></div>
+        <div class="fc-art-plane">
+          <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <g transform="translate(140 80)">
+              <ellipse cx="0" cy="0" rx="70" ry="9"/>
+              <polygon points="-70,0 -90,-3 -90,3"/>
+              <rect x="-3" y="-50" width="6" height="100" rx="2"/>
+              <ellipse cx="0" cy="0" rx="6" ry="55"/>
+              <polygon points="-10,40 10,40 14,52 -14,52"/>
+              <rect x="-1" y="36" width="2" height="20"/>
+              <circle cx="-90" cy="0" r="3"/>
+            </g>
+          </svg>
+        </div>
+        <div class="fc-art-watermark">N406BL</div>
+      </div>
+      <div class="fc-specs">
+        <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">168 KTS</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">PANEL</div><div class="fc-spec-val">G1000 NXi</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">STATUS</div><div class="fc-spec-val online">Active</div></div>
+      </div>
+      <div class="fc-foot"><span>Single-Engine · Composite</span><span class="accent">$255/hr</span></div>
+    </article>
+
+    <!-- =========== DA40NG #3: N162AT =========== -->
+    <article class="fleet-card" data-type="da40">
+      <div class="fc-head">
+        <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N162AT</span></div>
+        <span class="fc-type-badge">DA40 NG</span>
+      </div>
+      <div class="fc-art">
+        <div class="fc-art-grid"></div>
+        <div class="fc-art-glow"></div>
+        <div class="fc-art-cross"></div>
+        <div class="fc-art-horizon"></div>
+        <div class="fc-art-plane">
+          <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <g transform="translate(140 80)">
+              <ellipse cx="0" cy="0" rx="70" ry="9"/>
+              <polygon points="-70,0 -90,-3 -90,3"/>
+              <rect x="-3" y="-50" width="6" height="100" rx="2"/>
+              <ellipse cx="0" cy="0" rx="6" ry="55"/>
+              <polygon points="-10,40 10,40 14,52 -14,52"/>
+              <rect x="-1" y="36" width="2" height="20"/>
+              <circle cx="-90" cy="0" r="3"/>
+            </g>
+          </svg>
+        </div>
+        <div class="fc-art-watermark">N162AT</div>
+      </div>
+      <div class="fc-specs">
+        <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">168 KTS</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">PANEL</div><div class="fc-spec-val">G1000 NXi</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">STATUS</div><div class="fc-spec-val online">Active</div></div>
+      </div>
+      <div class="fc-foot"><span>Single-Engine · Composite</span><span class="accent">$255/hr</span></div>
+    </article>
+
+    <!-- =========== DA40NG #4: N216DA =========== -->
+    <article class="fleet-card" data-type="da40">
+      <div class="fc-head">
+        <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N216DA</span></div>
+        <span class="fc-type-badge">DA40 NG</span>
+      </div>
+      <div class="fc-art">
+        <div class="fc-art-grid"></div>
+        <div class="fc-art-glow"></div>
+        <div class="fc-art-cross"></div>
+        <div class="fc-art-horizon"></div>
+        <div class="fc-art-plane">
+          <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <g transform="translate(140 80)">
+              <ellipse cx="0" cy="0" rx="70" ry="9"/>
+              <polygon points="-70,0 -90,-3 -90,3"/>
+              <rect x="-3" y="-50" width="6" height="100" rx="2"/>
+              <ellipse cx="0" cy="0" rx="6" ry="55"/>
+              <polygon points="-10,40 10,40 14,52 -14,52"/>
+              <rect x="-1" y="36" width="2" height="20"/>
+              <circle cx="-90" cy="0" r="3"/>
+            </g>
+          </svg>
+        </div>
+        <div class="fc-art-watermark">N216DA</div>
+      </div>
+      <div class="fc-specs">
+        <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">168 KTS</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">PANEL</div><div class="fc-spec-val">G1000 NXi</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">STATUS</div><div class="fc-spec-val online">Active</div></div>
+      </div>
+      <div class="fc-foot"><span>Single-Engine · Composite</span><span class="accent">$255/hr</span></div>
+    </article>
+
+    <!-- =========== DA40NG #5: N970DA =========== -->
+    <article class="fleet-card" data-type="da40">
+      <div class="fc-head">
+        <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N970DA</span></div>
+        <span class="fc-type-badge">DA40 NG</span>
+      </div>
+      <div class="fc-art">
+        <div class="fc-art-grid"></div>
+        <div class="fc-art-glow"></div>
+        <div class="fc-art-cross"></div>
+        <div class="fc-art-horizon"></div>
+        <div class="fc-art-plane">
+          <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <g transform="translate(140 80)">
+              <ellipse cx="0" cy="0" rx="70" ry="9"/>
+              <polygon points="-70,0 -90,-3 -90,3"/>
+              <rect x="-3" y="-50" width="6" height="100" rx="2"/>
+              <ellipse cx="0" cy="0" rx="6" ry="55"/>
+              <polygon points="-10,40 10,40 14,52 -14,52"/>
+              <rect x="-1" y="36" width="2" height="20"/>
+              <circle cx="-90" cy="0" r="3"/>
+            </g>
+          </svg>
+        </div>
+        <div class="fc-art-watermark">N970DA</div>
+      </div>
+      <div class="fc-specs">
+        <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">168 KTS</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">PANEL</div><div class="fc-spec-val">G1000 NXi</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">STATUS</div><div class="fc-spec-val online">Active</div></div>
+      </div>
+      <div class="fc-foot"><span>Single-Engine · Composite</span><span class="accent">$255/hr</span></div>
+    </article>
+
+    <!-- =========== DA42-VI: N42MV =========== -->
+    <article class="fleet-card" data-type="da42">
+      <div class="fc-head">
+        <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N42MV</span></div>
+        <span class="fc-type-badge">DA42-VI</span>
+      </div>
+      <div class="fc-art">
+        <div class="fc-art-grid"></div>
+        <div class="fc-art-glow"></div>
+        <div class="fc-art-cross"></div>
+        <div class="fc-art-horizon"></div>
+        <div class="fc-art-plane">
+          <!-- Twin-engine variant SVG: extra engine pods -->
+          <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <g transform="translate(140 80)">
+              <ellipse cx="0" cy="0" rx="78" ry="9"/>
+              <polygon points="-78,0 -98,-3 -98,3"/>
+              <rect x="-3" y="-50" width="6" height="100" rx="2"/>
+              <ellipse cx="0" cy="0" rx="6" ry="60"/>
+              <!-- engine pods on wings -->
+              <ellipse cx="-30" cy="0" rx="6" ry="14"/>
+              <ellipse cx="30" cy="0" rx="6" ry="14"/>
+              <circle cx="-30" cy="-14" r="2"/>
+              <circle cx="30" cy="-14" r="2"/>
+              <polygon points="-12,42 12,42 16,54 -16,54"/>
+              <rect x="-1" y="36" width="2" height="22"/>
+              <circle cx="-98" cy="0" r="3"/>
+            </g>
+          </svg>
+        </div>
+        <div class="fc-art-watermark">N42MV</div>
+      </div>
+      <div class="fc-specs">
+        <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">197 KTS</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">PANEL</div><div class="fc-spec-val">G1000 NXi</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">STATUS</div><div class="fc-spec-val online">Active</div></div>
+      </div>
+      <div class="fc-foot"><span>Multi-Engine · Twin Turbodiesel</span><span class="accent">$475/hr</span></div>
+    </article>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="fleet-cta">
+  <div class="fleet-cta-grid"></div>
+  <div class="fleet-cta-inner">
+    <h2>Want to fly one? <span class="accent">Pick a tail.</span></h2>
+    <p>Every CRAFT student trains in this exact fleet. Discovery Flight ($325) gets you in the left seat of a DA40 NG over Charleston. The rest of the fleet is on the other side of your accelerated program.</p>
+    <div class="fleet-cta-btns">
+      <a href="/discovery-flight" class="btn btn-primary btn-arrow">Book Discovery Flight</a>
+      <a href="/flight-school" class="btn btn-ghost">See Programs</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><img src="/assets/craft-logo.png" alt="CRAFT" /></div>
+        <p class="footer-tag">Charleston's accelerated flight school. Sim-first, Diamond Jet-A, KCHS-based. 95% first-time pass rate. DPE in weeks, not months.</p>
+        <div class="footer-contact">
+          <div class="footer-contact-label">Visit / Call / Email</div>
+          <a href="https://maps.google.com/?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406" target="_blank" rel="noopener">6060 S. Aviation Ave, Suite 109 · North Charleston, SC 29406</a>
+          <a href="tel:+18438006498">843.800.6498</a>
+          <a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a>
+          <span style="display:block;font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;">Mon–Sat 9am–4pm</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Train</h4>
+        <ul>
+          <li><a href="/discovery-flight">Discovery Flight</a></li>
+          <li><a href="/flight-school">Flight School</a></li>
+          <li><a href="/sim-membership">Sim Membership</a></li>
+          <li><a href="/#calculator">Cost Calculator</a></li>
+          <li><a href="/financing">Financing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Aircraft</h4>
+        <ul>
+          <li><a href="/fleet">The Fleet</a></li>
+          <li><a href="/aircraft#da40">Diamond DA40 NG</a></li>
+          <li><a href="/aircraft#da42">Diamond DA42-VI</a></li>
+          <li><a href="/sim-membership">Redbird FMX Sim</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/company">About CRAFT</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener">Reviews</a></li>
+          <li><a href="/discovery-flight">Book Discovery</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CRAFT Flight Training, LLC · FAA Part 61 · Atlantic FBO · KCHS</span>
+      <span><a href="/contact">Privacy</a> · <a href="/contact">Terms</a> · <a href="/contact">VA Approved</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile nav
+document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+document.querySelectorAll('.nav-item .nav-link').forEach(b => {
+  b.addEventListener('click', e => {
+    if (window.innerWidth > 980) return;
+    e.preventDefault();
+    b.parentElement.classList.toggle('open');
+  });
+});
+
+// Filter
+const buttons = document.querySelectorAll('.fleet-filter-btn');
+const cards = document.querySelectorAll('.fleet-card');
+function applyFilter(filter) {
+  buttons.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+  cards.forEach(c => {
+    const match = filter === 'all' || c.dataset.type === filter;
+    c.classList.toggle('hidden', !match);
+    if (match) {
+      c.classList.remove('show-anim');
+      // force reflow to restart animation
+      void c.offsetWidth;
+      c.classList.add('show-anim');
+    }
+  });
+  const url = new URL(location.href);
+  if (filter === 'all') url.searchParams.delete('type');
+  else url.searchParams.set('type', filter);
+  history.replaceState({}, '', url);
+}
+buttons.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+
+// Honor ?type= on load
+const params = new URLSearchParams(location.search);
+const initType = params.get('type');
+if (initType && ['da40','da42','all'].includes(initType)) {
+  applyFilter(initType);
+}
+
+// Tilt effect on cards (subtle)
+cards.forEach(card => {
+  const art = card.querySelector('.fc-art');
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `translateY(-4px) perspective(900px) rotateX(${(-y*4).toFixed(2)}deg) rotateY(${(x*5).toFixed(2)}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+</script>
+
+</body>
+</html>
