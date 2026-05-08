@@ -88,18 +88,39 @@
   position: relative; aspect-ratio: 4/5;
   background: linear-gradient(135deg, var(--runway) 0%, var(--ink) 100%);
   border-radius: 12px; overflow: hidden;
-  background-image: url('https://img.youtube.com/vi/OMPuQnDtDWk/maxresdefault.jpg');
-  background-size: cover; background-position: center;
+}
+.df-what-visual-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  z-index: 1;
 }
 .df-what-visual::after {
-  content: ""; position: absolute; inset: 0;
+  content: ""; position: absolute; inset: 0; z-index: 2;
   background: linear-gradient(180deg, transparent 30%, rgba(20,24,31,0.85) 100%);
+  pointer-events: none;
 }
 .df-what-visual-cap {
-  position: absolute; left: 24px; right: 24px; bottom: 24px; z-index: 2;
+  position: absolute; left: 24px; right: 24px; bottom: 24px; z-index: 3;
   font-family: var(--display); font-weight: 700; font-size: 20px;
   color: var(--white); text-transform: uppercase; letter-spacing: 0.04em;
 }
+.df-what-visual-badge {
+  position: absolute; top: 16px; left: 16px; z-index: 3;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--white);
+  padding: 5px 9px; border-radius: 3px;
+  background: rgba(10,13,18,0.7);
+  border: 1px solid rgba(230,48,39,0.5);
+  backdrop-filter: blur(4px);
+}
+.df-what-visual-badge::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--beacon); box-shadow: 0 0 6px var(--beacon);
+  animation: dfPulse 1.4s ease-in-out infinite;
+}
+@keyframes dfPulse { 0%,100% { opacity:1 } 50% { opacity:0.35 } }
 
 /* Three steps */
 .df-steps { background: var(--ink); padding: var(--section-py) 0; }
@@ -238,7 +259,7 @@
             </a>
             <a href="/sim-membership" class="nav-dd-item">
               <div class="nav-dd-icon">📺</div>
-              <div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">Train smarter, fly sharper · $49/hr Redbird FMX</div></div>
+              <div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">Train smarter, fly sharper · $70/hr Redbird FMX</div></div>
             </a>
           </div>
           <div class="nav-dd-section">
@@ -268,7 +289,7 @@
               <div class="nav-dd-icon">▤</div>
               <div>
                 <div class="nav-dd-title">Redbird FMX</div>
-                <div class="nav-dd-desc">Full-motion AATD simulator · $49/hr</div>
+                <div class="nav-dd-desc">Two AATD Redbird sims · $70/hr</div>
               </div>
             </a>
           </div>
@@ -320,6 +341,11 @@
       </div>
     </div>
     <div class="df-what-visual">
+      <video class="df-what-visual-video" autoplay muted loop playsinline preload="auto" poster="/assets/discobg.jpg">
+        <source src="/assets/disco2.webm" type="video/webm" />
+        <source src="/assets/disco2.mp4" type="video/mp4" />
+      </video>
+      <span class="df-what-visual-badge">LIVE · KCHS</span>
       <div class="df-what-visual-cap">Diamond DA40NG · Charleston Coastline</div>
     </div>
   </div>
@@ -337,7 +363,7 @@
       <div class="df-step-num">01</div>
       <div class="df-step-title">Redbird Sim</div>
       <div class="df-step-time">30 minutes</div>
-      <div class="df-step-desc">Climb into our state-of-the-art Redbird FMX full-motion simulator. Your CFI walks you through the controls, the panel, and basic maneuvers — straight-and-level flight, gentle turns, climbs and descents — so you're already comfortable before you ever leave the ground.</div>
+      <div class="df-step-desc">Climb into one of our two state-of-the-art Redbird AATD simulators. Your CFI walks you through the controls, the panel, and basic maneuvers — straight-and-level flight, gentle turns, climbs and descents — so you're already comfortable before you ever leave the ground.</div>
     </div>
     <div class="df-step">
       <div class="df-step-num">02</div>
@@ -365,7 +391,7 @@
     </div>
     <ul class="df-incl-list">
       <li><span class="df-incl-tick">✓</span><span>~1h 45min total — 30 sim / 60 flight / 15 debrief</span></li>
-      <li><span class="df-incl-tick">✓</span><span>30 minutes in the Redbird FMX full-motion simulator</span></li>
+      <li><span class="df-incl-tick">✓</span><span>30 minutes in a Redbird AATD simulator</span></li>
       <li><span class="df-incl-tick">✓</span><span>One full hour flying a Diamond DA40NG over Charleston</span></li>
       <li><span class="df-incl-tick">✓</span><span>Certified Flight Instructor in the right seat the entire time</span></li>
       <li><span class="df-incl-tick">✓</span><span>Flight hours logged toward your Private Pilot License</span></li>
@@ -435,30 +461,4 @@
           <a href="https://maps.google.com/?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406" target="_blank" rel="noopener">6060 S. Aviation Ave, Suite 109 · North Charleston, SC 29406</a>
           <a href="tel:+18438006498">843.800.6498</a>
           <a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a>
-          <span style="display:block;font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;">Mon–Sat 9am–4pm</span>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Train</h4>
-        <ul>
-          <li><a href="/discovery-flight">Discovery Flight</a></li>
-          <li><a href="/flight-school">Flight School</a></li>
-          <li><a href="/sim-membership">Sim Membership</a></li>
-          <li><a href="/#calculator">Cost Calculator</a></li>
-          <li><a href="/financing">Financing</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Aircraft</h4>
-        <ul>
-          <li><a href="/aircraft#da40">Diamond DA40 NG</a></li>
-          <li><a href="/aircraft#da42">Diamond DA42-VI</a></li>
-          <li><a href="/sim-membership">Redbird FMX Sim</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/company">About CRAFT</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="https://flycraftchs.com/reviews/" tar
+         
