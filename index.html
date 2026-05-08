@@ -1011,49 +1011,311 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
   </div>
 </section>
 
-<!-- PATHWAY -->
-<section class="section path">
-  <div class="container">
-    <div class="path-head">
-      <span class="eyebrow">The Track</span>
-      <h2 class="h-display">From first lesson to <span class="accent">first paycheck.</span></h2>
-      <p>Each rating builds into the next. Bundle Bronze, Silver, or Gold — or take individual accelerated programs.</p>
+<!-- TRACK — interactive ratings showcase -->
+<section class="section ptrack" id="track">
+  <div class="ptrack-bg"></div>
+  <div class="container ptrack-inner">
+    <div class="ptrack-head">
+      <span class="eyebrow"><span class="ptrack-eb-dot"></span>THE PATH · ZERO HOURS &rarr; AIRLINE</span>
+      <h2 class="h-display">From <span class="accent">never flown</span><br>to airline cockpit.</h2>
+      <p class="ptrack-sub">Most people who walk in have never touched a plane. That&rsquo;s normal &mdash; everyone starts at zero. Hover (or tap on mobile) any stop below to see what that rating actually <em>is</em>, what it lets you do, and how long it takes.</p>
     </div>
-    <div class="path-track">
-      <div class="path-line"></div>
-      <div class="path-stops">
-        <div class="path-stop start">
-          <div class="path-num">01</div>
-          <div class="path-label">Discovery</div>
-          <div class="path-time">$325 · 60 min</div>
-        </div>
-        <div class="path-stop">
-          <div class="path-num">02</div>
-          <div class="path-label">PPL</div>
-          <div class="path-time">Part 61 · ~3 mo</div>
-        </div>
-        <div class="path-stop">
-          <div class="path-num">03</div>
-          <div class="path-label">Instrument</div>
-          <div class="path-time">Accelerated · 1 wk</div>
-        </div>
-        <div class="path-stop">
-          <div class="path-num">04</div>
-          <div class="path-label">Commercial</div>
-          <div class="path-time">Accelerated · 6 wk</div>
-        </div>
-        <div class="path-stop end">
-          <div class="path-num">05</div>
-          <div class="path-label">Multi + CFI</div>
-          <div class="path-time">Accelerated · 1–2 wk</div>
-        </div>
+
+    <!-- Timeline track -->
+    <div class="ptrack-rail">
+      <div class="ptrack-line-bg"></div>
+      <div class="ptrack-line-fill" id="ptrack-fill"></div>
+      <div class="ptrack-stops">
+        <button class="ptrack-stop active" data-step="0" data-pct="0">
+          <span class="ptrack-num">01</span>
+          <span class="ptrack-label">Discovery</span>
+          <span class="ptrack-time">~1h 45min</span>
+        </button>
+        <button class="ptrack-stop" data-step="1" data-pct="16">
+          <span class="ptrack-num">02</span>
+          <span class="ptrack-label">Private Pilot</span>
+          <span class="ptrack-time">~3 months</span>
+        </button>
+        <button class="ptrack-stop" data-step="2" data-pct="33">
+          <span class="ptrack-num">03</span>
+          <span class="ptrack-label">Instrument</span>
+          <span class="ptrack-time">1 week</span>
+        </button>
+        <button class="ptrack-stop" data-step="3" data-pct="50">
+          <span class="ptrack-num">04</span>
+          <span class="ptrack-label">Commercial</span>
+          <span class="ptrack-time">~6 weeks</span>
+        </button>
+        <button class="ptrack-stop" data-step="4" data-pct="66">
+          <span class="ptrack-num">05</span>
+          <span class="ptrack-label">Multi-Engine</span>
+          <span class="ptrack-time">4 days</span>
+        </button>
+        <button class="ptrack-stop" data-step="5" data-pct="83">
+          <span class="ptrack-num">06</span>
+          <span class="ptrack-label">CFI</span>
+          <span class="ptrack-time">10&ndash;12 days</span>
+        </button>
+        <button class="ptrack-stop end" data-step="6" data-pct="100">
+          <span class="ptrack-num">07</span>
+          <span class="ptrack-label">Airline (1500 hr)</span>
+          <span class="ptrack-time">Time-build</span>
+        </button>
       </div>
     </div>
-    <div class="path-foot">Industry DPE wait: <strong>4–6 months.</strong> CRAFT DPE wait: <strong>weeks, not months.</strong></div>
+
+    <!-- Breakdown card -->
+    <div class="ptrack-card" id="ptrack-card">
+      <!-- populated by JS -->
+    </div>
+
+    <!-- Plain-English glossary -->
+    <div class="ptrack-glossary">
+      <span class="ptrack-gl-eyebrow">Plain English &middot; Skip the jargon</span>
+      <div class="ptrack-gl-grid">
+        <div><strong>FBO</strong> &mdash; the company that runs the building you walk into at the airport. Signature and Atlantic are the two we use at Charleston International (KCHS).</div>
+        <div><strong>DPE</strong> &mdash; the FAA examiner who gives you your final practical test (a.k.a. <em>checkride</em>) at the end of each rating. CRAFT&rsquo;s DPE waits run in weeks, not months.</div>
+        <div><strong>Checkride</strong> &mdash; the final FAA test for each rating. Oral exam + flight test, ~3 hours total.</div>
+        <div><strong>BYOP</strong> &mdash; &ldquo;Bring Your Own Plane.&rdquo; If you own an aircraft, accelerated programs cost less because you&rsquo;re not renting ours.</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- DPE SECTION (CRAFT's wedge) -->
+<style>
+/* === Interactive ratings track === */
+.ptrack { background: var(--ink); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+.ptrack-bg { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.5; animation: ptGridDrift 60s linear infinite; }
+@keyframes ptGridDrift { 0% { background-position: 0 0, 0 0; } 100% { background-position: 64px 64px, 64px 64px; } }
+.ptrack-inner { position: relative; z-index: 2; }
+.ptrack-head { text-align: center; max-width: 760px; margin: 0 auto 64px; }
+.ptrack-head .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 24px; }
+.ptrack-eb-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 8px var(--beacon); animation: hclBlink 1.4s ease-in-out infinite; }
+.ptrack-head h2 { margin-bottom: 18px; font-size: clamp(40px, 6vw, 80px); line-height: 0.95; }
+.ptrack-head h2 .accent { color: var(--beacon); }
+.ptrack-sub { font-size: clamp(15px, 1.4vw, 17px); color: rgba(255,255,255,0.75); line-height: 1.6; }
+.ptrack-sub em { color: var(--white); font-style: normal; font-weight: 600; }
+
+/* Rail */
+.ptrack-rail { position: relative; max-width: 1200px; margin: 0 auto 48px; padding: 0 var(--gut); }
+.ptrack-line-bg { position: absolute; left: var(--gut); right: var(--gut); top: 38px; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; }
+.ptrack-line-fill { position: absolute; left: var(--gut); top: 38px; height: 3px; background: linear-gradient(90deg, var(--beacon), #ff6b5b); width: 0%; border-radius: 2px; box-shadow: 0 0 12px rgba(230,48,39,0.5); transition: width .55s var(--ease); }
+.ptrack-stops { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; position: relative; }
+@media (max-width: 880px) { .ptrack-stops { grid-template-columns: repeat(7, 1fr); gap: 2px; } .ptrack-stop { padding: 8px 2px; } .ptrack-label { font-size: 11px; } }
+.ptrack-stop { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 6px; background: transparent; border: none; cursor: pointer; font-family: inherit; transition: transform .25s var(--ease); }
+.ptrack-stop:hover { transform: translateY(-2px); }
+.ptrack-num { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--ink); border: 2px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.55); font-family: var(--display); font-weight: 800; font-size: 16px; letter-spacing: 0.04em; transition: all .3s var(--ease); position: relative; z-index: 2; }
+.ptrack-stop:hover .ptrack-num, .ptrack-stop.active .ptrack-num { border-color: var(--beacon); color: var(--white); background: var(--beacon); box-shadow: 0 0 0 4px rgba(230,48,39,0.25), 0 0 24px rgba(230,48,39,0.6); transform: scale(1.08); }
+.ptrack-stop.active .ptrack-num::after { content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 2px solid var(--beacon); animation: ptStopPulse 2s ease-out infinite; }
+@keyframes ptStopPulse { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(1.5); opacity: 0; } }
+.ptrack-label { font-family: var(--display); font-weight: 700; font-size: 13px; line-height: 1.1; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.7); transition: color .25s var(--ease); text-align: center; }
+.ptrack-stop:hover .ptrack-label, .ptrack-stop.active .ptrack-label { color: var(--white); }
+.ptrack-time { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.14em; color: var(--beacon); text-transform: uppercase; text-align: center; }
+
+/* Breakdown card */
+.ptrack-card { max-width: 1100px; margin: 0 auto; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.3); border-radius: 16px; padding: 36px; box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); position: relative; overflow: hidden; transition: opacity .25s var(--ease); }
+.ptrack-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.ptrack-card.fading { opacity: 0.4; }
+.ptc-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: start; }
+@media (max-width: 880px) { .ptc-grid { grid-template-columns: 1fr; gap: 24px; } }
+.ptc-tag { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); padding: 4px 10px; border-radius: 3px; background: rgba(230,48,39,0.1); border: 1px solid rgba(230,48,39,0.3); margin-bottom: 14px; }
+.ptc-h { font-family: var(--display); font-weight: 900; font-size: clamp(32px, 4vw, 48px); line-height: 1; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 8px; color: var(--white); }
+.ptc-h .accent { color: var(--beacon); }
+.ptc-sub { font-size: 14px; color: var(--beacon); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 18px; }
+.ptc-desc { font-size: 16px; color: rgba(255,255,255,0.82); line-height: 1.65; margin-bottom: 22px; }
+.ptc-desc strong { color: var(--white); }
+.ptc-list { list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 10px; }
+.ptc-list li { display: flex; gap: 10px; align-items: flex-start; padding-left: 22px; position: relative; font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.55; }
+.ptc-list li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--beacon); font-weight: 700; }
+.ptc-side { display: grid; gap: 12px; }
+.ptc-stat { background: rgba(10,13,18,0.7); border: 1px solid rgba(230,48,39,0.2); border-radius: 8px; padding: 16px; }
+.ptc-stat-key { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+.ptc-stat-val { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1; letter-spacing: 0.01em; color: var(--white); }
+.ptc-stat-val .accent { color: var(--beacon); }
+.ptc-earn { background: linear-gradient(135deg, rgba(230,48,39,0.15) 0%, rgba(230,48,39,0.05) 100%); border: 1px solid var(--beacon); border-radius: 8px; padding: 16px; box-shadow: inset 0 0 30px rgba(230,48,39,0.1); }
+.ptc-earn-key { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); margin-bottom: 6px; }
+.ptc-earn-val { font-family: var(--display); font-weight: 900; font-size: 24px; line-height: 1.1; letter-spacing: -0.005em; color: var(--white); }
+.ptc-earn-sub { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 6px; line-height: 1.4; }
+
+/* Glossary */
+.ptrack-glossary { max-width: 1100px; margin: 56px auto 0; padding: 0 var(--gut); border-top: 1px solid rgba(255,255,255,0.08); padding-top: 32px; }
+.ptrack-gl-eyebrow { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 18px; text-align: center; }
+.ptrack-gl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px 32px; font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.7); }
+.ptrack-gl-grid strong { color: var(--beacon); font-weight: 700; }
+.ptrack-gl-grid em { color: rgba(255,255,255,0.85); font-style: italic; }
+</style>
+
+<script>
+// === Ratings track interactivity ===
+const PT_DATA = [
+  {
+    tag: 'Step 1 · No Experience Required',
+    title: 'Discovery <span class="accent">Flight</span>',
+    sub: '$325 · ~1h 45min · age 14+',
+    desc: '<strong>Your test drive.</strong> 30 minutes in our state-of-the-art Redbird simulator, then one full hour in the air over Charleston in a Diamond DA40 NG with a real instructor. You\'re in the left seat. You fly. Then a 15-minute debrief and honest conversation about whether this is for you.',
+    bullets: [
+      'No license, no medical, no prior experience needed',
+      'Bring as many friends/family as you want — 2 people total can fly',
+      'Photo from the cockpit, sent to you afterward',
+      'Hours count toward your Private Pilot License if you continue'
+    ],
+    stats: [
+      { k: 'Cost', v: '$325 all-in' },
+      { k: 'Time', v: '~1h 45min' },
+      { k: 'Prereq', v: 'None · 14+' }
+    ],
+    earn: { k: 'What you can do', v: 'Try flying — risk-free', sub: 'No commitment. Walk in, fly, decide.' }
+  },
+  {
+    tag: 'Step 2 · Foundation · Part 61',
+    title: 'Private <span class="accent">Pilot License</span>',
+    sub: '~3 months · ~50 flight hours',
+    desc: '<strong>Your driver\'s license for the sky.</strong> Once you have your PPL, you can fly a single-engine plane with passengers, day or night, in good weather. Take your family on weekend trips. Fly yourself to business meetings. This is the real start.',
+    bullets: [
+      'FAA minimum: 40 flight hours · CRAFT average: ~50',
+      'Diamond DA40 NG (modern glass cockpit) the whole way',
+      'Includes 6 hours of simulator time + materials + written test',
+      'Private Pilot is Part 61, not accelerated — first-time fliers learn at their own pace'
+    ],
+    stats: [
+      { k: 'Time', v: '~3 months' },
+      { k: 'Hours', v: '~50 total' },
+      { k: 'Range', v: '$16K–$19K' }
+    ],
+    earn: { k: 'What you can do', v: 'Fly with family + friends', sub: 'Weekend trips, day or night VFR, US-wide.' }
+  },
+  {
+    tag: 'Step 3 · Accelerated · 1 Week',
+    title: 'Instrument <span class="accent">Rating</span>',
+    sub: '6 days training + 7th day checkride',
+    desc: '<strong>Fly through clouds.</strong> The Instrument Rating teaches you to fly using only the cockpit instruments — no need to see outside. Get your IFR and you no longer cancel trips because of weather. Your travel becomes way more reliable.',
+    bullets: [
+      'Sim training in the morning, real flying in the afternoon',
+      'Up to 30 hours of flight + simulator instruction',
+      'BYOP option saves about $4K if you have your own aircraft',
+      'Single CFI (instructor) dedicated to you the whole week'
+    ],
+    stats: [
+      { k: 'Time', v: '7 days' },
+      { k: 'Plane', v: 'DA40 NG' },
+      { k: 'Cost', v: '$9,800' }
+    ],
+    earn: { k: 'What you can do', v: 'File IFR, fly through weather', sub: 'Cancel fewer flights. Travel reliably.' }
+  },
+  {
+    tag: 'Step 4 · Accelerated · 6 Weeks',
+    title: 'Commercial <span class="accent">License</span>',
+    sub: '5 days training + 6th day checkride',
+    desc: '<strong>Get paid to fly.</strong> A Commercial Pilot License is the legal requirement to be paid for flying. Tour pilots, charter pilots, banner-towers, aerial-survey pilots — they\'re all commercial-rated. You also learn precision maneuvers like chandelles, lazy eights, and eights-on-pylons.',
+    bullets: [
+      'Up to 15 hours of dual flight instruction',
+      '10 hours of ground instruction + commercial maneuvers',
+      'Need 240+ hours total time before enrolling',
+      'Diamond DA40 NG — same glass-cockpit you trained in'
+    ],
+    stats: [
+      { k: 'Time', v: '6 days' },
+      { k: 'Hours', v: '240+ prereq' },
+      { k: 'Cost', v: '$8,600' }
+    ],
+    earn: { k: 'You can earn', v: '$30–$70/hr', sub: 'First paid pilot jobs: tours, banner-tow, aerial work.' }
+  },
+  {
+    tag: 'Step 5 · Accelerated · 4 Days',
+    title: 'Multi-Engine <span class="accent">Rating</span>',
+    sub: '3 days training + 4th day checkride',
+    desc: '<strong>Two engines, twice the options.</strong> The Multi-Engine rating qualifies you to fly two-engine airplanes — required for most regional and major airline jobs. You\'ll learn single-engine emergency procedures, Vmc demonstrations, and twin-engine systems in the Diamond DA42-VI.',
+    bullets: [
+      'Up to 8 hours of dual instruction in the DA42-VI twin-turbodiesel',
+      '3 hours of aircraft for the checkride',
+      'No FAA knowledge test required',
+      'Add to PPL or CPL — common path before regional airlines'
+    ],
+    stats: [
+      { k: 'Time', v: '4 days' },
+      { k: 'Plane', v: 'DA42-VI' },
+      { k: 'Cost', v: '$9,000' }
+    ],
+    earn: { k: 'What you unlock', v: 'Regional airline pipeline', sub: 'Required to fly twins. Required by most airlines.' }
+  },
+  {
+    tag: 'Step 6 · Accelerated · 10–12 Days',
+    title: 'Flight <span class="accent">Instructor (CFI)</span>',
+    sub: '10–12 days · then add CFII in 4 days',
+    desc: '<strong>Get paid to build hours.</strong> Becoming a CFI is the most popular way to build the 1,500 hours you need for the airlines — instead of paying for hours, you get paid to teach them. Add the CFII rating right after to teach instrument students too. CRAFT often hires its own grads.',
+    bullets: [
+      '50+ hours of classroom instruction (FOI, lesson plans, FARs)',
+      'Up to 18 hours of dual flight in DA40 NG',
+      'Add CFI-I (instrument instructor) for $4,950 more, ~4 extra days',
+      'Possible job at CRAFT after you finish — ask us.'
+    ],
+    stats: [
+      { k: 'Time', v: '10–12 days' },
+      { k: 'CFI Cost', v: '$12,000' },
+      { k: 'Bundle', v: 'CFI+CFII $16,950' }
+    ],
+    earn: { k: 'You can earn', v: '$30–$60/hr', sub: 'Teach + log PIC time toward your 1,500-hour airline minimum.' }
+  },
+  {
+    tag: 'Step 7 · Time-Build · ~1,500 hrs',
+    title: 'Airline <span class="accent">First Officer</span>',
+    sub: '1,500 hrs total time required',
+    desc: '<strong>Right seat of a real airliner.</strong> Once you hit 1,500 hours (the FAA ATP minimum) and complete the ATP-CTP course, regional airlines will hire you to fly passengers for a paycheck. From here, seniority builds. Senior major-airline captains can fly one trip a month and still earn the full monthly guarantee.',
+    bullets: [
+      'Most students reach 1,500 hours by instructing 12–18 months at CRAFT',
+      'ATP Checkride Prep at CRAFT: 3 days, $7,750, in our DA42-VI',
+      'Regional FO start ~$99/hr × 75 hrs guarantee = $89K Year 1',
+      'Path: regional FO → regional captain → major FO → major captain'
+    ],
+    stats: [
+      { k: 'Hours needed', v: '1,500' },
+      { k: 'Time to build', v: '~12–18 mo' },
+      { k: 'ATP Prep', v: '$7,750 · 3 days' }
+    ],
+    earn: { k: 'Year 1 regional FO', v: '~$89K/yr', sub: 'By year 12 at a major: $300K+. Senior wide-body captain: $400K+.' }
+  }
+];
+
+const ptCard = document.getElementById('ptrack-card');
+const ptFill = document.getElementById('ptrack-fill');
+const ptStops = document.querySelectorAll('.ptrack-stop');
+
+function renderCard(i) {
+  const d = PT_DATA[i];
+  ptCard.classList.add('fading');
+  setTimeout(() => {
+    ptCard.innerHTML = `
+      <div class="ptc-grid">
+        <div>
+          <span class="ptc-tag">${d.tag}</span>
+          <h3 class="ptc-h">${d.title}</h3>
+          <div class="ptc-sub">${d.sub}</div>
+          <p class="ptc-desc">${d.desc}</p>
+          <ul class="ptc-list">${d.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="ptc-side">
+          ${d.stats.map(s=>`<div class="ptc-stat"><div class="ptc-stat-key">${s.k}</div><div class="ptc-stat-val">${s.v}</div></div>`).join('')}
+          <div class="ptc-earn"><div class="ptc-earn-key">${d.earn.k}</div><div class="ptc-earn-val">${d.earn.v}</div><div class="ptc-earn-sub">${d.earn.sub}</div></div>
+        </div>
+      </div>`;
+    ptCard.classList.remove('fading');
+  }, 180);
+}
+function activate(i) {
+  ptStops.forEach((b, idx) => b.classList.toggle('active', idx === i));
+  const pct = +ptStops[i].dataset.pct;
+  ptFill.style.width = pct + '%';
+  renderCard(i);
+}
+ptStops.forEach((b, i) => {
+  b.addEventListener('mouseenter', () => activate(i));
+  b.addEventListener('focus',      () => activate(i));
+  b.addEventListener('click',      () => activate(i));
+});
+// Default: show step 0
+renderCard(0);
+ptFill.style.width = '0%';
+</script><!-- DPE SECTION (CRAFT's wedge) -->
 <section class="section dpe">
   <div class="container">
     <div class="dpe-grid">
