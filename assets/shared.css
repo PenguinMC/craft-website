@@ -100,11 +100,28 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .mobile-cta { display: none; }
 @media (max-width: 880px) { .mobile-cta { display: flex; position: fixed; bottom: 16px; left: 16px; right: 16px; z-index: 90; justify-content: center; box-shadow: 0 10px 30px rgba(230,48,39,0.4); } body { padding-bottom: 80px; } }
 
-/* STUB PAGE STYLES */
-.stub-hero { min-height: 60vh; display: flex; align-items: center; padding: 140px 0 80px; background: var(--ink); position: relative; overflow: hidden; }
-.stub-hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.12) 0%, rgba(230,48,39,0) 70%); }
-.stub-hero-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
-.stub-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(56px, 8vw, 120px); line-height: 0.92; text-transform: uppercase; letter-spacing: -0.015em; margin-bottom: 24px; }
-.stub-hero h1 .accent { color: var(--beacon); }
-.stub-hero p { font-size: clamp(16px, 1.4vw, 19px); color: rgba(255,255,255,0.78); max-width: 640px; margin-bottom: 36px; line-height: 1.55; }
-.stub-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+/* TAIL NUMBER CARDS (fleet) */
+.tail-card {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px;
+  background: rgba(10,13,18,0.6);
+  border: 1px solid rgba(230,48,39,0.18);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.92);
+  transition: background .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease);
+  cursor: default;
+}
+.tail-card:hover {
+  background: rgba(230,48,39,0.08);
+  border-color: rgba(230,48,39,0.5);
+  transform: translateY(-1px);
+}
+.tail-card .tail-icon {
+  display: inline-grid; place-items: center;
+  width: 22px; height: 22px;
+  background: rgba(230,48,39,0.15);
+  border: 1px solid rg

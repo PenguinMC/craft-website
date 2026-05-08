@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/shared.css">
 </head>
 <body>
@@ -48,6 +48,11 @@
             <a href="/aircraft#da40" class="nav-dd-item"><div class="nav-dd-icon">⊕</div><div><div class="nav-dd-title">Diamond DA40 NG</div><div class="nav-dd-desc">Single-engine · G1000 NXi · Jet-A</div></div></a>
             <a href="/aircraft#da42" class="nav-dd-item"><div class="nav-dd-icon">⊕</div><div><div class="nav-dd-title">Diamond DA42-VI</div><div class="nav-dd-desc">Multi-engine · Twin AE 300 turbodiesels</div></div></a>
             <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Full-motion AATD simulator · $49/hr</div></div></a>
+          </div>
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Tail Numbers</div>
+            <a href="/aircraft#fleet-da40" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">DA40 NG Fleet</div><div class="nav-dd-desc">N650LA · N406BL · N162AT · N216DA · N970DA</div></div></a>
+            <a href="/aircraft#fleet-da42" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">DA42-VI Fleet</div><div class="nav-dd-desc">N42MV</div></div></a>
           </div>
         </div>
       </div>
@@ -91,6 +96,19 @@
     <div><div style="font-family:var(--display);font-weight:800;font-size:28px;line-height:1">5.0</div><div style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px">GPH (Jet-A)</div></div>
     <div><div style="font-family:var(--display);font-weight:800;font-size:28px;line-height:1">$255</div><div style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px">Per Hour</div></div>
   </div>
+  <div id="fleet-da40" style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);position:relative;z-index:1">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;flex-wrap:wrap;gap:12px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--beacon)">Fleet · 5 Aircraft</div>
+      <div style="font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:0.14em;color:rgba(255,255,255,0.45);text-transform:uppercase">Charleston · KCHS</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+      <div class="tail-card"><span class="tail-icon">✈</span><span class="tail-num">N650LA</span></div>
+      <div class="tail-card"><span class="tail-icon">✈</span><span class="tail-num">N406BL</span></div>
+      <div class="tail-card"><span class="tail-icon">✈</span><span class="tail-num">N162AT</span></div>
+      <div class="tail-card"><span class="tail-icon">✈</span><span class="tail-num">N216DA</span></div>
+      <div class="tail-card"><span class="tail-icon">✈</span><span class="tail-num">N970DA</span></div>
+    </div>
+  </div>
 </section>
 
 <section id="da42" style="background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:48px;margin-bottom:32px;position:relative;overflow:hidden">
@@ -104,6 +122,15 @@
     <div><div style="font-family:var(--display);font-weight:800;font-size:28px;line-height:1">1,215</div><div style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px">Range (nm)</div></div>
     <div><div style="font-family:var(--display);font-weight:800;font-size:28px;line-height:1">11.4</div><div style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px">GPH (Jet-A)</div></div>
     <div><div style="font-family:var(--display);font-weight:800;font-size:28px;line-height:1">$475</div><div style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px">Per Hour</div></div>
+  </div>
+  <div id="fleet-da42" style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);position:relative;z-index:1">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;flex-wrap:wrap;gap:12px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--beacon)">Fleet · 1 Aircraft</div>
+      <div style="font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:0.14em;color:rgba(255,255,255,0.45);text-transform:uppercase">Charleston · KCHS</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+      <div class="tail-card"><span class="tail-icon">✈</span><span class="tail-num">N42MV</span></div>
+    </div>
   </div>
 </section>
 
@@ -125,58 +152,4 @@
         <p class="footer-tag">Charleston's accelerated flight school. Sim-first, Diamond Jet-A, KCHS-based. 95% first-time pass rate. DPE in weeks, not months.</p>
         <div class="footer-contact">
           <div class="footer-contact-label">Visit / Call / Email</div>
-          <a href="https://maps.google.com/?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406" target="_blank" rel="noopener">6060 S. Aviation Ave, Suite 109 · North Charleston, SC 29406</a>
-          <a href="tel:+18438006498">843.800.6498</a>
-          <a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a>
-          <span style="display:block;font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;">Mon–Sat 9am–4pm</span>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Train</h4>
-        <ul>
-          <li><a href="/discovery-flight">Discovery Flight</a></li>
-          <li><a href="/flight-school">Flight School</a></li>
-          <li><a href="/sim-membership">Sim Membership</a></li>
-          <li><a href="/#calculator">Cost Calculator</a></li>
-          <li><a href="/financing">Financing</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Aircraft</h4>
-        <ul>
-          <li><a href="/aircraft#da40">Diamond DA40 NG</a></li>
-          <li><a href="/aircraft#da42">Diamond DA42-VI</a></li>
-          <li><a href="/sim-membership">Redbird FMX Sim</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/company">About CRAFT</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener">Reviews</a></li>
-          <li><a href="/discovery-flight">Book Discovery</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 CRAFT Flight Training, LLC · FAA Part 61 · Atlantic FBO · KCHS</span>
-      <span><a href="/contact">Privacy</a> · <a href="/contact">Terms</a> · <a href="/contact">VA Approved</a></span>
-    </div>
-  </div>
-</footer>
-<script>
-document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
-  document.getElementById('nav-links').classList.toggle('open');
-});
-document.querySelectorAll('.nav-item .nav-link').forEach(b => {
-  b.addEventListener('click', e => {
-    if (window.innerWidth > 980) return;
-    e.preventDefault();
-    b.parentElement.classList.toggle('open');
-  });
-});
-</script>
-
-</body>
-</html>
+        
