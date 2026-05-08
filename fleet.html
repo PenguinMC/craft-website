@@ -322,6 +322,52 @@
   100% { transform: translateY(220px); opacity: 0; }
 }
 
+/* PHOTO VARIANT — real aircraft photos */
+.fc-art--photo { background: #000; }
+.fc-art--photo .fc-art-grid,
+.fc-art--photo .fc-art-glow,
+.fc-art--photo .fc-art-cross,
+.fc-art--photo .fc-art-horizon,
+.fc-art--photo .fc-art-plane { display: none; }
+.fc-art-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 1.5s var(--ease), filter .35s var(--ease);
+  filter: saturate(1.05) contrast(1.05);
+}
+.fleet-card:hover .fc-art-img { transform: scale(1.06); filter: saturate(1.15) contrast(1.1); }
+.fc-art--photo::before {
+  content: ""; position: absolute; inset: 0; z-index: 2;
+  background:
+    linear-gradient(180deg, rgba(10,13,18,0.0) 60%, rgba(10,13,18,0.85) 100%),
+    radial-gradient(80% 60% at 50% 50%, rgba(230,48,39,0.0) 0%, rgba(230,48,39,0.08) 100%);
+  pointer-events: none;
+}
+.fc-art--photo .fc-art-watermark {
+  -webkit-text-stroke: 1px rgba(255,255,255,0.85);
+  text-stroke: 1px rgba(255,255,255,0.85);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+/* "LIVE" badge in corner of photo cards */
+.fc-art-live {
+  position: absolute; top: 12px; left: 12px; z-index: 3;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  padding: 4px 8px; border-radius: 3px;
+  background: rgba(10,13,18,0.7);
+  border: 1px solid rgba(230,48,39,0.5);
+  color: var(--white);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.fc-art-live::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--beacon); box-shadow: 0 0 6px var(--beacon);
+  animation: blink 1.4s ease-in-out infinite;
+}
+
 /* SPEC ROW */
 .fc-specs {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -640,30 +686,15 @@
       <div class="fc-foot"><span>Single-Engine · Composite</span><span class="accent">$255/hr</span></div>
     </article>
 
-    <!-- =========== DA40NG #4: N216DA =========== -->
+    <!-- =========== DA40NG #4: N216DA (real photo) =========== -->
     <article class="fleet-card" data-type="da40">
       <div class="fc-head">
         <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N216DA</span></div>
         <span class="fc-type-badge">DA40 NG</span>
       </div>
-      <div class="fc-art">
-        <div class="fc-art-grid"></div>
-        <div class="fc-art-glow"></div>
-        <div class="fc-art-cross"></div>
-        <div class="fc-art-horizon"></div>
-        <div class="fc-art-plane">
-          <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-            <g transform="translate(140 80)">
-              <ellipse cx="0" cy="0" rx="70" ry="9"/>
-              <polygon points="-70,0 -90,-3 -90,3"/>
-              <rect x="-3" y="-50" width="6" height="100" rx="2"/>
-              <ellipse cx="0" cy="0" rx="6" ry="55"/>
-              <polygon points="-10,40 10,40 14,52 -14,52"/>
-              <rect x="-1" y="36" width="2" height="20"/>
-              <circle cx="-90" cy="0" r="3"/>
-            </g>
-          </svg>
-        </div>
+      <div class="fc-art fc-art--photo">
+        <img class="fc-art-img" src="/assets/fleet/N216DA.jpg" alt="N216DA — Diamond DA40 NG on the ramp at sunset, KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
+        <span class="fc-art-live">Hangared</span>
         <div class="fc-art-watermark">N216DA</div>
       </div>
       <div class="fc-specs">
@@ -834,43 +865,4 @@ const cards = document.querySelectorAll('.fleet-card');
 function applyFilter(filter) {
   buttons.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
   cards.forEach(c => {
-    const match = filter === 'all' || c.dataset.type === filter;
-    c.classList.toggle('hidden', !match);
-    if (match) {
-      c.classList.remove('show-anim');
-      // force reflow to restart animation
-      void c.offsetWidth;
-      c.classList.add('show-anim');
-    }
-  });
-  const url = new URL(location.href);
-  if (filter === 'all') url.searchParams.delete('type');
-  else url.searchParams.set('type', filter);
-  history.replaceState({}, '', url);
-}
-buttons.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
-
-// Honor ?type= on load
-const params = new URLSearchParams(location.search);
-const initType = params.get('type');
-if (initType && ['da40','da42','all'].includes(initType)) {
-  applyFilter(initType);
-}
-
-// Tilt effect on cards (subtle)
-cards.forEach(card => {
-  const art = card.querySelector('.fc-art');
-  card.addEventListener('mousemove', (e) => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    card.style.transform = `translateY(-4px) perspective(900px) rotateX(${(-y*4).toFixed(2)}deg) rotateY(${(x*5).toFixed(2)}deg)`;
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
-});
-</script>
-
-</body>
-</html>
+    const match = filter === 'all' || c.data
