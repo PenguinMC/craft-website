@@ -368,6 +368,29 @@
   animation: blink 1.4s ease-in-out infinite;
 }
 
+/* TAG ROW (feature flags per aircraft) */
+.fc-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  padding: 12px 14px;
+  background: rgba(10,13,18,0.5);
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.fc-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 4px 8px; border-radius: 3px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+  transition: all .2s var(--ease);
+}
+.fleet-card:hover .fc-tag {
+  border-color: rgba(230,48,39,0.3);
+  background: rgba(230,48,39,0.05);
+  color: rgba(255,255,255,0.85);
+}
+
 /* SPEC ROW */
 .fc-specs {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -557,8 +580,8 @@
   <div class="fleet-hero-sweep"></div>
   <div class="fleet-hero-inner">
     <span class="fleet-hero-eyebrow"><span class="ll-dot"></span>FLEET MANIFEST · KCHS · ALL ACTIVE</span>
-    <h1>Six tails. <span class="accent">One fuel.</span><br>Zero <span class="stroke">excuses.</span></h1>
-    <p>Every CRAFT student trains in modern, glass-cockpit, Jet-A turbodiesels — the same platforms regional carriers transition from. No 1970s 172s. No mixed-fuel paperwork. Just composite Diamonds and a full-motion Redbird, all parked at Atlantic FBO at Charleston International.</p>
+    <h1>Train it.<br><span class="accent">Rent it.</span> <span class="stroke">Fly it.</span></h1>
+    <p>Five Diamond DA40 NGs and a multi-engine DA42-VI — every one glass-cockpit, Jet-A, parked at Atlantic FBO at KCHS. CRAFT students train in this fleet, and rated pilots <span style="color:var(--beacon);font-weight:600">rent the same airplanes</span> at standard rates. No fleet swap. No panel relearn. The plane you finished your checkride in is the plane you take on the $100 hamburger run next weekend.</p>
     <div class="fleet-hero-stats">
       <div class="fleet-hero-stat"><div class="fleet-hero-stat-num"><span class="accent">6</span></div><div class="fleet-hero-stat-lbl">Total Aircraft</div></div>
       <div class="fleet-hero-stat"><div class="fleet-hero-stat-num">5</div><div class="fleet-hero-stat-lbl">DA40 NG · SE</div></div>
@@ -590,8 +613,11 @@
         <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N650LA</span></div>
         <span class="fc-type-badge">DA40 NG</span>
       </div>
-      <div class="fc-art">
-        <div class="fc-art-grid"></div>
+      <div class="fc-art fc-art--photo">
+        <img class="fc-art-img" src="/assets/fleet/n650la.jpg" alt="N650LA — Diamond aircraft at KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
+        <span class="fc-art-live">Turbocharged</span>
+        <div class="fc-art-watermark">N650LA</div>
+      </div>
         <div class="fc-art-glow"></div>
         <div class="fc-art-cross"></div>
         <div class="fc-art-horizon"></div>
@@ -610,6 +636,11 @@
         </div>
         <div class="fc-art-watermark">N650LA</div>
       </div>
+      <div class="fc-tags">
+        <span class="fc-tag">Turbocharged</span>
+        <span class="fc-tag">Jet-A</span>
+        <span class="fc-tag">IFR</span>
+      </div>
       <div class="fc-specs">
         <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">177 MPH</div></div>
         <div class="fc-spec"><div class="fc-spec-key">PANEL</div><div class="fc-spec-val">G1000 NXi</div></div>
@@ -625,9 +656,15 @@
         <span class="fc-type-badge">DA40 NG</span>
       </div>
       <div class="fc-art fc-art--photo">
-        <img class="fc-art-img" src="/assets/fleet/N216DA.jpg" alt="N216DA — Diamond DA40 NG on the ramp at sunset, KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
+        <img class="fc-art-img" src="/assets/fleet/N216DA.jpg" alt="N216DA — Diamond aircraft at KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
         <span class="fc-art-live">Air Conditioning</span>
         <div class="fc-art-watermark">N216DA</div>
+      </div>
+      </div>
+      <div class="fc-tags">
+        <span class="fc-tag">Air Conditioning</span>
+        <span class="fc-tag">ADS-B</span>
+        <span class="fc-tag">SVT</span>
       </div>
       <div class="fc-specs">
         <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">177 MPH</div></div>
@@ -643,8 +680,11 @@
         <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N162AT</span></div>
         <span class="fc-type-badge">DA40 NG</span>
       </div>
-      <div class="fc-art">
-        <div class="fc-art-grid"></div>
+      <div class="fc-art fc-art--photo">
+        <img class="fc-art-img" src="/assets/fleet/n162at.jpg" alt="N162AT — Diamond aircraft at KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
+        <span class="fc-art-live">IFR Equipped</span>
+        <div class="fc-art-watermark">N162AT</div>
+      </div>
         <div class="fc-art-glow"></div>
         <div class="fc-art-cross"></div>
         <div class="fc-art-horizon"></div>
@@ -662,6 +702,11 @@
           </svg>
         </div>
         <div class="fc-art-watermark">N162AT</div>
+      </div>
+      <div class="fc-tags">
+        <span class="fc-tag">Composite</span>
+        <span class="fc-tag">Autopilot</span>
+        <span class="fc-tag">G1000 NXi</span>
       </div>
       <div class="fc-specs">
         <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">177 MPH</div></div>
@@ -697,6 +742,11 @@
         </div>
         <div class="fc-art-watermark">N406BL</div>
       </div>
+      <div class="fc-tags">
+        <span class="fc-tag">Turbocharged</span>
+        <span class="fc-tag">4-Place</span>
+        <span class="fc-tag">Glass Panel</span>
+      </div>
       <div class="fc-specs">
         <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">177 MPH</div></div>
         <div class="fc-spec"><div class="fc-spec-key">PANEL</div><div class="fc-spec-val">G1000 NXi</div></div>
@@ -711,8 +761,11 @@
         <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N970DA</span></div>
         <span class="fc-type-badge">DA40 NG</span>
       </div>
-      <div class="fc-art">
-        <div class="fc-art-grid"></div>
+      <div class="fc-art fc-art--photo">
+        <img class="fc-art-img" src="/assets/fleet/n970da.webp" alt="N970DA — Diamond aircraft at KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
+        <span class="fc-art-live">ADS-B Out</span>
+        <div class="fc-art-watermark">N970DA</div>
+      </div>
         <div class="fc-art-glow"></div>
         <div class="fc-art-cross"></div>
         <div class="fc-art-horizon"></div>
@@ -731,6 +784,11 @@
         </div>
         <div class="fc-art-watermark">N970DA</div>
       </div>
+      <div class="fc-tags">
+        <span class="fc-tag">ADS-B Out</span>
+        <span class="fc-tag">Synthetic Vision</span>
+        <span class="fc-tag">Diesel</span>
+      </div>
       <div class="fc-specs">
         <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">177 MPH</div></div>
         <div class="fc-spec"><div class="fc-spec-key">PANEL</div><div class="fc-spec-val">G1000 NXi</div></div>
@@ -745,8 +803,11 @@
         <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N42MV</span></div>
         <span class="fc-type-badge">DA42-VI</span>
       </div>
-      <div class="fc-art">
-        <div class="fc-art-grid"></div>
+      <div class="fc-art fc-art--photo">
+        <img class="fc-art-img" src="/assets/fleet/n42mv.png" alt="N42MV — Diamond aircraft at KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
+        <span class="fc-art-live">Twin Turbodiesel</span>
+        <div class="fc-art-watermark">N42MV</div>
+      </div>
         <div class="fc-art-glow"></div>
         <div class="fc-art-cross"></div>
         <div class="fc-art-horizon"></div>
@@ -771,9 +832,14 @@
         </div>
         <div class="fc-art-watermark">N42MV</div>
       </div>
+      <div class="fc-tags">
+        <span class="fc-tag">Twin Turbodiesel</span>
+        <span class="fc-tag">FADEC</span>
+        <span class="fc-tag">Ice Protection</span>
+      </div>
       <div class="fc-specs">
         <div class="fc-spec"><div class="fc-spec-key">CRUISE</div><div class="fc-spec-val">201 MPH</div></div>
-        <div class="fc-spec"><div class="fc-spec-key">PANEL</div><div class="fc-spec-val">G1000 NXi</div></div>
+        <div class="fc-spec"><div class="fc-spec-key">PANEL</div><div class="fc-spec-val">G1000</div></div>
         <div class="fc-spec"><div class="fc-spec-key">STATUS</div><div class="fc-spec-val online">Active</div></div>
       </div>
       <div class="fc-foot"><span>Multi-Engine · Twin Turbodiesel</span><span class="accent">$475/hr</span></div>
@@ -849,21 +915,4 @@
 
 <script>
 // Mobile nav
-document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
-  document.getElementById('nav-links').classList.toggle('open');
-});
-document.querySelectorAll('.nav-item .nav-link').forEach(b => {
-  b.addEventListener('click', e => {
-    if (window.innerWidth > 980) return;
-    e.preventDefault();
-    b.parentElement.classList.toggle('open');
-  });
-});
-
-// Filter
-const buttons = document.querySelectorAll('.fleet-filter-btn');
-const cards = document.querySelectorAll('.fleet-card');
-function applyFilter(filter) {
-  buttons.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
-  cards.forEach(c => {
-    const match = filter === 'all' || c.data
+document
