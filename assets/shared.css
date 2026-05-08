@@ -125,3 +125,28 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   width: 22px; height: 22px;
   background: rgba(230,48,39,0.15);
   border: 1px solid rg
+/* === Custom scrollbar — CRAFT red === */
+:root { scrollbar-color: var(--beacon) rgba(20,24,31,0.4); scrollbar-width: thin; }
+
+/* Webkit (Chrome / Edge / Safari) */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, rgba(20,24,31,0.85) 0%, rgba(10,13,18,0.95) 100%);
+  border-left: 1px solid rgba(230,48,39,0.15);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--beacon) 0%, var(--beacon-dark) 100%);
+  border: 2px solid rgba(10,13,18,0.85);
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12), 0 0 8px rgba(230,48,39,0.45);
+  transition: background .2s var(--ease), box-shadow .2s var(--ease);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff6b5b 0%, var(--beacon) 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2), 0 0 14px rgba(230,48,39,0.7);
+}
+::-webkit-scrollbar-thumb:active {
+  background: var(--beacon);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3), 0 0 22px rgba(230,48,39,0.9);
+}
+::-webkit-scrollbar-corner { background: var(--ink); }
