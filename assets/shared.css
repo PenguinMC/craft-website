@@ -124,7 +124,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   display: inline-grid; place-items: center;
   width: 22px; height: 22px;
   background: rgba(230,48,39,0.15);
-  border: 1px solid rg
+  border: 1px solid rgba(230,48,39,0.4);
+  border-radius: 4px;
+  color: var(--beacon);
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.tail-card .tail-num { letter-spacing: 0.1em; }
+
 /* === Custom scrollbar — CRAFT red === */
 :root { scrollbar-color: var(--beacon) rgba(20,24,31,0.4); scrollbar-width: thin; }
 
