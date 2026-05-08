@@ -762,7 +762,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
             </a>
           </div>
           <div class="nav-dd-section">
-            <a href="/#calculator" class="nav-dd-item">
+            <a href="/cost-calculator" class="nav-dd-item">
               <div class="nav-dd-icon">⌗</div>
               <div>
                 <div class="nav-dd-title">Cost Calculator</div>
@@ -1044,106 +1044,6 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
         <div class="dpe-card-row"><span class="dpe-card-l">CRAFT DPE wait</span><span class="dpe-card-r good">Weeks</span></div>
         <div class="dpe-card-row"><span class="dpe-card-l">National pass rate</span><span class="dpe-card-r bad">~75%</span></div>
         <div class="dpe-card-row"><span class="dpe-card-l">CRAFT pass rate</span><span class="dpe-card-r good">95%</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COST CALCULATOR -->
-<section class="section calc" id="calculator">
-  <div class="container">
-    <div class="calc-head">
-      <span class="eyebrow">Cost Calculator</span>
-      <h2 class="h-display">Real numbers, <span class="accent">not estimates.</span></h2>
-      <p>Pick a program. See exactly what you'd pay — broken down by aircraft, sim, instruction, and fees. Switch financing to see your monthly payment.</p>
-    </div>
-    <div class="calc-body">
-      <div class="calc-left">
-        <div class="calc-section">
-          <div class="calc-label"><span>1</span>Choose your program</div>
-          <div class="calc-progs" id="cc-progs">
-            <button class="calc-prog" data-k="ppl">
-              <span class="calc-prog-tag">Part 61</span>
-              <span class="calc-prog-name">Private Pilot</span>
-              <span class="calc-prog-time">~3 mo · 58 hrs</span>
-            </button>
-            <button class="calc-prog" data-k="acc-ifr">
-              <span class="calc-prog-tag">Accelerated</span>
-              <span class="calc-prog-name">Accelerated IFR</span>
-              <span class="calc-prog-time">1 wk · 62 hrs</span>
-            </button>
-            <button class="calc-prog" data-k="acc-cpl">
-              <span class="calc-prog-tag">Accelerated</span>
-              <span class="calc-prog-name">Accelerated CPL</span>
-              <span class="calc-prog-time">6 wk · 148 hrs</span>
-            </button>
-            <button class="calc-prog active" data-k="bronze">
-              <span class="calc-prog-tag">Popular · Bundle</span>
-              <span class="calc-prog-name">Bronze · Zero to CPL</span>
-              <span class="calc-prog-time">270 hrs total</span>
-            </button>
-            <button class="calc-prog" data-k="silver">
-              <span class="calc-prog-tag">Bundle</span>
-              <span class="calc-prog-name">Silver · + Multi</span>
-              <span class="calc-prog-time">281 hrs total</span>
-            </button>
-            <button class="calc-prog" data-k="gold">
-              <span class="calc-prog-tag">Bundle</span>
-              <span class="calc-prog-name">Gold · The Works</span>
-              <span class="calc-prog-time">332.5 hrs total</span>
-            </button>
-          </div>
-        </div>
-        <div class="calc-section">
-          <div class="calc-label"><span>2</span>Hours of prior experience</div>
-          <div class="calc-slider-row">
-            <input type="range" id="cc-prior" min="0" max="100" value="0" step="5" />
-            <div class="calc-slider-val"><span id="cc-prior-val">0</span><small>hrs</small></div>
-          </div>
-          <div class="calc-slider-hint">Logged hours from another school transfer at full credit. Slide to estimate your discount.</div>
-        </div>
-        <div class="calc-section">
-          <div class="calc-label"><span>3</span>How will you pay?</div>
-          <div class="calc-fin" id="cc-fin">
-            <button class="calc-fin-opt active" data-fin="cash">
-              <span class="calc-fin-name">Pay In Full</span>
-              <span class="calc-fin-sub">No financing</span>
-            </button>
-            <button class="calc-fin-opt" data-fin="financed">
-              <span class="calc-fin-name">Stratus / Meritize</span>
-              <span class="calc-fin-sub">$0 down · 84 mo</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result">
-          <div class="calc-r-eyebrow" id="cc-tag">Pro Pilot Bundle</div>
-          <div class="calc-r-name" id="cc-name">Bronze · Zero to CPL</div>
-          <div class="calc-r-sub" id="cc-sub">270 hrs · PPL + IFR + Commercial</div>
-          <div class="calc-r-total">
-            <div class="calc-r-label">Estimated all-in</div>
-            <div class="calc-r-num" id="cc-total">$82,362</div>
-            <div class="calc-r-monthly" id="cc-monthly" style="display:none">
-              <span id="cc-monthly-num">$980</span>/mo · 84 months · $0 down
-            </div>
-          </div>
-          <div class="calc-bar" id="cc-bar"></div>
-          <div class="calc-bar-legend" id="cc-bar-legend"></div>
-          <div class="calc-rows" id="cc-rows"></div>
-          <div class="calc-compare">
-            <div class="calc-compare-bar"><div class="calc-compare-craft" id="cc-bar-craft"></div></div>
-            <div class="calc-compare-stats">
-              <div><span class="calc-compare-num" id="cc-craft-num">$82,362</span><span class="calc-compare-lbl">CRAFT all-in</span></div>
-              <div><span class="calc-compare-num industry" id="cc-industry-num">$115,000</span><span class="calc-compare-lbl">Industry avg</span></div>
-              <div><span class="calc-compare-num savings" id="cc-savings">~$32,638</span><span class="calc-compare-lbl">You save</span></div>
-            </div>
-          </div>
-          <div class="calc-ctas">
-            <a href="#discovery" class="btn btn-primary btn-arrow">Book Discovery Flight</a>
-            <a href="tel:+18438006498" class="btn btn-ghost">Speak with a CFI</a>
-          </div>
-        </div>
       </div>
     </div>
   </div>
