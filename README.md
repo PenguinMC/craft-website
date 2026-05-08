@@ -105,3 +105,8 @@ In Vercel dashboard → Project → Settings → Domains:
 4. SSL provisions automatically in ~60 seconds
 
 Whatever was at the old WordPress site will need 301 redirects added to `vercel.json` so old URLs don't 404. Drop me a sitemap of the old site and I'll write them.
+
+## Repo
+
+GitHub: https://github.com/PenguinMC/craft-website  
+Live: https://craft-website-xi.vercel.app
