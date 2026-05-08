@@ -557,8 +557,8 @@
   <div class="fleet-hero-sweep"></div>
   <div class="fleet-hero-inner">
     <span class="fleet-hero-eyebrow"><span class="ll-dot"></span>FLEET MANIFEST · KCHS · ALL ACTIVE</span>
-    <h1>Six tails. <span class="accent">One fuel.</span><br>Zero <span class="stroke">excuses.</span></h1>
-    <p>Every CRAFT student trains in modern, glass-cockpit, Jet-A turbodiesels — the same platforms regional carriers transition from. No 1970s 172s. No mixed-fuel paperwork. Just composite Diamonds and a full-motion Redbird, all parked at Atlantic FBO at Charleston International.</p>
+    <h1>The only <span class="accent">all-Diamond</span><br>fleet in <span class="stroke">Charleston.</span></h1>
+    <p>Five Diamond DA40 NGs and a multi-engine DA42-VI. Every aircraft glass-cockpit, Jet-A, and built this decade — no 1970s 172s, no mixed-fuel paperwork, no panel relearn between trainers. CRAFT students train in this fleet, and rated pilots <span style="color:var(--beacon);font-weight:600">can rent the same airplanes</span> at standard rates.</p>
     <div class="fleet-hero-stats">
       <div class="fleet-hero-stat"><div class="fleet-hero-stat-num"><span class="accent">6</span></div><div class="fleet-hero-stat-lbl">Total Aircraft</div></div>
       <div class="fleet-hero-stat"><div class="fleet-hero-stat-num">5</div><div class="fleet-hero-stat-lbl">DA40 NG · SE</div></div>
@@ -798,6 +798,4 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
 const buttons = document.querySelectorAll('.fleet-filter-btn');
 const cards = document.querySelectorAll('.fleet-card');
 function applyFilter(filter) {
-  buttons.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
-  cards.forEach(c => {
-    const match = filter === 'all' || c.data
+  buttons.forEach(b => b.classList.toggle('active', b.dataset.filter === fi
