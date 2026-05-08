@@ -26,7 +26,12 @@
 }
 .df-hero-bg {
   position: absolute; inset: 0; z-index: 0;
-  background: #000 url('https://img.youtube.com/vi/OMPuQnDtDWk/maxresdefault.jpg') center/cover no-repeat;
+  background: #000 url('/assets/discobg.jpg') center/cover no-repeat;
+  animation: dfHeroZoom 22s ease-in-out infinite alternate;
+}
+@keyframes dfHeroZoom {
+  0%   { transform: scale(1.0); }
+  100% { transform: scale(1.08); }
 }
 .df-hero-overlay {
   position: absolute; inset: 0; z-index: 1;
@@ -452,6 +457,4 @@
         <ul>
           <li><a href="/company">About CRAFT</a></li>
           <li><a href="/contact">Contact</a></li>
-          <li><a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener">Reviews</a></li>
-          <li><a href="/discovery-flight">Book Discovery</a></li>
-       
+          <li><a href="https://flycraftchs.com/reviews/" tar
