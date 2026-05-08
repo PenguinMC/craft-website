@@ -202,6 +202,13 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   transform: translate(-50%, -50%);
   border: 0; pointer-events: none;
 }
+/* Disable hero video on mobile — iframe is glitched at narrow widths.
+   .hero-video-wrap keeps its CSS background-image (YouTube poster), so
+   the static aviation shot shows through instead. */
+@media (max-width: 880px) {
+  .hero-video-wrap iframe, .hero-video-wrap video { display: none; }
+  .hero-video-wrap { background-position: center 30%; }
+}
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background:
