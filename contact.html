@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Contact | CRAFT Flight Training</title>
-<meta name="description" content="Phone, email, or in-person at our FBO partners (Signature & Atlantic). Mon–Sat, 9am–4pm. We answer messages within a couple hours during business days." />
+<meta name="description" content="Phone, email, or in-person at our FBO partners (Signature & Atlantic) at KCHS. Mon–Sat 9am–4pm. We answer messages within hours during business days." />
 <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
@@ -12,8 +12,84 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/shared.css">
+<style>
+.ct-hero { position: relative; min-height: 50vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 60px; overflow: hidden; }
+.ct-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.7; animation: ctGrid 30s linear infinite; }
+@keyframes ctGrid { 0%{background-position:0 0,0 0} 100%{background-position:64px 64px,64px 64px} }
+.ct-hero-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%); }
+.ct-hero-inner { position: relative; z-index: 5; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%; text-align: center; }
+.ct-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 24px; }
+.ct-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 8px var(--beacon); animation: ctDot 1.4s ease-in-out infinite; display: inline-block; }
+@keyframes ctDot { 0%,100%{opacity:1} 50%{opacity:0.35} }
+.ct-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(54px, 8vw, 110px); line-height: 0.92; letter-spacing: -0.015em; text-transform: uppercase; margin: 0 0 18px; }
+.ct-hero h1 .accent { color: var(--beacon); }
+.ct-hero p { font-size: clamp(15px, 1.4vw, 18px); color: rgba(255,255,255,0.75); max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+/* Three-up channel cards */
+.ct-channels { background: var(--ink); padding: 30px 0 60px; }
+.ct-channel-grid { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 880px) { .ct-channel-grid { grid-template-columns: 1fr; } }
+.ct-channel { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 12px; padding: 32px; text-align: center; text-decoration: none; color: inherit; position: relative; overflow: hidden; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); display: block; }
+.ct-channel::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.ct-channel:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.55); box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); }
+.ct-channel-icon { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 10px; background: rgba(230,48,39,0.12); border: 1px solid rgba(230,48,39,0.4); display: grid; place-items: center; font-family: var(--display); font-weight: 900; font-size: 26px; color: var(--beacon); box-shadow: inset 0 0 14px rgba(230,48,39,0.15); }
+.ct-channel-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--beacon); margin-bottom: 10px; }
+.ct-channel-prim { font-family: var(--display); font-weight: 900; font-size: 26px; color: var(--white); line-height: 1.1; margin-bottom: 8px; word-break: break-word; }
+.ct-channel-prim.tel { color: var(--beacon); font-size: 30px; }
+.ct-channel-sec { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 14px; line-height: 1.5; }
+.ct-channel-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.4); text-transform: uppercase; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+
+/* Form + map two-up */
+.ct-main { background: var(--approach); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+.ct-main::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.5; pointer-events: none; }
+.ct-main-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 32px; }
+@media (max-width: 880px) { .ct-main-inner { grid-template-columns: 1fr; } }
+
+.ct-form-card { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.3); border-radius: 14px; padding: 36px; box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); position: relative; overflow: hidden; }
+.ct-form-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.ct-form-head { margin-bottom: 24px; }
+.ct-form-head .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; margin-bottom: 8px; }
+.ct-form-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(32px, 4vw, 44px); line-height: 1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0; }
+.ct-form-head h2 .accent { color: var(--beacon); }
+.ct-form-head p { font-size: 14px; color: rgba(255,255,255,0.65); margin-top: 10px; }
+
+.ct-form { display: grid; gap: 14px; }
+.ct-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .ct-form-row { grid-template-columns: 1fr; } }
+.ct-form-field { display: grid; gap: 6px; }
+.ct-form-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+.ct-form-label .req { color: var(--beacon); }
+.ct-form input, .ct-form select, .ct-form textarea { padding: 13px 16px; font: inherit; font-size: 15px; color: var(--white); background: rgba(10,13,18,0.7); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; transition: border-color .2s var(--ease), background .2s var(--ease); font-family: inherit; }
+.ct-form input::placeholder, .ct-form textarea::placeholder { color: rgba(255,255,255,0.35); }
+.ct-form input:focus, .ct-form select:focus, .ct-form textarea:focus { outline: none; border-color: var(--beacon); background: rgba(10,13,18,0.95); box-shadow: 0 0 0 3px rgba(230,48,39,0.15); }
+.ct-form select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1l5 5 5-5' stroke='%23E63027' stroke-width='1.5' stroke-linecap='round'/></svg>"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; cursor: pointer; }
+.ct-form textarea { resize: vertical; min-height: 110px; }
+.ct-form button[type=submit] { padding: 15px 28px; background: var(--beacon); color: var(--white); border: none; border-radius: 6px; cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 8px 24px rgba(230,48,39,0.35), 0 0 0 1px rgba(230,48,39,0.4); transition: all .2s var(--ease); justify-self: start; }
+.ct-form button[type=submit]:hover { background: var(--beacon-dark); transform: translateY(-1px); }
+.ct-form button[type=submit]::after { content: " →"; }
+.ct-form-fine { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+/* Side panel — hours + map */
+.ct-side { display: grid; gap: 18px; align-content: start; }
+.ct-side-panel { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.25); border-radius: 14px; padding: 28px; position: relative; overflow: hidden; }
+.ct-side-panel::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.ct-side-head { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; margin-bottom: 14px; }
+.ct-side-panel h3 { font-family: var(--display); font-weight: 900; font-size: 24px; line-height: 1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 14px; }
+.ct-side-panel h3 .accent { color: var(--beacon); }
+.ct-hours-row { display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.06); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.78); }
+.ct-hours-row:first-of-type { border-top: none; padding-top: 4px; }
+.ct-hours-row .day { color: var(--white); font-weight: 600; }
+.ct-hours-row.closed .time { color: rgba(255,255,255,0.4); }
+.ct-hours-row .time .accent { color: var(--beacon); }
+.ct-side-foot { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); line-height: 1.55; }
+
+.ct-map { aspect-ratio: 16 / 11; border-radius: 14px; overflow: hidden; border: 1px solid rgba(230,48,39,0.3); position: relative; }
+.ct-map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.2) brightness(0.85); transition: filter .3s var(--ease); display: block; }
+.ct-map:hover iframe { filter: grayscale(0) brightness(1); }
+.ct-map::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); pointer-events: none; }
+</style>
 </head>
 <body>
 
@@ -22,19 +98,17 @@
     <a href="/" class="brand"><img src="/assets/craft-logo.png" alt="CRAFT Flight Training" /></a>
     <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
     <div class="nav-links" id="nav-links">
-      <div class="nav-item">
-        <button class="nav-link">Train <span class="nav-caret">▼</span></button>
+      <div class="nav-item"><button class="nav-link">Train <span class="nav-caret">▼</span></button>
         <div class="nav-dropdown">
-          <div class="nav-dd-section">
-            <div class="nav-dd-eyebrow">Get Started</div>
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Get Started</div>
             <a href="/discovery-flight" class="nav-dd-item"><div class="nav-dd-icon">✈</div><div><div class="nav-dd-title">Discovery Flight</div><div class="nav-dd-desc">$325 · Your first hour at the controls</div></div></a>
           </div>
-          <div class="nav-dd-section">
-            <div class="nav-dd-eyebrow">Programs</div>
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Programs</div>
             <a href="/accelerated" class="nav-dd-item"><div class="nav-dd-icon">⊳</div><div><div class="nav-dd-title">Accelerated</div><div class="nav-dd-desc">IFR · CPL · CFI · Multi · Bundles</div></div></a>
-            <a href="/flight-school" class="nav-dd-item"><div class="nav-dd-icon">◈</div><div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">Private · Instrument · Commercial · Instructor</div></div></a>
-            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▦</div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">Train smarter, fly sharper · $70/hr Redbird FMX</div></div></a>
-          </div>          <div class="nav-dd-section">
+            <a href="/flight-school" class="nav-dd-item"><div class="nav-dd-icon">◈</div><div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">At your own pace · billed hourly</div></div></a>
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▦</div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">$70/hr Redbird AATD · 2 sims</div></div></a>
+          </div>
+          <div class="nav-dd-section">
             <a href="/cost-calculator" class="nav-dd-item"><div class="nav-dd-icon">⌗</div><div><div class="nav-dd-title">Cost Calculator</div><div class="nav-dd-desc">Get your personalized estimate</div></div></a>
             <a href="/financing" class="nav-dd-item"><div class="nav-dd-icon">$</div><div><div class="nav-dd-title">Financing</div><div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div></div></a>
           </div>
@@ -51,90 +125,136 @@
           </div>
         </div>
       </div>
-      <div class="nav-item">
-        <button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
-        <div class="nav-dropdown">
-          <div class="nav-dd-section">
-            <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Fleet</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · all tail numbers</div></div></a>
-            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Two AATD Redbird sims · $70/hr</div></div></a>
-          </div>
-        </div>
+      <div class="nav-item"><button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Fleet</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · all tail numbers</div></div></a>
+          <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Two AATD Redbird sims · $70/hr</div></div></a>
+        </div></div>
       </div>
-      <div class="nav-item">
-        <button class="nav-link">Company <span class="nav-caret">▼</span></button>
-        <div class="nav-dropdown">
-          <div class="nav-dd-section">
-            <a href="/company" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
-            <a href="/team" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Team</div><div class="nav-dd-desc">Meet our instructors and staff</div></div></a>
-            <a href="/careers" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">Careers</div><div class="nav-dd-desc">Join the bench · upload your resume</div></div></a>
-            <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon">✉</div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
-            <a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say</div></div></a>
-          </div>
-        </div>
+      <div class="nav-item"><button class="nav-link">Company <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/company" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
+          <a href="/team" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Team</div><div class="nav-dd-desc">Meet our instructors and staff</div></div></a>
+          <a href="/careers" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">Careers</div><div class="nav-dd-desc">Join the bench · upload your resume</div></div></a>
+          <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon">✉</div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
+          <a href="/reviews" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say · video + photo</div></div></a>
+        </div></div>
       </div>
     </div>
     <a href="/discovery-flight" class="btn btn-primary btn-sm btn-arrow">Discovery Flight</a>
   </div>
 </nav>
 
-<header class="stub-hero">
-  <div class="stub-hero-inner">
-    <span class="eyebrow">Get in Touch</span>
-    <h1 style="margin-top:16px">Reach out. <span class="accent">We'll respond fast.</span></h1>
-    <p>Phone, email, or in-person at our FBO partners — Signature &amp; Atlantic. Mon–Sat, 9am–4pm. We answer messages within a couple hours during business days.</p>
-    <div class="stub-cta">
-      <a href="/discovery-flight" class="btn btn-primary btn-arrow">Book Discovery Flight</a>
-      <a href="/" class="btn btn-ghost">Back to Home</a>
-    </div>
+<header class="ct-hero">
+  <div class="ct-hero-grid"></div>
+  <div class="ct-hero-vignette"></div>
+  <div class="ct-hero-inner">
+    <span class="ct-eyebrow">Charleston · KCHS</span>
+    <h1>Get in <span class="accent">touch.</span></h1>
+    <p>Phone, email, or walk in. We answer messages within hours during business days &mdash; usually faster. The fastest way to get started is just to call.</p>
   </div>
 </header>
 
-<main class="container" style="padding: 80px var(--gut) 60px; max-width: 880px;">
-<div style="display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-bottom:60px">
-  <a href="tel:+18438006498" style="background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:36px;text-align:center;transition:all .25s var(--ease);display:block" onmouseover="this.style.borderColor='#E63027';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none'">
-    <div style="font-size:48px;margin-bottom:16px">📞</div>
-    <div style="font-family:var(--display);font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px">Call</div>
-    <div style="font-family:var(--display);font-weight:900;font-size:32px;color:var(--beacon)">843.800.6498</div>
-    <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:8px">Mon–Sat 9am–4pm</div>
-  </a>
-  <a href="mailto:craft@flycraftchs.com" style="background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:36px;text-align:center;transition:all .25s var(--ease);display:block" onmouseover="this.style.borderColor='#E63027';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none'">
-    <div style="font-size:48px;margin-bottom:16px">✉</div>
-    <div style="font-family:var(--display);font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px">Email</div>
-    <div style="font-family:var(--display);font-weight:900;font-size:22px;color:var(--beacon);word-break:break-all">craft@flycraftchs.com</div>
-    <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:8px">Reply within hours, M–Sat</div>
-  </a>
-  <a href="https://maps.google.com/?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406" target="_blank" rel="noopener" style="background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:36px;text-align:center;transition:all .25s var(--ease);display:block" onmouseover="this.style.borderColor='#E63027';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none'">
-    <div style="font-size:48px;margin-bottom:16px">📍</div>
-    <div style="font-family:var(--display);font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px">Visit</div>
-    <div style="font-family:var(--display);font-weight:700;font-size:18px;line-height:1.3">6060 S. Aviation Ave<br>Suite 109<br>North Charleston, SC 29406</div>
-    <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:8px">Signature &amp; Atlantic · KCHS</div>
-  </a>
-</div>
+<section class="ct-channels">
+  <div class="ct-channel-grid">
+    <a href="tel:+18438006498" class="ct-channel">
+      <div class="ct-channel-icon">☏</div>
+      <div class="ct-channel-tag">Call</div>
+      <div class="ct-channel-prim tel">843.800.6498</div>
+      <div class="ct-channel-sec">Fastest path to a CFI &mdash; we pick up during business hours.</div>
+      <div class="ct-channel-meta">Mon&ndash;Sat 9am&ndash;4pm</div>
+    </a>
+    <a href="mailto:craft@flycraftchs.com" class="ct-channel">
+      <div class="ct-channel-icon">✉</div>
+      <div class="ct-channel-tag">Email</div>
+      <div class="ct-channel-prim">craft@flycraftchs.com</div>
+      <div class="ct-channel-sec">For questions you'd rather type out, or attaching documents.</div>
+      <div class="ct-channel-meta">Reply within hours</div>
+    </a>
+    <a href="https://maps.google.com/?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406" target="_blank" rel="noopener" class="ct-channel">
+      <div class="ct-channel-icon">⚐</div>
+      <div class="ct-channel-tag">Visit</div>
+      <div class="ct-channel-prim">6060 S. Aviation Ave<br>Suite 109<br>North Charleston, SC</div>
+      <div class="ct-channel-sec">Atlantic FBO complex at Charleston International (KCHS).</div>
+      <div class="ct-channel-meta">Walk-Ins Welcome</div>
+    </a>
+  </div>
+</section>
 
-<div style="background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:48px;margin-bottom:32px">
-  <h2 style="font-family:var(--display);font-weight:800;font-size:32px;text-transform:uppercase;margin-bottom:24px">Send a message</h2>
-  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="display:grid;gap:16px;max-width:560px">
-    <input type="text" name="name" placeholder="Your name" required style="padding:14px 16px;background:var(--ink);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:inherit;font-size:15px"/>
-    <input type="email" name="email" placeholder="Email address" required style="padding:14px 16px;background:var(--ink);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:inherit;font-size:15px"/>
-    <input type="tel" name="phone" placeholder="Phone (optional)" style="padding:14px 16px;background:var(--ink);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:inherit;font-size:15px"/>
-    <select name="interest" style="padding:14px 16px;background:var(--ink);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:inherit;font-size:15px">
-      <option>I'm interested in...</option>
-      <option>Discovery Flight</option>
-      <option>Private Pilot License</option>
-      <option>Accelerated IFR</option>
-      <option>Accelerated Commercial</option>
-      <option>Bronze / Silver / Gold Bundle</option>
-      <option>Sim Membership</option>
-      <option>Financing Options</option>
-      <option>Something else</option>
-    </select>
-    <textarea name="message" placeholder="Your message" rows="5" style="padding:14px 16px;background:var(--ink);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:inherit;font-size:15px;resize:vertical;min-height:120px"></textarea>
-    <button type="submit" class="btn btn-primary btn-arrow" style="justify-self:start">Send Message</button>
-  </form>
-  <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:16px">Form posts to Formspree (free tier — replace YOUR_FORM_ID with your actual form ID, or swap action= for your CRM webhook URL once you set up GoHighLevel).</p>
-</div>
+<section class="ct-main">
+  <div class="ct-main-inner">
+    <div class="ct-form-card">
+      <div class="ct-form-head">
+        <div class="lbl">Send a Message</div>
+        <h2>Tell us<br>what you&rsquo;re <span class="accent">after.</span></h2>
+        <p>One form. We route it to whoever owns intake that day &mdash; usually you'll hear back within a couple hours.</p>
+      </div>
+      <form class="ct-form" action="https://formspree.io/f/manjzakl" method="POST">
+        <div class="ct-form-row">
+          <div class="ct-form-field">
+            <label class="ct-form-label">First Name <span class="req">*</span></label>
+            <input required type="text" name="firstName" placeholder="John" autocomplete="given-name" />
+          </div>
+          <div class="ct-form-field">
+            <label class="ct-form-label">Last Name <span class="req">*</span></label>
+            <input required type="text" name="lastName" placeholder="Doe" autocomplete="family-name" />
+          </div>
+        </div>
+        <div class="ct-form-row">
+          <div class="ct-form-field">
+            <label class="ct-form-label">Email <span class="req">*</span></label>
+            <input required type="email" name="email" placeholder="example@domain.com" autocomplete="email" />
+          </div>
+          <div class="ct-form-field">
+            <label class="ct-form-label">Phone</label>
+            <input type="tel" name="phone" placeholder="+1 000 000 0000" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="ct-form-field">
+          <label class="ct-form-label">I&rsquo;m Interested In <span class="req">*</span></label>
+          <select required name="interest">
+            <option value="">Select one&hellip;</option>
+            <option>Discovery Flight</option>
+            <option>Private Pilot License</option>
+            <option>Accelerated IFR</option>
+            <option>Accelerated Commercial</option>
+            <option>Multi-Engine (Add-On / CMEL / MEI / ATP)</option>
+            <option>CFI Initial</option>
+            <option>CFI-I Add-On</option>
+            <option>Sim Membership</option>
+            <option>Financing Options</option>
+            <option>Tour the School</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="ct-form-field">
+          <label class="ct-form-label">Message</label>
+          <textarea name="message" rows="5" placeholder="Hours flown, target start window, anything else worth knowing..."></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+        <div class="ct-form-fine">By submitting you consent to be contacted by CRAFT. We don't share or sell contact info.</div>
+      </form>
+    </div>
 
-</main>
+    <div class="ct-side">
+      <div class="ct-side-panel">
+        <div class="ct-side-head">Office Hours</div>
+        <h3>Open <span class="accent">six days</span> a week.</h3>
+        <div class="ct-hours-row"><span class="day">Mon</span><span class="time">9am &ndash; <span class="accent">4pm</span></span></div>
+        <div class="ct-hours-row"><span class="day">Tue</span><span class="time">9am &ndash; <span class="accent">4pm</span></span></div>
+        <div class="ct-hours-row"><span class="day">Wed</span><span class="time">9am &ndash; <span class="accent">4pm</span></span></div>
+        <div class="ct-hours-row"><span class="day">Thu</span><span class="time">9am &ndash; <span class="accent">4pm</span></span></div>
+        <div class="ct-hours-row"><span class="day">Fri</span><span class="time">9am &ndash; <span class="accent">4pm</span></span></div>
+        <div class="ct-hours-row"><span class="day">Sat</span><span class="time">9am &ndash; <span class="accent">4pm</span></span></div>
+        <div class="ct-hours-row closed"><span class="day">Sun</span><span class="time">Closed</span></div>
+        <div class="ct-side-foot">Walk-ins welcome during office hours. Calling or emailing to set an appointment ahead of time gets you the best one-on-one time with a CFI.</div>
+      </div>
+      <div class="ct-map">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=6060+S+Aviation+Ave+Ste+109+North+Charleston+SC+29406&output=embed" title="CRAFT Flight Training location"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="container">
@@ -142,55 +262,40 @@
       <div>
         <div class="footer-brand"><img src="/assets/craft-logo.png" alt="CRAFT" /></div>
         <p class="footer-tag">Charleston's accelerated flight school. Sim-first, Diamond Jet-A, KCHS-based. 95% first-time pass rate. DPE in weeks, not months.</p>
-        <div class="footer-contact">
-          <div class="footer-contact-label">Visit / Call / Email</div>
-          <a href="https://maps.google.com/?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406" target="_blank" rel="noopener">6060 S. Aviation Ave, Suite 109 · North Charleston, SC 29406</a>
-          <a href="tel:+18438006498">843.800.6498</a>
-          <a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a>
-          <span style="display:block;font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;">Mon–Sat 9am–4pm</span>
-        </div>
       </div>
-      <div class="footer-col">
-        <h4>Train</h4>
-        <ul>
-          <li><a href="/discovery-flight">Discovery Flight</a></li>
-          <li><a href="/flight-school">Flight School</a></li>
-          <li><a href="/sim-membership">Sim Membership</a></li>
-          <li><a href="/cost-calculator">Cost Calculator</a></li>
-          <li><a href="/financing">Financing</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Aircraft</h4>
-        <ul>
-          <li><a href="/aircraft#da40">Diamond DA40 NG</a></li>
-          <li><a href="/aircraft#da42">Diamond DA42-VI</a></li>
-          <li><a href="/sim-membership">Redbird FMX Sim</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/company">About CRAFT</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener">Reviews</a></li>
-          <li><a href="/discovery-flight">Book Discovery</a></li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Train</h4><ul>
+        <li><a href="/discovery-flight">Discovery Flight</a></li>
+        <li><a href="/accelerated">Accelerated Programs</a></li>
+        <li><a href="/flight-school">At-Your-Own-Pace</a></li>
+        <li><a href="/ifr">Instrument (IFR)</a></li>
+        <li><a href="/commercial">Commercial</a></li>
+        <li><a href="/multi-engine">Multi-Engine</a></li>
+        <li><a href="/cfi">CFI</a></li>
+        <li><a href="/cfii">CFI-I</a></li>
+        <li><a href="/sim-membership">Sim Membership</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Aircraft</h4><ul>
+        <li><a href="/fleet">The Fleet</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="/company">About CRAFT</a></li>
+        <li><a href="/team">The Team</a></li>
+        <li><a href="/careers">Careers</a></li>
+        <li><a href="/reviews">Reviews</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul></div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 CRAFT Flight Training, LLC · FAA Part 61 · Signature & Atlantic FBO · KCHS</span>
+      <span>© 2026 CRAFT Flight Training, LLC · FAA Part 61 · Signature &amp; Atlantic FBO · KCHS</span>
       <span><a href="/contact">Privacy</a> · <a href="/contact">Terms</a></span>
     </div>
   </div>
 </footer>
-<script>
-document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
-  document.getElementById('nav-links').classList.toggle('open');
-});
-document.querySelectorAll('.nav-item .nav-link').forEach(b => {
-  b.a
 
 <script src="/assets/chatbot.js" defer></script>
+<script>
+document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
+document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
+</script>
 </body>
 </html>

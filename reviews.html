@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reviews — Student Stories &amp; Testimonials | CRAFT Flight Training</title>
+<meta name="description" content="What CRAFT students say about training in Charleston. Video and photo testimonials from accelerated IFR, CPL, CFI, and Multi students." />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/shared.css">
+<style>
+.rv-hero { position: relative; min-height: 50vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 60px; overflow: hidden; }
+.rv-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.7; animation: rvGrid 30s linear infinite; }
+@keyframes rvGrid { 0%{background-position:0 0,0 0} 100%{background-position:64px 64px,64px 64px} }
+.rv-hero-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%); }
+.rv-hero-inner { position: relative; z-index: 5; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%; text-align: center; }
+.rv-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 24px; }
+.rv-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 8px var(--beacon); animation: rvDot 1.4s ease-in-out infinite; display: inline-block; }
+@keyframes rvDot { 0%,100%{opacity:1} 50%{opacity:0.35} }
+.rv-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(54px, 8vw, 110px); line-height: 0.92; letter-spacing: -0.015em; text-transform: uppercase; margin: 0 0 18px; }
+.rv-hero h1 .accent { color: var(--beacon); }
+.rv-hero p { font-size: clamp(15px, 1.4vw, 18px); color: rgba(255,255,255,0.75); max-width: 660px; margin: 0 auto; line-height: 1.6; }
+
+/* Stats strip under hero */
+.rv-stats { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border-top: 1px solid rgba(230,48,39,0.2); border-bottom: 1px solid rgba(230,48,39,0.2); padding: 30px 0; }
+.rv-stats-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: center; }
+@media (max-width: 720px) { .rv-stats-inner { grid-template-columns: repeat(2, 1fr); } }
+.rv-stat { text-align: center; }
+.rv-stat-num { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 4vw, 52px); line-height: 1; color: var(--white); letter-spacing: -0.02em; }
+.rv-stat-num .accent { color: var(--beacon); }
+.rv-stat-num .stars { color: var(--beacon); letter-spacing: 0.05em; font-size: 0.65em; }
+.rv-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-top: 8px; }
+
+/* Filter chips */
+.rv-filter { background: var(--ink); padding: 50px 0 0; }
+.rv-filter-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.rv-filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; justify-content: center; }
+.rv-filter-lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-right: 6px; }
+.rv-chip { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 8px 14px; border-radius: 4px; background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: all .2s var(--ease); }
+.rv-chip:hover { background: rgba(230,48,39,0.08); border-color: rgba(230,48,39,0.4); color: var(--white); }
+.rv-chip.active { background: rgba(230,48,39,0.12); border-color: var(--beacon); color: var(--beacon); box-shadow: 0 0 0 1px var(--beacon), 0 0 20px rgba(230,48,39,0.25); }
+
+/* Section base */
+.rv-sec { padding: 60px 0 var(--section-py); background: var(--ink); position: relative; overflow: hidden; }
+.rv-sec.appr { background: var(--approach); }
+.rv-sec-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.rv-sec-head { text-align: center; margin-bottom: 40px; }
+.rv-sec-head .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 6px 12px; border-radius: 4px; margin-bottom: 14px; }
+.rv-sec-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 64px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 12px; }
+.rv-sec-head h2 .accent { color: var(--beacon); }
+.rv-sec-head p { max-width: 600px; margin: 0 auto; font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+/* VIDEO testimonial cards */
+.rv-video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 22px; }
+@media (max-width: 480px) { .rv-video-grid { grid-template-columns: 1fr; } }
+.rv-video { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.25); border-radius: 14px; padding: 0; position: relative; overflow: hidden; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); display: flex; flex-direction: column; }
+.rv-video::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); z-index: 5; pointer-events: none; }
+.rv-video:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.55); box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); }
+.rv-video-frame { position: relative; aspect-ratio: 16 / 9; background: #000; overflow: hidden; cursor: pointer; }
+.rv-video-frame iframe, .rv-video-frame video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.rv-video-poster { position: absolute; inset: 0; background-size: cover; background-position: center; display: grid; place-items: center; transition: opacity .3s; }
+.rv-video-poster::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,13,18,0.2) 0%, rgba(10,13,18,0.65) 100%); pointer-events: none; }
+.rv-video-play { position: relative; z-index: 2; width: 76px; height: 76px; border-radius: 50%; background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%); display: grid; place-items: center; box-shadow: 0 12px 32px rgba(230,48,39,0.55), 0 0 0 1px rgba(230,48,39,0.5); transition: transform .25s var(--ease); }
+.rv-video-frame:hover .rv-video-play { transform: scale(1.1); }
+.rv-video-play::before { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--beacon); opacity: 0; animation: rvPulse 2.4s ease-out infinite; }
+@keyframes rvPulse { 0%{transform:scale(1);opacity:0.7} 100%{transform:scale(1.4);opacity:0} }
+.rv-video-play svg { color: var(--white); width: 30px; height: 30px; margin-left: 4px; }
+.rv-video-tag { position: absolute; top: 14px; left: 14px; z-index: 3; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; padding: 5px 10px; border-radius: 3px; background: rgba(10,13,18,0.85); color: var(--beacon); border: 1px solid rgba(230,48,39,0.4); text-transform: uppercase; backdrop-filter: blur(8px); }
+.rv-video-meta { padding: 22px 24px; }
+.rv-video-meta .stars { color: var(--beacon); font-size: 16px; letter-spacing: 0.05em; margin-bottom: 10px; }
+.rv-video-meta h3 { font-family: var(--display); font-weight: 900; font-size: 22px; line-height: 1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 6px; color: var(--white); }
+.rv-video-meta .who { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-bottom: 10px; }
+.rv-video-meta .who .accent { color: var(--beacon); }
+.rv-video-meta p { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.6; margin: 0; }
+
+/* PHOTO testimonial cards */
+.rv-photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
+.rv-photo { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 14px; padding: 28px; position: relative; overflow: hidden; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); display: flex; flex-direction: column; }
+.rv-photo::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); z-index: 2; pointer-events: none; }
+.rv-photo:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.5); box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); }
+.rv-photo-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; padding: 4px 10px; border-radius: 3px; background: rgba(230,48,39,0.1); border: 1px solid rgba(230,48,39,0.3); color: var(--beacon); text-transform: uppercase; align-self: flex-start; margin-bottom: 14px; }
+.rv-photo-stars { color: var(--beacon); font-size: 16px; letter-spacing: 0.05em; margin-bottom: 14px; }
+.rv-photo-quote { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 22px; flex: 1; position: relative; padding-left: 18px; }
+.rv-photo-quote::before { content: "\201C"; font-family: var(--display); font-weight: 900; font-size: 48px; color: var(--beacon); line-height: 0.6; position: absolute; left: -2px; top: 8px; }
+.rv-photo-attr { display: flex; align-items: center; gap: 14px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.06); }
+.rv-photo-avatar { width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; background-size: cover; background-position: center; border: 2px solid rgba(230,48,39,0.4); box-shadow: 0 0 0 2px rgba(10,13,18,0.6), 0 0 14px rgba(230,48,39,0.3); }
+.rv-photo-avatar.placeholder { background: linear-gradient(135deg, rgba(230,48,39,0.18), rgba(230,48,39,0.05)); display: grid; place-items: center; font-family: var(--display); font-weight: 900; font-size: 18px; color: var(--beacon); letter-spacing: 0.04em; }
+.rv-photo-name { font-family: var(--display); font-weight: 800; font-size: 18px; line-height: 1.05; text-transform: uppercase; color: var(--white); letter-spacing: -0.005em; }
+.rv-photo-role { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-top: 4px; }
+.rv-photo-role .accent { color: var(--beacon); }
+
+/* Final CTA */
+.rv-cta { background: linear-gradient(135deg, rgba(230,48,39,0.08) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.2); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+.rv-cta-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.05) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; }
+.rv-cta-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
+.rv-cta h2 { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6vw, 78px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 18px; }
+.rv-cta h2 .accent { color: var(--beacon); }
+.rv-cta p { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 28px; }
+.rv-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand"><img src="/assets/craft-logo.png" alt="CRAFT Flight Training" /></a>
+    <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
+    <div class="nav-links" id="nav-links">
+      <div class="nav-item"><button class="nav-link">Train <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Get Started</div>
+            <a href="/discovery-flight" class="nav-dd-item"><div class="nav-dd-icon">✈</div><div><div class="nav-dd-title">Discovery Flight</div><div class="nav-dd-desc">$325 · Your first hour at the controls</div></div></a>
+          </div>
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Programs</div>
+            <a href="/accelerated" class="nav-dd-item"><div class="nav-dd-icon">⊳</div><div><div class="nav-dd-title">Accelerated</div><div class="nav-dd-desc">IFR · CPL · CFI · Multi · Bundles</div></div></a>
+            <a href="/flight-school" class="nav-dd-item"><div class="nav-dd-icon">◈</div><div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">At your own pace · billed hourly</div></div></a>
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▦</div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">$70/hr Redbird AATD · 2 sims</div></div></a>
+          </div>
+          <div class="nav-dd-section">
+            <a href="/cost-calculator" class="nav-dd-item"><div class="nav-dd-icon">⌗</div><div><div class="nav-dd-title">Cost Calculator</div><div class="nav-dd-desc">Get your personalized estimate</div></div></a>
+            <a href="/financing" class="nav-dd-item"><div class="nav-dd-icon">$</div><div><div class="nav-dd-title">Financing</div><div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div></div></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item"><button class="nav-link">Courses <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Accelerated Courses</div>
+            <a href="/ifr" class="nav-dd-item"><div class="nav-dd-icon">⌖</div><div><div class="nav-dd-title">Instrument (IFR)</div><div class="nav-dd-desc">7-day finish · DA40NG · Redbird</div></div></a>
+            <a href="/commercial" class="nav-dd-item"><div class="nav-dd-icon">⌗</div><div><div class="nav-dd-title">Commercial</div><div class="nav-dd-desc">6-day accelerated · DA40NG</div></div></a>
+            <a href="/multi-engine" class="nav-dd-item"><div class="nav-dd-icon">⏚</div><div><div class="nav-dd-title">Multi-Engine</div><div class="nav-dd-desc">Add-on · CMEL · MEI · ATP prep</div></div></a>
+            <a href="/cfi" class="nav-dd-item"><div class="nav-dd-icon">▷</div><div><div class="nav-dd-title">CFI</div><div class="nav-dd-desc">10–12 day initial · right-seat</div></div></a>
+            <a href="/cfii" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">CFI-I</div><div class="nav-dd-desc">3-day add-on · instrument instructor</div></div></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item"><button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Fleet</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · all tail numbers</div></div></a>
+          <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Two AATD Redbird sims · $70/hr</div></div></a>
+        </div></div>
+      </div>
+      <div class="nav-item"><button class="nav-link">Company <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/company" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
+          <a href="/team" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Team</div><div class="nav-dd-desc">Meet our instructors and staff</div></div></a>
+          <a href="/careers" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">Careers</div><div class="nav-dd-desc">Join the bench · upload your resume</div></div></a>
+          <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon">✉</div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
+          <a href="/reviews" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say · video + photo</div></div></a>
+        </div></div>
+      </div>
+    </div>
+    <a href="/discovery-flight" class="btn btn-primary btn-sm btn-arrow">Discovery Flight</a>
+  </div>
+</nav>
+
+<header class="rv-hero">
+  <div class="rv-hero-grid"></div>
+  <div class="rv-hero-vignette"></div>
+  <div class="rv-hero-inner">
+    <span class="rv-eyebrow">Real Students · Real Ratings</span>
+    <h1>What students<br><span class="accent">actually say.</span></h1>
+    <p>The pilots who finished at CRAFT, in their own words. Video clips, photos, and quotes from accelerated IFR, CPL, CFI, Multi, and self-paced students.</p>
+  </div>
+</header>
+
+<section class="rv-stats">
+  <div class="rv-stats-inner">
+    <div class="rv-stat">
+      <div class="rv-stat-num">4.9<span class="stars">★★★★★</span></div>
+      <div class="rv-stat-lbl">Average Rating</div>
+    </div>
+    <div class="rv-stat">
+      <div class="rv-stat-num"><span class="accent">95%</span></div>
+      <div class="rv-stat-lbl">First-Time Pass Rate</div>
+    </div>
+    <div class="rv-stat">
+      <div class="rv-stat-num">100<span class="accent">+</span></div>
+      <div class="rv-stat-lbl">Ratings Earned</div>
+    </div>
+    <div class="rv-stat">
+      <div class="rv-stat-num">G<span class="accent">oogle</span></div>
+      <div class="rv-stat-lbl">Verified Reviews</div>
+    </div>
+  </div>
+</section>
+
+<section class="rv-filter">
+  <div class="rv-filter-inner">
+    <div class="rv-filter-row">
+      <span class="rv-filter-lbl">Filter by Program</span>
+      <button class="rv-chip active" data-filter="all">All</button>
+      <button class="rv-chip" data-filter="ifr">IFR</button>
+      <button class="rv-chip" data-filter="cpl">Commercial</button>
+      <button class="rv-chip" data-filter="cfi">CFI / CFI-I</button>
+      <button class="rv-chip" data-filter="multi">Multi-Engine</button>
+      <button class="rv-chip" data-filter="ppl">Private / Self-Paced</button>
+      <button class="rv-chip" data-filter="discovery">Discovery</button>
+    </div>
+  </div>
+</section>
+
+<section class="rv-sec">
+  <div class="rv-sec-inner">
+    <div class="rv-sec-head">
+      <span class="eyebrow">Video Testimonials</span>
+      <h2>Hear it<br>from <span class="accent">the cockpit.</span></h2>
+      <p>Short clips from students who finished. Replace placeholder YouTube IDs in the source with your real testimonial videos when ready.</p>
+    </div>
+
+    <div class="rv-video-grid" id="rv-videos">
+
+      <!-- VIDEO CARD · IFR · placeholder YouTube embed -->
+      <article class="rv-video" data-program="ifr">
+        <div class="rv-video-frame" data-yt="dQw4w9WgXcQ">
+          <span class="rv-video-tag">IFR · 7 Days</span>
+          <div class="rv-video-poster" style="background:linear-gradient(135deg, #14181F 0%, #0A0D12 100%)">
+            <button class="rv-video-play" aria-label="Play video">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="rv-video-meta">
+          <div class="stars">★★★★★</div>
+          <h3>Rated In a Week.</h3>
+          <div class="who">Marcus T. · <span class="accent">Accelerated IFR</span> · Class of 2025</div>
+          <p>&ldquo;The Redbird mornings were the unlock. I'd already flown the approach four times in the sim before we touched the airplane &mdash; airplane time was just polish.&rdquo;</p>
+        </div>
+      </article>
+
+      <!-- VIDEO CARD · CFI -->
+      <article class="rv-video" data-program="cfi">
+        <div class="rv-video-frame" data-yt="dQw4w9WgXcQ">
+          <span class="rv-video-tag">CFI · 10 Days</span>
+          <div class="rv-video-poster" style="background:linear-gradient(135deg, #1a0c0d 0%, #14181F 100%)">
+            <button class="rv-video-play" aria-label="Play video">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="rv-video-meta">
+          <div class="stars">★★★★★</div>
+          <h3>Right Seat &middot; Day 11.</h3>
+          <div class="who">Devon R. · <span class="accent">Accelerated CFI</span> · Class of 2025</div>
+          <p>&ldquo;Fifty-plus hours of FOI in ten days is intense, but I walked out teaching from the right seat. CRAFT had a CFI slot waiting for me when I finished.&rdquo;</p>
+        </div>
+      </article>
+
+      <!-- VIDEO CARD · Multi -->
+      <article class="rv-video" data-program="multi">
+        <div class="rv-video-frame" data-yt="dQw4w9WgXcQ">
+          <span class="rv-video-tag">MULTI · 4 Days</span>
+          <div class="rv-video-poster" style="background:linear-gradient(135deg, #14181F 0%, #1a0c0d 100%)">
+            <button class="rv-video-play" aria-label="Play video">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="rv-video-meta">
+          <div class="stars">★★★★★</div>
+          <h3>The DA42 Made Sense.</h3>
+          <div class="who">Priya N. · <span class="accent">Multi Add-On</span> · Class of 2025</div>
+          <p>&ldquo;Single-lever digital engine controls felt closer to a turbine than to the older twins I'd flown. Best transition prep I've had.&rdquo;</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="rv-sec appr">
+  <div class="rv-sec-inner">
+    <div class="rv-sec-head">
+      <span class="eyebrow">Photo Testimonials</span>
+      <h2>The students<br><span class="accent">who finished.</span></h2>
+      <p>Quick quotes from across all programs. Tap a program chip above to filter.</p>
+    </div>
+
+    <div class="rv-photo-grid" id="rv-photos">
+
+      <article class="rv-photo" data-program="ifr">
+        <span class="rv-photo-tag">IFR</span>
+        <div class="rv-photo-stars">★★★★★</div>
+        <p class="rv-photo-quote">Walked in a VFR pilot with a chip on my shoulder. Walked out instrument-rated seven days later. The DPE pipeline alone is worth the price of admission.</p>
+        <div class="rv-photo-attr">
+          <div class="rv-photo-avatar placeholder">JT</div>
+          <div>
+            <div class="rv-photo-name">Jordan T.</div>
+            <div class="rv-photo-role">Accelerated IFR · <span class="accent">2025</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="rv-photo" data-program="cpl">
+        <span class="rv-photo-tag">CPL</span>
+        <div class="rv-photo-stars">★★★★★</div>
+        <p class="rv-photo-quote">I had 245 hours and rusty maneuvers. Six days at CRAFT polished the chandelles, lazy 8s, and pylon work. Passed first try.</p>
+        <div class="rv-photo-attr">
+          <div class="rv-photo-avatar placeholder">SM</div>
+          <div>
+            <div class="rv-photo-name">Sam M.</div>
+            <div class="rv-photo-role">Accelerated CPL · <span class="accent">2025</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="rv-photo" data-program="cfi">
+        <span class="rv-photo-tag">CFI</span>
+        <div class="rv-photo-stars">★★★★★</div>
+        <p class="rv-photo-quote">Bundled the CFI and CFI-I and walked out with both ratings in two weeks. CRAFT hired me right after. The math on time-building completely changed.</p>
+        <div class="rv-photo-attr">
+          <div class="rv-photo-avatar placeholder">AK</div>
+          <div>
+            <div class="rv-photo-name">Aiden K.</div>
+            <div class="rv-photo-role">CFI + CFI-I Bundle · <span class="accent">2025</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="rv-photo" data-program="multi">
+        <span class="rv-photo-tag">Multi</span>
+        <div class="rv-photo-stars">★★★★★</div>
+        <p class="rv-photo-quote">DA42-VI is the right airplane to learn twins on. Diesel, Jet-A, FADEC &mdash; it's basically practicing for a turboprop. Three days of training and the checkride was almost anticlimactic.</p>
+        <div class="rv-photo-attr">
+          <div class="rv-photo-avatar placeholder">RM</div>
+          <div>
+            <div class="rv-photo-name">Rachel M.</div>
+            <div class="rv-photo-role">Multi-Engine Add-On · <span class="accent">2025</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="rv-photo" data-program="ppl">
+        <span class="rv-photo-tag">PPL</span>
+        <div class="rv-photo-stars">★★★★★</div>
+        <p class="rv-photo-quote">I trained at my own pace, two flights a week, and finished in just under five months. Same CFI from lesson one to checkride. Made all the difference.</p>
+        <div class="rv-photo-attr">
+          <div class="rv-photo-avatar placeholder">TC</div>
+          <div>
+            <div class="rv-photo-name">Tony C.</div>
+            <div class="rv-photo-role">Private Pilot · <span class="accent">Self-Paced</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="rv-photo" data-program="discovery">
+        <span class="rv-photo-tag">Discovery</span>
+        <div class="rv-photo-stars">★★★★★</div>
+        <p class="rv-photo-quote">I came in to "see if I'd like flying." An hour later I was signing up for PPL. Best $325 I ever spent.</p>
+        <div class="rv-photo-attr">
+          <div class="rv-photo-avatar placeholder">EL</div>
+          <div>
+            <div class="rv-photo-name">Emily L.</div>
+            <div class="rv-photo-role">Discovery Flight · <span class="accent">2025</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="rv-photo" data-program="ifr">
+        <span class="rv-photo-tag">IFR</span>
+        <div class="rv-photo-stars">★★★★★</div>
+        <p class="rv-photo-quote">Logged 20 hours in the Redbird. Each approach in the airplane felt like the fifth time I'd flown it &mdash; because it basically was.</p>
+        <div class="rv-photo-attr">
+          <div class="rv-photo-avatar placeholder">BV</div>
+          <div>
+            <div class="rv-photo-name">Brian V.</div>
+            <div class="rv-photo-role">Accelerated IFR · <span class="accent">2025</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="rv-photo" data-program="cfi">
+        <span class="rv-photo-tag">CFI-I</span>
+        <div class="rv-photo-stars">★★★★★</div>
+        <p class="rv-photo-quote">CFI-I add-on in three days. Already had my CFI &mdash; just needed the I. Course pace was right where it should be: tight but not rushed.</p>
+        <div class="rv-photo-attr">
+          <div class="rv-photo-avatar placeholder">NH</div>
+          <div>
+            <div class="rv-photo-name">Nate H.</div>
+            <div class="rv-photo-role">CFI-I Add-On · <span class="accent">2025</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="rv-photo" data-program="ppl">
+        <span class="rv-photo-tag">PPL</span>
+        <div class="rv-photo-stars">★★★★★</div>
+        <p class="rv-photo-quote">Flight Circle made scheduling effortless. I'd book my own slots, see my balance, and chat with my CFI in one place. Worth it for the portal alone.</p>
+        <div class="rv-photo-attr">
+          <div class="rv-photo-avatar placeholder">KP</div>
+          <div>
+            <div class="rv-photo-name">Kara P.</div>
+            <div class="rv-photo-role">Private Pilot · <span class="accent">Self-Paced</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="rv-cta">
+  <div class="rv-cta-bg"></div>
+  <div class="rv-cta-inner">
+    <span class="rv-eyebrow">Be Next</span>
+    <h2>Want to leave<br>your <span class="accent">own?</span></h2>
+    <p>Already finished a rating with us? We'd love a video, photo, or quote. Send anything to <a href="mailto:craft@flycraftchs.com" style="color:var(--beacon);font-weight:600">craft@flycraftchs.com</a> and we'll add it.</p>
+    <div class="rv-cta-btns">
+      <a href="/discovery-flight" class="btn btn-primary btn-arrow">Take a Discovery Flight</a>
+      <a href="/accelerated" class="btn btn-ghost">See Programs</a>
+      <a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener" class="btn btn-ghost">Google Reviews</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><img src="/assets/craft-logo.png" alt="CRAFT" /></div>
+        <p class="footer-tag">Charleston's accelerated flight school. Sim-first, Diamond Jet-A, KCHS-based. 95% first-time pass rate. DPE in weeks, not months.</p>
+      </div>
+      <div class="footer-col"><h4>Train</h4><ul>
+        <li><a href="/discovery-flight">Discovery Flight</a></li>
+        <li><a href="/accelerated">Accelerated Programs</a></li>
+        <li><a href="/flight-school">At-Your-Own-Pace</a></li>
+        <li><a href="/ifr">Instrument (IFR)</a></li>
+        <li><a href="/commercial">Commercial</a></li>
+        <li><a href="/multi-engine">Multi-Engine</a></li>
+        <li><a href="/cfi">CFI</a></li>
+        <li><a href="/cfii">CFI-I</a></li>
+        <li><a href="/sim-membership">Sim Membership</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Aircraft</h4><ul>
+        <li><a href="/fleet">The Fleet</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="/company">About CRAFT</a></li>
+        <li><a href="/team">The Team</a></li>
+        <li><a href="/careers">Careers</a></li>
+        <li><a href="/reviews">Reviews</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CRAFT Flight Training, LLC · FAA Part 61 · Signature &amp; Atlantic FBO · KCHS</span>
+      <span><a href="/contact">Privacy</a> · <a href="/contact">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/chatbot.js" defer></script>
+<script>
+// Mobile nav
+document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
+document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
+
+// Filter chips — toggle visibility of cards by data-program
+document.querySelectorAll('.rv-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.rv-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const f = chip.dataset.filter;
+    document.querySelectorAll('#rv-videos > [data-program], #rv-photos > [data-program]').forEach(card => {
+      const show = (f === 'all') || (card.dataset.program === f);
+      card.style.display = show ? '' : 'none';
+    });
+  });
+});
+
+// Click-to-play for video posters — swaps in YouTube iframe
+document.querySelectorAll('.rv-video-frame').forEach(frame => {
+  frame.addEventListener('click', () => {
+    const id = frame.dataset.yt;
+    if (!id) return;
+    const poster = frame.querySelector('.rv-video-poster');
+    if (poster) poster.style.display = 'none';
+    if (frame.querySelector('iframe')) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+    iframe.allowFullscreen = true;
+    frame.appendChild(iframe);
+  });
+});
+</script>
+</body>
+</html>

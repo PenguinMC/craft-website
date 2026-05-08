@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>About CRAFT | CRAFT Flight Training</title>
-<meta name="description" content="Charleston's accelerated flight school. We exist because the traditional flight training path takes too long, costs too much, and leaves people stranded waiting for DPEs. We're the alternative." />
+<meta name="description" content="CRAFT Flight Training & Simulation — Charleston's accelerated flight school. We exist because traditional Part 61 takes too long, costs too much, and leaves people stranded waiting for DPEs. We're the alternative." />
 <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
@@ -12,8 +12,104 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/shared.css">
+<style>
+.cy-hero { position: relative; min-height: 64vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
+.cy-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.7; animation: cyGrid 30s linear infinite; }
+@keyframes cyGrid { 0%{background-position:0 0,0 0} 100%{background-position:64px 64px,64px 64px} }
+.cy-hero-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%), radial-gradient(80% 100% at 50% 100%, rgba(10,13,18,0.85) 0%, rgba(10,13,18,0) 60%); pointer-events: none; }
+.cy-hero-sweep { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); filter: blur(0.5px); opacity: 0.5; animation: cySweep 7s ease-in-out infinite; }
+@keyframes cySweep { 0%,100% { transform: translateY(10vh); opacity: 0; } 10% { opacity: 0.6; } 50% { transform: translateY(45vh); opacity: 0.4; } 90% { opacity: 0.6; } }
+.cy-hero-inner { position: relative; z-index: 5; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%; }
+.cy-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 28px; }
+.cy-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 8px var(--beacon); animation: cyDot 1.4s ease-in-out infinite; display: inline-block; }
+@keyframes cyDot { 0%,100%{opacity:1} 50%{opacity:0.35} }
+.cy-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(58px, 9vw, 130px); line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase; margin: 0 0 22px; }
+.cy-hero h1 .accent { color: var(--beacon); }
+.cy-hero h1 .stroke { -webkit-text-stroke: 1.5px var(--white); -webkit-text-fill-color: transparent; color: transparent; }
+.cy-hero p { font-size: clamp(15px, 1.4vw, 18px); color: rgba(255,255,255,0.78); max-width: 660px; line-height: 1.65; margin: 0; }
+
+/* Section base */
+.cy-sec { padding: var(--section-py) 0; position: relative; overflow: hidden; }
+.cy-sec.dark { background: var(--ink); }
+.cy-sec.appr { background: var(--approach); }
+.cy-sec-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.5; pointer-events: none; }
+.cy-sec-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.cy-sec-head { text-align: center; margin-bottom: 50px; }
+.cy-sec-head .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 6px 12px; border-radius: 4px; margin-bottom: 18px; }
+.cy-sec-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5.5vw, 72px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 12px; }
+.cy-sec-head h2 .accent { color: var(--beacon); }
+.cy-sec-head h2 .stroke { -webkit-text-stroke: 1.5px var(--white); -webkit-text-fill-color: transparent; color: transparent; }
+.cy-sec-head p { max-width: 700px; margin: 0 auto; font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.65; }
+
+/* Why we exist */
+.cy-why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+@media (max-width: 880px) { .cy-why-grid { grid-template-columns: 1fr; } }
+.cy-why h3 { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 3.5vw, 44px); line-height: 1.05; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 18px; }
+.cy-why h3 .accent { color: var(--beacon); }
+.cy-why p { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.7; margin-bottom: 16px; }
+.cy-why p strong { color: var(--white); font-weight: 600; }
+.cy-why-quote { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.3); border-radius: 14px; padding: 32px; position: relative; overflow: hidden; }
+.cy-why-quote::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.cy-why-quote-mark { font-family: var(--display); font-weight: 900; font-size: 84px; line-height: 0.6; color: var(--beacon); margin-bottom: 8px; }
+.cy-why-quote p { font-family: var(--display); font-weight: 700; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.25; text-transform: uppercase; letter-spacing: -0.005em; color: var(--white); margin: 0 0 18px; }
+.cy-why-quote p .accent { color: var(--beacon); }
+.cy-why-quote-attr { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: rgba(255,255,255,0.55); text-transform: uppercase; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
+
+/* Stats row */
+.cy-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 880px) { .cy-stats { grid-template-columns: 1fr; } }
+.cy-stat { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 14px; padding: 36px 32px; position: relative; overflow: hidden; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); }
+.cy-stat::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.cy-stat:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.55); box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); }
+.cy-stat-num { font-family: var(--display); font-weight: 900; font-size: clamp(56px, 7vw, 88px); line-height: 0.85; color: var(--beacon); letter-spacing: -0.04em; margin-bottom: 14px; }
+.cy-stat-num .small { font-size: 0.5em; color: rgba(255,255,255,0.5); margin-left: 6px; letter-spacing: 0; }
+.cy-stat-lbl { font-family: var(--display); font-weight: 800; font-size: 18px; line-height: 1.1; text-transform: uppercase; letter-spacing: -0.005em; color: var(--white); margin-bottom: 8px; }
+.cy-stat-cmp { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: rgba(255,255,255,0.5); text-transform: uppercase; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
+.cy-stat-cmp strong { color: rgba(255,255,255,0.75); }
+
+/* Pillars grid */
+.cy-pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+@media (max-width: 880px) { .cy-pillar-grid { grid-template-columns: 1fr; } }
+.cy-pillar { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 14px; padding: 32px; position: relative; overflow: hidden; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); }
+.cy-pillar::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.cy-pillar:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.5); box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); }
+.cy-pillar-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--beacon); margin-bottom: 12px; }
+.cy-pillar h3 { font-family: var(--display); font-weight: 900; font-size: 28px; line-height: 1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 14px; }
+.cy-pillar h3 .accent { color: var(--beacon); }
+.cy-pillar p { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.65; margin: 0 0 14px; }
+.cy-pillar ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.cy-pillar li { padding-left: 22px; position: relative; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.55; }
+.cy-pillar li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--beacon); font-weight: 700; }
+
+/* Visit panel */
+.cy-visit { background: linear-gradient(135deg, rgba(230,48,39,0.1) 0%, var(--approach) 60%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.2); border-bottom: 1px solid rgba(230,48,39,0.2); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+.cy-visit-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.05) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.6; }
+.cy-visit-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+@media (max-width: 880px) { .cy-visit-inner { grid-template-columns: 1fr; } }
+.cy-visit-copy h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 64px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 18px; }
+.cy-visit-copy h2 .accent { color: var(--beacon); }
+.cy-visit-copy p { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.65; margin-bottom: 14px; }
+.cy-visit-card { background: linear-gradient(180deg, #0A0D12 0%, #14181F 100%); border: 1px solid rgba(230,48,39,0.4); border-radius: 14px; padding: 32px; box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); position: relative; overflow: hidden; }
+.cy-visit-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.cy-visit-card .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--beacon); text-transform: uppercase; margin-bottom: 14px; }
+.cy-visit-card .addr { font-family: var(--display); font-weight: 800; font-size: clamp(20px, 2.5vw, 26px); line-height: 1.2; color: var(--white); text-transform: uppercase; letter-spacing: -0.005em; margin-bottom: 18px; }
+.cy-visit-card .row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.06); font-size: 14px; }
+.cy-visit-card .row:first-of-type { border-top: 1px solid rgba(255,255,255,0.1); }
+.cy-visit-card .row .key { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; color: rgba(255,255,255,0.5); text-transform: uppercase; flex: 0 0 64px; }
+.cy-visit-card .row a { color: var(--white); text-decoration: none; transition: color .2s; }
+.cy-visit-card .row a:hover { color: var(--beacon); }
+
+/* Final CTA */
+.cy-cta { background: var(--ink); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+.cy-cta-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.05) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; }
+.cy-cta-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
+.cy-cta h2 { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6vw, 78px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 18px; }
+.cy-cta h2 .accent { color: var(--beacon); }
+.cy-cta p { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 28px; }
+.cy-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+</style>
 </head>
 <body>
 
@@ -22,19 +118,17 @@
     <a href="/" class="brand"><img src="/assets/craft-logo.png" alt="CRAFT Flight Training" /></a>
     <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
     <div class="nav-links" id="nav-links">
-      <div class="nav-item">
-        <button class="nav-link">Train <span class="nav-caret">▼</span></button>
+      <div class="nav-item"><button class="nav-link">Train <span class="nav-caret">▼</span></button>
         <div class="nav-dropdown">
-          <div class="nav-dd-section">
-            <div class="nav-dd-eyebrow">Get Started</div>
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Get Started</div>
             <a href="/discovery-flight" class="nav-dd-item"><div class="nav-dd-icon">✈</div><div><div class="nav-dd-title">Discovery Flight</div><div class="nav-dd-desc">$325 · Your first hour at the controls</div></div></a>
           </div>
-          <div class="nav-dd-section">
-            <div class="nav-dd-eyebrow">Programs</div>
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Programs</div>
             <a href="/accelerated" class="nav-dd-item"><div class="nav-dd-icon">⊳</div><div><div class="nav-dd-title">Accelerated</div><div class="nav-dd-desc">IFR · CPL · CFI · Multi · Bundles</div></div></a>
-            <a href="/flight-school" class="nav-dd-item"><div class="nav-dd-icon">◈</div><div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">Private · Instrument · Commercial · Instructor</div></div></a>
-            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▦</div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">Train smarter, fly sharper · $70/hr Redbird FMX</div></div></a>
-          </div>          <div class="nav-dd-section">
+            <a href="/flight-school" class="nav-dd-item"><div class="nav-dd-icon">◈</div><div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">At your own pace · billed hourly</div></div></a>
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▦</div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">$70/hr Redbird AATD · 2 sims</div></div></a>
+          </div>
+          <div class="nav-dd-section">
             <a href="/cost-calculator" class="nav-dd-item"><div class="nav-dd-icon">⌗</div><div><div class="nav-dd-title">Cost Calculator</div><div class="nav-dd-desc">Get your personalized estimate</div></div></a>
             <a href="/financing" class="nav-dd-item"><div class="nav-dd-icon">$</div><div><div class="nav-dd-title">Financing</div><div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div></div></a>
           </div>
@@ -51,64 +145,169 @@
           </div>
         </div>
       </div>
-      <div class="nav-item">
-        <button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
-        <div class="nav-dropdown">
-          <div class="nav-dd-section">
-            <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Fleet</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · all tail numbers</div></div></a>
-            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Two AATD Redbird sims · $70/hr</div></div></a>
-          </div>
-        </div>
+      <div class="nav-item"><button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Fleet</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · all tail numbers</div></div></a>
+          <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Two AATD Redbird sims · $70/hr</div></div></a>
+        </div></div>
       </div>
-      <div class="nav-item">
-        <button class="nav-link">Company <span class="nav-caret">▼</span></button>
-        <div class="nav-dropdown">
-          <div class="nav-dd-section">
-            <a href="/company" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
-            <a href="/team" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Team</div><div class="nav-dd-desc">Meet our instructors and staff</div></div></a>
-            <a href="/careers" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">Careers</div><div class="nav-dd-desc">Join the bench · upload your resume</div></div></a>
-            <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon">✉</div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
-            <a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say</div></div></a>
-          </div>
-        </div>
+      <div class="nav-item"><button class="nav-link">Company <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/company" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
+          <a href="/team" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Team</div><div class="nav-dd-desc">Meet our instructors and staff</div></div></a>
+          <a href="/careers" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">Careers</div><div class="nav-dd-desc">Join the bench · upload your resume</div></div></a>
+          <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon">✉</div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
+          <a href="/reviews" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say · video + photo</div></div></a>
+        </div></div>
       </div>
     </div>
     <a href="/discovery-flight" class="btn btn-primary btn-sm btn-arrow">Discovery Flight</a>
   </div>
 </nav>
 
-<header class="stub-hero">
-  <div class="stub-hero-inner">
-    <span class="eyebrow">About CRAFT</span>
-    <h1 style="margin-top:16px">Built for adults who <span class="accent">don't have years to spare.</span></h1>
-    <p>Charleston's accelerated flight school. We exist because the traditional flight training path takes too long, costs too much, and leaves people stranded waiting for DPEs. We're the alternative.</p>
-    <div class="stub-cta">
-      <a href="/discovery-flight" class="btn btn-primary btn-arrow">Book Discovery Flight</a>
-      <a href="/" class="btn btn-ghost">Back to Home</a>
-    </div>
+<header class="cy-hero">
+  <div class="cy-hero-grid"></div>
+  <div class="cy-hero-vignette"></div>
+  <div class="cy-hero-sweep"></div>
+  <div class="cy-hero-inner">
+    <span class="cy-eyebrow">About CRAFT · Charleston · KCHS</span>
+    <h1>Where pilots<br><span class="accent">actually</span> work.</h1>
+    <p>CRAFT Flight Training &amp; Simulation operates out of the Atlantic FBO complex at Charleston International (KCHS) &mdash; a Class C controlled-airfield environment with daily Part 121 traffic. We're not a sleepy grass strip. We train pilots in the airspace they'll actually fly in.</p>
   </div>
 </header>
 
-<main class="container" style="padding: 80px var(--gut) 60px; max-width: 880px;">
-<h2 style="font-family:var(--display);font-weight:800;font-size:48px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:24px">The CRAFT difference</h2>
-<p style="font-size:17px;color:rgba(255,255,255,0.78);line-height:1.7;margin-bottom:20px">CRAFT Flight Training &amp; Simulation operates out of Signature Flight Support and Atlantic Aviation at Charleston International Airport (KCHS) — a Class C controlled-airfield environment with daily Part 121 traffic. We're not a sleepy grass strip. We train pilots where pilots actually work.</p>
-<p style="font-size:17px;color:rgba(255,255,255,0.78);line-height:1.7;margin-bottom:48px">We chose Diamond aircraft (DA40NG and DA42-VI) for a reason: glass cockpits, Jet-A turbodiesels, and the same airframes regional carriers transition from. We invested in two Redbird AATD simulators because $70/hr beats $255/hr nine days out of ten. And we built our DPE relationships because waiting six months after passing your training is a disgrace.</p>
+<section class="cy-sec dark">
+  <div class="cy-sec-grid-bg"></div>
+  <div class="cy-sec-inner">
+    <div class="cy-sec-head">
+      <span class="eyebrow">Why CRAFT Exists</span>
+      <h2>Traditional flight training<br>is <span class="stroke">broken.</span></h2>
+      <p>Six-month DPE waits. CFIs that change every other lesson. Aircraft 30 years older than the airline jets you'll one day fly. We built CRAFT to fix all three at once.</p>
+    </div>
+    <div class="cy-why-grid">
+      <div class="cy-why">
+        <h3>The <span class="accent">three failures</span> we kept seeing.</h3>
+        <p><strong>1. The DPE bottleneck.</strong> Pilots finish training in months, then sit on a checkride waitlist for half a year. We built our DPE relationships first &mdash; before we ever ran a cohort. Checkrides are scheduled in weeks, not months.</p>
+        <p><strong>2. The CFI rotation.</strong> At big schools, you might fly with a different instructor every week. Each one has to re-learn you. We pair every student with a personal CFI who stays through to the checkride.</p>
+        <p><strong>3. The aging fleet.</strong> Most flight schools are still teaching on 1970s steam-gauge aircraft. We picked the Diamond DA40NG and DA42-VI because they have the same Garmin G1000 panel students will see in regional jets &mdash; the transition gets shorter every year you wait.</p>
+      </div>
+      <div class="cy-why-quote">
+        <div class="cy-why-quote-mark">&ldquo;</div>
+        <p>Waiting six months <span class="accent">after</span> passing your training is a disgrace. So we don&rsquo;t.</p>
+        <div class="cy-why-quote-attr">CRAFT &middot; Charter Position</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div style="display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-bottom:60px">
-  <div><div style="font-family:var(--display);font-weight:900;font-size:64px;color:var(--beacon);line-height:1;margin-bottom:8px">95%</div><div style="font-family:var(--display);font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">First-time pass rate</div><div style="font-size:14px;color:rgba(255,255,255,0.6)">National avg: ~75%</div></div>
-  <div><div style="font-family:var(--display);font-weight:900;font-size:64px;color:var(--beacon);line-height:1;margin-bottom:8px">Weeks</div><div style="font-family:var(--display);font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">DPE wait at CRAFT</div><div style="font-size:14px;color:rgba(255,255,255,0.6)">Industry: 4–6 months</div></div>
-  <div><div style="font-family:var(--display);font-weight:900;font-size:64px;color:var(--beacon);line-height:1;margin-bottom:8px">320+</div><div style="font-family:var(--display);font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">VFR days/year</div><div style="font-size:14px;color:rgba(255,255,255,0.6)">Coastal Charleston</div></div>
-</div>
+<section class="cy-sec appr">
+  <div class="cy-sec-grid-bg"></div>
+  <div class="cy-sec-inner">
+    <div class="cy-sec-head">
+      <span class="eyebrow">By the Numbers</span>
+      <h2>Outcomes that<br><span class="accent">don't average.</span></h2>
+      <p>Every metric below is for our active student cohort. Compare to industry averages.</p>
+    </div>
+    <div class="cy-stats">
+      <div class="cy-stat">
+        <div class="cy-stat-num">95<span class="small">%</span></div>
+        <div class="cy-stat-lbl">First-Time Pass Rate</div>
+        <div class="cy-stat-cmp">National avg: <strong>~75%</strong></div>
+      </div>
+      <div class="cy-stat">
+        <div class="cy-stat-num">Wks</div>
+        <div class="cy-stat-lbl">DPE Wait at CRAFT</div>
+        <div class="cy-stat-cmp">Industry: <strong>4&ndash;6 months</strong></div>
+      </div>
+      <div class="cy-stat">
+        <div class="cy-stat-num">320<span class="small">+</span></div>
+        <div class="cy-stat-lbl">VFR Days / Year</div>
+        <div class="cy-stat-cmp">Coastal Charleston</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div style="background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:48px;text-align:center">
-  <h2 style="font-family:var(--display);font-weight:800;font-size:36px;text-transform:uppercase;margin-bottom:16px">Visit Us</h2>
-  <p style="font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:0.02em;margin-bottom:8px">6060 S. Aviation Ave, Suite 109</p>
-  <p style="font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:0.02em;margin-bottom:24px">North Charleston, SC 29406</p>
-  <p style="color:rgba(255,255,255,0.7);margin-bottom:8px"><a href="tel:+18438006498" style="color:var(--beacon)">843.800.6498</a> · <a href="mailto:craft@flycraftchs.com" style="color:var(--beacon)">craft@flycraftchs.com</a></p>
-  <p style="color:rgba(255,255,255,0.55);font-size:14px">Mon–Sat 9am–4pm · Walk-ins welcome · Call ahead for best service</p>
-</div>
+<section class="cy-sec dark">
+  <div class="cy-sec-grid-bg"></div>
+  <div class="cy-sec-inner">
+    <div class="cy-sec-head">
+      <span class="eyebrow">What We Invested In</span>
+      <h2>Three pillars.<br>Every <span class="accent">decision</span> goes through them.</h2>
+      <p>We don't compete on price. We compete on the airplane, the instructor, and the bottleneck. Anything that doesn't sharpen one of those three doesn't make the cut.</p>
+    </div>
+    <div class="cy-pillar-grid">
+      <div class="cy-pillar">
+        <div class="cy-pillar-num">PILLAR · 01</div>
+        <h3>The <span class="accent">Aircraft</span></h3>
+        <p>Modern Diamond fleet, all G1000-equipped, all Jet-A diesel. Same panel architecture the airlines fly. No transition tax when you finish.</p>
+        <ul>
+          <li>5 &times; Diamond DA40 NG (single)</li>
+          <li>1 &times; Diamond DA42-VI (twin)</li>
+          <li>G1000 NXi + GFC700 autopilot</li>
+          <li>Jet-A diesel &mdash; cheaper, more available</li>
+        </ul>
+      </div>
+      <div class="cy-pillar">
+        <div class="cy-pillar-num">PILLAR · 02</div>
+        <h3>The <span class="accent">Sim</span></h3>
+        <p>Two Redbird FMX AATDs in-house. Repetition without burning Hobbs. $70/hr beats $255/hr nine days out of ten &mdash; and the FAA lets you log up to 50% of IFR time in it.</p>
+        <ul>
+          <li>FAA-approved AATD for IFR credit</li>
+          <li>DA40 / DA42 panel match</li>
+          <li>$70/hr instructor included</li>
+          <li>Practice approaches without ATC delay</li>
+        </ul>
+      </div>
+      <div class="cy-pillar">
+        <div class="cy-pillar-num">PILLAR · 03</div>
+        <h3>The <span class="accent">Pipeline</span></h3>
+        <p>Discovery Flight to ATP minimums in one school. Cohort scheduling, dedicated CFIs, a built-in DPE pipeline so the practical doesn't disappear into a queue.</p>
+        <ul>
+          <li>Single-CFI continuity</li>
+          <li>Cohort scheduling for accelerated tracks</li>
+          <li>DPE relationships built before launch</li>
+          <li>Career path through to airline minimums</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-</main>
+<section class="cy-visit">
+  <div class="cy-visit-bg"></div>
+  <div class="cy-visit-inner">
+    <div class="cy-visit-copy">
+      <span class="cy-eyebrow">Visit the School</span>
+      <h2>Open ramp.<br><span class="accent">Walk in.</span></h2>
+      <p>We're at the Atlantic FBO complex inside Charleston International (KCHS). Same gate the regionals use. Walk the line, sit in a DA40, climb into the Redbird, talk to a CFI &mdash; no pressure, no commitment.</p>
+      <p>The fastest way to know if CRAFT is right for you is to be on the ramp for an hour. Office hours are Monday through Saturday, 9am to 4pm.</p>
+    </div>
+    <div class="cy-visit-card">
+      <div class="lbl">CRAFT North Charleston</div>
+      <div class="addr">6060 S. Aviation Ave<br>Suite 109<br>North Charleston, SC 29406</div>
+      <div class="row"><span class="key">Airport</span><a href="https://maps.google.com/?q=Charleston+International+Airport+KCHS" target="_blank" rel="noopener">Charleston International &middot; KCHS</a></div>
+      <div class="row"><span class="key">FBO</span><span>Atlantic Aviation &middot; Signature Flight Support</span></div>
+      <div class="row"><span class="key">Call</span><a href="tel:+18438006498">843.800.6498</a></div>
+      <div class="row"><span class="key">Email</span><a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a></div>
+      <div class="row"><span class="key">Hours</span><span>Mon&ndash;Sat &middot; 9am&ndash;4pm</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cy-cta">
+  <div class="cy-cta-bg"></div>
+  <div class="cy-cta-inner">
+    <span class="cy-eyebrow">First Step</span>
+    <h2>See it<br><span class="accent">for yourself.</span></h2>
+    <p>Schedule a tour, take a Discovery Flight, or just call us. We answer the phone.</p>
+    <div class="cy-cta-btns">
+      <a href="/discovery-flight" class="btn btn-primary btn-arrow">Book Discovery Flight</a>
+      <a href="/contact" class="btn btn-ghost">Schedule a Tour</a>
+      <a href="/team" class="btn btn-ghost">Meet the Team</a>
+    </div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="container">
@@ -116,55 +315,40 @@
       <div>
         <div class="footer-brand"><img src="/assets/craft-logo.png" alt="CRAFT" /></div>
         <p class="footer-tag">Charleston's accelerated flight school. Sim-first, Diamond Jet-A, KCHS-based. 95% first-time pass rate. DPE in weeks, not months.</p>
-        <div class="footer-contact">
-          <div class="footer-contact-label">Visit / Call / Email</div>
-          <a href="https://maps.google.com/?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406" target="_blank" rel="noopener">6060 S. Aviation Ave, Suite 109 · North Charleston, SC 29406</a>
-          <a href="tel:+18438006498">843.800.6498</a>
-          <a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a>
-          <span style="display:block;font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;">Mon–Sat 9am–4pm</span>
-        </div>
       </div>
-      <div class="footer-col">
-        <h4>Train</h4>
-        <ul>
-          <li><a href="/discovery-flight">Discovery Flight</a></li>
-          <li><a href="/flight-school">Flight School</a></li>
-          <li><a href="/sim-membership">Sim Membership</a></li>
-          <li><a href="/cost-calculator">Cost Calculator</a></li>
-          <li><a href="/financing">Financing</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Aircraft</h4>
-        <ul>
-          <li><a href="/aircraft#da40">Diamond DA40 NG</a></li>
-          <li><a href="/aircraft#da42">Diamond DA42-VI</a></li>
-          <li><a href="/sim-membership">Redbird FMX Sim</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/company">About CRAFT</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener">Reviews</a></li>
-          <li><a href="/discovery-flight">Book Discovery</a></li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Train</h4><ul>
+        <li><a href="/discovery-flight">Discovery Flight</a></li>
+        <li><a href="/accelerated">Accelerated Programs</a></li>
+        <li><a href="/flight-school">At-Your-Own-Pace</a></li>
+        <li><a href="/ifr">Instrument (IFR)</a></li>
+        <li><a href="/commercial">Commercial</a></li>
+        <li><a href="/multi-engine">Multi-Engine</a></li>
+        <li><a href="/cfi">CFI</a></li>
+        <li><a href="/cfii">CFI-I</a></li>
+        <li><a href="/sim-membership">Sim Membership</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Aircraft</h4><ul>
+        <li><a href="/fleet">The Fleet</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="/company">About CRAFT</a></li>
+        <li><a href="/team">The Team</a></li>
+        <li><a href="/careers">Careers</a></li>
+        <li><a href="/reviews">Reviews</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul></div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 CRAFT Flight Training, LLC · FAA Part 61 · Signature & Atlantic FBO · KCHS</span>
+      <span>© 2026 CRAFT Flight Training, LLC · FAA Part 61 · Signature &amp; Atlantic FBO · KCHS</span>
       <span><a href="/contact">Privacy</a> · <a href="/contact">Terms</a></span>
     </div>
   </div>
 </footer>
-<script>
-document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
-  document.getElementById('nav-links').classList.toggle('open');
-});
-document.querySelectorAll('.nav-item .nav-link').forEach(b => {
-  b.addEventListener('click', e
 
 <script src="/assets/chatbot.js" defer></script>
+<script>
+document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
+document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
+</script>
 </body>
 </html>
