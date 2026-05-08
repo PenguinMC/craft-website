@@ -1,0 +1,11 @@
+# CRAFT Flight Training & Simulation
+# robots.txt — last updated 2026-05-08
+
+User-agent: *
+Allow: /
+
+# Block AI crawlers from training (optional — toggle as you wish)
+# User-agent: GPTBot
+# Disallow: /
+
+Sitemap: https://flycraftchs.com/sitemap.xml
