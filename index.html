@@ -679,6 +679,25 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   }
   body { padding-bottom: 80px; }
 }
+
+.calc-gate { max-width: 720px; margin: 0 auto; padding: 0 var(--gut); }
+.calc-gate-card { position: relative; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.3); border-radius: 12px; padding: 48px; box-shadow: 0 30px 60px -25px rgba(230,48,39,0.35); overflow: hidden; }
+.calc-gate-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.calc-gate-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--beacon); padding: 6px 10px; border-radius: 3px; background: rgba(230,48,39,0.08); border: 1px solid rgba(230,48,39,0.3); margin-bottom: 18px; }
+.calc-gate-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 6px var(--beacon); animation: ccBlink 1.4s ease-in-out infinite; }
+@keyframes ccBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+.calc-gate-h { font-family: var(--display); font-weight: 900; font-size: clamp(32px, 4vw, 48px); line-height: 1; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 12px; color: var(--white); }
+.calc-gate-h .accent { color: var(--beacon); }
+.calc-gate-sub { font-size: 15px; color: rgba(255,255,255,0.7); margin: 0 0 24px; line-height: 1.55; }
+.calc-gate-form { display: grid; gap: 12px; }
+.calc-gate-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 600px) { .calc-gate-row { grid-template-columns: 1fr; } }
+.calc-gate-form input, .calc-gate-form select { padding: 14px 16px; font: inherit; font-size: 15px; color: var(--white); background: rgba(10,13,18,0.7); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; transition: border-color .2s var(--ease), background .2s var(--ease); }
+.calc-gate-form input:focus, .calc-gate-form select:focus { outline: none; border-color: var(--beacon); background: rgba(10,13,18,0.95); box-shadow: 0 0 0 3px rgba(230,48,39,0.15); }
+.calc-gate-form input::placeholder { color: rgba(255,255,255,0.4); }
+.calc-gate-form select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1l5 5 5-5' stroke='%23E63027' stroke-width='1.5' stroke-linecap='round'/></svg>"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+.calc-gate-form select:invalid { color: rgba(255,255,255,0.4); }
+.calc-gate-fine { font-size: 12px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -726,6 +745,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
           </div>
           <div class="nav-dd-section">
             <div class="nav-dd-eyebrow">Programs</div>
+            <a href="/accelerated" class="nav-dd-item"><div class="nav-dd-icon">⚡</div><div><div class="nav-dd-title">Accelerated</div><div class="nav-dd-desc">IFR · CPL · CFI · Multi · Bundles</div></div></a>
             <a href="/flight-school" class="nav-dd-item">
               <div class="nav-dd-icon">🎓</div>
               <div>
@@ -892,8 +912,8 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
       <div>
         <span class="eyebrow">Our Method</span>
         <h2 class="h-display">The airplane is a terrible <span class="accent">classroom.</span></h2>
-        <p>Most flight schools throw you in the cockpit at $255 an hour and call it training. We don't. Every CRAFT student starts with the Redbird FMX simulator — and only moves to the airplane once the muscle memory is locked in.</p>
-        <div class="wedge-quote">"Sim-first cuts 30+ hours off the average path to checkride — and saves you $15K doing it."</div>
+        <p>Most flight schools throw you in the cockpit and call it training. We don't. Every CRAFT student starts on the Redbird AATD simulator — and only moves to the airplane once the muscle memory is locked in.</p>
+        <div class="wedge-quote">"Sim-first cuts 30+ hours off the average path to checkride — and saves you a stack of cash doing it."</div>
         <p>That's not a marketing claim. It's how every accelerated cohort we run finishes ahead of schedule and under budget.</p>
       </div>
       <div class="wedge-visual">
@@ -922,17 +942,13 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
         <h3>Private Pilot</h3>
         <div class="acc-time"><strong>~3 months</strong> · 58 flight hrs · train at your pace</div>
         <ul class="acc-list">
-          <li>50 hrs Diamond DA40NG ($255/hr)</li>
+          <li>50 hrs Diamond DA40 NG (Jet-A glass)</li>
           <li>6 hrs Redbird FMX simulator</li>
           <li>74 hrs ground + flight instruction</li>
           <li>ASA materials + written test prep</li>
           <li>Checkride aircraft + DPE coordination</li>
         </ul>
-        <div class="acc-price">
-          <span class="acc-price-num">$20,188</span>
-          <span class="acc-price-suf">all-in · DA40NG glass cockpit</span>
-        </div>
-        <a href="#discovery" class="btn btn-light btn-block btn-arrow">Reserve Seat</a>
+        <a href="/accelerated" class="btn btn-light btn-block btn-arrow">See Pricing &amp; Details</a>
       </div>
       <!-- Card 2: Bronze (featured) -->
       <div class="acc-card feat">
@@ -940,17 +956,13 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
         <h3>Bronze Pro Pilot</h3>
         <div class="acc-time"><strong>PPL → IFR → CPL</strong> · 270 hrs total · zero to commercial</div>
         <ul class="acc-list">
-          <li>Private Pilot License ($20,188 value)</li>
-          <li>Accelerated IFR ($19,334 value)</li>
-          <li>Accelerated Commercial ($41,225 value)</li>
+          <li>Private Pilot License — Part 61</li>
+          <li>Accelerated IFR — 1 week</li>
+          <li>Accelerated Commercial — ~6 weeks</li>
           <li>116 hrs DA40NG + 30 hrs Redbird sim</li>
           <li>Stratus &amp; Meritize financing supported</li>
         </ul>
-        <div class="acc-price">
-          <span class="acc-price-num">$82,362</span>
-          <span class="acc-price-suf">vs. ~$95K piecemeal</span>
-        </div>
-        <a href="#discovery" class="btn btn-primary btn-block btn-arrow">Reserve Seat</a>
+        <a href="/accelerated" class="btn btn-primary btn-block btn-arrow">See Pricing &amp; Details</a>
       </div>
       <!-- Card 3: Accelerated IFR -->
       <div class="acc-card">
@@ -962,15 +974,12 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
           <li>20 hrs Redbird FMX procedures</li>
           <li>Single-instructor consistency</li>
           <li>For PPL holders ready to commit</li>
-          <li>BYO aircraft saves ~$10K</li>
+          <li>BYO-aircraft option available</li>
         </ul>
-        <div class="acc-price">
-          <span class="acc-price-num">$19,334</span>
-          <span class="acc-price-suf">all-in · DPE in weeks</span>
-        </div>
-        <a href="#discovery" class="btn btn-light btn-block btn-arrow">Reserve Seat</a>
+        <a href="/accelerated" class="btn btn-light btn-block btn-arrow">See Pricing &amp; Details</a>
       </div>
     </div>
+    <div style="text-align:center;margin-top:32px"><a href="/accelerated" class="btn btn-ghost btn-arrow">View All Programs &amp; Bundles</a></div>
   </div>
 </section>
 
@@ -1182,7 +1191,7 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
       <div class="sim-visual">
         <span class="sim-visual-tag">Redbird FMX</span>
         <div>
-          <div class="sim-visual-num">$<small>49</small>/hr</div>
+          <div class="sim-visual-num">$<small>70</small>/hr</div>
           <div class="sim-visual-cap">AATD Sim Rate</div>
         </div>
       </div>
@@ -1193,10 +1202,10 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
         <ul class="sim-bullets">
           <li><strong>20 sim hours</strong> count toward IFR training and lock in flows before they cost you airplane time.</li>
           <li><strong>True-to-aircraft realism</strong> with weather, IMC, and emergency scenarios you can't legally practice in the airplane.</li>
-          <li><strong>$70/hr sim time</strong> vs. $255/hr in the DA40NG. Math is undefeated.</li>
+          <li><strong>$70/hr sim time</strong> — the smartest hour in your logbook before you ever burn fuel.</li>
           <li><strong>Available for rated pilots</strong> for currency, IPC prep, and type-rating prep — not just students.</li>
         </ul>
-        <a href="#discovery" class="btn btn-primary btn-arrow">Try the Sim — $99</a>
+        <a href="#discovery" class="btn btn-primary btn-arrow">Try the Sim — $70/hr</a>
       </div>
     </div>
   </div>
