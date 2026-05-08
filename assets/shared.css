@@ -157,3 +157,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3), 0 0 22px rgba(230,48,39,0.9);
 }
 ::-webkit-scrollbar-corner { background: var(--ink); }
+
+
+/* FOOTER SOCIAL ICONS */
+.footer-social { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+.footer-social-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.4); text-transform: uppercase; align-self: center; margin-right: 8px; }
+.footer-social a { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); transition: all .25s var(--ease); position: relative; overflow: hidden; }
+.footer-social a::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%); opacity: 0; transition: opacity .25s var(--ease); }
+.footer-social a:hover { color: var(--white); border-color: var(--beacon); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(230,48,39,0.4); }
+.footer-social a:hover::before { opacity: 1; }
+.footer-social a svg { position: relative; z-index: 1; width: 18px; height: 18px; fill: currentColor; }
+@media (max-width: 600px) { .footer-social { justify-content: flex-start; } }

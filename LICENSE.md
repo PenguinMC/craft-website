@@ -1,10 +1,10 @@
 # Copyright & License
 
-**© 2026 Barryair LLC dba CRAFT Flight Training. All rights reserved.**
+**© 2026 CRAFT Flight Training. All rights reserved.**
 
 This repository and the website content, design, code, copy, imagery, and
 assets contained within (the "Work") are the exclusive intellectual property
-of **Barryair LLC dba CRAFT Flight Training** ("CRAFT").
+of **CRAFT Flight Training** ("CRAFT").
 
 ---
 
@@ -13,7 +13,7 @@ of **Barryair LLC dba CRAFT Flight Training** ("CRAFT").
 No part of the Work may be reproduced, copied, distributed, modified,
 republished, transmitted, sold, or used to create derivative works in any
 form or by any means &mdash; electronic, mechanical, photocopying, recording,
-or otherwise &mdash; without the prior written permission of Barryair LLC.
+or otherwise &mdash; without the prior written permission of CRAFT Flight Training.
 
 This includes, but is not limited to:
 
@@ -23,7 +23,7 @@ This includes, but is not limited to:
 - Photographs, videos, and graphics
 - Brand assets including the CRAFT name, logo, and color palette
 
-The CRAFT name and logo are trademarks of Barryair LLC.
+The CRAFT name and logo are trademarks of CRAFT Flight Training.
 
 ## Permitted Use
 
@@ -48,14 +48,14 @@ You **may not**:
 - Use the CRAFT name or logo in a way that suggests affiliation, sponsorship,
   or endorsement when none exists
 - Frame, mirror, or otherwise host the website on infrastructure not
-  authorized by Barryair LLC
+  authorized by CRAFT Flight Training
 
 ## Licensing Inquiries
 
 If you would like to license any portion of the Work for use in your own
 project, please contact:
 
-**Barryair LLC dba CRAFT Flight Training**
+**CRAFT Flight Training**
 6060 S. Aviation Ave, Suite 109
 North Charleston, SC 29406
 craft@flycraftchs.com
@@ -65,7 +65,7 @@ We respond to legitimate licensing inquiries within five business days.
 
 ## Enforcement
 
-Barryair LLC actively monitors for unauthorized use of the Work and reserves
+CRAFT Flight Training actively monitors for unauthorized use of the Work and reserves
 all rights to pursue legal remedies including but not limited to takedown
 notices under the Digital Millennium Copyright Act (DMCA), trademark
 infringement claims, and recovery of damages and attorneys' fees where
