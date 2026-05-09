@@ -455,3 +455,50 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
     grid-template-columns: 1fr;
   }
 }
+
+/* === HUBSPOT FILE UPLOAD === */
+.hs-form .hs-fieldtype-file input[type="file"] {
+  width: 100% !important;
+  height: auto;
+  padding: 14px !important;
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px dashed rgba(255,255,255,0.18) !important;
+  border-radius: 6px !important;
+  color: rgba(255,255,255,0.78) !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 13px !important;
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease;
+}
+.hs-form .hs-fieldtype-file input[type="file"]:hover {
+  border-color: var(--beacon) !important;
+  background: rgba(230,48,39,0.04) !important;
+}
+.hs-form .hs-fieldtype-file input[type="file"]::-webkit-file-upload-button {
+  margin-right: 12px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.hs-form .hs-fieldtype-file input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
