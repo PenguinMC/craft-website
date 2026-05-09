@@ -567,7 +567,7 @@ function unlock() {
   document.getElementById('estimate')?.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-if (localStorage.getItem('craft_calc_unlocked') === '1') {
+if (localStorage.getItem('craft_calc_unlocked_v2') === '1') {
   if (lock) lock.style.display = 'none';
   if (grid) grid.classList.remove('locked');
 }
@@ -595,7 +595,7 @@ form?.addEventListener('submit', e => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   }).catch(()=>{}).finally(() => {
-    localStorage.setItem('craft_calc_unlocked', '1');
+    localStorage.setItem('craft_calc_unlocked_v2', '1');
     if (submitBtn) submitBtn.textContent = 'Unlocked ✓';
     unlock();
   });
