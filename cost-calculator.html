@@ -249,7 +249,32 @@
     <h2 class="cc-form-h">Enter your <span class="accent">info</span><br>to access the calculator.</h2>
     <p class="cc-form-sub">Just your name, email, and phone number — that's it.</p>
     <div class="cc-form-card">
-      <div id="hbsp-form-1594e535-b941-4d65-a5c3-b1682441e0f3" class="cc-hs-embed"></div><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script><script>(function(){function init(){if(window.hbspt&&window.hbspt.forms){hbspt.forms.create({region:"na2",portalId:"246141088",formId:"1594e535-b941-4d65-a5c3-b1682441e0f3",target:"#hbsp-form-1594e535-b941-4d65-a5c3-b1682441e0f3",onFormSubmitted:function(){localStorage.setItem("craft_calc_unlocked","1");if(window.unlockCalc)window.unlockCalc();}});}else{setTimeout(init,80);}}init();})();</script>
+      <form class="cc-form" id="cc-form" action="javascript:void(0)" novalidate>
+        <div class="cc-form-row">
+          <div class="cc-form-field">
+            <label class="cc-form-label">First Name <span class="req">*</span></label>
+            <input required type="text" name="firstname" placeholder="John" autocomplete="given-name" />
+          </div>
+          <div class="cc-form-field">
+            <label class="cc-form-label">Last Name <span class="req">*</span></label>
+            <input required type="text" name="lastname" placeholder="Doe" autocomplete="family-name" />
+          </div>
+        </div>
+        <div class="cc-form-row">
+          <div class="cc-form-field">
+            <label class="cc-form-label">Email <span class="req">*</span></label>
+            <input required type="email" name="email" placeholder="example@domain.com" autocomplete="email" />
+          </div>
+          <div class="cc-form-field">
+            <label class="cc-form-label">Phone <span class="req">*</span></label>
+            <input required type="tel" name="phone" placeholder="+1 000 000 0000" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="cc-form-submit-row">
+          <button type="submit" class="cc-submit-btn">Submit</button>
+          <span class="cc-form-fine">No spam. No telemarketing. We email your estimate after submit.</span>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -530,26 +555,51 @@ $('cc-program').addEventListener('change', e => loadProgram(e.target.value));
 // Init
 loadProgram('ppl');
 
-// Calculator unlock — triggered by ?unlocked=1 URL param (set by HubSpot form's redirect)
-// or by localStorage flag (set on first unlock so revisits don't re-prompt)
-window.unlockCalc = function() {
-  const lock = document.getElementById('cc-lock');
-  const grid = document.getElementById('cc-grid');
-  if (lock) {
-    lock.style.opacity = '0';
-    setTimeout(() => { lock.style.display = 'none'; }, 350);
-  }
+// Calculator unlock — original AJAX-based flow, no page reload
+const form = document.getElementById('cc-form');
+const lock = document.getElementById('cc-lock');
+const grid = document.getElementById('cc-grid');
+
+function unlock() {
+  if (lock) lock.style.opacity = '0';
+  setTimeout(() => { if (lock) lock.style.display = 'none'; }, 350);
   if (grid) grid.classList.remove('locked');
   document.getElementById('estimate')?.scrollIntoView({behavior:'smooth', block:'start'});
-};
-
-// Either path triggers the unlock
-const urlUnlocked = new URLSearchParams(location.search).get('unlocked') === '1';
-const lsUnlocked  = localStorage.getItem('craft_calc_unlocked') === '1';
-if (urlUnlocked || lsUnlocked) {
-  localStorage.setItem('craft_calc_unlocked', '1');
-  window.unlockCalc();
 }
+
+if (localStorage.getItem('craft_calc_unlocked') === '1') {
+  if (lock) lock.style.display = 'none';
+  if (grid) grid.classList.remove('locked');
+}
+
+form?.addEventListener('submit', e => {
+  e.preventDefault();
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+  const data = new FormData(form);
+  const submitBtn = form.querySelector('button[type=submit]');
+  if (submitBtn) submitBtn.textContent = 'Unlocking…';
+
+  // POST direct to HubSpot Cost Calculator Unlock form submission API
+  const payload = {
+    submittedAt: Date.now(),
+    fields: [
+      { objectTypeId: '0-1', name: 'firstname', value: data.get('firstname') || '' },
+      { objectTypeId: '0-1', name: 'lastname',  value: data.get('lastname')  || '' },
+      { objectTypeId: '0-1', name: 'email',     value: data.get('email')     || '' },
+      { objectTypeId: '0-1', name: 'phone',     value: data.get('phone')     || '' }
+    ],
+    context: { pageUri: location.href, pageName: document.title }
+  };
+  fetch('https://api.hsforms.com/submissions/v3/integration/submit/246141088/1594e535-b941-4d65-a5c3-b1682441e0f3', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(()=>{}).finally(() => {
+    localStorage.setItem('craft_calc_unlocked', '1');
+    if (submitBtn) submitBtn.textContent = 'Unlocked ✓';
+    unlock();
+  });
+});
 });
 </script>
 
