@@ -1,36 +1,36 @@
 # HubSpot Build — Execution Status (May 9, 2026)
 
-> Status report after running the buildout against the live HubSpot account (portal 246141088, Standard tier) using a Private App token.
+> Status report after running the full buildout against the live HubSpot account (portal 246141088, **14-day trial** of paid Hub features) using a Private App token. Trial unlocks workflow API + form API access.
 
 ---
 
-## ✅ COMPLETED VIA API (no human action required)
+## ✅ COMPLETED VIA API (live in HubSpot now)
 
-### Custom Contact Properties (12 of 12)
+### Custom Contact Properties — 12 of 12 ✓
 
-All 12 custom fields created and live, organized into two groups in the HubSpot UI:
+Two property groups created:
 
-**CRAFT Flight Training group:**
-- `craft_program_interest` — dropdown with 13 options (Discovery, PPL, IFR, Commercial, Multi, MEI, ATP, CFI, CFI-I, Sim, Tour, Other)
+**CRAFT Flight Training:**
+- `craft_program_interest` — dropdown, 13 program options
 - `craft_total_flight_hours` — number
-- `craft_current_certificates` — multi-checkbox (Student, PPL, IFR, CPL, Multi, CFI, CFII, MEI, ATP, None)
-- `craft_target_start_window` — dropdown (ASAP, 60-90 days, 6 months, Researching)
+- `craft_current_certificates` — multi-checkbox, 10 cert options
+- `craft_target_start_window` — dropdown, 4 windows
 - `craft_discovery_booked` — date
 - `craft_discovery_completed` — date
 - `craft_lead_source_detail` — text
 - `craft_byoa` — boolean (Bring Your Own Aircraft)
 - `craft_financing_interest` — boolean
 
-**CRAFT Careers group:**
+**CRAFT Careers:**
 - `craft_resume_url` — text
-- `craft_role_applied_for` — dropdown (CFI, CFII, MEI, Office, Other)
-- `craft_application_status` — dropdown (New, Reviewed, Phone Screen, In-Person, Offer, Hired, Declined)
+- `craft_role_applied_for` — dropdown (CFI / CFII / MEI / Office / Other)
+- `craft_application_status` — dropdown (New → Reviewed → Phone Screen → In-Person → Offer → Hired/Declined)
 
-### Deal Pipeline — "Flight Training Funnel"
+### Deal Pipeline — Flight Training Funnel ✓
 
-Default pipeline renamed and all 7 stages relabeled:
+Default pipeline relabeled. All 7 stages renamed with proper probabilities:
 
-| Order | Stage | Probability | Closed |
+| # | Stage | Prob | Closed |
 |---|---|---|---|
 | 1 | Inquiry Received | 10% | No |
 | 2 | Discovery Booked | 30% | No |
@@ -40,7 +40,7 @@ Default pipeline renamed and all 7 stages relabeled:
 | 6 | Enrolled | 100% | Yes (won) |
 | 7 | Closed Lost | 0% | Yes (lost) |
 
-### Smart Lists (5 of 6)
+### Smart Lists — 5 of 6 ✓
 
 - Active Discovery Funnel — `craft_program_interest = discovery`
 - IFR Hot Leads — `craft_program_interest = ifr`
@@ -48,91 +48,103 @@ Default pipeline renamed and all 7 stages relabeled:
 - Career Pilots 200+ hrs — `craft_total_flight_hours > 200`
 - BYOA Candidates — `craft_byoa = true`
 
-(Newsletter Subscribers list deferred — free tier caps at 10 dynamic lists, default HubSpot lists fill the rest. Archive a default list to add this one.)
+(Newsletter Subscribers list deferred — 10-list cap on this tier; default HubSpot lists fill the rest.)
 
-### Email Drafts (6 of 6)
+### Email Drafts — 6 of 6 ✓
 
-All 6 emails created as drafts in HubSpot with proper:
-- Subject lines
-- From name: "CRAFT Flight Training"
-- Reply-to: craft@flycraftchs.com
-- Email IDs:
-  - 342901229254 — Discovery Confirmation
-  - 342901229257 — Quote Request Reply
-  - 342902834895 — 24hr Nudge
-  - 342901229260 — Welcome Aboard (Post-Discovery)
-  - 342902834898 — Application Received
-  - 342901229263 — Newsletter Welcome
+| Subject | Email Name | ID |
+|---|---|---|
+| Your Discovery Flight is Confirmed - CRAFT | [CRAFT] Discovery Confirmation | 342901229254 |
+| Quick reply from CRAFT | [CRAFT] Quote Request Reply | 342901229257 |
+| Still thinking it over? | [CRAFT] 24hr Nudge | 342902834895 |
+| Welcome aboard - the next steps | [CRAFT] Welcome Aboard (Post-Discovery) | 342901229260 |
+| We received your application - CRAFT | [CRAFT] Application Received | 342902834898 |
+| Welcome to the CRAFT hangar | [CRAFT] Newsletter Welcome | 342901229263 |
 
-**HTML content paste needed:** Each draft is a stub. Open each in HubSpot → switch to "Custom HTML" / source mode → paste the corresponding file from `crm/email-templates/`. ~3 minutes per email.
+All have proper subject lines, From name "CRAFT Flight Training", reply-to craft@flycraftchs.com.
 
----
+**Action needed:** Each draft is a stub. Open in HubSpot → switch to Custom HTML editor → paste body from `crm/email-templates/`. ~3 min per email.
 
-## ⚠️ DEFERRED TO UI (API limitations, not blockers)
+### Forms — 5 of 5 ✓ (TRIAL UNLOCKED)
 
-### Forms (0 of 5)
+| Form Name | ID |
+|---|---|
+| CRAFT - Contact General | 8ac3741a-2170-4085-b446-74f3a856d809 |
+| CRAFT - Discovery Flight Interest | d9df7028-f679-4fe0-af61-a297037b864f |
+| CRAFT - Careers Application | 5be0263b-23f8-4f92-bb6b-694ef5e42717 |
+| CRAFT - Cost Calculator Gate | dcb6fd0f-3539-4965-96f4-f0658003f9b7 |
+| CRAFT - Newsletter | f81e1e4b-92f8-4978-a740-6b74a6039e27 |
 
-**Why deferred:** HubSpot's Forms v3 API requires auto-populated `createdAt` timestamps and field-level digit constraints that rejected the create requests. Forms are easiest to build in the UI's drag-and-drop builder anyway.
+All 5 forms are themed to default_style, recaptcha enabled where appropriate, with proper field mappings to the new custom properties.
 
-**Action:** Marketing → Lead Capture → Forms → Create. Use the playbook in `crm/hubspot-build-plan.md` §4 for field lists. The 12 custom properties already exist as dropdown options. **~5 min per form, ~25 min total.**
+### Workflows — 5 of 5 ✓ (TRIAL UNLOCKED)
 
-Forms to create:
-1. CRAFT — Contact General
-2. CRAFT — Discovery Flight Interest
-3. CRAFT — Careers Application
-4. CRAFT — Cost Calculator Gate
-5. CRAFT — Newsletter
+All workflows created in **disabled** state — review and enable in the UI after pasting email HTML and any final tuning.
 
-### Workflows (0 of 5)
+| Workflow | ID | Trigger | Actions |
+|---|---|---|---|
+| 01 - Discovery Booked Confirmation | 35184306 | `craft_discovery_booked` is set | Set lifecycle = MQL → send Discovery Confirmation |
+| 02 - General Inquiry Nurture | 35184308 | `craft_program_interest` is set | Send Quote Reply → 48hr delay → send 24hr Nudge |
+| 03 - Post-Discovery Nurture | 35184309 | `craft_discovery_completed` is set | Set lifecycle = SQL → 4hr delay → send Welcome Aboard |
+| 04 - Careers Auto-Reply | 35184305 | `craft_role_applied_for` is set | Send Application Received → 7d delay → internal task |
+| 05 - Newsletter Welcome | 35184291 | `lifecyclestage = subscriber` | Send Newsletter Welcome |
 
-**Why deferred:** Workflow creation API requires `automation.workflows.read/write` granular sub-scopes which are paywalled behind Marketing Hub Pro ($890/mo). The parent `automation` scope on free tier is read-only.
-
-**Two paths forward:**
-
-**Path A — Build in UI on free tier:**
-HubSpot's free tier DOES allow creating simple workflows via the UI (just not via API). Click-by-click specs in `crm/workflows/`. ~10 min per workflow, ~50 min total. Limit: 10 active workflows on free.
-
-**Path B — Upgrade to Marketing Hub Pro later:**
-Once you have lead volume justifying $800+/mo, upgrade unlocks API workflow creation + advanced sequence features.
-
-Workflows to build:
-1. Discovery Booked Confirmation (`crm/workflows/01-discovery-booked.md`)
-2. General Inquiry Nurture (`crm/workflows/02-general-inquiry.md`)
-3. Post-Discovery Nurture (`crm/workflows/03-post-discovery.md`)
-4. Careers Auto-Reply + Hiring Notify (`crm/workflows/04-careers.md`)
-5. Newsletter Welcome (`crm/workflows/05-newsletter.md`)
-
----
-
-## 🔒 SECURITY ACTION
-
-**The `pat-na2-•••••REDACTED•••••` token is now in chat history.** Rotate it after this session is done:
-
-1. HubSpot Settings → Integrations → Legacy Apps
-2. Open the CRAFT private app
-3. Generate a new access token (or revoke + recreate)
-4. Update wherever you've stored it locally
+These are simplified linear workflows. The detailed branching logic in the original specs (`crm/workflows/*.md`) can be added in the UI by editing each workflow.
 
 ---
 
 ## 📋 IMMEDIATE NEXT STEPS FOR PARKER
 
-In rough effort order (lowest to highest):
+### Quick wins (15 min total)
 
-1. **Paste HTML into 6 email drafts** (15 min) — Marketing → Email → open each `[CRAFT]` draft → switch to Custom HTML → paste from `crm/email-templates/`
-2. **Build 5 forms in UI** (25 min) — Marketing → Lead Capture → Forms
-3. **Build 5 workflows in UI** (50 min) — Automation → Workflows → use specs in `crm/workflows/`
-4. **Wire forms onto the static site** (5 min) — once forms exist, get embed codes, replace Formspree action URLs with HubSpot embed snippets. I can do this in 30 sec when form IDs are ready.
-5. **Connect Calendly to HubSpot** — HubSpot's native Calendly integration in Marketplace
-6. **Verify domain for sending** — Settings → Marketing → Email → Sending → Domain Setup. SPF/DKIM/DMARC records added to your DNS for `flycraftchs.com` once domain points to Vercel
+1. **Paste HTML into 6 email drafts** (~3 min each) — Marketing → Email → open each `[CRAFT]` draft → switch to Custom HTML editor → paste from `crm/email-templates/` files.
+2. **Verify domain for sending** — Settings → Marketing → Email → Sending → Domain Setup. Add SPF/DKIM/DMARC records to your `flycraftchs.com` DNS. HubSpot provides exact records.
+3. **Test enabling 1 workflow end-to-end:**
+   - Open `[CRAFT] 05 - Newsletter Welcome` → check trigger and action
+   - Toggle to "On"
+   - Submit a test through the Newsletter form
+   - Confirm welcome email lands in your inbox
+
+### Wire forms onto the static site
+
+Each form has an HTML embed code accessible via:
+HubSpot Marketing → Forms → click form → Share → Copy embed code
+
+I can do a one-line `action=` swap across the static site once you grab the embed snippets — it's a 30-second job. Or you can just replace the form `<form>` tags with the HubSpot embed div+script.
+
+### Trial-aware actions
+
+You're on a **14-day trial**. The features unlocked by the trial:
+- Workflow creation via API ✓ (used)
+- Forms API ✓ (used)
+- Multiple workflow execution
+
+After the trial expires, **the workflows stay** but their **execution may be limited** (free tier allows simpler workflows but caps active workflows at 10 — you're using 5 so you're under the cap).
+
+If you decide to keep the paid features after the trial:
+- Marketing Hub Starter ($20/mo) — keeps workflows, email sends, basic features
+- Marketing Hub Professional ($890/mo) — full automation, A/B, advanced analytics, more lists
+
+For a flight school pre-launch, Starter is the right call. Upgrade to Pro only when you have the lead volume to justify it.
 
 ---
 
-## API LIMITS HIT (good to know)
+## 🔒 SECURITY ACTION
 
-- 1 deal pipeline max on free tier (used the default)
-- 10 dynamic lists max on free tier (5 created, default HubSpot lists use rest)
-- Forms v3 API is finicky — UI builder is the practical route
-- Workflows API is paywalled — UI builder is free-tier path
-- Custom properties: no hard limit observed (all 12 created without issue)
+The Private App token is in chat history. Rotate it now:
+
+1. HubSpot Settings → Integrations → Legacy Apps
+2. Open "CRAFT Setup" → Auth → Rotate access token
+3. Old token immediately invalid
+
+---
+
+## API limits hit (good to know)
+
+- 1 deal pipeline max (used the default)
+- 10 dynamic lists max (5 created; default HubSpot lists use rest)
+- Forms v3 API requires `createdAt` at form-level + per-field digit constraints for number/phone
+- Workflows v3 API uses `IS_NOT_EMPTY` not `HAS_PROPERTY` for "field is set" triggers
+- Custom contact properties: no observed limit
+- Email templates: no API to inject HTML body in initial create — must PATCH or use UI
 
