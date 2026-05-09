@@ -56,7 +56,8 @@
 .cb-panel.cb-open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
 .cb-panel::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon, #E63027), transparent); z-index: 5; }
 .cb-head { padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); background: linear-gradient(180deg, rgba(230,48,39,0.08) 0%, transparent 100%); display: flex; align-items: center; gap: 12px; }
-.cb-head-avatar { width: 38px; height: 38px; border-radius: 50%; background: rgba(230,48,39,0.15); border: 1.5px solid var(--beacon, #E63027); display: grid; place-items: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 18px; color: var(--beacon, #E63027); flex-shrink: 0; box-shadow: 0 0 18px rgba(230,48,39,0.3); }
+.cb-head-avatar { width: 38px; height: 38px; border-radius: 50%; background: rgba(230,48,39,0.15); border: 1.5px solid var(--beacon, #E63027); display: grid; place-items: center; flex-shrink: 0; box-shadow: 0 0 18px rgba(230,48,39,0.3); overflow: hidden; }
+.cb-head-avatar img { width: 24px; height: 24px; object-fit: contain; display: block; }
 .cb-head-info { flex: 1; min-width: 0; }
 .cb-head-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; color: #fff; line-height: 1; }
 .cb-head-status { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; color: #4ade80; text-transform: uppercase; margin-top: 4px; display: flex; align-items: center; gap: 6px; }
@@ -99,10 +100,12 @@
 .cb-gate-p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; margin: -4px 0 6px; }
 .cb-gate-field { display: grid; gap: 5px; }
 .cb-gate-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; color: rgba(255,255,255,0.55); text-transform: uppercase; }
-.cb-gate-input { padding: 11px 12px; font-family: inherit; font-size: 14px; color: #fff; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; transition: border-color .15s ease, background .15s ease; }
+.cb-gate-input { width: 100%; min-width: 0; box-sizing: border-box; padding: 11px 12px; font-family: inherit; font-size: 14px; color: #fff; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; transition: border-color .15s ease, background .15s ease; }
 .cb-gate-input:focus { outline: none; border-color: var(--beacon, #E63027); background: rgba(255,255,255,0.06); box-shadow: 0 0 0 3px rgba(230,48,39,0.15); }
 .cb-gate-input::placeholder { color: rgba(255,255,255,0.32); }
 .cb-gate-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.cb-gate-row .cb-gate-field { min-width: 0; }
+.cb-gate-field { min-width: 0; }
 .cb-gate-btn { padding: 12px 16px; background: linear-gradient(135deg, var(--beacon, #E63027), var(--beacon-dark, #B81E16)); color: #fff; border: 1px solid var(--beacon, #E63027); border-radius: 6px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; transition: filter .15s, transform .15s; box-shadow: 0 6px 18px rgba(230,48,39,0.25); margin-top: 4px; }
 .cb-gate-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
 .cb-gate-btn:disabled { opacity: 0.6; cursor: wait; }
@@ -132,7 +135,7 @@
   panel.className = 'cb-panel';
   panel.innerHTML = `
     <div class="cb-head">
-      <div class="cb-head-avatar">CR</div>
+      <div class="cb-head-avatar"><img src="/assets/favicon.svg" alt="CRAFT" onerror="this.onerror=null;this.src='/assets/favicon-32.png'" /></div>
       <div class="cb-head-info">
         <div class="cb-head-title">CRAFT Assistant</div>
         <div class="cb-head-status">Online · KCHS</div>
