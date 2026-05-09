@@ -52,18 +52,22 @@ Default pipeline relabeled. All 7 stages renamed with proper probabilities:
 
 ### Email Drafts — 6 of 6 ✓
 
-| Subject | Email Name | ID |
-|---|---|---|
-| Your Discovery Flight is Confirmed - CRAFT | [CRAFT] Discovery Confirmation | 342901229254 |
-| Quick reply from CRAFT | [CRAFT] Quote Request Reply | 342901229257 |
-| Still thinking it over? | [CRAFT] 24hr Nudge | 342902834895 |
-| Welcome aboard - the next steps | [CRAFT] Welcome Aboard (Post-Discovery) | 342901229260 |
-| We received your application - CRAFT | [CRAFT] Application Received | 342902834898 |
-| Welcome to the CRAFT hangar | [CRAFT] Newsletter Welcome | 342901229263 |
+| Subject | Email Name | ID | HTML loaded |
+|---|---|---|---|
+| Your Discovery Flight is Confirmed - CRAFT | [CRAFT] Discovery Confirmation | **342902835931** | ✅ |
+| Quick reply from CRAFT | [CRAFT] Quote Request Reply | 342901229257 | ✅ |
+| Still thinking it over? | [CRAFT] 24hr Nudge | 342902834895 | ✅ |
+| Welcome aboard - the next steps | [CRAFT] Welcome Aboard (Post-Discovery) | 342901229260 | ✅ |
+| We received your application - CRAFT | [CRAFT] Application Received | 342902834898 | ✅ |
+| Welcome to the CRAFT hangar | [CRAFT] Newsletter Welcome | 342901229263 | ✅ |
 
-All have proper subject lines, From name "CRAFT Flight Training", reply-to craft@flycraftchs.com.
+All 6 emails fully loaded with HTML body via API (no manual paste needed). Discovery Confirmation got a new ID (342902835931) because the original was published from your test send and HubSpot locks published BATCH_EMAIL types from API edits — we deleted + recreated and updated the workflow reference.
 
-**Action needed:** Each draft is a stub. Open in HubSpot → switch to Custom HTML editor → paste body from `crm/email-templates/`. ~3 min per email.
+**State:** all DRAFT. From name "CRAFT Flight Training", reply-to craft@flycraftchs.com. Subject lines set. HubL personalization tokens (`{{ contact.firstname|default(...) }}` etc.) embedded with safe defaults.
+
+**Before sending:**
+- Add physical address in HubSpot Settings → Marketing → Email → Configuration → Office locations (clears the CAN-SPAM "edit your footer address" warning)
+- Verify domain for sending (Settings → Marketing → Email → Sending → Domain Setup)
 
 ### Forms — 5 of 5 ✓ (TRIAL UNLOCKED)
 
@@ -83,7 +87,7 @@ All workflows created in **disabled** state — review and enable in the UI afte
 
 | Workflow | ID | Trigger | Actions |
 |---|---|---|---|
-| 01 - Discovery Booked Confirmation | 35184306 | `craft_discovery_booked` is set | Set lifecycle = MQL → send Discovery Confirmation |
+| 01 - Discovery Booked Confirmation | **35185956** | `craft_discovery_booked` is set | Set lifecycle = MQL → send Discovery Confirmation (refs new email 342902835931) |
 | 02 - General Inquiry Nurture | 35184308 | `craft_program_interest` is set | Send Quote Reply → 48hr delay → send 24hr Nudge |
 | 03 - Post-Discovery Nurture | 35184309 | `craft_discovery_completed` is set | Set lifecycle = SQL → 4hr delay → send Welcome Aboard |
 | 04 - Careers Auto-Reply | 35184305 | `craft_role_applied_for` is set | Send Application Received → 7d delay → internal task |
