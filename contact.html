@@ -250,7 +250,19 @@
         <p>One form. We route it to whoever owns intake that day &mdash; usually you'll hear back within a couple hours.</p>
       </div>
       <!-- HubSpot Form: CRAFT Contact General -->
-<div id="hbsp-form-677d5614-45c0-4da0-ba39-18d7468e946b"></div><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script><script>(function(){function init(){if(window.hbspt&&window.hbspt.forms){hbspt.forms.create({region:"na2",portalId:"246141088",formId:"677d5614-45c0-4da0-ba39-18d7468e946b",target:"#hbsp-form-677d5614-45c0-4da0-ba39-18d7468e946b"});}else{setTimeout(init,80);}}init();})();</script>
+<form class="craft-form" data-craft-lead="general" data-craft-success="Got it. A real CFI on shift will respond within a couple of hours during business days." novalidate>
+  <div class="craft-form-row">
+    <div class="craft-form-field"><label>First Name<span class="req">*</span></label><input required type="text" name="firstname" placeholder="John" autocomplete="given-name" /></div>
+    <div class="craft-form-field"><label>Last Name<span class="req">*</span></label><input required type="text" name="lastname" placeholder="Doe" autocomplete="family-name" /></div>
+  </div>
+  <div class="craft-form-row">
+    <div class="craft-form-field"><label>Email<span class="req">*</span></label><input required type="email" name="email" placeholder="you@example.com" autocomplete="email" /></div>
+    <div class="craft-form-field"><label>Phone<span class="req">*</span></label><input required type="tel" name="phone" placeholder="+1 000 000 0000" autocomplete="tel" /></div>
+  </div>
+  <div class="craft-form-field"><label>I'm interested in</label><select name="program_interest"><option value="">Choose a program…</option><option value="discovery_flight">Discovery Flight</option><option value="tour">School Tour</option><option value="ppl">Private Pilot (PPL)</option><option value="ifr">Accelerated IFR</option><option value="commercial">Accelerated Commercial</option><option value="multi">Multi-Engine</option><option value="cfi">CFI Initial</option><option value="cfii">CFI-I Add-On</option><option value="sim">Sim Membership</option><option value="researching">Just Researching</option></select></div>
+  <div class="craft-form-field"><label>Anything else we should know?</label><textarea name="message" rows="4" placeholder="Goals, timeline, current ratings, questions…"></textarea></div>
+  <button type="submit" class="craft-form-submit">Send Message</button>
+</form>
     </div>
 
     <div class="ct-side">
@@ -316,6 +328,7 @@
   </div>
 </footer>
 
+<script src="/assets/leadform.js" defer></script>
 <script src="/assets/chatbot.js" defer></script>
 <script>
 document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));

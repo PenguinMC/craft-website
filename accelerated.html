@@ -297,11 +297,30 @@
     <h2>Tell us your goals.<br><span class="accent">We'll line it up.</span></h2>
     <p>Quick form. A CFI follows up within an hour during business days.</p>
     <div style="background:linear-gradient(180deg,var(--approach) 0%,#0E1218 100%);border:1px solid rgba(230,48,39,0.3);border-radius:14px;padding:32px;margin-top:24px;text-align:left;">
-      <div id="hbsp-form-b3cac9ae-fd0e-4fd4-80a3-edd9ce68f502"></div><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script><script>(function(){function init(){if(window.hbspt&&window.hbspt.forms){hbspt.forms.create({region:"na2",portalId:"246141088",formId:"b3cac9ae-fd0e-4fd4-80a3-edd9ce68f502",target:"#hbsp-form-b3cac9ae-fd0e-4fd4-80a3-edd9ce68f502"});}else{setTimeout(init,80);}}init();})();</script>
+      <form class="craft-form" data-craft-lead="accelerated" data-craft-success="Quote request received. We'll reply with a personalized estimate within 1 business day." novalidate>
+  <div class="craft-form-row">
+    <div class="craft-form-field"><label>First Name<span class="req">*</span></label><input required type="text" name="firstname" placeholder="John" autocomplete="given-name" /></div>
+    <div class="craft-form-field"><label>Last Name<span class="req">*</span></label><input required type="text" name="lastname" placeholder="Doe" autocomplete="family-name" /></div>
+  </div>
+  <div class="craft-form-row">
+    <div class="craft-form-field"><label>Email<span class="req">*</span></label><input required type="email" name="email" placeholder="you@example.com" autocomplete="email" /></div>
+    <div class="craft-form-field"><label>Phone<span class="req">*</span></label><input required type="tel" name="phone" placeholder="+1 000 000 0000" autocomplete="tel" /></div>
+  </div>
+  <div class="craft-form-row">
+    <div class="craft-form-field"><label>Which Program?<span class="req">*</span></label><select required name="program_interest"><option value="">Choose…</option><option value="ifr">Accelerated IFR</option><option value="commercial">Accelerated Commercial</option><option value="multi">Multi-Engine</option><option value="cfi">CFI Initial</option><option value="cfii">CFI-I Add-On</option></select></div>
+    <div class="craft-form-field"><label>Total Flight Hours</label><input type="number" name="total_flight_hours" placeholder="0" min="0" /></div>
+  </div>
+  <div class="craft-form-row">
+    <div class="craft-form-field"><label>When do you want to start?</label><select name="target_start"><option value="">Choose…</option><option value="asap">ASAP / Next 30 days</option><option value="60_90">Next 60-90 days</option><option value="6mo">Within 6 months</option><option value="researching">Just researching</option></select></div>
+    <div class="craft-form-field"><label>&nbsp;</label><label class="craft-form-checkrow"><input type="checkbox" name="financing" value="true"> I'd like financing info</label></div>
+  </div>
+  <div class="craft-form-field"><label>Anything else?</label><textarea name="message" rows="3" placeholder="Existing ratings, ICAO conversion, questions…"></textarea></div>
+  <button type="submit" class="craft-form-submit">Get My Quote</button>
+</form>
     </div>
   </div>
 </section>
-<script>(function(){var s=document.createElement('script');s.src='https://js-na2.hsforms.net/forms/embed/246141088.js';s.defer=true;document.head.appendChild(s);})();</script>
+
 
 <footer class="footer">
   <div class="container">
@@ -344,6 +363,7 @@
   </div>
 </footer>
 
+<script src="/assets/leadform.js" defer></script>
 <script src="/assets/chatbot.js" defer></script>
 <script>
 document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));

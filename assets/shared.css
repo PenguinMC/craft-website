@@ -502,3 +502,54 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   text-transform: uppercase;
   cursor: pointer;
 }
+
+
+/* === CRAFT NATIVE FORMS — replace HubSpot embeds === */
+.craft-form { display: grid; gap: 14px; }
+.craft-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.craft-form-row.three { grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 600px) { .craft-form-row, .craft-form-row.three { grid-template-columns: 1fr; } }
+.craft-form-field { display: grid; gap: 6px; min-width: 0; }
+.craft-form-field label { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+.craft-form-field label .req { color: var(--beacon); margin-left: 3px; }
+.craft-form input[type=text],
+.craft-form input[type=email],
+.craft-form input[type=tel],
+.craft-form input[type=number],
+.craft-form input[type=url],
+.craft-form select,
+.craft-form textarea {
+  width: 100%; min-width: 0; box-sizing: border-box;
+  padding: 13px 14px; font-family: inherit; font-size: 14px; font-weight: 500;
+  color: #fff; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 6px;
+  outline: none; transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+  -webkit-appearance: none; appearance: none;
+}
+.craft-form textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
+.craft-form input::placeholder, .craft-form textarea::placeholder { color: rgba(255,255,255,0.32); }
+.craft-form input:focus, .craft-form select:focus, .craft-form textarea:focus {
+  border-color: var(--beacon); background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 0 3px rgba(230,48,39,0.15);
+}
+.craft-form select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23E63027' d='M6 8L0 0h12z'/></svg>");
+  background-repeat: no-repeat; background-position: right 16px center; background-size: 10px;
+  padding-right: 38px;
+}
+.craft-form select option { background: var(--ink); color: #fff; }
+.craft-form-checkrow { display: inline-flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.5; padding: 8px 0; }
+.craft-form-checkrow input[type=checkbox] {
+  appearance: none; -webkit-appearance: none; width: 18px; height: 18px; flex-shrink: 0; margin: 1px 0 0;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.25); border-radius: 4px; cursor: pointer; position: relative; transition: all .15s ease;
+}
+.craft-form-checkrow input[type=checkbox]:checked { background: var(--beacon); border-color: var(--beacon); }
+.craft-form-checkrow input[type=checkbox]:checked::after { content: ""; position: absolute; left: 5px; top: 2px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.craft-form-submit { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 28px; margin-top: 6px; background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%); border: 1px solid var(--beacon); border-radius: 6px; color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: filter .15s, transform .15s, box-shadow .2s; box-shadow: 0 8px 24px rgba(230,48,39,0.25); }
+.craft-form-submit:hover { transform: translateY(-1px); filter: brightness(1.08); box-shadow: 0 12px 28px rgba(230,48,39,0.4); }
+.craft-form-submit:disabled { opacity: 0.6; cursor: wait; transform: none; }
+.craft-form-submit::after { content: "→"; }
+.craft-form-fine { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 6px; line-height: 1.5; }
+.craft-form-success { padding: 36px 24px; text-align: center; background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.3); border-radius: 8px; }
+.craft-form-success-icon { width: 52px; height: 52px; margin: 0 auto 16px; border-radius: 50%; background: rgba(74,222,128,0.15); border: 1.5px solid #4ade80; color: #4ade80; display: grid; place-items: center; font-size: 26px; font-weight: 800; box-shadow: 0 0 24px rgba(74,222,128,0.3); }
+.craft-form-success-msg { color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.55; max-width: 380px; margin: 0 auto; }

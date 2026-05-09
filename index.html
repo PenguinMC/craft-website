@@ -1907,9 +1907,19 @@ ptFill.style.width = '0%';
       <p style="font-size:17px;color:rgba(255,255,255,0.7);margin-top:14px;max-width:560px;margin-left:auto;margin-right:auto">A real CFI on shift will respond within a couple of hours during business days. We won't put you on a list.</p>
     </div>
     <div style="max-width:680px;margin:0 auto;background:linear-gradient(180deg,var(--approach) 0%, #0E1218 100%);border:1px solid rgba(230,48,39,0.25);border-radius:12px;padding:36px;box-shadow:0 30px 60px -25px rgba(230,48,39,0.3)">
-      <div id="hbsp-form-677d5614-45c0-4da0-ba39-18d7468e946b"></div>
-      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-      <script>(function(){function init(){if(window.hbspt&&window.hbspt.forms){hbspt.forms.create({region:"na2",portalId:"246141088",formId:"677d5614-45c0-4da0-ba39-18d7468e946b",target:"#hbsp-form-677d5614-45c0-4da0-ba39-18d7468e946b"});}else{setTimeout(init,80);}}init();})();</script>
+      <form class="craft-form" data-craft-lead="general" data-craft-success="Got it. A real CFI on shift will respond within a couple of hours during business days." novalidate>
+  <div class="craft-form-row">
+    <div class="craft-form-field"><label>First Name<span class="req">*</span></label><input required type="text" name="firstname" placeholder="John" autocomplete="given-name" /></div>
+    <div class="craft-form-field"><label>Last Name<span class="req">*</span></label><input required type="text" name="lastname" placeholder="Doe" autocomplete="family-name" /></div>
+  </div>
+  <div class="craft-form-row">
+    <div class="craft-form-field"><label>Email<span class="req">*</span></label><input required type="email" name="email" placeholder="you@example.com" autocomplete="email" /></div>
+    <div class="craft-form-field"><label>Phone<span class="req">*</span></label><input required type="tel" name="phone" placeholder="+1 000 000 0000" autocomplete="tel" /></div>
+  </div>
+  <div class="craft-form-field"><label>I'm interested in</label><select name="program_interest"><option value="">Choose a program…</option><option value="discovery_flight">Discovery Flight</option><option value="tour">School Tour</option><option value="ppl">Private Pilot (PPL)</option><option value="ifr">Accelerated IFR</option><option value="commercial">Accelerated Commercial</option><option value="multi">Multi-Engine</option><option value="cfi">CFI Initial</option><option value="cfii">CFI-I Add-On</option><option value="sim">Sim Membership</option><option value="researching">Just Researching</option></select></div>
+  <div class="craft-form-field"><label>Anything else we should know?</label><textarea name="message" rows="4" placeholder="Goals, timeline, current ratings, questions…"></textarea></div>
+  <button type="submit" class="craft-form-submit">Send Message</button>
+</form>
       <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.06)">Or call us at <a href="tel:+18438006498" style="color:var(--beacon)">843.800.6498</a> &middot; email <a href="mailto:craft@flycraftchs.com" style="color:var(--beacon)">craft@flycraftchs.com</a> &middot; Mon&ndash;Sat 9am&ndash;4pm.</div>
     </div>
   </div>
@@ -2063,6 +2073,7 @@ ccCalc();
 })();
 </script>
 
+<script src="/assets/leadform.js" defer></script>
 <script src="/assets/chatbot.js" defer></script>
 </body>
 </html>
