@@ -530,19 +530,36 @@ $('cc-program').addEventListener('change', e => loadProgram(e.target.value));
 // Init
 loadProgram('ppl');
 
-// Calculator unlock — called by HubSpot form's onFormSubmitted
-const lock = $('cc-lock');
-const grid = $('cc-grid');
+// Calculator unlock — called by HubSpot form's onFormSubmitted callback
+// AND by HubSpot's postMessage event (more reliable across embed versions)
 window.unlockCalc = function() {
-  if (lock) lock.style.opacity = '0';
-  setTimeout(() => { if (lock) lock.style.display = 'none'; }, 350);
+  const lock = document.getElementById('cc-lock');
+  const grid = document.getElementById('cc-grid');
+  if (lock) {
+    lock.style.opacity = '0';
+    setTimeout(() => { lock.style.display = 'none'; }, 350);
+  }
   if (grid) grid.classList.remove('locked');
   document.getElementById('estimate')?.scrollIntoView({behavior:'smooth', block:'start'});
 };
+
+// Persist + auto-restore on revisit
 if (localStorage.getItem('craft_calc_unlocked') === '1') {
-  if (lock) { lock.style.display = 'none'; }
+  const lock = document.getElementById('cc-lock');
+  const grid = document.getElementById('cc-grid');
+  if (lock) lock.style.display = 'none';
   if (grid) grid.classList.remove('locked');
 }
+
+// Backup: listen for HubSpot v2 postMessage callback
+window.addEventListener('message', function(ev) {
+  if (!ev.data) return;
+  // HubSpot sends { type: 'hsFormCallback', eventName: 'onFormSubmitted', id: '<form-guid>' }
+  if (ev.data.type === 'hsFormCallback' && ev.data.eventName === 'onFormSubmitted') {
+    localStorage.setItem('craft_calc_unlocked', '1');
+    window.unlockCalc();
+  }
+});
 });
 </script>
 
