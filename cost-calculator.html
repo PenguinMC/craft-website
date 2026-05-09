@@ -249,32 +249,7 @@
     <h2 class="cc-form-h">Enter your <span class="accent">info</span><br>to access the calculator.</h2>
     <p class="cc-form-sub">Just your name, email, and phone number — that's it.</p>
     <div class="cc-form-card">
-      <form class="cc-form" id="cc-form" action="javascript:void(0)" novalidate>
-        <div class="cc-form-row">
-          <div class="cc-form-field">
-            <label class="cc-form-label">First Name <span class="req">*</span></label>
-            <input required type="text" name="firstName" placeholder="John" autocomplete="given-name" />
-          </div>
-          <div class="cc-form-field">
-            <label class="cc-form-label">Last Name <span class="req">*</span></label>
-            <input required type="text" name="lastName" placeholder="Doe" autocomplete="family-name" />
-          </div>
-        </div>
-        <div class="cc-form-row">
-          <div class="cc-form-field">
-            <label class="cc-form-label">Email <span class="req">*</span></label>
-            <input required type="email" name="email" placeholder="example@domain.com" autocomplete="email" />
-          </div>
-          <div class="cc-form-field">
-            <label class="cc-form-label">Phone <span class="req">*</span></label>
-            <input required type="tel" name="phone" placeholder="+1 000 000 0000" autocomplete="tel" />
-          </div>
-        </div>
-        <div class="cc-form-submit-row">
-          <button type="submit" class="cc-submit-btn">Submit</button>
-          <span class="cc-form-fine">No spam. No telemarketing. We email your estimate after submit.</span>
-        </div>
-      </form>
+      <div id="hbsp-form-1594e535-b941-4d65-a5c3-b1682441e0f3" class="cc-hs-embed"></div><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script><script>(function(){function init(){if(window.hbspt&&window.hbspt.forms){hbspt.forms.create({region:"na2",portalId:"246141088",formId:"1594e535-b941-4d65-a5c3-b1682441e0f3",target:"#hbsp-form-1594e535-b941-4d65-a5c3-b1682441e0f3",onFormSubmitted:function(){localStorage.setItem("craft_calc_unlocked","1");if(window.unlockCalc)window.unlockCalc();}});}else{setTimeout(init,80);}}init();})();</script>
     </div>
   </div>
 </section>
@@ -555,50 +530,19 @@ $('cc-program').addEventListener('change', e => loadProgram(e.target.value));
 // Init
 loadProgram('ppl');
 
-// Form gate
-const form = $('cc-form');
+// Calculator unlock — called by HubSpot form's onFormSubmitted
 const lock = $('cc-lock');
 const grid = $('cc-grid');
-function unlock() {
+window.unlockCalc = function() {
   if (lock) lock.style.opacity = '0';
   setTimeout(() => { if (lock) lock.style.display = 'none'; }, 350);
   if (grid) grid.classList.remove('locked');
   document.getElementById('estimate')?.scrollIntoView({behavior:'smooth', block:'start'});
-}
+};
 if (localStorage.getItem('craft_calc_unlocked') === '1') {
   if (lock) { lock.style.display = 'none'; }
   if (grid) grid.classList.remove('locked');
 }
-form?.addEventListener('submit', e => {
-  e.preventDefault();
-  const data = new FormData(form);
-  const submitBtn = form.querySelector('button[type=submit]');
-  if (submitBtn) submitBtn.textContent = 'Unlocking…';
-  // Validate
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    if (submitBtn) submitBtn.textContent = 'Submit';
-    return;
-  }
-  // POST to our /api/lead Vercel serverless function → HubSpot CRM upsert
-  const payload = {
-    firstname: data.get('firstName') || '',
-    lastname:  data.get('lastName')  || '',
-    email:     data.get('email')     || '',
-    phone:     data.get('phone')     || '',
-    lead_track: 'cost_calculator',
-    page_uri: location.href,
-    page_name: document.title
-  };
-  fetch('/api/lead', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  }).catch(() => {}).finally(() => {
-    localStorage.setItem('craft_calc_unlocked', '1');
-    if (submitBtn) submitBtn.textContent = 'Unlocked ✓';
-    unlock();
-  });
 });
 </script>
 
