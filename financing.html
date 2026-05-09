@@ -4,21 +4,20 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Financing | CRAFT Flight Training</title>
-<meta name="description" content="Pay in full, finance through Stratus or Meritize, or use VA benefits. Whatever fits your situation — we work with all of them." />
-<!-- SEO: canonical, OpenGraph, Twitter Card -->
+<meta name="description" content="Finance your flight training with Stratus or Meritize. $0 down options, deferred payments while you train, decisions in days. Up to $100K." />
 <link rel="canonical" href="https://flycraftchs.com/financing" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="CRAFT Flight Training" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:title" content="Financing | CRAFT Flight Training" />
-<meta property="og:description" content="Pay in full, finance through Stratus or Meritize, or use VA benefits. Whatever fits your situation — we work with all of them." />
+<meta property="og:description" content="Finance your flight training with Stratus or Meritize. $0 down options, deferred payments while you train, decisions in days." />
 <meta property="og:url" content="https://flycraftchs.com/financing" />
 <meta property="og:image" content="https://flycraftchs.com/assets/discobg.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Financing | CRAFT Flight Training" />
-<meta name="twitter:description" content="Pay in full, finance through Stratus or Meritize, or use VA benefits. Whatever fits your situation — we work with all of them." />
+<meta name="twitter:description" content="Finance your flight training with Stratus or Meritize. $0 down options, deferred payments while you train." />
 <meta name="twitter:image" content="https://flycraftchs.com/assets/discobg.jpg" />
 <meta name="theme-color" content="#E63027" />
 
@@ -29,8 +28,74 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/shared.css">
+<style>
+/* HERO */
+.fn-hero { position: relative; min-height: 60vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 60px; overflow: hidden; }
+.fn-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.7; }
+.fn-hero-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%), radial-gradient(80% 100% at 50% 100%, rgba(10,13,18,0.85) 0%, rgba(10,13,18,0) 60%); pointer-events: none; }
+.fn-hero-sweep { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); filter: blur(0.5px); opacity: 0.5; animation: fnSweep 7s ease-in-out infinite; }
+@keyframes fnSweep { 0%,100% { transform: translateY(8vh); opacity: 0; } 50% { transform: translateY(35vh); opacity: 0.4; } }
+.fn-hero-inner { position: relative; z-index: 5; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%; }
+.fn-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 28px; }
+.fn-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 8px var(--beacon); animation: fnDot 1.4s ease-in-out infinite; display: inline-block; }
+@keyframes fnDot { 0%,100%{opacity:1} 50%{opacity:0.35} }
+.fn-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(48px, 8vw, 110px); line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase; margin: 0 0 24px; }
+.fn-hero h1 .accent { color: var(--beacon); }
+.fn-hero h1 .stroke { -webkit-text-stroke: 1.5px var(--white); -webkit-text-fill-color: transparent; color: transparent; }
+.fn-hero p { font-size: clamp(15px, 1.4vw, 18px); color: rgba(255,255,255,0.78); max-width: 660px; line-height: 1.65; margin: 0 0 28px; }
+.fn-hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 720px; border-top: 1px solid rgba(230,48,39,0.2); padding-top: 24px; margin-top: 8px; }
+@media (max-width: 720px) { .fn-hero-stats { grid-template-columns: repeat(2,1fr); } }
+.fn-hero-stat-num { font-family: var(--display); font-weight: 900; font-size: 32px; color: var(--white); line-height: 1; letter-spacing: -0.02em; }
+.fn-hero-stat-num .accent { color: var(--beacon); }
+.fn-hero-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.45); text-transform: uppercase; margin-top: 4px; }
+
+/* PARTNER CARDS */
+.fn-cards-sec { background: var(--ink); padding: 60px 0 var(--section-py); }
+.fn-cards { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 880px) { .fn-cards { grid-template-columns: 1fr; } }
+.fn-card { position: relative; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 14px; padding: 38px; overflow: hidden; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); display: flex; flex-direction: column; }
+.fn-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.fn-card:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.55); box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); }
+.fn-card-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); padding: 4px 10px; border-radius: 3px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); align-self: flex-start; margin-bottom: 18px; }
+.fn-card-tag.featured { color: var(--beacon); border-color: rgba(230,48,39,0.4); background: rgba(230,48,39,0.06); }
+.fn-card h3 { font-family: var(--display); font-weight: 900; font-size: 42px; line-height: 1; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--white); }
+.fn-card h3 .accent { color: var(--beacon); }
+.fn-card-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: var(--beacon); text-transform: uppercase; margin-bottom: 16px; }
+.fn-card-blurb { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.65; margin-bottom: 26px; flex: 1; }
+.fn-card-feats { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 10px; }
+.fn-card-feats li { position: relative; padding-left: 26px; font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.55; }
+.fn-card-feats li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--beacon); font-weight: 800; }
+.fn-card-feats li strong { color: var(--white); }
+.fn-card-cta { width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 20px; font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--beacon); color: var(--white); border: 1px solid var(--beacon); border-radius: 6px; cursor: pointer; text-decoration: none; transition: all .2s var(--ease); box-shadow: 0 6px 18px rgba(230,48,39,0.3); }
+.fn-card-cta:hover { background: var(--beacon-dark); border-color: var(--beacon-dark); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(230,48,39,0.45); }
+.fn-card-cta::after { content: "→"; transition: transform .2s; }
+.fn-card-cta:hover::after { transform: translateX(3px); }
+
+/* HOW TO CHOOSE */
+.fn-choose { background: linear-gradient(135deg, rgba(230,48,39,0.04) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.2); padding: var(--section-py) 0; }
+.fn-choose-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.fn-choose h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 64px); text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 14px; line-height: 0.95; }
+.fn-choose h2 .accent { color: var(--beacon); }
+.fn-choose-sub { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 620px; line-height: 1.6; margin: 0 0 48px; }
+.fn-choose-table { width: 100%; border-collapse: collapse; background: rgba(20,24,31,0.5); border: 1px solid rgba(230,48,39,0.2); border-radius: 14px; overflow: hidden; }
+.fn-choose-table th, .fn-choose-table td { padding: 18px 22px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.fn-choose-table th { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border-bottom-color: rgba(230,48,39,0.3); }
+.fn-choose-table tr:last-child td { border-bottom: none; }
+.fn-choose-table td { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+.fn-choose-table td:first-child { font-family: var(--display); font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 0.04em; color: #fff; }
+@media (max-width: 720px) { .fn-choose-table thead { display: none; } .fn-choose-table, .fn-choose-table tbody, .fn-choose-table tr, .fn-choose-table td { display: block; width: 100%; } .fn-choose-table tr { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06); } .fn-choose-table td { padding: 6px 22px; border-bottom: none; } .fn-choose-table td:first-child { padding-top: 10px; padding-bottom: 6px; color: var(--beacon); font-size: 15px; } }
+
+/* CTA */
+.fn-cta { background: var(--ink); padding: var(--section-py) 0; text-align: center; position: relative; overflow: hidden; }
+.fn-cta::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.fn-cta-inner { max-width: 760px; margin: 0 auto; padding: 0 var(--gut); }
+.fn-cta h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 64px); text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 18px; line-height: 0.95; }
+.fn-cta h2 .accent { color: var(--beacon); }
+.fn-cta p { font-size: 17px; color: rgba(255,255,255,0.7); margin: 0 0 32px; line-height: 1.55; }
+.fn-cta-row { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+</style>
 </head>
 <body>
 
@@ -39,19 +104,17 @@
     <a href="/" class="brand"><img src="/assets/craft-logo.png" alt="CRAFT Flight Training" /></a>
     <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
     <div class="nav-links" id="nav-links">
-      <div class="nav-item">
-        <button class="nav-link">Train <span class="nav-caret">▼</span></button>
+      <div class="nav-item"><button class="nav-link">Train <span class="nav-caret">▼</span></button>
         <div class="nav-dropdown">
-          <div class="nav-dd-section">
-            <div class="nav-dd-eyebrow">Get Started</div>
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Get Started</div>
             <a href="/discovery-flight" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div><div><div class="nav-dd-title">Discovery Flight</div><div class="nav-dd-desc">$325 · Your first hour at the controls</div></div></a>
           </div>
-          <div class="nav-dd-section">
-            <div class="nav-dd-eyebrow">Programs</div>
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Programs</div>
             <a href="/accelerated" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polygon points="13 19 22 12 13 5 13 19"/><polygon points="2 19 11 12 2 5 2 19"/></svg></div><div><div class="nav-dd-title">Accelerated</div><div class="nav-dd-desc">IFR · CPL · CFI · Multi · Bundles</div></div></a>
             <a href="/flight-school" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">Private · Instrument · Commercial · Instructor</div></div></a>
-            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">Train smarter, fly sharper · $70/hr Redbird FMX</div></div></a>
-          </div>          <div class="nav-dd-section">
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">$70/hr Redbird AATD · 2 sims</div></div></a>
+          </div>
+          <div class="nav-dd-section">
             <a href="/cost-calculator" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg></div><div><div class="nav-dd-title">Cost Calculator</div><div class="nav-dd-desc">Get your personalized estimate</div></div></a>
             <a href="/financing" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7 12 2"/></svg></div><div><div class="nav-dd-title">Financing</div><div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div></div></a>
           </div>
@@ -68,88 +131,111 @@
           </div>
         </div>
       </div>
-      <div class="nav-item">
-        <button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
-        <div class="nav-dropdown">
-          <div class="nav-dd-section">
-            <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div><div><div class="nav-dd-title">The Fleet</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · all tail numbers</div></div></a>
-            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Two AATD Redbird sims · $70/hr</div></div></a>
-          </div>
-        </div>
+      <div class="nav-item"><button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div><div><div class="nav-dd-title">The Fleet</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · all tail numbers</div></div></a>
+          <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Two AATD Redbird sims · $70/hr</div></div></a>
+        </div></div>
       </div>
-      <div class="nav-item">
-        <button class="nav-link">Company <span class="nav-caret">▼</span></button>
-        <div class="nav-dropdown">
-          <div class="nav-dd-section">
-            <a href="/company" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
-            <a href="/team" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><div class="nav-dd-title">The Team</div><div class="nav-dd-desc">Meet our instructors and staff</div></div></a>
-            <a href="/careers" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><div><div class="nav-dd-title">Careers</div><div class="nav-dd-desc">Join the bench · upload your resume</div></div></a>
-            <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
-            <a href="/reviews" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say · video + photo</div></div></a>
-          </div>
-        </div>
+      <div class="nav-item"><button class="nav-link">Company <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/company" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
+          <a href="/team" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><div class="nav-dd-title">The Team</div><div class="nav-dd-desc">Meet our instructors and staff</div></div></a>
+          <a href="/careers" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><div><div class="nav-dd-title">Careers</div><div class="nav-dd-desc">Join the bench · upload your resume</div></div></a>
+          <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
+          <a href="/reviews" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say · video + photo</div></div></a>
+        </div></div>
       </div>
     </div>
     <a href="/discovery-flight" class="btn btn-primary btn-sm btn-arrow">Discovery Flight</a>
   </div>
 </nav>
 
-<header class="stub-hero">
-  <div class="stub-hero-inner">
-    <span class="eyebrow">Pay How You Want</span>
-    <h1 style="margin-top:16px">Financing that <span class="accent">won't ground you.</span></h1>
-    <p>Pay in full, finance through Stratus or Meritize, or use VA benefits. Whatever fits your situation — we work with all of them.</p>
-    <div class="stub-cta">
-      <a href="https://www.stratusfinancial.com" class="btn btn-primary btn-arrow">Apply Through Stratus</a>
-      <a href="/" class="btn btn-ghost">Back to Home</a>
+<header class="fn-hero">
+  <div class="fn-hero-grid"></div>
+  <div class="fn-hero-vignette"></div>
+  <div class="fn-hero-sweep"></div>
+  <div class="fn-hero-inner">
+    <span class="fn-eyebrow">▸ Pay How You Want · $0 Down Options</span>
+    <h1>Financing that<br><span class="accent">won't ground you.</span></h1>
+    <p>You shouldn't have to choose between your timeline and your bank account. We work with two aviation-friendly lenders that fund up to $100K, with $0-down options, deferred payments while you train, and decisions in days — not weeks.</p>
+    <div class="fn-hero-stats">
+      <div><div class="fn-hero-stat-num">$<span class="accent">0</span></div><div class="fn-hero-stat-lbl">Down options</div></div>
+      <div><div class="fn-hero-stat-num">$<span class="accent">100K</span></div><div class="fn-hero-stat-lbl">Max financed</div></div>
+      <div><div class="fn-hero-stat-num">2-5 <span class="accent">days</span></div><div class="fn-hero-stat-lbl">Decision time</div></div>
+      <div><div class="fn-hero-stat-num">2 <span class="accent">lenders</span></div><div class="fn-hero-stat-lbl">Aviation-specific</div></div>
     </div>
   </div>
 </header>
 
-<main class="container" style="padding: 80px var(--gut) 60px; max-width: 880px;">
-<div style="display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));margin-bottom:48px">
-  <div style="background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:32px">
-    <div style="font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;margin-bottom:12px">Stratus Financial</div>
-    <p style="font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.6">Aviation-specific lender. Fast underwriting, $0 down options, deferred payments while training, terms up to 84 months.</p>
-    <ul style="list-style:none;font-size:14px;color:rgba(255,255,255,0.85);display:grid;gap:8px;margin-bottom:24px">
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>$0 down for qualified applicants</li>
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>Up to $100K financed</li>
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>Decision in days</li>
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>No prepayment penalty</li>
-    </ul>
-    <a href="https://www.stratusfinancial.com" class="btn btn-light btn-block btn-arrow" target="_blank" rel="noopener">Apply at Stratus</a>
-  </div>
-  <div style="background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:32px">
-    <div style="font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;margin-bottom:12px">Meritize</div>
-    <p style="font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.6">Career-training lender that uses your academic and military record (not just credit) to qualify. Strong rates for first-time borrowers.</p>
-    <ul style="list-style:none;font-size:14px;color:rgba(255,255,255,0.85);display:grid;gap:8px;margin-bottom:24px">
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>Considers academic + military history</li>
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>Up to $100K financed</li>
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>Fixed-rate options</li>
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>No origination fees</li>
-    </ul>
-    <a href="https://meritize.com" class="btn btn-light btn-block btn-arrow" target="_blank" rel="noopener">Apply at Meritize</a>
-  </div>
-  <div style="background:linear-gradient(180deg,#2a1011,#1a0c0d);border:1px solid rgba(230,48,39,0.4);border-radius:8px;padding:32px">
-    <div style="font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;margin-bottom:12px">VA Benefits</div>
-    <p style="font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.6">CRAFT is VA-approved for Post-9/11 GI Bill, REAP, and Vocational Rehab. We coordinate directly with VA for your tuition and stipend.</p>
-    <ul style="list-style:none;font-size:14px;color:rgba(255,255,255,0.85);display:grid;gap:8px;margin-bottom:24px">
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>Post-9/11 GI Bill eligible</li>
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>Tuition + monthly housing stipend</li>
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>VR&E (Voc Rehab) accepted</li>
-      <li style="padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--beacon)">✓</span>Direct VA coordination</li>
-    </ul>
-    <a href="/contact" class="btn btn-primary btn-block btn-arrow">Talk to Our VA Specialist</a>
-  </div>
-</div>
+<section class="fn-cards-sec">
+  <div class="fn-cards">
 
-<div style="text-align:center;padding:48px;background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:12px">
-  <h2 style="font-family:var(--display);font-weight:800;font-size:36px;text-transform:uppercase;margin-bottom:16px">Not sure which path fits?</h2>
-  <p style="font-size:16px;color:rgba(255,255,255,0.7);max-width:520px;margin:0 auto 24px">Call us. We'll walk through your options, what you'd qualify for, and what makes sense for your timeline.</p>
-  <a href="tel:+18438006498" class="btn btn-primary btn-arrow">843.800.6498</a>
-</div>
+    <article class="fn-card">
+      <span class="fn-card-tag featured">▸ Aviation-specific lender</span>
+      <h3>Stratus <span class="accent">Financial</span></h3>
+      <div class="fn-card-meta">Fastest underwriting · best for full-time students</div>
+      <p class="fn-card-blurb">Built specifically for flight training. Stratus underwrites against your training plan and earning potential, not just credit score. Deferred payments while you're in training. Most students get a decision in 2-5 business days.</p>
+      <ul class="fn-card-feats">
+        <li><strong>$0 down</strong> for qualified applicants</li>
+        <li>Up to <strong>$100,000 financed</strong> per program</li>
+        <li><strong>Deferred payments</strong> while in training</li>
+        <li>Terms up to <strong>84 months</strong></li>
+        <li><strong>No prepayment penalty</strong> — pay it off early</li>
+        <li>Decision in <strong>2-5 business days</strong></li>
+      </ul>
+      <a href="https://www.stratusfinancial.com" target="_blank" rel="noopener" class="fn-card-cta">Apply at Stratus</a>
+    </article>
 
-</main>
+    <article class="fn-card">
+      <span class="fn-card-tag">▸ Career-training lender</span>
+      <h3>Meritize</h3>
+      <div class="fn-card-meta">Considers academics + military · best for first-time borrowers</div>
+      <p class="fn-card-blurb">Meritize looks beyond your credit score — they'll factor in your academic transcripts and military service record to qualify you for better rates. Strong fit if you're a young pilot or veteran without a long credit history.</p>
+      <ul class="fn-card-feats">
+        <li><strong>Considers transcripts + military record</strong>, not just credit</li>
+        <li>Up to <strong>$100,000 financed</strong></li>
+        <li><strong>Fixed-rate</strong> options available</li>
+        <li><strong>No origination fees</strong></li>
+        <li>Cosigner options for younger applicants</li>
+        <li>Online application, fast prequalification</li>
+      </ul>
+      <a href="https://meritize.com" target="_blank" rel="noopener" class="fn-card-cta">Apply at Meritize</a>
+    </article>
+
+  </div>
+</section>
+
+<section class="fn-choose">
+  <div class="fn-choose-inner">
+    <h2>How to <span class="accent">choose.</span></h2>
+    <p class="fn-choose-sub">Both lenders are solid. The right one for you depends on your credit history, timeline, and program. Here's the cheat sheet.</p>
+    <table class="fn-choose-table">
+      <thead>
+        <tr><th>If you are…</th><th>Best fit</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Established credit, 24+, full-time student</td><td>Stratus Financial</td><td>Built for aviation. Fastest underwriting, $0-down most likely to approve.</td></tr>
+        <tr><td>Recent grad / younger pilot, limited credit</td><td>Meritize</td><td>Uses academic record to qualify — no thick credit file needed.</td></tr>
+        <tr><td>Veteran or active military</td><td>Meritize</td><td>Service record factors into rates and approval.</td></tr>
+        <tr><td>Need a cosigner</td><td>Meritize</td><td>Strong cosigner options, easier process for first-time borrowers.</td></tr>
+        <tr><td>Doing accelerated training (need answer fast)</td><td>Stratus Financial</td><td>2-5 day decision means you can lock your cohort start date.</td></tr>
+        <tr><td>Want the lowest fixed rate possible</td><td>Apply to both</td><td>Compare offers. Both let you cancel before signing — no harm in checking.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="fn-cta">
+  <div class="fn-cta-inner">
+    <h2>Not sure which path <span class="accent">fits?</span></h2>
+    <p>Call us. We'll walk through what you'd qualify for and what makes sense for your timeline. No pressure, no upsell — just real numbers.</p>
+    <div class="fn-cta-row">
+      <a href="tel:+18438006498" class="btn btn-primary btn-arrow">843.800.6498</a>
+      <a href="/contact" class="btn btn-ghost">Send a Message</a>
+    </div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="container">
@@ -157,41 +243,26 @@
       <div>
         <div class="footer-brand"><img src="/assets/craft-logo.png" alt="CRAFT" /></div>
         <p class="footer-tag">Charleston's accelerated flight school. Sim-first, Diamond Jet-A, KCHS-based. 95% first-time pass rate. DPE in weeks, not months.</p>
-        <div class="footer-contact">
-          <div class="footer-contact-label">Visit / Call / Email</div>
-          <a href="https://maps.google.com/?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406" target="_blank" rel="noopener">6060 S. Aviation Ave, Suite 109 · North Charleston, SC 29406</a>
-          <a href="tel:+18438006498">843.800.6498</a>
-          <a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a>
-          <span style="display:block;font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;">Mon–Sat 9am–4pm</span>
-        </div>
       </div>
-      <div class="footer-col">
-        <h4>Train</h4>
-        <ul>
-          <li><a href="/discovery-flight">Discovery Flight</a></li>
-          <li><a href="/flight-school">Flight School</a></li>
-          <li><a href="/sim-membership">Sim Membership</a></li>
-          <li><a href="/cost-calculator">Cost Calculator</a></li>
-          <li><a href="/financing">Financing</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Aircraft</h4>
-        <ul>
-          <li><a href="/aircraft#da40">Diamond DA40 NG</a></li>
-          <li><a href="/aircraft#da42">Diamond DA42-VI</a></li>
-          <li><a href="/sim-membership">Redbird FMX Sim</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/company">About CRAFT</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener">Reviews</a></li>
-          <li><a href="/discovery-flight">Book Discovery</a></li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Train</h4><ul>
+        <li><a href="/discovery-flight">Discovery Flight</a></li>
+        <li><a href="/accelerated">Accelerated Programs</a></li>
+        <li><a href="/ifr">Instrument (IFR)</a></li>
+        <li><a href="/commercial">Commercial</a></li>
+        <li><a href="/multi-engine">Multi-Engine</a></li>
+        <li><a href="/cfi">CFI</a></li>
+        <li><a href="/cfii">CFI-I</a></li>
+        <li><a href="/sim-membership">Sim Membership</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Aircraft</h4><ul>
+        <li><a href="/fleet">The Fleet</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="/company">About CRAFT</a></li>
+        <li><a href="/team">The Team</a></li>
+        <li><a href="/careers">Careers</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul></div>
     </div>
       <div class="footer-social">
         <span class="footer-social-lbl">Follow</span>
@@ -206,13 +277,11 @@
     </div>
   </div>
 </footer>
-<script>
-document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
-  document.getElementById('nav-links').classList.toggle('open');
-});
-document.querySelectorAll('.nav-item .nav-link').forEach(b => {
-  b.add
-
 <script src="/assets/chatbot.js" defer></script>
+<script>
+document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
+document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
+</script>
+
 </body>
 </html>
