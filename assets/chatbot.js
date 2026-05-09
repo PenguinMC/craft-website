@@ -56,8 +56,8 @@
 .cb-panel.cb-open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
 .cb-panel::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon, #E63027), transparent); z-index: 5; }
 .cb-head { padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); background: linear-gradient(180deg, rgba(230,48,39,0.08) 0%, transparent 100%); display: flex; align-items: center; gap: 12px; }
-.cb-head-avatar { width: 38px; height: 38px; border-radius: 50%; background: rgba(230,48,39,0.15); border: 1.5px solid var(--beacon, #E63027); display: grid; place-items: center; flex-shrink: 0; box-shadow: 0 0 18px rgba(230,48,39,0.3); overflow: hidden; }
-.cb-head-avatar img { width: 24px; height: 24px; object-fit: contain; display: block; }
+.cb-head-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--beacon, #E63027); border: 1.5px solid var(--beacon, #E63027); display: grid; place-items: center; flex-shrink: 0; box-shadow: 0 0 18px rgba(230,48,39,0.45); overflow: hidden; }
+.cb-head-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .cb-head-info { flex: 1; min-width: 0; }
 .cb-head-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; color: #fff; line-height: 1; }
 .cb-head-status { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; color: #4ade80; text-transform: uppercase; margin-top: 4px; display: flex; align-items: center; gap: 6px; }
