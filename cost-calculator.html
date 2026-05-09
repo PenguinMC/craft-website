@@ -530,8 +530,7 @@ $('cc-program').addEventListener('change', e => loadProgram(e.target.value));
 // Init
 loadProgram('ppl');
 
-// Calculator unlock — called by HubSpot form's onFormSubmitted callback
-// AND by HubSpot's postMessage event (more reliable across embed versions)
+// Calculator unlock — robust detection across HubSpot v2/v3/v4 embeds
 window.unlockCalc = function() {
   const lock = document.getElementById('cc-lock');
   const grid = document.getElementById('cc-grid');
@@ -543,7 +542,7 @@ window.unlockCalc = function() {
   document.getElementById('estimate')?.scrollIntoView({behavior:'smooth', block:'start'});
 };
 
-// Persist + auto-restore on revisit
+// Auto-restore on revisit
 if (localStorage.getItem('craft_calc_unlocked') === '1') {
   const lock = document.getElementById('cc-lock');
   const grid = document.getElementById('cc-grid');
@@ -551,15 +550,52 @@ if (localStorage.getItem('craft_calc_unlocked') === '1') {
   if (grid) grid.classList.remove('locked');
 }
 
-// Backup: listen for HubSpot v2 postMessage callback
+// Trigger 1: HubSpot v2 parent postMessage
 window.addEventListener('message', function(ev) {
   if (!ev.data) return;
-  // HubSpot sends { type: 'hsFormCallback', eventName: 'onFormSubmitted', id: '<form-guid>' }
-  if (ev.data.type === 'hsFormCallback' && ev.data.eventName === 'onFormSubmitted') {
+  const d = ev.data;
+  const eventName = (d.eventName || d.type || '').toLowerCase();
+  if (eventName.includes('formsubmit') || eventName === 'onformsubmitted' ||
+      (d.type === 'hsFormCallback' && (d.eventName === 'onFormSubmitted' || d.eventName === 'onFormSubmit'))) {
     localStorage.setItem('craft_calc_unlocked', '1');
     window.unlockCalc();
   }
 });
+
+// Trigger 2: MutationObserver — fires when HubSpot replaces the form with a thank-you message
+(function watchForm(){
+  const target = document.getElementById('hbsp-form-1594e535-b941-4d65-a5c3-b1682441e0f3');
+  if (!target) { setTimeout(watchForm, 250); return; }
+  const obs = new MutationObserver(function(muts) {
+    for (const m of muts) {
+      for (const node of m.addedNodes) {
+        if (!node || node.nodeType !== 1) continue;
+        const cls = (node.className || '').toString();
+        if (cls.includes('submitted-message') || node.querySelector?.('.submitted-message')) {
+          localStorage.setItem('craft_calc_unlocked', '1');
+          window.unlockCalc();
+          obs.disconnect();
+          return;
+        }
+      }
+      // Also: if the <form> element is removed, treat as submission complete
+      for (const node of m.removedNodes) {
+        if (!node || node.nodeType !== 1) continue;
+        if (node.tagName === 'FORM' || node.querySelector?.('form')) {
+          // Form gone, only fire if a sibling success message is present or no form remains
+          if (!target.querySelector('form') && target.children.length > 0) {
+            localStorage.setItem('craft_calc_unlocked', '1');
+            window.unlockCalc();
+            obs.disconnect();
+            return;
+          }
+        }
+      }
+    }
+  });
+  obs.observe(target, { childList: true, subtree: true });
+  console.log('[craft] cost-calc unlock observer armed');
+})();
 });
 </script>
 
