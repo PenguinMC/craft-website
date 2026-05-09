@@ -20,7 +20,7 @@ const OUT = path.join(SRC, '_dist');
 // Files/folders that should NOT be copied to the production output.
 const SKIP = new Set([
   '_dist', 'node_modules', '.git', '.gitignore', '.github',
-  'build.js', 'package.json', 'package-lock.json', 'yarn.lock',
+  'build.js', 'package.json', 'package-lock.json', 'yarn.lock', 'api',
   'README.md', 'LICENSE.md', 'deploy.bat',
 ]);
 

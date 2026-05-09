@@ -248,16 +248,15 @@
     gateBtn.disabled = true;
     gateBtn.textContent = 'Connecting…';
     const payload = {
-      fields: [
-        { objectTypeId: '0-1', name: 'firstname', value: gFn.value.trim() },
-        { objectTypeId: '0-1', name: 'lastname',  value: gLn.value.trim() },
-        { objectTypeId: '0-1', name: 'email',     value: gEm.value.trim() },
-        { objectTypeId: '0-1', name: 'phone',     value: gPh.value.trim() },
-        { objectTypeId: '0-1', name: 'craft_lead_track', value: 'chatbot' }
-      ],
-      context: { pageUri: location.href, pageName: document.title }
+      firstname: gFn.value.trim(),
+      lastname:  gLn.value.trim(),
+      email:     gEm.value.trim(),
+      phone:     gPh.value.trim(),
+      lead_track: 'chatbot',
+      page_uri: location.href,
+      page_name: document.title
     };
-    fetch('https://api.hsforms.com/submissions/v3/integration/submit/246141088/677d5614-45c0-4da0-ba39-18d7468e946b', {
+    fetch('/api/lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)

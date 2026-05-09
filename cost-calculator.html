@@ -580,18 +580,17 @@ form?.addEventListener('submit', e => {
     if (submitBtn) submitBtn.textContent = 'Submit';
     return;
   }
-  // POST directly to HubSpot Submission API → Contact General form, lead_track = cost_calculator
+  // POST to our /api/lead Vercel serverless function → HubSpot CRM upsert
   const payload = {
-    fields: [
-      { objectTypeId: '0-1', name: 'firstname', value: data.get('firstName') || '' },
-      { objectTypeId: '0-1', name: 'lastname',  value: data.get('lastName')  || '' },
-      { objectTypeId: '0-1', name: 'email',     value: data.get('email')     || '' },
-      { objectTypeId: '0-1', name: 'phone',     value: data.get('phone')     || '' },
-      { objectTypeId: '0-1', name: 'craft_lead_track', value: 'cost_calculator' }
-    ],
-    context: { pageUri: location.href, pageName: document.title }
+    firstname: data.get('firstName') || '',
+    lastname:  data.get('lastName')  || '',
+    email:     data.get('email')     || '',
+    phone:     data.get('phone')     || '',
+    lead_track: 'cost_calculator',
+    page_uri: location.href,
+    page_name: document.title
   };
-  fetch('https://api.hsforms.com/submissions/v3/integration/submit/246141088/677d5614-45c0-4da0-ba39-18d7468e946b', {
+  fetch('/api/lead', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
