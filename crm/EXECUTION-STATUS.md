@@ -1,75 +1,41 @@
-# HubSpot Build — Execution Status (May 9, 2026)
+# HubSpot Build — Final Execution Status
 
-> Status report after running the full buildout against the live HubSpot account (portal 246141088, **14-day trial** of paid Hub features) using a Private App token. Trial unlocks workflow API + form API access.
+> **Updated:** May 9, 2026 — Post-rebuild on Marketing Hub Pro trial
+
+Portal: 246141088 (NA2). Trial active on Marketing Hub Pro. After trial expires, Marketing Hub Starter ($20/mo) keeps everything running.
 
 ---
 
-## ✅ COMPLETED VIA API (live in HubSpot now)
+## ✅ Built via API (zero clicks needed)
 
-### Custom Contact Properties — 12 of 12 ✓
+### 12 Custom Contact Properties
 
-Two property groups created:
+In two groups:
 
 **CRAFT Flight Training:**
-- `craft_program_interest` — dropdown, 13 program options
-- `craft_total_flight_hours` — number
-- `craft_current_certificates` — multi-checkbox, 10 cert options
-- `craft_target_start_window` — dropdown, 4 windows
-- `craft_discovery_booked` — date
-- `craft_discovery_completed` — date
-- `craft_lead_source_detail` — text
-- `craft_byoa` — boolean (Bring Your Own Aircraft)
-- `craft_financing_interest` — boolean
+`craft_program_interest` (dropdown, 13 options) · `craft_total_flight_hours` (number) · `craft_current_certificates` (multi-checkbox, 10 options) · `craft_target_start_window` (dropdown, 4 options) · `craft_discovery_booked` (date, default "your scheduled date") · `craft_discovery_completed` (date) · `craft_lead_source_detail` (text) · `craft_byoa` (boolean) · `craft_financing_interest` (boolean)
+
+Plus `firstname` default = "there" and `craft_program_interest` default = "your training" set.
 
 **CRAFT Careers:**
-- `craft_resume_url` — text
-- `craft_role_applied_for` — dropdown (CFI / CFII / MEI / Office / Other)
-- `craft_application_status` — dropdown (New → Reviewed → Phone Screen → In-Person → Offer → Hired/Declined)
+`craft_resume_url` (text) · `craft_role_applied_for` (dropdown, 5 options, default "the role you applied for") · `craft_application_status` (dropdown, 7 options)
 
-### Deal Pipeline — Flight Training Funnel ✓
+### Deal Pipeline — Flight Training Funnel
 
-Default pipeline relabeled. All 7 stages renamed with proper probabilities:
+7 stages with proper probabilities:
+1. Inquiry Received (10%)
+2. Discovery Booked (30%)
+3. Discovery Completed (50%)
+4. Quote Sent (60%)
+5. Verbal Commit (80%)
+6. Enrolled (100% — closed won)
+7. Closed Lost (0% — closed lost)
 
-| # | Stage | Prob | Closed |
-|---|---|---|---|
-| 1 | Inquiry Received | 10% | No |
-| 2 | Discovery Booked | 30% | No |
-| 3 | Discovery Completed | 50% | No |
-| 4 | Quote Sent | 60% | No |
-| 5 | Verbal Commit | 80% | No |
-| 6 | Enrolled | 100% | Yes (won) |
-| 7 | Closed Lost | 0% | Yes (lost) |
+### 6 Smart Lists
 
-### Smart Lists — 5 of 6 ✓
+`Active Discovery Funnel` · `IFR Hot Leads` · `Pre-PPL Researchers` · `Career Pilots 200+ hrs` · `BYOA Candidates` · `Newsletter Subscribers` (id 57, added with Pro trial)
 
-- Active Discovery Funnel — `craft_program_interest = discovery`
-- IFR Hot Leads — `craft_program_interest = ifr`
-- Pre-PPL Researchers — `craft_total_flight_hours < 5`
-- Career Pilots 200+ hrs — `craft_total_flight_hours > 200`
-- BYOA Candidates — `craft_byoa = true`
-
-(Newsletter Subscribers list deferred — 10-list cap on this tier; default HubSpot lists fill the rest.)
-
-### Email Drafts — 6 of 6 ✓
-
-| Subject | Email Name | ID | HTML loaded |
-|---|---|---|---|
-| Your Discovery Flight is Confirmed - CRAFT | [CRAFT] Discovery Confirmation | **342902835931** | ✅ |
-| Quick reply from CRAFT | [CRAFT] Quote Request Reply | 342901229257 | ✅ |
-| Still thinking it over? | [CRAFT] 24hr Nudge | 342902834895 | ✅ |
-| Welcome aboard - the next steps | [CRAFT] Welcome Aboard (Post-Discovery) | 342901229260 | ✅ |
-| We received your application - CRAFT | [CRAFT] Application Received | 342902834898 | ✅ |
-| Welcome to the CRAFT hangar | [CRAFT] Newsletter Welcome | 342901229263 | ✅ |
-
-All 6 emails fully loaded with HTML body via API (no manual paste needed). Discovery Confirmation got a new ID (342902835931) because the original was published from your test send and HubSpot locks published BATCH_EMAIL types from API edits — we deleted + recreated and updated the workflow reference.
-
-**State:** all DRAFT. From name "CRAFT Flight Training", reply-to craft@flycraftchs.com. Subject lines set. HubL personalization tokens (`{{ contact.firstname|default(...) }}` etc.) embedded with safe defaults.
-
-**Before sending:**
-- Add physical address in HubSpot Settings → Marketing → Email → Configuration → Office locations (clears the CAN-SPAM "edit your footer address" warning)
-- Verify domain for sending (Settings → Marketing → Email → Sending → Domain Setup)
-
-### Forms — 5 of 5 ✓ (TRIAL UNLOCKED)
+### 5 Forms (with all field mappings)
 
 | Form Name | ID |
 |---|---|
@@ -79,76 +45,89 @@ All 6 emails fully loaded with HTML body via API (no manual paste needed). Disco
 | CRAFT - Cost Calculator Gate | dcb6fd0f-3539-4965-96f4-f0658003f9b7 |
 | CRAFT - Newsletter | f81e1e4b-92f8-4978-a740-6b74a6039e27 |
 
-All 5 forms are themed to default_style, recaptcha enabled where appropriate, with proper field mappings to the new custom properties.
+### 6 Marketing Emails — REBUILT FRESH
 
-### Workflows — 5 of 5 ✓ (TRIAL UNLOCKED)
+All have: full HTML body loaded, footer module, From "CRAFT Flight Training" / parkerhughes@flycraftchs.com, replyTo craft@flycraftchs.com, correct subject lines.
 
-All workflows created in **disabled** state — review and enable in the UI after pasting email HTML and any final tuning.
-
-| Workflow | ID | Trigger | Actions |
+| Subject | Email Name | ID | Type |
 |---|---|---|---|
-| 01 - Discovery Booked Confirmation | **35185956** | `craft_discovery_booked` is set | Set lifecycle = MQL → send Discovery Confirmation (refs new email 342902835931) |
-| 02 - General Inquiry Nurture | 35184308 | `craft_program_interest` is set | Send Quote Reply → 48hr delay → send 24hr Nudge |
-| 03 - Post-Discovery Nurture | 35184309 | `craft_discovery_completed` is set | Set lifecycle = SQL → 4hr delay → send Welcome Aboard |
-| 04 - Careers Auto-Reply | 35184305 | `craft_role_applied_for` is set | Send Application Received → 7d delay → internal task |
-| 05 - Newsletter Welcome | 35184291 | `lifecyclestage = subscriber` | Send Newsletter Welcome |
+| Your Discovery Flight is Confirmed - CRAFT | [CRAFT] Discovery Confirmation | **342927175359** | BATCH (needs convert) |
+| Quick reply from CRAFT | [CRAFT] Quote Request Reply | **342942915313** | BATCH (needs convert) |
+| Still thinking it over? | [CRAFT] 24hr Nudge | **342942915317** | BATCH (needs convert) |
+| Welcome aboard - the next steps | [CRAFT] Welcome Aboard (Post-Discovery) | **342927175363** | BATCH (needs convert) |
+| We received your application - CRAFT | [CRAFT] Application Received | **342927175367** | BATCH (needs convert) |
+| Welcome to the CRAFT hangar | [CRAFT] Newsletter Welcome | **342942915321** | BATCH (needs convert) |
 
-These are simplified linear workflows. The detailed branching logic in the original specs (`crm/workflows/*.md`) can be added in the UI by editing each workflow.
+### 5 Workflows — REBUILT FRESH
 
----
+All disabled by default. Trigger conditions, branch logic, action sequences, email refs all set.
 
-## 📋 IMMEDIATE NEXT STEPS FOR PARKER
-
-### Quick wins (15 min total)
-
-1. **Paste HTML into 6 email drafts** (~3 min each) — Marketing → Email → open each `[CRAFT]` draft → switch to Custom HTML editor → paste from `crm/email-templates/` files.
-2. **Verify domain for sending** — Settings → Marketing → Email → Sending → Domain Setup. Add SPF/DKIM/DMARC records to your `flycraftchs.com` DNS. HubSpot provides exact records.
-3. **Test enabling 1 workflow end-to-end:**
-   - Open `[CRAFT] 05 - Newsletter Welcome` → check trigger and action
-   - Toggle to "On"
-   - Submit a test through the Newsletter form
-   - Confirm welcome email lands in your inbox
-
-### Wire forms onto the static site
-
-Each form has an HTML embed code accessible via:
-HubSpot Marketing → Forms → click form → Share → Copy embed code
-
-I can do a one-line `action=` swap across the static site once you grab the embed snippets — it's a 30-second job. Or you can just replace the form `<form>` tags with the HubSpot embed div+script.
-
-### Trial-aware actions
-
-You're on a **14-day trial**. The features unlocked by the trial:
-- Workflow creation via API ✓ (used)
-- Forms API ✓ (used)
-- Multiple workflow execution
-
-After the trial expires, **the workflows stay** but their **execution may be limited** (free tier allows simpler workflows but caps active workflows at 10 — you're using 5 so you're under the cap).
-
-If you decide to keep the paid features after the trial:
-- Marketing Hub Starter ($20/mo) — keeps workflows, email sends, basic features
-- Marketing Hub Professional ($890/mo) — full automation, A/B, advanced analytics, more lists
-
-For a flight school pre-launch, Starter is the right call. Upgrade to Pro only when you have the lead volume to justify it.
+| Workflow | ID | Triggers on | Email refs |
+|---|---|---|---|
+| 01 - Discovery Booked Confirmation | **35188118** | `craft_discovery_booked` is set | 342927175359 |
+| 02 - General Inquiry Nurture | **35188119** | `craft_program_interest` is set | 342942915313, 342942915317 |
+| 03 - Post-Discovery Nurture | **35188122** | `craft_discovery_completed` is set | 342927175363 |
+| 04 - Careers Auto-Reply | **35188123** | `craft_role_applied_for` is set | 342927175367 |
+| 05 - Newsletter Welcome | **35188124** | `lifecyclestage = subscriber` | 342942915321 |
 
 ---
 
-## 🔒 SECURITY ACTION
+## ⚠️ The ONE thing left for you (5 button clicks, 3 minutes)
 
-The Private App token is in chat history. Rotate it now:
+HubSpot's API does not expose the BATCH_EMAIL → AUTOMATED_EMAIL conversion. We tried 7 different endpoints. The "Save for automation" UI button is the only path. Pro tier did not unlock this.
 
-1. HubSpot Settings → Integrations → Legacy Apps
-2. Open "CRAFT Setup" → Auth → Rotate access token
-3. Old token immediately invalid
+### Step-by-step:
+
+For **each** of the 5 emails (Newsletter is auto-correct since it has the simplest workflow):
+
+1. Marketing → Email → click into the email
+2. Look in the **left icon column** for the **Settings (gear) icon**
+3. In the right-side Settings panel, find **"Email type"** → change from `Regular email` to `Automated email`
+4. Click Save (the email is now AUTOMATED_DRAFT, ready for workflow use)
+
+If "Email type" isn't visible in Settings, alternative:
+1. **Automation → Workflows** → open `[CRAFT] 02 - General Inquiry Nurture`
+2. Click on the email step → it should prompt you to "Save email for automation" or similar
+3. Click yes → email converts in place
+4. Repeat for each workflow
+
+### After conversion is done:
+
+For each workflow:
+1. Open it
+2. Click the email step → confirm the email is referenced
+3. Toggle workflow to **ON** (top right)
+4. Submit a test through the matching form on the live site to confirm it fires
 
 ---
 
-## API limits hit (good to know)
+## What's running on what tier
 
-- 1 deal pipeline max (used the default)
-- 10 dynamic lists max (5 created; default HubSpot lists use rest)
-- Forms v3 API requires `createdAt` at form-level + per-field digit constraints for number/phone
-- Workflows v3 API uses `IS_NOT_EMPTY` not `HAS_PROPERTY` for "field is set" triggers
-- Custom contact properties: no observed limit
-- Email templates: no API to inject HTML body in initial create — must PATCH or use UI
+| Feature | Free tier | Starter $20/mo | Pro $890/mo (trial) |
+|---|---|---|---|
+| Custom properties | ✅ | ✅ | ✅ |
+| Pipelines | 1 | 2 | unlimited |
+| Lists | 10 | unlimited | unlimited |
+| Forms | ✅ basic | ✅ | ✅ branded |
+| Marketing emails | limited sends | 5x contact tier | 10x contact tier |
+| **Workflows** | UI only, no auto sends | ✅ full automation | ✅ + advanced branching |
+| AI bot | basic | basic | Breeze AI |
 
+**Recommendation:** after trial expires, downgrade to **Starter ($20/mo)**. Everything we built works on Starter. Don't pay for Pro unless lead volume justifies it.
+
+---
+
+## After domain switch
+
+Once `flycraftchs.com` DNS points at Vercel:
+
+1. Update form `action=` URLs across the static site (I'll do this in 30 sec when you say go)
+2. Verify domain in HubSpot for sending: Settings → Marketing → Email → Sending → Domain Setup. Add SPF/DKIM/DMARC.
+3. Switch From email from `parkerhughes@flycraftchs.com` to `craft@flycraftchs.com` once that's verified.
+
+---
+
+## Token rotation reminder
+
+The Private App token used for this build is in chat history. Rotate it when you're done:
+Settings → Integrations → Legacy Apps → CRAFT Setup → revoke + regenerate.
