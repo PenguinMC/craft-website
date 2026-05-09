@@ -530,8 +530,8 @@ $('cc-program').addEventListener('change', e => loadProgram(e.target.value));
 // Init
 loadProgram('ppl');
 
-// Calculator unlock — fires when user clicks the form's Submit button
-// (zero dependency on HubSpot callbacks; works for v2/v3/v4 embeds)
+// Calculator unlock — triggered by ?unlocked=1 URL param (set by HubSpot form's redirect)
+// or by localStorage flag (set on first unlock so revisits don't re-prompt)
 window.unlockCalc = function() {
   const lock = document.getElementById('cc-lock');
   const grid = document.getElementById('cc-grid');
@@ -541,74 +541,15 @@ window.unlockCalc = function() {
   }
   if (grid) grid.classList.remove('locked');
   document.getElementById('estimate')?.scrollIntoView({behavior:'smooth', block:'start'});
-  console.log('[craft] calc unlocked');
 };
 
-// Auto-restore on revisit
-if (localStorage.getItem('craft_calc_unlocked') === '1') {
-  const lock = document.getElementById('cc-lock');
-  const grid = document.getElementById('cc-grid');
-  if (lock) lock.style.display = 'none';
-  if (grid) grid.classList.remove('locked');
+// Either path triggers the unlock
+const urlUnlocked = new URLSearchParams(location.search).get('unlocked') === '1';
+const lsUnlocked  = localStorage.getItem('craft_calc_unlocked') === '1';
+if (urlUnlocked || lsUnlocked) {
+  localStorage.setItem('craft_calc_unlocked', '1');
+  window.unlockCalc();
 }
-
-// Watch for the submit button anywhere in the form embed.
-// We listen at the document level (event delegation) so it works regardless
-// of when HubSpot injects the form.
-document.addEventListener('click', function(ev) {
-  const btn = ev.target.closest('button[type=submit], input[type=submit], .hs-button');
-  if (!btn) return;
-  const formContainer = btn.closest('[id^="hbsp-form-1594e535"], [id^="hbsp-form-"][id*="1594e535"]');
-  if (!formContainer) return;
-  // Get the form and check validity before unlocking
-  const form = btn.closest('form');
-  // Brief delay so HubSpot finishes its own validation/submit
-  setTimeout(() => {
-    // Only unlock if form actually submitted (success state present OR form gone)
-    if (!form || !document.body.contains(form) ||
-        formContainer.querySelector('.submitted-message') ||
-        formContainer.innerText.toLowerCase().includes('thank')) {
-      localStorage.setItem('craft_calc_unlocked', '1');
-      window.unlockCalc();
-    }
-  }, 1500);
-}, true);
-
-// Backup: HubSpot postMessage listener
-window.addEventListener('message', function(ev) {
-  if (!ev.data) return;
-  const d = ev.data;
-  const evt = JSON.stringify(d).toLowerCase();
-  if (evt.includes('formsubmit') || evt.includes('onformsubmitted')) {
-    localStorage.setItem('craft_calc_unlocked', '1');
-    window.unlockCalc();
-  }
-});
-
-// Backup: MutationObserver on form container
-(function watchForm(){
-  const containers = document.querySelectorAll('[id^="hbsp-form-1594e535"]');
-  if (!containers.length) { setTimeout(watchForm, 250); return; }
-  containers.forEach((target) => {
-    const obs = new MutationObserver(function(muts) {
-      for (const m of muts) {
-        for (const node of m.addedNodes) {
-          if (!node || node.nodeType !== 1) continue;
-          const cls = (node.className || '').toString().toLowerCase();
-          const txt = (node.innerText || '').toLowerCase();
-          if (cls.includes('submitted-message') || txt.includes('thank') || txt.includes('unlocked')) {
-            localStorage.setItem('craft_calc_unlocked', '1');
-            window.unlockCalc();
-            obs.disconnect();
-            return;
-          }
-        }
-      }
-    });
-    obs.observe(target, { childList: true, subtree: true });
-  });
-  console.log('[craft] cost-calc observers armed:', containers.length);
-})();
 });
 </script>
 
