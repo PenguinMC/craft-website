@@ -569,7 +569,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   margin: 28px 0; text-transform: none; letter-spacing: 0;
 }
 .wedge-visual {
-  position: relative; aspect-ratio: 4/5;
+  position: relative; aspect-ratio: 5/4;
   background: linear-gradient(180deg, var(--runway) 0%, var(--ink) 100%);
   border-radius: 8px; overflow: hidden;
   display: grid; place-items: center; padding: 40px; text-align: center;
@@ -830,7 +830,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .sim-bullets li::before { content: "→"; position: absolute; left: 0; top: 0; font-family: var(--display); font-weight: 800; color: var(--beacon); font-size: 22px; line-height: 1; }
 .sim-bullets strong { color: var(--white); font-weight: 700; }
 .sim-visual {
-  position: relative; aspect-ratio: 4/5;
+  position: relative; aspect-ratio: 5/4;
   background: linear-gradient(135deg, var(--runway) 0%, var(--ink) 100%);
   border-radius: 8px; overflow: hidden;
   display: grid; place-items: center;
@@ -865,7 +865,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 @media (max-width: 980px) { .location-grid { grid-template-columns: 1fr; } }
 .location h2 { font-size: clamp(40px, 5vw, 72px); margin: 12px 0 20px; }
 .location p { color: rgba(255,255,255,0.75); font-size: 16px; margin-bottom: 18px; max-width: 480px; }
-.location-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); max-width: 480px; }
+.location-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); max-width: 480px; }
 .location-meta-num { font-family: var(--display); font-weight: 800; font-size: 24px; }
 .location-meta-lbl { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px; }
 .location-address {
@@ -878,7 +878,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .location-address-meta { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 8px; }
 .location-address-meta a { color: var(--beacon); }
 .location-map {
-  aspect-ratio: 4/5;
+  aspect-ratio: 5/4;
   background: var(--ink);
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 8px;
@@ -1662,30 +1662,8 @@ renderCard(0);
 ptFill.style.width = '0%';
 </script>
 
-<!-- WEDGE -->
-<section class="section wedge">
-  <div class="container">
-    <div class="wedge-grid">
-      <div>
-        <span class="eyebrow">Our Method</span>
-        <h2 class="h-display">The airplane is a terrible <span class="accent">classroom.</span></h2>
-        <p>Most flight schools throw you in the cockpit and call it training. We don't. Every CRAFT student starts on the Redbird AATD simulator — and only moves to the airplane once the muscle memory is locked in.</p>
-        <div class="wedge-quote">"Sim-first cuts 30+ hours off the average path to checkride — and saves you a stack of cash doing it."</div>
-        <p>That's not a marketing claim. It's how every accelerated cohort we run finishes ahead of schedule and under budget.</p>
-      </div>
-      <div class="wedge-visual">
-        <div>
-          <div class="wedge-visual-num">30+</div>
-          <div class="wedge-visual-label">Hours Saved</div>
-        </div>
-        <div class="wedge-visual-cap">Avg. hours saved per student vs. national Part 61 benchmark — earned on the simulator before burning AvGas.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ACCELERATED PROGRAMS -->
-<section class="section acc" id="programs">
+<section class="section acc" id="programs" style="padding-top:64px;padding-bottom:48px">
   <div class="container">
     <div class="acc-head">
       <span class="eyebrow">Programs</span>
@@ -1738,30 +1716,6 @@ ptFill.style.width = '0%';
       </div>
     </div>
     <div style="text-align:center;margin-top:32px"><a href="/accelerated" class="btn btn-ghost btn-arrow">View All Programs &amp; Bundles</a></div>
-  </div>
-</section>
-
-<!-- DPE SECTION (CRAFT's wedge) -->
-<section class="section dpe">
-  <div class="container">
-    <div class="dpe-grid">
-      <div>
-        <span class="eyebrow">Our Wedge</span>
-        <h2 class="h-display">The bottleneck <span class="accent">stops here.</span></h2>
-        <p>The biggest reason "accelerated" training breaks down elsewhere isn't instruction — it's checkrides. Across most of the country, pilots wait 4–6 months for a Designated Pilot Examiner.</p>
-        <p>At CRAFT, DPE availability is built into how every program is planned. While exact timing varies, checkrides are typically scheduled in <strong>weeks, not months.</strong> You train, you test, you finish.</p>
-      </div>
-      <div class="dpe-card">
-        <div class="dpe-stat">
-          <div class="dpe-stat-num">96%</div>
-          <div class="dpe-stat-lbl">First-Time<br>Pass Rate</div>
-        </div>
-        <div class="dpe-card-row"><span class="dpe-card-l">Industry DPE wait</span><span class="dpe-card-r bad">4–6 months</span></div>
-        <div class="dpe-card-row"><span class="dpe-card-l">CRAFT DPE wait</span><span class="dpe-card-r good">Weeks</span></div>
-        <div class="dpe-card-row"><span class="dpe-card-l">National pass rate</span><span class="dpe-card-r bad">~75%</span></div>
-        <div class="dpe-card-row"><span class="dpe-card-l">CRAFT pass rate</span><span class="dpe-card-r good">96%</span></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1828,7 +1782,7 @@ ptFill.style.width = '0%';
 </section>
 
 <!-- TESTIMONIAL -->
-<section class="section testi">
+<section class="section testi" style="padding-top:48px;padding-bottom:48px">
   <div class="container">
     <div class="testi-mark">❝</div>
     <div class="testi-quote h-display" style="text-transform:none">
@@ -1842,7 +1796,7 @@ ptFill.style.width = '0%';
 </section>
 
 <!-- LOCATION -->
-<section class="section location" id="location">
+<section class="section location" id="location" style="padding-top:60px;padding-bottom:60px">
   <div class="container">
     <div class="location-grid">
       <div>
@@ -1865,7 +1819,7 @@ ptFill.style.width = '0%';
           </div>
         </div>
       </div>
-      <div class="location-map" style="position:relative;aspect-ratio:1/1;background:var(--ink);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);">
+      <div class="location-map" style="position:relative;aspect-ratio:5/4;background:var(--ink);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);">
         <iframe
           src="https://www.google.com/maps?q=CRAFT+Flight+Training,+6060+S+Aviation+Ave+Suite+109,+North+Charleston,+SC+29406,+USA&output=embed"
           style="position:absolute;inset:0;width:100%;height:100%;border:0;filter:invert(0.92) hue-rotate(180deg) saturate(0.85);"
@@ -1876,7 +1830,7 @@ ptFill.style.width = '0%';
 </section>
 
 <!-- DISCOVERY CTA (bottom) -->
-<section class="section" id="discovery" style="background:var(--ink);padding:var(--section-py) 0;position:relative;overflow:hidden">
+<section class="section" id="discovery" style="background:var(--ink);padding:60px 0;position:relative;overflow:hidden">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(230,48,39,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.06) 1px, transparent 1px);background-size:64px 64px;opacity:0.6;animation:gridDrift 30s linear infinite;pointer-events:none"></div>
   <div style="position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 30%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%);pointer-events:none"></div>
   <div class="container" style="position:relative;z-index:2;text-align:center;max-width:760px">
@@ -1893,7 +1847,7 @@ ptFill.style.width = '0%';
 </section>
 
 <!-- CONTACT FORM -->
-<section class="section" id="contact" style="background:var(--approach);padding:var(--section-py) 0 60px">
+<section class="section" id="contact" style="background:var(--approach);padding:60px 0 60px">
   <div class="container" style="max-width:880px">
     <div style="text-align:center;margin-bottom:48px">
       <span class="eyebrow">Talk to Us</span>
