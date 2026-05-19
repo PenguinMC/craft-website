@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Redbird FMX Sim Membership | CRAFT Flight Training</title>
-<meta name="description" content="The Redbird FMX is the same FAA-approved AATD the airlines and military use. Train at $70/hr, log up to 20 hours toward your IFR rating, and stay sharp between flights. The only Redbird FMX in Charleston." />
+<title>Sim Membership | CRAFT Flight Training</title>
+<meta name="description" content="The Redbird AATD is the same FAA-approved AATD the airlines and military use. We're the flight school in Charleston that owns and operates one in-house. Available to students, rated pilots, and members." />
+<!-- SEO: canonical, OpenGraph, Twitter Card -->
 <link rel="canonical" href="https://flycraftchs.com/sim-membership" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="CRAFT Flight Training" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:title" content="Redbird FMX Sim Membership | CRAFT Flight Training" />
-<meta property="og:description" content="$70/hr Redbird FMX — train smarter, fly sharper. The only AATD-approved Redbird in Charleston, FAA-loggable toward ratings." />
+<meta property="og:title" content="Sim Membership | CRAFT Flight Training" />
+<meta property="og:description" content="The Redbird AATD is the same FAA-approved AATD the airlines and military use. We&#x27;re the flight school in Charleston that owns and operates one in-house. Available to students, rated pilots, and members." />
 <meta property="og:url" content="https://flycraftchs.com/sim-membership" />
-<meta property="og:image" content="https://flycraftchs.com/assets/Alsim-DA42-simulator.jpg" />
+<meta property="og:image" content="https://flycraftchs.com/assets/discobg.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Redbird FMX Sim Membership | CRAFT Flight Training" />
-<meta name="twitter:description" content="$70/hr Redbird FMX — FAA AATD-approved, only one in Charleston." />
-<meta name="twitter:image" content="https://flycraftchs.com/assets/Alsim-DA42-simulator.jpg" />
+<meta name="twitter:title" content="Sim Membership | CRAFT Flight Training" />
+<meta name="twitter:description" content="The Redbird AATD is the same FAA-approved AATD the airlines and military use. We&#x27;re the flight school in Charleston that owns and operates one in-house. Available to students, rated pilots, and members." />
+<meta name="twitter:image" content="https://flycraftchs.com/assets/discobg.jpg" />
 <meta name="theme-color" content="#E63027" />
 
 <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
@@ -28,125 +29,8 @@
 <link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/shared.css">
-<style>
-/* HERO with sim image */
-.sm-hero { position: relative; min-height: 80vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
-.sm-hero-bg { position: absolute; inset: 0; background: url('/assets/Alsim-DA42-simulator.jpg') center/cover no-repeat; opacity: 0.32; filter: saturate(0.6) contrast(1.1); }
-.sm-hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,13,18,0.92) 0%, rgba(10,13,18,0.65) 50%, rgba(10,13,18,0.95) 100%); }
-.sm-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.06) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.5; }
-.sm-hero-sweep { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); filter: blur(0.5px); opacity: 0.5; animation: smSweep 7s ease-in-out infinite; }
-@keyframes smSweep { 0%,100% { transform: translateY(8vh); opacity: 0; } 50% { transform: translateY(45vh); opacity: 0.4; } }
-.sm-hero-inner { position: relative; z-index: 5; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%; }
-.sm-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 28px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-.sm-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 8px var(--beacon); animation: smDot 1.4s ease-in-out infinite; display: inline-block; }
-@keyframes smDot { 0%,100%{opacity:1} 50%{opacity:0.35} }
-.sm-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(54px, 9vw, 130px); line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase; margin: 0 0 24px; }
-.sm-hero h1 .accent { color: var(--beacon); }
-.sm-hero h1 .stroke { -webkit-text-stroke: 1.5px var(--white); -webkit-text-fill-color: transparent; color: transparent; }
-.sm-hero p { font-size: clamp(15px, 1.4vw, 18px); color: rgba(255,255,255,0.82); max-width: 660px; line-height: 1.65; margin: 0 0 32px; }
-.sm-hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 720px; border-top: 1px solid rgba(230,48,39,0.2); padding-top: 24px; margin-top: 8px; }
-@media (max-width: 720px) { .sm-hero-stats { grid-template-columns: repeat(2,1fr); } }
-.sm-hero-stat-num { font-family: var(--display); font-weight: 900; font-size: 32px; color: var(--white); line-height: 1; letter-spacing: -0.02em; }
-.sm-hero-stat-num .accent { color: var(--beacon); }
-.sm-hero-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-top: 4px; }
-
-/* WHY-SIM section with split layout */
-.sm-why { background: var(--ink); padding: var(--section-py) 0; position: relative; }
-.sm-why::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); opacity: 0.4; }
-.sm-why-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; }
-@media (max-width: 880px) { .sm-why-inner { grid-template-columns: 1fr; gap: 40px; } }
-.sm-why-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; margin: 0 0 14px; }
-.sm-why h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 64px); text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 22px; line-height: 0.95; }
-.sm-why h2 .accent { color: var(--beacon); }
-.sm-why-p { font-size: 16px; color: rgba(255,255,255,0.78); line-height: 1.65; margin: 0 0 28px; }
-.sm-why-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
-.sm-why-list li { position: relative; padding: 16px 0 16px 56px; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.55; }
-.sm-why-list li:last-child { border-bottom: none; }
-.sm-why-list li strong { color: #fff; }
-.sm-why-list li::before { content: counter(simlist); counter-increment: simlist; position: absolute; left: 0; top: 16px; width: 36px; height: 36px; border-radius: 50%; background: rgba(230,48,39,0.12); border: 1px solid rgba(230,48,39,0.4); color: var(--beacon); font-family: var(--display); font-weight: 900; display: grid; place-items: center; font-size: 16px; }
-.sm-why-list { counter-reset: simlist; }
-.sm-why-stat { background: linear-gradient(135deg, rgba(230,48,39,0.08) 0%, var(--approach) 100%); border: 1px solid rgba(230,48,39,0.3); border-radius: 14px; padding: 38px; position: relative; overflow: hidden; }
-.sm-why-stat::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
-.sm-why-stat-big { font-family: var(--display); font-weight: 900; font-size: clamp(72px, 10vw, 132px); line-height: 0.9; letter-spacing: -0.02em; color: var(--beacon); margin: 0 0 8px; }
-.sm-why-stat-big .unit { font-size: 0.4em; color: rgba(255,255,255,0.6); }
-.sm-why-stat-cap { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-bottom: 22px; }
-.sm-why-stat-row { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 18px; margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.sm-why-stat-cell { }
-.sm-why-stat-cell .num { font-family: var(--display); font-weight: 800; font-size: 28px; color: #fff; line-height: 1; }
-.sm-why-stat-cell .num .accent { color: var(--beacon); }
-.sm-why-stat-cell .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-top: 6px; }
-
-/* PRICING TIERS */
-.sm-tiers-sec { background: linear-gradient(135deg, rgba(230,48,39,0.04) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.2); padding: var(--section-py) 0; }
-.sm-tiers-head { max-width: var(--maxw); margin: 0 auto 48px; padding: 0 var(--gut); text-align: center; }
-.sm-tiers-head .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; }
-.sm-tiers-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 5.5vw, 72px); text-transform: uppercase; letter-spacing: -0.01em; margin: 12px 0 14px; line-height: 0.95; }
-.sm-tiers-head h2 .accent { color: var(--beacon); }
-.sm-tiers-head p { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 580px; margin: 0 auto; line-height: 1.6; }
-.sm-tiers { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-@media (max-width: 880px) { .sm-tiers { grid-template-columns: 1fr; } }
-.sm-tier { position: relative; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 36px 30px; display: flex; flex-direction: column; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); }
-.sm-tier:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.4); box-shadow: 0 24px 48px -20px rgba(0,0,0,0.5); }
-.sm-tier.featured { border-color: var(--beacon); box-shadow: 0 30px 60px -25px rgba(230,48,39,0.35); }
-.sm-tier.featured::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--beacon); border-radius: 14px 14px 0 0; }
-.sm-tier-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); padding: 6px 14px; background: var(--beacon); color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; border-radius: 4px; box-shadow: 0 6px 14px rgba(230,48,39,0.4); }
-.sm-tier-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin: 0 0 12px; }
-.sm-tier h3 { font-family: var(--display); font-weight: 900; font-size: 32px; line-height: 1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 18px; color: #fff; }
-.sm-tier-price { display: flex; align-items: baseline; gap: 4px; margin: 0 0 12px; }
-.sm-tier-price .num { font-family: var(--display); font-weight: 900; font-size: 64px; color: #fff; line-height: 1; letter-spacing: -0.02em; }
-.sm-tier-price .per { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; text-transform: uppercase; }
-.sm-tier-blurb { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.55; margin: 0 0 24px; min-height: 66px; }
-.sm-tier-feats { list-style: none; padding: 18px 0 24px; margin: 0; border-top: 1px solid rgba(255,255,255,0.08); display: grid; gap: 11px; flex: 1; }
-.sm-tier-feats li { position: relative; padding-left: 22px; font-size: 13.5px; color: rgba(255,255,255,0.78); line-height: 1.5; }
-.sm-tier-feats li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--beacon); font-weight: 800; }
-.sm-tier-feats li strong { color: #fff; }
-.sm-tier-cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 20px; font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 6px; cursor: pointer; text-decoration: none; transition: all .2s var(--ease); }
-.sm-tier-cta.primary { background: var(--beacon); color: #fff; border: 1px solid var(--beacon); box-shadow: 0 6px 18px rgba(230,48,39,0.3); }
-.sm-tier-cta.primary:hover { background: var(--beacon-dark); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(230,48,39,0.45); }
-.sm-tier-cta.ghost { background: transparent; color: var(--beacon); border: 1px solid rgba(230,48,39,0.4); }
-.sm-tier-cta.ghost:hover { background: rgba(230,48,39,0.08); border-color: var(--beacon); }
-.sm-tier-cta::after { content: "→"; transition: transform .2s; }
-.sm-tier-cta:hover::after { transform: translateX(3px); }
-
-/* AATD FACTS */
-.sm-facts { background: var(--ink); padding: var(--section-py) 0; border-top: 1px solid rgba(255,255,255,0.06); }
-.sm-facts-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
-.sm-facts-head { text-align: center; margin: 0 0 56px; }
-.sm-facts-head .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; }
-.sm-facts-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 64px); text-transform: uppercase; letter-spacing: -0.01em; margin: 12px 0 0; line-height: 0.95; }
-.sm-facts-head h2 .accent { color: var(--beacon); }
-.sm-facts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-@media (max-width: 880px) { .sm-facts-grid { grid-template-columns: 1fr; } }
-.sm-fact { background: rgba(20,24,31,0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 28px; transition: border-color .25s ease; }
-.sm-fact:hover { border-color: rgba(230,48,39,0.4); }
-.sm-fact-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; margin: 0 0 12px; }
-.sm-fact h3 { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 10px; color: #fff; }
-.sm-fact p { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.6; margin: 0; }
-
-/* FAQ */
-.sm-faq { background: linear-gradient(180deg, var(--ink) 0%, var(--approach) 100%); padding: var(--section-py) 0; border-top: 1px solid rgba(230,48,39,0.15); }
-.sm-faq-inner { max-width: 880px; margin: 0 auto; padding: 0 var(--gut); }
-.sm-faq h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 60px); text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 36px; line-height: 0.95; text-align: center; }
-.sm-faq h2 .accent { color: var(--beacon); }
-.sm-faq-item { border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; margin-bottom: 12px; overflow: hidden; transition: border-color .25s ease; }
-.sm-faq-item:hover { border-color: rgba(230,48,39,0.3); }
-.sm-faq-q { width: 100%; padding: 20px 24px; background: transparent; border: none; color: #fff; font-family: var(--display); font-weight: 700; font-size: 17px; text-transform: uppercase; letter-spacing: 0.04em; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.sm-faq-q-mark { color: var(--beacon); font-weight: 900; font-size: 22px; transition: transform .25s ease; flex-shrink: 0; }
-.sm-faq-item.open .sm-faq-q-mark { transform: rotate(45deg); }
-.sm-faq-a { max-height: 0; padding: 0 24px; overflow: hidden; transition: max-height .35s ease, padding .25s ease; font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.75); }
-.sm-faq-item.open .sm-faq-a { max-height: 400px; padding: 0 24px 22px; }
-
-/* CTA */
-.sm-cta { background: var(--ink); padding: var(--section-py) 0; text-align: center; position: relative; overflow: hidden; }
-.sm-cta::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
-.sm-cta-inner { max-width: 760px; margin: 0 auto; padding: 0 var(--gut); }
-.sm-cta h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 64px); text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 18px; line-height: 0.95; }
-.sm-cta h2 .accent { color: var(--beacon); }
-.sm-cta p { font-size: 17px; color: rgba(255,255,255,0.7); margin: 0 0 32px; line-height: 1.55; }
-.sm-cta-row { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-</style>
 </head>
 <body>
 
@@ -155,219 +39,117 @@
     <a href="/" class="brand"><img src="/assets/craft-logo.png" alt="CRAFT Flight Training" /></a>
     <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
     <div class="nav-links" id="nav-links">
-      <div class="nav-item"><button class="nav-link">Train <span class="nav-caret">▼</span></button>
+      <div class="nav-item">
+        <button class="nav-link">Train <span class="nav-caret">▼</span></button>
         <div class="nav-dropdown">
-          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Get Started</div>
-            <a href="/discovery-flight" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div><div><div class="nav-dd-title">Discovery Flight</div><div class="nav-dd-desc">$325 · Your first hour at the controls</div></div></a>
-          </div>
-          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Programs</div>
-            <a href="/accelerated" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polygon points="13 19 22 12 13 5 13 19"/><polygon points="2 19 11 12 2 5 2 19"/></svg></div><div><div class="nav-dd-title">Accelerated</div><div class="nav-dd-desc">IFR · CPL · CFI · Multi · Bundles</div></div></a>
-            <a href="/flight-school" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">Private · Instrument · Commercial · Instructor</div></div></a>
-            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">$70/hr Redbird AATD · 2 sims</div></div></a>
+          <div class="nav-dd-section">
+            <div class="nav-dd-eyebrow">Get Started</div>
+            <a href="/discovery-flight" class="nav-dd-item"><div class="nav-dd-icon">✈</div><div><div class="nav-dd-title">Discovery Flight</div><div class="nav-dd-desc">$325 · Your first hour at the controls</div></div></a>
           </div>
           <div class="nav-dd-section">
-            <a href="/cost-calculator" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg></div><div><div class="nav-dd-title">Cost Calculator</div><div class="nav-dd-desc">Get your personalized estimate</div></div></a>
-            <a href="/financing" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7 12 2"/></svg></div><div><div class="nav-dd-title">Financing</div><div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div></div></a>
+            <div class="nav-dd-eyebrow">Programs</div>
+            <a href="/accelerated" class="nav-dd-item"><div class="nav-dd-icon">⊳</div><div><div class="nav-dd-title">Accelerated</div><div class="nav-dd-desc">IFR · CPL · CFI · Multi · Bundles</div></div></a>
+            <a href="/flight-school" class="nav-dd-item"><div class="nav-dd-icon">◈</div><div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">Private · Instrument · Commercial · Instructor</div></div></a>
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▦</div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">Train smarter, fly sharper · $100/hr Redbird AATD</div></div></a>
+          </div>          <div class="nav-dd-section">
+            <a href="/cost-calculator" class="nav-dd-item"><div class="nav-dd-icon">⌗</div><div><div class="nav-dd-title">Cost Calculator</div><div class="nav-dd-desc">Get your personalized estimate</div></div></a>
+            <a href="/financing" class="nav-dd-item"><div class="nav-dd-icon">$</div><div><div class="nav-dd-title">Financing</div><div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div></div></a>
           </div>
         </div>
       </div>
       <div class="nav-item"><button class="nav-link">Courses <span class="nav-caret">▼</span></button>
         <div class="nav-dropdown">
-          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Accelerated Courses</div>
-            <a href="/ifr" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17.5 19a4.5 4.5 0 1 0-1.5-8.79A6 6 0 0 0 4 12.5a4.5 4.5 0 0 0 1 8.5h12.5z"/></svg></div><div><div class="nav-dd-title">Instrument (IFR)</div><div class="nav-dd-desc">7-day finish · DA40NG · Redbird</div></div></a>
-            <a href="/commercial" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="nav-dd-title">Commercial</div><div class="nav-dd-desc">6-day accelerated · DA40NG</div></div></a>
-            <a href="/multi-engine" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M2 12h20M6 8v8M18 8v8M9 4h6v16h-6z"/></svg></div><div><div class="nav-dd-title">Multi-Engine</div><div class="nav-dd-desc">Add-on · CMEL · MEI · ATP prep</div></div></a>
-            <a href="/cfi" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><div class="nav-dd-title">CFI</div><div class="nav-dd-desc">10–12 day initial · right-seat</div></div></a>
-            <a href="/cfii" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="9" cy="7" r="3"/><path d="M3 21v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1"/><path d="M19 13a3 3 0 0 0-1-5.83A4 4 0 0 0 14 5a4 4 0 0 0-3.5 2"/></svg></div><div><div class="nav-dd-title">CFI-I</div><div class="nav-dd-desc">3-day add-on · instrument instructor</div></div></a>
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow" style="color:var(--beacon);margin-top:6px;border-top:1px solid rgba(230,48,39,0.2);padding-top:14px">Your First License</div><a href="/private-pilot" class="nav-dd-item" style="background:rgba(230,48,39,0.06);border:1px solid rgba(230,48,39,0.25);border-radius:8px;padding:12px;margin-bottom:4px"><div class="nav-dd-icon" style="background:var(--beacon);color:#fff;border-color:var(--beacon)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><div><div class="nav-dd-title">Private Pilot (PPL)</div><div class="nav-dd-desc">Self-paced · Class C · DA40 NG · ~58 hrs avg</div></div></a><div class="nav-dd-eyebrow" style="margin-top:12px">Accelerated Courses</div>
+            <a href="/ifr" class="nav-dd-item"><div class="nav-dd-icon">⌖</div><div><div class="nav-dd-title">Instrument (IFR)</div><div class="nav-dd-desc">7-day finish · DA40NG · Redbird</div></div></a>
+            <a href="/commercial" class="nav-dd-item"><div class="nav-dd-icon">⌗</div><div><div class="nav-dd-title">Commercial</div><div class="nav-dd-desc">6-day accelerated · DA40NG</div></div></a>
+            <a href="/multi-engine" class="nav-dd-item"><div class="nav-dd-icon">⏚</div><div><div class="nav-dd-title">Multi-Engine</div><div class="nav-dd-desc">Add-on · CMEL · MEI · ATP prep</div></div></a>
+            <a href="/cfi" class="nav-dd-item"><div class="nav-dd-icon">▷</div><div><div class="nav-dd-title">CFI</div><div class="nav-dd-desc">10–12 day initial · right-seat</div></div></a>
+            <a href="/cfii" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">CFI-I</div><div class="nav-dd-desc">3-day add-on · instrument instructor</div></div></a>
           </div>
         </div>
       </div>
-      <div class="nav-item"><button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
-        <div class="nav-dropdown"><div class="nav-dd-section">
-          <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div><div><div class="nav-dd-title">The Fleet</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · all tail numbers</div></div></a>
-          <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="nav-dd-title">Redbird FMX</div><div class="nav-dd-desc">Two AATD Redbird sims · $70/hr</div></div></a>
-        </div></div>
+      <div class="nav-item">
+        <button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Fleet</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · all tail numbers</div></div></a>
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird AATD</div><div class="nav-dd-desc">AATD Redbird sims · $100/hr</div></div></a>
+          </div>
+        </div>
       </div>
-      <div class="nav-item"><button class="nav-link">Company <span class="nav-caret">▼</span></button>
-        <div class="nav-dropdown"><div class="nav-dd-section">
-          <a href="/company" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
-          <a href="/team" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><div class="nav-dd-title">The Team</div><div class="nav-dd-desc">Meet our instructors and staff</div></div></a>
-          <a href="/careers" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><div><div class="nav-dd-title">Careers</div><div class="nav-dd-desc">Join the bench · upload your resume</div></div></a>
-          <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
-          <a href="/reviews" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say · video + photo</div></div></a>
-        </div></div>
+      <div class="nav-item">
+        <button class="nav-link">Company <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section">
+            <a href="/company" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
+            <a href="/team" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Team</div><div class="nav-dd-desc">Meet our instructors and staff</div></div></a>
+            <a href="/careers" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">Careers</div><div class="nav-dd-desc">Join the bench · upload your resume</div></div></a>
+            <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon">✉</div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
+            <a href="/reviews" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say · video + photo</div></div></a>
+          </div>
+        </div>
       </div>
     </div>
     <a href="/discovery-flight" class="btn btn-primary btn-sm btn-arrow">Discovery Flight</a>
   </div>
 </nav>
 
-<header class="sm-hero">
-  <div class="sm-hero-bg"></div>
-  <div class="sm-hero-overlay"></div>
-  <div class="sm-hero-grid"></div>
-  <div class="sm-hero-sweep"></div>
-  <div class="sm-hero-inner">
-    <span class="sm-eyebrow">▸ Redbird FMX · FAA AATD-Approved · KCHS</span>
-    <h1>Train smarter.<br><span class="accent">Fly sharper.</span></h1>
-    <p>The Redbird FMX is the same FAA-approved Advanced Aviation Training Device the airlines and military use for currency, recurrency, and ratings prep. We're the only flight school in Charleston that owns and operates one in-house — and it's available to students, rated pilots, and members.</p>
-    <div class="sm-hero-stats">
-      <div><div class="sm-hero-stat-num">$<span class="accent">70</span></div><div class="sm-hero-stat-lbl">Per hour</div></div>
-      <div><div class="sm-hero-stat-num"><span class="accent">20</span> hrs</div><div class="sm-hero-stat-lbl">Loggable toward IFR</div></div>
-      <div><div class="sm-hero-stat-num">FAA <span class="accent">AATD</span></div><div class="sm-hero-stat-lbl">Approved sim</div></div>
-      <div><div class="sm-hero-stat-num"><span class="accent">24/7</span></div><div class="sm-hero-stat-lbl">Booking via member portal</div></div>
+<header class="stub-hero">
+  <div class="stub-hero-inner">
+    <span class="eyebrow">Redbird AATD · $100/hr</span>
+    <h1 style="margin-top:16px">Train smarter. <span class="accent">Fly sharper.</span></h1>
+    <p>The Redbird AATD is the same FAA-approved AATD the airlines and military use. We're the flight school in Charleston that owns and operates one in-house. Available to students, rated pilots, and members.</p>
+    <div class="stub-cta">
+      <a href="/discovery-flight" class="btn btn-primary btn-arrow">Try the Sim — $99</a>
+      <a href="/" class="btn btn-ghost">Back to Home</a>
     </div>
   </div>
 </header>
 
-<section class="sm-why">
-  <div class="sm-why-inner">
-    <div>
-      <div class="sm-why-eyebrow">▸ Why train in the sim</div>
-      <h2>The math is <span class="accent">undefeated.</span></h2>
-      <p class="sm-why-p">Every hour in the sim is an hour you didn't burn $185+ on the meter. Combine that with FAA-loggable AATD time toward your rating and the ability to repeat one approach 12 times until it's automatic — and the sim becomes the cheat code most flight schools won't tell you about.</p>
-      <ul class="sm-why-list">
-        <li><strong>$70/hr in the sim vs. $255/hr in the DA40NG.</strong> Burn $740 instead of $1,540 to nail down a checkride maneuver. Your wallet thanks you.</li>
-        <li><strong>Up to 20 hours loggable toward your IFR rating.</strong> The Redbird FMX is FAA AATD-certified — that time counts on your 8710.</li>
-        <li><strong>Pause, freeze, repeat.</strong> Lost the localizer 3 miles out? Reset and try again 30 seconds later. You can't do that in the airplane.</li>
-        <li><strong>Weather no-go = sim go.</strong> Charleston gets thunderstorms in summer and gusty fronts in winter. The sim runs in any weather.</li>
-        <li><strong>Real instrument experience without the pressure.</strong> Fly an ILS to minimums, lose an engine, divert to an alternate — without the consequences. Build the muscle memory before the airplane needs it.</li>
-      </ul>
-    </div>
-    <aside class="sm-why-stat">
-      <div class="sm-why-stat-big">$185<span class="unit">/hr saved</span></div>
-      <div class="sm-why-stat-cap">▸ vs. flying the DA40 NG · per hour</div>
-      <p style="font-size:14px;color:rgba(255,255,255,0.7);line-height:1.6;margin:0">Average accelerated IFR student logs ~10 sim hours during training. That's <strong style="color:#fff">~$1,850 in fuel + airframe time saved</strong> — without giving up a single training hour.</p>
-      <div class="sm-why-stat-row">
-        <div class="sm-why-stat-cell"><div class="num"><span class="accent">95%</span></div><div class="lbl">first-time pass rate</div></div>
-        <div class="sm-why-stat-cell"><div class="num">2 <span class="accent">sims</span></div><div class="lbl">on-site at KCHS</div></div>
-      </div>
-    </aside>
+<main class="container" style="padding: 80px var(--gut) 60px; max-width: 880px;">
+<div style="background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:48px;margin-bottom:48px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px;margin-bottom:32px">
+    <h2 style="font-family:var(--display);font-weight:800;font-size:40px;text-transform:uppercase;letter-spacing:-0.01em;line-height:1">Why train in the sim?</h2>
+    <div style="font-family:var(--display);font-weight:900;font-size:64px;color:var(--beacon);line-height:1">$70<span style="font-size:0.4em;color:rgba(255,255,255,0.6)">/hr</span></div>
   </div>
-</section>
+  <ul style="list-style:none;display:grid;gap:20px">
+    <li style="padding-left:36px;position:relative;font-size:16px;color:rgba(255,255,255,0.85);line-height:1.6"><span style="position:absolute;left:0;top:0;font-family:var(--display);font-weight:800;color:var(--beacon);font-size:22px;line-height:1">→</span><strong style="color:var(--white)">20 sim hours</strong> count toward IFR training and lock in flows before they cost you airplane time.</li>
+    <li style="padding-left:36px;position:relative;font-size:16px;color:rgba(255,255,255,0.85);line-height:1.6"><span style="position:absolute;left:0;top:0;font-family:var(--display);font-weight:800;color:var(--beacon);font-size:22px;line-height:1">→</span><strong style="color:var(--white)">True-to-aircraft realism</strong> with weather, IMC, and emergency scenarios you can't legally practice in the airplane.</li>
+    <li style="padding-left:36px;position:relative;font-size:16px;color:rgba(255,255,255,0.85);line-height:1.6"><span style="position:absolute;left:0;top:0;font-family:var(--display);font-weight:800;color:var(--beacon);font-size:22px;line-height:1">→</span><strong style="color:var(--white)">$100/hr sim time</strong> vs. $255/hr in the DA40NG. Math is undefeated.</li>
+    <li style="padding-left:36px;position:relative;font-size:16px;color:rgba(255,255,255,0.85);line-height:1.6"><span style="position:absolute;left:0;top:0;font-family:var(--display);font-weight:800;color:var(--beacon);font-size:22px;line-height:1">→</span><strong style="color:var(--white)">Available to rated pilots</strong> for currency, IPC prep, type-rating prep — not just students.</li>
+    <li style="padding-left:36px;position:relative;font-size:16px;color:rgba(255,255,255,0.85);line-height:1.6"><span style="position:absolute;left:0;top:0;font-family:var(--display);font-weight:800;color:var(--beacon);font-size:22px;line-height:1">→</span><strong style="color:var(--white)">FAA-approved for IPC</strong>, with the exception of the circling approach and actual landing.</li>
+  </ul>
+</div>
 
-<section class="sm-tiers-sec">
-  <div class="sm-tiers-head">
-    <span class="eyebrow">▸ Three Ways to Fly</span>
-    <h2>Membership <span class="accent">tiers.</span></h2>
-    <p>Pay-per-hour for occasional use, monthly for unlimited time, or grab a one-off demo before you commit. No long-term contracts, cancel anytime.</p>
+<h2 style="font-family:var(--display);font-weight:800;font-size:40px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:24px">Membership <span class="accent">tiers</span></h2>
+<p style="color:rgba(255,255,255,0.7);margin-bottom:32px">Use the sim once or use it weekly — pay accordingly.</p>
+
+<div style="display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-bottom:48px">
+  <div style="background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:32px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--beacon);margin-bottom:8px">Drop In</div>
+    <h3 style="font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;margin-bottom:12px">Pay-Per-Hour</h3>
+    <div style="font-family:var(--display);font-weight:900;font-size:48px;color:var(--white);line-height:1;margin-bottom:8px">$70<span style="font-size:0.4em;color:rgba(255,255,255,0.55)">/hr</span></div>
+    <p style="font-size:14px;color:rgba(255,255,255,0.65);margin-bottom:24px">No commitment. Book the sim when you need it. Ideal for the once-a-quarter currency flight.</p>
+    <a href="/contact" class="btn btn-light btn-block btn-arrow">Book Time</a>
   </div>
-  <div class="sm-tiers">
-
-    <article class="sm-tier">
-      <div class="sm-tier-tag">▸ Occasional users</div>
-      <h3>Pay-Per-Hour</h3>
-      <div class="sm-tier-price"><span class="num">$70</span><span class="per">/HR</span></div>
-      <p class="sm-tier-blurb">Pay only when you fly. Best if you're under 4 sim hours/month or just want to stay current.</p>
-      <ul class="sm-tier-feats">
-        <li>$70/hr Redbird FMX · billed per session</li>
-        <li>Online self-booking via member portal</li>
-        <li>FAA AATD time loggable toward ratings</li>
-        <li>No commitment · pay-as-you-go</li>
-        <li>CFI-led sessions available at $80/hr add-on</li>
-      </ul>
-      <a href="/contact" class="sm-tier-cta ghost">Start Pay-Per-Hour</a>
-    </article>
-
-    <article class="sm-tier featured">
-      <span class="sm-tier-badge">Most Popular</span>
-      <div class="sm-tier-tag">▸ Active students + rated pilots</div>
-      <h3>Pro Membership</h3>
-      <div class="sm-tier-price"><span class="num">$199</span><span class="per">/MO</span></div>
-      <p class="sm-tier-blurb">Unlimited sim time, priority booking, and the lowest cost-per-hour for anyone flying 4+ hours a month.</p>
-      <ul class="sm-tier-feats">
-        <li><strong>Unlimited Redbird FMX</strong> sim hours</li>
-        <li>Priority booking · skip the waitlist</li>
-        <li>Pays off at <strong>~3 hours/month</strong></li>
-        <li>FAA AATD time loggable toward ratings</li>
-        <li>10% off any DA40 / DA42 rental hours</li>
-        <li>Cancel anytime · no long-term contract</li>
-      </ul>
-      <a href="/contact" class="sm-tier-cta primary">Start Pro Membership</a>
-    </article>
-
-    <article class="sm-tier">
-      <div class="sm-tier-tag">▸ First-time pilots + curious</div>
-      <h3>Sim Demo</h3>
-      <div class="sm-tier-price"><span class="num">$99</span><span class="per">ONE-TIME</span></div>
-      <p class="sm-tier-blurb">Try the Redbird FMX before committing. 60 minutes of CFI-led sim time — usually flying a Charleston departure.</p>
-      <ul class="sm-tier-feats">
-        <li>60 minutes Redbird FMX time</li>
-        <li>CFI walks you through every step</li>
-        <li>Fly a real Charleston departure / approach</li>
-        <li>Log it in your sim time book</li>
-        <li>$99 applies as credit toward Discovery Flight</li>
-      </ul>
-      <a href="/contact" class="sm-tier-cta ghost">Book Sim Demo</a>
-    </article>
-
+  <div style="background:linear-gradient(180deg,#2a1011,#1a0c0d);border:1px solid rgba(230,48,39,0.4);border-radius:8px;padding:32px;position:relative">
+    <div style="position:absolute;top:-10px;left:24px;background:var(--beacon);color:var(--white);font-size:10px;font-weight:700;letter-spacing:0.18em;padding:4px 10px;border-radius:3px">BEST VALUE</div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--beacon);margin-bottom:8px">Monthly</div>
+    <h3 style="font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;margin-bottom:12px">Pro Membership</h3>
+    <div style="font-family:var(--display);font-weight:900;font-size:48px;color:var(--white);line-height:1;margin-bottom:8px">$199<span style="font-size:0.4em;color:rgba(255,255,255,0.55)">/mo</span></div>
+    <p style="font-size:14px;color:rgba(255,255,255,0.65);margin-bottom:24px">8 sim hours per month + priority booking + free monthly checkride prep session.</p>
+    <a href="/contact" class="btn btn-primary btn-block btn-arrow">Become a Member</a>
   </div>
-</section>
-
-<section class="sm-facts">
-  <div class="sm-facts-inner">
-    <div class="sm-facts-head">
-      <span class="eyebrow">▸ The AATD difference</span>
-      <h2>Not just a <span class="accent">video game.</span></h2>
-    </div>
-    <div class="sm-facts-grid">
-      <div class="sm-fact">
-        <div class="sm-fact-num">FACT 01</div>
-        <h3>FAA AATD-Certified</h3>
-        <p>The Redbird FMX is approved by the FAA as an Advanced Aviation Training Device under §61.65. That means time logged in it counts toward your IFR rating — up to 20 hours.</p>
-      </div>
-      <div class="sm-fact">
-        <div class="sm-fact-num">FACT 02</div>
-        <h3>Full-Motion Cockpit</h3>
-        <p>Three-axis motion platform. The cockpit physically pitches, rolls, and yaws to match your control inputs. Your inner ear gets the same cues it would in the airplane.</p>
-      </div>
-      <div class="sm-fact">
-        <div class="sm-fact-num">FACT 03</div>
-        <h3>Realistic Avionics</h3>
-        <p>Configurable as G1000, Garmin GTN, or steam gauges. Train in the same panel you'll fly — including DA40 NG and DA42-VI configurations.</p>
-      </div>
-      <div class="sm-fact">
-        <div class="sm-fact-num">FACT 04</div>
-        <h3>Real Weather Modeling</h3>
-        <p>Live weather injection from real METARs. Practice icing, gusty crosswinds, low ceilings, and convective activity — all without leaving the ground.</p>
-      </div>
-      <div class="sm-fact">
-        <div class="sm-fact-num">FACT 05</div>
-        <h3>Approach Library</h3>
-        <p>Every published instrument approach in the U.S. is in the database. Run an ILS to KSAV, an RNAV to KCHS, or a circle-to-land at KMYR — all in one session.</p>
-      </div>
-      <div class="sm-fact">
-        <div class="sm-fact-num">FACT 06</div>
-        <h3>Same Tech as the Airlines</h3>
-        <p>Major regional carriers and Part 141 schools use the same Redbird FMX platform. If it's good enough for SkyWest CFIs, it's good enough for your IFR prep.</p>
-      </div>
-    </div>
+  <div style="background:var(--approach);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:32px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--beacon);margin-bottom:8px">Try It</div>
+    <h3 style="font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;margin-bottom:12px">Sim Demo</h3>
+    <div style="font-family:var(--display);font-weight:900;font-size:48px;color:var(--white);line-height:1;margin-bottom:8px">$99</div>
+    <p style="font-size:14px;color:rgba(255,255,255,0.65);margin-bottom:24px">90-minute demo session. Fly an instrument approach into KCHS in the simulator with a CFI. No experience needed.</p>
+    <a href="/contact" class="btn btn-light btn-block btn-arrow">Try the Sim</a>
   </div>
-</section>
+</div>
 
-<section class="sm-faq">
-  <div class="sm-faq-inner">
-    <h2>Sim FAQ <span class="accent">·</span> What People Actually Ask</h2>
-    <div class="sm-faq-item"><button class="sm-faq-q"><span>Can I log Redbird sim time toward my certificates?</span><span class="sm-faq-q-mark">+</span></button><div class="sm-faq-a">Yes — the Redbird FMX is an FAA-approved AATD. Up to 20 hours count toward your Instrument Rating, 25 hours toward Commercial, and unlimited toward currency (61.57). It must be logged correctly with a CFII signature when used for rating prep.</div></div>
-    <div class="sm-faq-item"><button class="sm-faq-q"><span>Do I need to be a CRAFT student to use the sim?</span><span class="sm-faq-q-mark">+</span></button><div class="sm-faq-a">No. Rated pilots, IFR students from other schools, and even non-pilot enthusiasts can book. Members get priority booking and unlimited time at $199/mo. Anyone can pay-per-hour at $70.</div></div>
-    <div class="sm-faq-item"><button class="sm-faq-q"><span>Can I bring my own CFI?</span><span class="sm-faq-q-mark">+</span></button><div class="sm-faq-a">Yes — bring any CFII you trust. We don't require you to use a CRAFT instructor for sim sessions. If you don't have one, our CFIs are available at $80/hr.</div></div>
-    <div class="sm-faq-item"><button class="sm-faq-q"><span>How do I book a session?</span><span class="sm-faq-q-mark">+</span></button><div class="sm-faq-a">Once you're set up as a member or have completed your first session, you book online via our Flight Circle portal — same system we use for aircraft. Sessions are 1 or 2 hour blocks, 24/7 booking. Just walk in for your reserved time.</div></div>
-    <div class="sm-faq-item"><button class="sm-faq-q"><span>Does the Pro Membership pay off?</span><span class="sm-faq-q-mark">+</span></button><div class="sm-faq-a">Math: $199/mo ÷ $70/hr = ~3 hours/month break-even. If you fly the sim more than 3 hours in a month, you save money. Most active IFR students fly 6-12 hours/month — Pro membership pays for itself 2-4×.</div></div>
-    <div class="sm-faq-item"><button class="sm-faq-q"><span>Can two people use the sim at once?</span><span class="sm-faq-q-mark">+</span></button><div class="sm-faq-a">The FMX is a single-pilot cockpit, so you and a CFI/observer can be in the room — but only one person flies. We do offer paired sessions where two students share one block, taking turns flying. Talk to us about pricing for split sessions.</div></div>
-    <div class="sm-faq-item"><button class="sm-faq-q"><span>Are the sims open during weather days?</span><span class="sm-faq-q-mark">+</span></button><div class="sm-faq-a">Yes — the sim is indoors and runs regardless of weather. We actually see a spike in sim usage during summer thunderstorm season and winter cold fronts because students still want to log productive training hours.</div></div>
-  </div>
-</section>
-
-<section class="sm-cta">
-  <div class="sm-cta-inner">
-    <h2>Ready to <span class="accent">step in?</span></h2>
-    <p>Book a $99 sim demo, jump on Pro Membership, or just call us and we'll figure out the right path for your training stage.</p>
-    <div class="sm-cta-row">
-      <a href="/contact" class="btn btn-primary btn-arrow">Book Sim Demo — $99</a>
-      <a href="tel:+18438006498" class="btn btn-ghost">843.800.6498</a>
-    </div>
-  </div>
-</section>
+</main>
 
 <footer class="footer">
   <div class="container">
@@ -375,26 +157,41 @@
       <div>
         <div class="footer-brand"><img src="/assets/craft-logo.png" alt="CRAFT" /></div>
         <p class="footer-tag">Charleston's accelerated flight school. Sim-first, Diamond Jet-A, KCHS-based. 95% first-time pass rate. DPE in weeks, not months.</p>
+        <div class="footer-contact">
+          <div class="footer-contact-label">Visit / Call / Email</div>
+          <a href="https://maps.google.com/?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406" target="_blank" rel="noopener">6060 S. Aviation Ave, Suite 109 · North Charleston, SC 29406</a>
+          <a href="tel:+18438006498">843.800.6498</a>
+          <a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a>
+          <span style="display:block;font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;">Mon–Sat 9am–4pm</span>
+        </div>
       </div>
-      <div class="footer-col"><h4>Train</h4><ul>
-        <li><a href="/discovery-flight">Discovery Flight</a></li>
-        <li><a href="/accelerated">Accelerated Programs</a></li>
-        <li><a href="/ifr">Instrument (IFR)</a></li>
-        <li><a href="/commercial">Commercial</a></li>
-        <li><a href="/multi-engine">Multi-Engine</a></li>
-        <li><a href="/cfi">CFI</a></li>
-        <li><a href="/cfii">CFI-I</a></li>
-        <li><a href="/sim-membership">Sim Membership</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Aircraft</h4><ul>
-        <li><a href="/fleet">The Fleet</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Company</h4><ul>
-        <li><a href="/company">About CRAFT</a></li>
-        <li><a href="/team">The Team</a></li>
-        <li><a href="/careers">Careers</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul></div>
+      <div class="footer-col">
+        <h4>Train</h4>
+        <ul>
+          <li><a href="/discovery-flight">Discovery Flight</a></li>
+          <li><a href="/flight-school">Flight School</a></li>
+          <li><a href="/sim-membership">Sim Membership</a></li>
+          <li><a href="/cost-calculator">Cost Calculator</a></li>
+          <li><a href="/financing">Financing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Aircraft</h4>
+        <ul>
+          <li><a href="/aircraft#da40">Diamond DA40 NG</a></li>
+          <li><a href="/aircraft#da42">Diamond DA42-VI</a></li>
+          <li><a href="/sim-membership">Redbird AATD Sim</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/company">About CRAFT</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener">Reviews</a></li>
+          <li><a href="/discovery-flight">Book Discovery</a></li>
+        </ul>
+      </div>
     </div>
       <div class="footer-social">
         <span class="footer-social-lbl">Follow</span>
@@ -409,16 +206,13 @@
     </div>
   </div>
 </footer>
-
 <script>
-document.querySelectorAll('.sm-faq-q').forEach(b => b.addEventListener('click', () => b.parentElement.classList.toggle('open')));
-</script>
+document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+document.querySelectorAll('.nav-item .nav-link').forEach(b => {
+  b.add
 
 <script src="/assets/chatbot.js" defer></script>
-<script>
-document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
-document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
-</script>
-
 </body>
 </html>
