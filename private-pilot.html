@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Private Pilot License (PPL) | CRAFT Flight Training</title>
+<meta name="description" content="Your first license. Learn in Diamond DA40 NG glass-cockpit trainers, Class C airspace, real ATC, on-site Redbird AATD. FAA minimum 40 hours, average ~58. Online written-test prep included." />
+<link rel="canonical" href="https://flycraftchs.com/private-pilot" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CRAFT Flight Training" />
+<meta property="og:title" content="Private Pilot License | CRAFT Flight Training" />
+<meta property="og:description" content="Your first license. Class C airspace, glass-cockpit DA40 NG, Redbird AATD, dedicated CFI." />
+<meta property="og:url" content="https://flycraftchs.com/private-pilot" />
+<meta property="og:image" content="https://flycraftchs.com/assets/discobg.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#E63027" />
+
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/shared.css">
+<style>
+.ppl-hero { position: relative; min-height: 75vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
+.ppl-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.7; }
+.ppl-hero-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%), radial-gradient(80% 100% at 50% 100%, rgba(10,13,18,0.85) 0%, rgba(10,13,18,0) 60%); pointer-events: none; }
+.ppl-hero-sweep { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); filter: blur(0.5px); opacity: 0.5; animation: pplSweep 7s ease-in-out infinite; }
+@keyframes pplSweep { 0%,100% { transform: translateY(8vh); opacity: 0; } 50% { transform: translateY(45vh); opacity: 0.4; } }
+.ppl-hero-inner { position: relative; z-index: 5; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%; }
+.ppl-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.08); border: 1px solid rgba(230,48,39,0.4); padding: 8px 14px; border-radius: 4px; margin-bottom: 28px; }
+.ppl-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 8px var(--beacon); animation: pplDot 1.4s ease-in-out infinite; }
+@keyframes pplDot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+.ppl-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(54px, 9vw, 130px); line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase; margin: 0 0 24px; }
+.ppl-hero h1 .accent { color: var(--beacon); }
+.ppl-hero h1 .stroke { -webkit-text-stroke: 1.5px var(--white); -webkit-text-fill-color: transparent; color: transparent; }
+.ppl-hero p { font-size: clamp(16px, 1.5vw, 19px); color: rgba(255,255,255,0.82); max-width: 720px; line-height: 1.6; margin: 0 0 32px; }
+.ppl-hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 720px; border-top: 1px solid rgba(230,48,39,0.2); padding-top: 24px; margin-top: 8px; }
+@media (max-width: 720px) { .ppl-hero-stats { grid-template-columns: repeat(2,1fr); } }
+.ppl-hero-stat-num { font-family: var(--display); font-weight: 900; font-size: 34px; color: var(--white); line-height: 1; letter-spacing: -0.02em; }
+.ppl-hero-stat-num .accent { color: var(--beacon); }
+.ppl-hero-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-top: 6px; }
+.ppl-hero-cta { display: inline-flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+
+/* WHY PPL */
+.ppl-why { background: var(--ink); padding: var(--section-py) 0; border-top: 1px solid rgba(255,255,255,0.06); }
+.ppl-why-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.ppl-why-head { text-align: center; margin: 0 0 56px; }
+.ppl-why-head .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; }
+.ppl-why-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 64px); text-transform: uppercase; letter-spacing: -0.01em; margin: 12px 0 0; line-height: 0.95; }
+.ppl-why-head h2 .accent { color: var(--beacon); }
+.ppl-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+@media (max-width: 880px) { .ppl-why-grid { grid-template-columns: 1fr; } }
+.ppl-why-card { position: relative; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 32px; transition: transform .35s var(--ease), border-color .35s var(--ease); }
+.ppl-why-card:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.5); }
+.ppl-why-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); border-radius: 14px 14px 0 0; }
+.ppl-why-card-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; margin: 0 0 14px; }
+.ppl-why-card h3 { font-family: var(--display); font-weight: 900; font-size: 24px; line-height: 1.1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 12px; color: #fff; }
+.ppl-why-card p { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0; }
+
+/* HOURS BANNER */
+.ppl-hours { background: linear-gradient(135deg, rgba(230,48,39,0.06) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.2); border-bottom: 1px solid rgba(230,48,39,0.2); padding: 80px 0; }
+.ppl-hours-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; }
+@media (max-width: 880px) { .ppl-hours-inner { grid-template-columns: 1fr; gap: 32px; } }
+.ppl-hours-l h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 60px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 18px; }
+.ppl-hours-l h2 .accent { color: var(--beacon); }
+.ppl-hours-l p { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.65; margin: 0; }
+.ppl-hours-r { background: var(--approach); border: 1px solid rgba(230,48,39,0.3); border-radius: 14px; padding: 36px; position: relative; }
+.ppl-hours-r::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); border-radius: 14px 14px 0 0; }
+.ppl-hours-num { font-family: var(--display); font-weight: 900; font-size: 84px; line-height: 0.9; color: var(--beacon); margin: 0 0 6px; }
+.ppl-hours-cap { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.55); text-transform: uppercase; margin: 0 0 20px; }
+.ppl-hours-row { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.ppl-hours-cell .num { font-family: var(--display); font-weight: 800; font-size: 24px; color: #fff; line-height: 1; }
+.ppl-hours-cell .num .accent { color: var(--beacon); }
+.ppl-hours-cell .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-top: 6px; }
+
+/* WHAT'S INCLUDED */
+.ppl-incl { background: var(--ink); padding: var(--section-py) 0; }
+.ppl-incl-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.ppl-incl-head { text-align: center; margin: 0 0 48px; }
+.ppl-incl-head .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; }
+.ppl-incl-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 60px); text-transform: uppercase; letter-spacing: -0.01em; margin: 12px 0 0; line-height: 0.95; }
+.ppl-incl-head h2 .accent { color: var(--beacon); }
+.ppl-incl-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 920px; margin: 0 auto; }
+@media (max-width: 720px) { .ppl-incl-list { grid-template-columns: 1fr; } }
+.ppl-incl-item { background: rgba(20,24,31,0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 22px 26px; display: flex; align-items: flex-start; gap: 16px; transition: border-color .25s ease; }
+.ppl-incl-item:hover { border-color: rgba(230,48,39,0.4); }
+.ppl-incl-item .ck { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: rgba(230,48,39,0.12); border: 1.5px solid var(--beacon); color: var(--beacon); display: grid; place-items: center; font-weight: 800; font-size: 16px; }
+.ppl-incl-item .txt strong { display: block; color: #fff; font-family: var(--display); font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+.ppl-incl-item .txt p { margin: 0; font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.55; }
+
+/* PRICING */
+.ppl-price { background: linear-gradient(180deg, var(--ink) 0%, var(--approach) 100%); padding: var(--section-py) 0; border-top: 1px solid rgba(230,48,39,0.18); }
+.ppl-price-inner { max-width: 880px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
+.ppl-price h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 60px); text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 18px; line-height: 0.95; }
+.ppl-price h2 .accent { color: var(--beacon); }
+.ppl-price-sub { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 580px; margin: 0 auto 36px; line-height: 1.6; }
+.ppl-price-card { background: linear-gradient(135deg, rgba(230,48,39,0.08) 0%, var(--approach) 100%); border: 1px solid rgba(230,48,39,0.4); border-radius: 16px; padding: 44px; position: relative; overflow: hidden; box-shadow: 0 30px 60px -25px rgba(230,48,39,0.3); }
+.ppl-price-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--beacon); border-radius: 16px 16px 0 0; }
+.ppl-price-card .tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; padding: 4px 12px; background: rgba(230,48,39,0.08); border: 1px solid rgba(230,48,39,0.4); border-radius: 4px; margin: 0 0 18px; }
+.ppl-price-card .num { font-family: var(--display); font-weight: 900; font-size: 72px; line-height: 1; color: #fff; margin: 0 0 4px; }
+.ppl-price-card .num .accent { color: var(--beacon); font-size: 0.55em; }
+.ppl-price-card .lbl { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 24px; }
+.ppl-price-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 26px; margin: 0 0 28px; }
+@media (max-width: 600px) { .ppl-price-row { grid-template-columns: 1fr; } }
+.ppl-price-row .cell strong { display: block; font-family: var(--display); font-weight: 800; font-size: 22px; color: var(--beacon); line-height: 1; margin-bottom: 4px; }
+.ppl-price-row .cell small { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.5); text-transform: uppercase; }
+.ppl-price-foot { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.55; max-width: 560px; margin: 16px auto 0; }
+
+/* CTA */
+.ppl-cta { background: var(--ink); padding: var(--section-py) 0; text-align: center; position: relative; }
+.ppl-cta::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.ppl-cta-inner { max-width: 760px; margin: 0 auto; padding: 0 var(--gut); }
+.ppl-cta h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 60px); text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 18px; line-height: 0.95; }
+.ppl-cta h2 .accent { color: var(--beacon); }
+.ppl-cta p { font-size: 17px; color: rgba(255,255,255,0.7); margin: 0 0 32px; line-height: 1.55; }
+.ppl-cta-row { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand"><img src="/assets/craft-logo.png" alt="CRAFT Flight Training" /></a>
+    <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
+    <div class="nav-links" id="nav-links">
+      <div class="nav-item"><button class="nav-link">Train <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Get Started</div>
+            <a href="/discovery-flight" class="nav-dd-item"><div class="nav-dd-icon">✈</div><div><div class="nav-dd-title">Discovery Flight</div><div class="nav-dd-desc">$325 · Your first hour at the controls</div></div></a>
+          </div>
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow">Programs</div>
+            <a href="/accelerated" class="nav-dd-item"><div class="nav-dd-icon">⊳</div><div><div class="nav-dd-title">Accelerated</div><div class="nav-dd-desc">IFR · CPL · CFI · Multi · Bundles</div></div></a>
+            <a href="/flight-school" class="nav-dd-item"><div class="nav-dd-icon">◈</div><div><div class="nav-dd-title">Flight School</div><div class="nav-dd-desc">Private · Instrument · Commercial · Instructor</div></div></a>
+            <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▦</div><div><div class="nav-dd-title">Sim Membership</div><div class="nav-dd-desc">$100/hr Redbird AATD · 2 sims</div></div></a>
+          </div>
+          <div class="nav-dd-section">
+            <a href="/cost-calculator" class="nav-dd-item"><div class="nav-dd-icon">⌗</div><div><div class="nav-dd-title">Cost Calculator</div><div class="nav-dd-desc">Get your personalized estimate</div></div></a>
+            <a href="/financing" class="nav-dd-item"><div class="nav-dd-icon">$</div><div><div class="nav-dd-title">Financing</div><div class="nav-dd-desc">Stratus &amp; Meritize · $0 down options</div></div></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item"><button class="nav-link">Courses <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown">
+          <div class="nav-dd-section"><div class="nav-dd-eyebrow" style="color:var(--beacon);margin-top:6px;border-top:1px solid rgba(230,48,39,0.2);padding-top:14px">Your First License</div><a href="/private-pilot" class="nav-dd-item" style="background:rgba(230,48,39,0.06);border:1px solid rgba(230,48,39,0.25);border-radius:8px;padding:12px;margin-bottom:4px"><div class="nav-dd-icon" style="background:var(--beacon);color:#fff;border-color:var(--beacon)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><div><div class="nav-dd-title">Private Pilot (PPL)</div><div class="nav-dd-desc">Self-paced · Class C · DA40 NG · ~58 hrs avg</div></div></a><div class="nav-dd-eyebrow" style="margin-top:12px">Accelerated Courses</div>
+            <a href="/ifr" class="nav-dd-item"><div class="nav-dd-icon">⌖</div><div><div class="nav-dd-title">Instrument (IFR)</div><div class="nav-dd-desc">7-day finish · DA40NG · Redbird</div></div></a>
+            <a href="/commercial" class="nav-dd-item"><div class="nav-dd-icon">⌗</div><div><div class="nav-dd-title">Commercial</div><div class="nav-dd-desc">6-day accelerated · DA40NG</div></div></a>
+            <a href="/multi-engine" class="nav-dd-item"><div class="nav-dd-icon">⏚</div><div><div class="nav-dd-title">Multi-Engine</div><div class="nav-dd-desc">Add-on · CMEL · MEI · ATP prep</div></div></a>
+            <a href="/cfi" class="nav-dd-item"><div class="nav-dd-icon">▷</div><div><div class="nav-dd-title">CFI</div><div class="nav-dd-desc">10–12 day initial · right-seat</div></div></a>
+            <a href="/cfii" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">CFI-I</div><div class="nav-dd-desc">3-day add-on · instrument instructor</div></div></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item"><button class="nav-link">Aircraft <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/fleet" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Fleet</div><div class="nav-dd-desc">5 × DA40 NG · 1 × DA42-VI · all tail numbers</div></div></a>
+          <a href="/sim-membership" class="nav-dd-item"><div class="nav-dd-icon">▤</div><div><div class="nav-dd-title">Redbird AATD</div><div class="nav-dd-desc">AATD Redbird sims · $100/hr</div></div></a>
+        </div></div>
+      </div>
+      <div class="nav-item"><button class="nav-link">Company <span class="nav-caret">▼</span></button>
+        <div class="nav-dropdown"><div class="nav-dd-section">
+          <a href="/company" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">About CRAFT</div><div class="nav-dd-desc">Charleston's accelerated flight school</div></div></a>
+          <a href="/team" class="nav-dd-item"><div class="nav-dd-icon">⚐</div><div><div class="nav-dd-title">The Team</div><div class="nav-dd-desc">Meet our instructors and staff</div></div></a>
+          <a href="/careers" class="nav-dd-item"><div class="nav-dd-icon">▶</div><div><div class="nav-dd-title">Careers</div><div class="nav-dd-desc">Join the bench · upload your resume</div></div></a>
+          <a href="/contact" class="nav-dd-item"><div class="nav-dd-icon">✉</div><div><div class="nav-dd-title">Contact</div><div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div></div></a>
+          <a href="/reviews" class="nav-dd-item"><div class="nav-dd-icon">★</div><div><div class="nav-dd-title">Reviews</div><div class="nav-dd-desc">What students say · video + photo</div></div></a>
+        </div></div>
+      </div>
+    </div>
+    <a href="/discovery-flight" class="btn btn-primary btn-sm btn-arrow">Discovery Flight</a>
+  </div>
+</nav>
+
+<header class="ppl-hero">
+  <div class="ppl-hero-grid"></div>
+  <div class="ppl-hero-vignette"></div>
+  <div class="ppl-hero-sweep"></div>
+  <div class="ppl-hero-inner">
+    <span class="ppl-eyebrow">Your First License · Self-Paced</span>
+    <h1>Get<br><span class="accent">started.</span></h1>
+    <p>Your Private Pilot License — and your gateway to everything that comes next. Train at your own pace in Diamond DA40 NG glass-cockpit airplanes, work real Class C airspace with ATC, and finish with a dedicated DPE on schedule.</p>
+    <div class="ppl-hero-stats">
+      <div><div class="ppl-hero-stat-num">40 <span class="accent">hrs</span></div><div class="ppl-hero-stat-lbl">FAA Minimum</div></div>
+      <div><div class="ppl-hero-stat-num"><span class="accent">58</span> hrs</div><div class="ppl-hero-stat-lbl">Avg pilot finishes in</div></div>
+      <div><div class="ppl-hero-stat-num">Class <span class="accent">C</span></div><div class="ppl-hero-stat-lbl">KCHS airspace + ATC</div></div>
+      <div><div class="ppl-hero-stat-num"><span class="accent">DA40</span> NG</div><div class="ppl-hero-stat-lbl">FADEC · G1000 glass</div></div>
+    </div>
+    <div class="ppl-hero-cta">
+      <a href="/discovery-flight" class="btn btn-primary btn-arrow">Book Discovery Flight — $325</a>
+      <a href="/contact" class="btn btn-ghost">Talk to a CFI</a>
+    </div>
+  </div>
+</header>
+
+<section class="ppl-why">
+  <div class="ppl-why-inner">
+    <div class="ppl-why-head">
+      <span class="eyebrow">▸ The CRAFT Difference</span>
+      <h2>Enjoy the <span class="accent">greatest</span> learning experience in Charleston.</h2>
+    </div>
+    <div class="ppl-why-grid">
+      <div class="ppl-why-card">
+        <div class="ppl-why-card-num">▸ FACT 01</div>
+        <h3>Class C airspace from day one</h3>
+        <p>KCHS is Class C airspace. Real ATC, real radio work, real wake separation. You learn to communicate clearly with controllers from your first lesson — most students from outlying fields don't get this for years.</p>
+      </div>
+      <div class="ppl-why-card">
+        <div class="ppl-why-card-num">▸ FACT 02</div>
+        <h3>The future of aviation, today</h3>
+        <p>Diamond DA40 NG: composite airframe, Jet-A FADEC engine, Garmin G1000 NXi glass cockpit with synthetic vision, GFC700 digital autopilot. You learn in the platform you'll be flying for the rest of your career.</p>
+      </div>
+      <div class="ppl-why-card">
+        <div class="ppl-why-card-num">▸ FACT 03</div>
+        <h3>Online written + CFI in-person</h3>
+        <p>Online course handles the FAA written prep at your pace. Your CFI complements it with one-on-one ground sessions — applying the book to your actual aircraft, your actual checkride, your actual flying.</p>
+      </div>
+      <div class="ppl-why-card">
+        <div class="ppl-why-card-num">▸ FACT 04</div>
+        <h3>DPE coordination handled</h3>
+        <p>We work directly with local DPEs to schedule your checkride. No waitlist scramble. When you're ready, the date is locked.</p>
+      </div>
+      <div class="ppl-why-card">
+        <div class="ppl-why-card-num">▸ FACT 05</div>
+        <h3>Redbird AATD on-site</h3>
+        <p>$100/hr Redbird AATD sim — FAA-loggable toward your PPL, perfect for emergency procedures, instrument intro, and bad-weather days. Time still counts.</p>
+      </div>
+      <div class="ppl-why-card">
+        <div class="ppl-why-card-num">▸ FACT 06</div>
+        <h3>Train at your own pace</h3>
+        <p>Three months, six months, a year — fly 1, 2, or 3 lessons a week as your schedule allows. We meet you where your life is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ppl-hours">
+  <div class="ppl-hours-inner">
+    <div class="ppl-hours-l">
+      <h2>How many <span class="accent">hours</span> will it actually take?</h2>
+      <p>The FAA minimum is <strong style="color:#fff">40 hours</strong>. The national average is <strong style="color:#fff">58 hours</strong>. Where you land depends on training cadence, weather, and personal aptitude. The cost calculator gives you a real estimate based on your goals.</p>
+    </div>
+    <div class="ppl-hours-r">
+      <div class="ppl-hours-num">58<span style="font-size:0.4em;color:rgba(255,255,255,0.5);font-weight:500"> hrs</span></div>
+      <div class="ppl-hours-cap">▸ Average pilot · national data</div>
+      <div class="ppl-hours-row">
+        <div class="ppl-hours-cell"><div class="num">40 <span class="accent">hrs</span></div><div class="lbl">FAA minimum</div></div>
+        <div class="ppl-hours-cell"><div class="num">3 <span class="accent">mo+</span></div><div class="lbl">Typical timeline</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ppl-incl">
+  <div class="ppl-incl-inner">
+    <div class="ppl-incl-head">
+      <span class="eyebrow">▸ Everything you need</span>
+      <h2>What's <span class="accent">included.</span></h2>
+    </div>
+    <div class="ppl-incl-list">
+      <div class="ppl-incl-item"><div class="ck">✓</div><div class="txt"><strong>Diamond DA40 NG aircraft</strong><p>FADEC Jet-A turbodiesel, G1000 NXi, GFC700 autopilot, synthetic vision, ADS-B in/out. Pay-per-hour wet rental during training.</p></div></div>
+      <div class="ppl-incl-item"><div class="ck">✓</div><div class="txt"><strong>Dedicated instructor</strong><p>One CFI through the entire program. No revolving door of teachers — consistency cuts hours and costs.</p></div></div>
+      <div class="ppl-incl-item"><div class="ck">✓</div><div class="txt"><strong>Online written-test prep</strong><p>Self-paced video course covers everything on the FAA Private Pilot written. Pass it before checkride, log it permanently.</p></div></div>
+      <div class="ppl-incl-item"><div class="ck">✓</div><div class="txt"><strong>One-on-one ground sessions</strong><p>Your CFI complements the online course — applying book material to your actual aircraft, your actual flying.</p></div></div>
+      <div class="ppl-incl-item"><div class="ck">✓</div><div class="txt"><strong>Redbird AATD sim time</strong><p>$100/hr loggable simulator time. Perfect for hood work, emergency procedures, and weather days. Counts toward your rating.</p></div></div>
+      <div class="ppl-incl-item"><div class="ck">✓</div><div class="txt"><strong>DPE coordination</strong><p>We work directly with local DPEs to schedule your checkride. When you're ready, the date is locked.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ppl-price">
+  <div class="ppl-price-inner">
+    <h2>What you'll actually <span class="accent">spend.</span></h2>
+    <p class="ppl-price-sub">Honest estimate based on the FAA's national average pilot. Your cost will vary based on your training cadence and aptitude — use the calculator for your personal number.</p>
+    <div class="ppl-price-card">
+      <span class="tag">▸ Estimate · 58 hours · CRAFT plane</span>
+      <div class="num">~$22<span class="accent">,000</span></div>
+      <div class="lbl">Total program · including everything below</div>
+      <div class="ppl-price-row">
+        <div class="cell"><strong>$255/hr</strong><small>DA40 NG wet rate</small></div>
+        <div class="cell"><strong>$55/hr</strong><small>Instruction</small></div>
+        <div class="cell"><strong>$100/hr</strong><small>Redbird AATD sim</small></div>
+      </div>
+      <div style="font-size:14px;color:rgba(255,255,255,0.8);line-height:1.7;text-align:left">
+        <strong style="color:#fff;display:block;margin-bottom:8px;font-family:var(--display);text-transform:uppercase;letter-spacing:0.04em">Fixed costs included:</strong>
+        ASA Private Pilot training materials · FAA written exam fee (~$175) · DPE checkride fee ($800–1,500, not included in program estimate) · ForeFlight or Garmin Pilot EFB
+      </div>
+      <a href="/cost-calculator" class="btn btn-primary btn-arrow" style="margin-top:28px">Run My Personal Estimate</a>
+      <div class="ppl-price-foot">Estimate above assumes 58 hours total. FAA minimum 40 hours produces a lower cost; ~$17,500. DPE checkride fee varies by examiner. All aircraft hours billed wet (fuel + oil included).</div>
+    </div>
+  </div>
+</section>
+
+<section class="ppl-cta">
+  <div class="ppl-cta-inner">
+    <h2>Ready to <span class="accent">start?</span></h2>
+    <p>Book a $325 Discovery Flight, talk to a real CFI, or run the calculator for your personal estimate. No commitment, no pressure.</p>
+    <div class="ppl-cta-row">
+      <a href="/discovery-flight" class="btn btn-primary btn-arrow">Book Discovery Flight — $325</a>
+      <a href="/cost-calculator" class="btn btn-ghost">Run Cost Calculator</a>
+      <a href="tel:+18438006498" class="btn btn-ghost">843.800.6498</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><img src="/assets/craft-logo.png" alt="CRAFT" /></div>
+        <p class="footer-tag">Charleston's accelerated flight school. Sim-first, Diamond Jet-A, KCHS-based. 95% first-time pass rate. DPE in weeks, not months.</p>
+      </div>
+      <div class="footer-col"><h4>Train</h4><ul>
+        <li><a href="/discovery-flight">Discovery Flight</a></li>
+        <li><a href="/accelerated">Accelerated Programs</a></li>
+        <li><a href="/ifr">Instrument (IFR)</a></li>
+        <li><a href="/commercial">Commercial</a></li>
+        <li><a href="/multi-engine">Multi-Engine</a></li>
+        <li><a href="/cfi">CFI</a></li>
+        <li><a href="/cfii">CFI-I</a></li>
+        <li><a href="/sim-membership">Sim Membership</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Aircraft</h4><ul>
+        <li><a href="/fleet">The Fleet</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="/company">About CRAFT</a></li>
+        <li><a href="/team">The Team</a></li>
+        <li><a href="/careers">Careers</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul></div>
+    </div>
+      <div class="footer-social">
+        <span class="footer-social-lbl">Follow</span>
+        <a href="https://facebook.com/flycraftchs" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+        <a href="https://instagram.com/craftflighttraining" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.81.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.81-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.81-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.81.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.94c-3.15 0-3.51.01-4.75.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.27.83-.39.39-.63.76-.83 1.27-.15.39-.33.97-.38 2.04-.06 1.24-.07 1.6-.07 4.75s.01 3.51.07 4.75c.05 1.07.23 1.65.38 2.04.2.51.44.88.83 1.27.39.39.76.63 1.27.83.39.15.97.33 2.04.38 1.24.06 1.6.07 4.75.07s3.51-.01 4.75-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.27-.83.39-.39.63-.76.83-1.27.15-.39.33-.97.38-2.04.06-1.24.07-1.6.07-4.75s-.01-3.51-.07-4.75c-.05-1.07-.23-1.65-.38-2.04-.2-.51-.44-.88-.83-1.27-.39-.39-.76-.63-1.27-.83-.39-.15-.97-.33-2.04-.38C15.51 4.11 15.15 4.1 12 4.1zM12 7.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9zm0 8.16a3.21 3.21 0 1 0 0-6.42 3.21 3.21 0 0 0 0 6.42zm6.3-8.36a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0z"/></svg></a>
+        <a href="https://linkedin.com/company/craft-flight-training" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+        <a href="https://tiktok.com/@craftflighttraining" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.95a8.16 8.16 0 0 0 4.77 1.52V7.13a4.85 4.85 0 0 1-1.84-.44z"/></svg></a>
+      </div>
+    <div class="footer-bottom">
+      <span>© 2026 CRAFT Flight Training · All Rights Reserved · KCHS</span>
+      <span><a href="/contact">Privacy</a> · <a href="/contact">Terms</a></span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/chatbot.js" defer></script>
+<script>
+document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
+document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
+</script>
+
+</body>
+</html>
