@@ -92,7 +92,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .footer-col ul { list-style: none; display: grid; gap: 10px; }
 .footer-col a { color: rgba(255,255,255,0.7); font-size: 14px; transition: color .2s var(--ease); }
 .footer-col a:hover { color: var(--beacon); }
-.footer-bottom { padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(255,255,255,0.4); }
+.footer-bottom { padding-top: 18px; margin-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(255,255,255,0.4); }
 .footer-bottom a { color: rgba(255,255,255,0.6); }
 .footer-bottom a:hover { color: var(--beacon); }
 
@@ -160,7 +160,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 
 /* FOOTER SOCIAL ICONS */
-.footer-social { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+.footer-social { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; padding-bottom: 4px; border-top: 1px solid rgba(255,255,255,0.08); }
 .footer-social-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.4); text-transform: uppercase; align-self: center; margin-right: 8px; }
 .footer-social a { display: grid !important; place-items: center; flex: 0 0 42px !important; width: 42px !important; height: 42px !important; min-width: 0; box-sizing: border-box; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); transition: all .25s var(--ease); position: relative; overflow: hidden; }
 .footer-social a::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%); opacity: 0; transition: opacity .25s var(--ease); }
@@ -170,292 +170,288 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 @media (max-width: 600px) { .footer-social { justify-content: flex-start; } }
 
 
-/* === HUBSPOT FORMS — TACTICAL DARK OVERRIDE (aggressive) === */
-/* Targets V3 raw-HTML output (.hs-form + .craft-hs cssClass + .hsForm_*) */
-
-.hs-form, form.hs-form, .craft-hs, form.craft-hs,
-.hs-form *, .craft-hs * { box-sizing: border-box; }
-
-.hs-form, form.hs-form, .craft-hs, form.craft-hs {
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
-  color: rgba(255,255,255,0.92) !important;
-  background: transparent !important;
+/* === HUBSPOT FORMS — TACTICAL DARK OVERRIDE === */
+/* Targets all embedded HubSpot forms (.hs-form). Forces dark inputs, beacon-red focus + button. */
+.hs-form,
+.hs-form * {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  box-sizing: border-box;
 }
-
-/* Field group / row layout */
-.hs-form fieldset, .craft-hs fieldset {
-  max-width: 100% !important; border: none !important; padding: 0 !important; margin: 0 0 4px 0 !important;
+.hs-form {
+  color: rgba(255,255,255,0.92);
 }
-.hs-form fieldset.form-columns-2, .craft-hs fieldset.form-columns-2 {
-  display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 14px !important;
+.hs-form fieldset {
+  max-width: 100% !important;
+  border: none;
+  padding: 0;
+  margin: 0 0 4px 0;
 }
-.hs-form fieldset.form-columns-3, .craft-hs fieldset.form-columns-3 {
-  display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 14px !important;
-}
-.hs-form fieldset.form-columns-1 .hs-form-field,
 .hs-form fieldset.form-columns-2 .hs-form-field,
-.hs-form fieldset.form-columns-3 .hs-form-field,
-.craft-hs .hs-form-field {
-  padding: 0 !important; width: 100% !important; min-width: 0 !important; float: none !important; margin-bottom: 14px !important;
+.hs-form fieldset.form-columns-1 .hs-form-field,
+.hs-form fieldset.form-columns-3 .hs-form-field {
+  padding: 0 !important;
+  width: 100% !important;
+  float: none !important;
 }
-.hs-form .input, .craft-hs .input { margin-right: 0 !important; }
-
-/* Labels — JetBrains Mono uppercase 10px */
-.hs-form label, .hs-form .hs-form-field > label,
-.craft-hs label, .craft-hs .hs-form-field > label {
-  display: block !important;
-  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace !important;
-  font-size: 10px !important; font-weight: 600 !important;
-  letter-spacing: 0.18em !important; text-transform: uppercase !important;
+.hs-form fieldset.form-columns-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.hs-form fieldset.form-columns-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+.hs-form .hs-form-field {
+  margin-bottom: 14px;
+}
+.hs-form .input {
+  margin-right: 0 !important;
+}
+/* Labels */
+.hs-form label,
+.hs-form .hs-form-field > label,
+.hs-form .hs-fieldtype-text > label,
+.hs-form .hs-fieldtype-select > label,
+.hs-form .hs-fieldtype-checkbox > label,
+.hs-form .hs-fieldtype-textarea > label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase;
   color: rgba(255,255,255,0.55) !important;
-  margin-bottom: 8px !important; padding: 0 !important;
+  margin-bottom: 8px !important;
+  padding: 0 !important;
 }
-.hs-form label .hs-form-required, .craft-hs label .hs-form-required {
-  color: var(--beacon, #E63027) !important; margin-left: 3px !important; font-weight: 700 !important;
+.hs-form label .hs-form-required {
+  color: var(--beacon) !important;
+  margin-left: 3px;
+  font-weight: 700;
 }
-
-/* Inputs / selects / textareas — DARK */
-.hs-form input[type="text"], .hs-form input[type="email"], .hs-form input[type="tel"],
-.hs-form input[type="number"], .hs-form input[type="url"], .hs-form input[type="password"],
-.hs-form input[type="date"], .hs-form textarea, .hs-form select,
-.craft-hs input[type="text"], .craft-hs input[type="email"], .craft-hs input[type="tel"],
-.craft-hs input[type="number"], .craft-hs input[type="url"], .craft-hs input[type="password"],
-.craft-hs input[type="date"], .craft-hs textarea, .craft-hs select {
-  width: 100% !important; height: 46px !important;
+/* Inputs / textarea / select */
+.hs-form input[type="text"],
+.hs-form input[type="email"],
+.hs-form input[type="tel"],
+.hs-form input[type="number"],
+.hs-form input[type="url"],
+.hs-form input[type="password"],
+.hs-form input[type="date"],
+.hs-form textarea,
+.hs-form select {
+  width: 100% !important;
+  height: 46px;
   padding: 0 14px !important;
   background: rgba(255,255,255,0.04) !important;
-  background-color: rgba(255,255,255,0.04) !important;
-  border: 1px solid rgba(255,255,255,0.12) !important; border-radius: 6px !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-radius: 6px !important;
   color: #fff !important;
   font-family: 'Inter', system-ui, sans-serif !important;
-  font-size: 14px !important; font-weight: 500 !important;
-  outline: none !important; box-shadow: none !important;
-  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease !important;
-  -webkit-appearance: none !important; appearance: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+  -webkit-appearance: none;
+  appearance: none;
 }
-.hs-form textarea, .craft-hs textarea {
-  height: auto !important; min-height: 110px !important; padding: 14px !important; resize: vertical !important; line-height: 1.5 !important;
+.hs-form textarea {
+  height: auto;
+  min-height: 110px;
+  padding: 14px !important;
+  resize: vertical;
+  line-height: 1.5;
 }
-.hs-form input::placeholder, .hs-form textarea::placeholder,
-.craft-hs input::placeholder, .craft-hs textarea::placeholder {
-  color: rgba(255,255,255,0.32) !important;
+.hs-form input::placeholder,
+.hs-form textarea::placeholder {
+  color: rgba(255,255,255,0.35) !important;
 }
-.hs-form input:focus, .hs-form textarea:focus, .hs-form select:focus,
-.craft-hs input:focus, .craft-hs textarea:focus, .craft-hs select:focus {
-  border-color: var(--beacon, #E63027) !important;
+.hs-form input:focus,
+.hs-form textarea:focus,
+.hs-form select:focus {
+  border-color: var(--beacon) !important;
   background: rgba(255,255,255,0.06) !important;
   box-shadow: 0 0 0 3px rgba(230,48,39,0.15) !important;
 }
-
 /* Native select arrow */
-.hs-form select, .craft-hs select {
+.hs-form select {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23E63027' d='M6 8L0 0h12z'/></svg>") !important;
-  background-repeat: no-repeat !important; background-position: right 16px center !important;
-  background-size: 10px !important; padding-right: 38px !important;
+  background-repeat: no-repeat !important;
+  background-position: right 16px center !important;
+  background-size: 10px !important;
+  padding-right: 38px !important;
 }
-.hs-form select option, .craft-hs select option { background: #14181F !important; color: #fff !important; }
-
-/* Checkbox / radio rows */
-.hs-form .inputs-list, .craft-hs .inputs-list { list-style: none !important; padding: 0 !important; margin: 0 !important; }
-.hs-form .inputs-list li, .craft-hs .inputs-list li { margin-bottom: 6px !important; }
-.hs-form .hs-form-checkbox-display, .hs-form .hs-form-booleancheckbox-display, .hs-form .hs-form-radio-display,
-.craft-hs .hs-form-checkbox-display, .craft-hs .hs-form-booleancheckbox-display, .craft-hs .hs-form-radio-display {
-  display: inline-flex !important; align-items: flex-start !important; gap: 10px !important;
-  cursor: pointer !important; font-size: 14px !important; font-weight: 400 !important;
-  color: rgba(255,255,255,0.78) !important; text-transform: none !important; letter-spacing: normal !important;
-  font-family: 'Inter', system-ui, sans-serif !important; line-height: 1.5 !important; padding: 0 !important;
+.hs-form select option {
+  background: var(--ink);
+  color: #fff;
 }
-.hs-form input[type="checkbox"], .hs-form input[type="radio"],
-.craft-hs input[type="checkbox"], .craft-hs input[type="radio"] {
-  appearance: none !important; -webkit-appearance: none !important;
-  width: 18px !important; height: 18px !important; flex-shrink: 0 !important;
-  margin: 1px 0 0 0 !important; background: rgba(255,255,255,0.04) !important;
-  border: 1px solid rgba(255,255,255,0.25) !important; border-radius: 4px !important;
-  cursor: pointer !important; position: relative !important; transition: all .15s ease !important;
+/* Checkbox / radio */
+.hs-form .inputs-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
-.hs-form input[type="radio"], .craft-hs input[type="radio"] { border-radius: 50% !important; }
-.hs-form input[type="checkbox"]:checked, .hs-form input[type="radio"]:checked,
-.craft-hs input[type="checkbox"]:checked, .craft-hs input[type="radio"]:checked {
-  background: var(--beacon, #E63027) !important; border-color: var(--beacon, #E63027) !important;
+.hs-form .inputs-list li {
+  margin-bottom: 6px;
 }
-.hs-form input[type="checkbox"]:checked::after, .craft-hs input[type="checkbox"]:checked::after {
-  content: "" !important; position: absolute !important; left: 5px !important; top: 2px !important;
-  width: 5px !important; height: 9px !important; border: solid #fff !important;
-  border-width: 0 2px 2px 0 !important; transform: rotate(45deg) !important;
+.hs-form .hs-form-checkbox-display,
+.hs-form .hs-form-booleancheckbox-display,
+.hs-form .hs-form-radio-display {
+  display: inline-flex !important;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: rgba(255,255,255,0.78) !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  line-height: 1.5;
+  padding: 0 !important;
 }
-.hs-form input[type="radio"]:checked::after, .craft-hs input[type="radio"]:checked::after {
-  content: "" !important; position: absolute !important; inset: 4px !important; border-radius: 50% !important; background: #fff !important;
+.hs-form input[type="checkbox"],
+.hs-form input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin: 1px 0 0 0 !important;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: all .15s ease;
 }
-
+.hs-form input[type="radio"] {
+  border-radius: 50%;
+}
+.hs-form input[type="checkbox"]:checked,
+.hs-form input[type="radio"]:checked {
+  background: var(--beacon);
+  border-color: var(--beacon);
+}
+.hs-form input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px; top: 2px;
+  width: 5px; height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.hs-form input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: #fff;
+}
 /* Submit button */
-.hs-form .hs-button, .hs-form input[type="submit"], .hs-form button[type="submit"],
-.craft-hs .hs-button, .craft-hs input[type="submit"], .craft-hs button[type="submit"] {
-  display: inline-flex !important; align-items: center !important; justify-content: center !important;
-  width: 100% !important; height: 52px !important;
-  margin-top: 8px !important; padding: 0 28px !important;
-  background: linear-gradient(135deg, var(--beacon, #E63027) 0%, var(--beacon-dark, #B81E16) 100%) !important;
-  background-color: var(--beacon, #E63027) !important;
-  border: 1px solid var(--beacon, #E63027) !important; border-radius: 6px !important;
+.hs-form .hs-button,
+.hs-form input[type="submit"] {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  height: 52px;
+  margin-top: 8px;
+  padding: 0 28px !important;
+  background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%) !important;
+  border: 1px solid var(--beacon) !important;
+  border-radius: 6px !important;
   color: #fff !important;
   font-family: 'Barlow Condensed', 'Inter', system-ui, sans-serif !important;
-  font-weight: 700 !important; font-size: 16px !important;
-  letter-spacing: 0.12em !important; text-transform: uppercase !important;
-  cursor: pointer !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  cursor: pointer;
   transition: transform .15s ease, box-shadow .2s ease, filter .2s ease !important;
-  box-shadow: 0 8px 24px rgba(230,48,39,0.25) !important;
+  box-shadow: 0 8px 24px rgba(230,48,39,0.25);
 }
-.hs-form .hs-button:hover, .hs-form input[type="submit"]:hover, .hs-form button[type="submit"]:hover,
-.craft-hs .hs-button:hover, .craft-hs input[type="submit"]:hover, .craft-hs button[type="submit"]:hover {
-  transform: translateY(-1px) !important; filter: brightness(1.08) !important;
-  box-shadow: 0 12px 28px rgba(230,48,39,0.4) !important;
+.hs-form .hs-button:hover,
+.hs-form input[type="submit"]:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow: 0 12px 28px rgba(230,48,39,0.4);
 }
-.hs-form .actions, .craft-hs .actions { margin-top: 4px !important; padding: 0 !important; }
-
-/* Help text + legal */
-.hs-form .hs-richtext, .hs-form .hs-richtext p, .hs-form legend.hs-field-desc,
-.craft-hs .hs-richtext, .craft-hs .hs-richtext p, .craft-hs legend.hs-field-desc {
-  font-size: 12px !important; color: rgba(255,255,255,0.5) !important; line-height: 1.55 !important; margin: 0 0 10px 0 !important;
+.hs-form .hs-button:active,
+.hs-form input[type="submit"]:active {
+  transform: translateY(0);
+  filter: brightness(0.95);
 }
-.hs-form .hs-richtext a, .craft-hs .hs-richtext a { color: var(--beacon, #E63027) !important; text-decoration: underline !important; }
-
-/* Errors */
-.hs-form .hs-error-msgs, .hs-form .hs-error-msg,
-.hs-form ul.no-list label.hs-error-msg,
-.craft-hs .hs-error-msgs, .craft-hs .hs-error-msg,
-.craft-hs ul.no-list label.hs-error-msg {
-  list-style: none !important; padding: 0 !important; margin: 6px 0 0 0 !important;
+.hs-form .actions {
+  margin-top: 4px;
+  padding: 0 !important;
+}
+/* Help / legal text */
+.hs-form .hs-richtext,
+.hs-form .hs-richtext p,
+.hs-form legend.hs-field-desc {
+  font-size: 12px !important;
+  color: rgba(255,255,255,0.5) !important;
+  line-height: 1.55 !important;
+  margin: 0 0 10px 0 !important;
+}
+.hs-form .hs-richtext a {
+  color: var(--beacon) !important;
+  text-decoration: underline;
+}
+/* Validation errors */
+.hs-form .hs-error-msgs,
+.hs-form .hs-error-msg,
+.hs-form ul.no-list label.hs-error-msg {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 6px 0 0 0 !important;
   color: #ff6b5b !important;
   font-family: 'JetBrains Mono', monospace !important;
-  font-size: 11px !important; font-weight: 600 !important;
-  letter-spacing: 0.04em !important; text-transform: none !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: none !important;
 }
-.hs-form .hs-input.invalid.error, .hs-form input.invalid.error,
-.hs-form textarea.invalid.error, .hs-form select.invalid.error,
-.craft-hs .hs-input.invalid.error, .craft-hs input.invalid.error,
-.craft-hs textarea.invalid.error, .craft-hs select.invalid.error {
-  border-color: #ff6b5b !important; background: rgba(255,107,91,0.06) !important;
+.hs-form .hs-input.invalid.error,
+.hs-form input.invalid.error,
+.hs-form textarea.invalid.error,
+.hs-form select.invalid.error {
+  border-color: #ff6b5b !important;
+  background: rgba(255,107,91,0.06) !important;
 }
-
-/* Submitted thank-you */
-.submitted-message, .craft-hs + .submitted-message,
-.hs-form-frame .submitted-message {
-  padding: 32px 20px !important; text-align: center !important;
-  color: rgba(255,255,255,0.85) !important; font-size: 15px !important;
-  background: rgba(74,222,128,0.06) !important;
-  border: 1px solid rgba(74,222,128,0.25) !important; border-radius: 8px !important;
+/* Submitted thank-you state */
+.submitted-message {
+  padding: 32px 20px !important;
+  text-align: center;
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+  background: rgba(74,222,128,0.06);
+  border: 1px solid rgba(74,222,128,0.25);
+  border-radius: 8px;
 }
-.submitted-message p { margin: 0 !important; }
-
-/* reCAPTCHA badge — tuck out of the way */
-.grecaptcha-badge { visibility: hidden !important; }
-
-/* Hide HubSpot's default container backgrounds */
-.hs-form-frame, .hbspt-form, [id^="hbsp-form-"] {
-  width: 100% !important; background: transparent !important;
+.submitted-message p { margin: 0; }
+/* reCAPTCHA v3 badge — tuck out of the way (ToS still satisfied) */
+.grecaptcha-badge {
+  visibility: hidden !important;
 }
-
+/* hCaptcha / reCAPTCHA v2 — leave visible but theme container */
+.hs-form .hs_recaptcha,
+.hs-form .grecaptcha {
+  margin-top: 10px;
+}
+/* HubSpot Forms v3 frame container baseline */
+.hs-form-frame,
+.hbspt-form {
+  width: 100%;
+}
 /* Mobile */
 @media (max-width: 640px) {
-  .hs-form fieldset.form-columns-2, .hs-form fieldset.form-columns-3,
-  .craft-hs fieldset.form-columns-2, .craft-hs fieldset.form-columns-3 {
-    grid-template-columns: 1fr !important;
+  .hs-form fieldset.form-columns-2,
+  .hs-form fieldset.form-columns-3 {
+    grid-template-columns: 1fr;
   }
 }
-
-/* === HUBSPOT FILE UPLOAD === */
-.hs-form .hs-fieldtype-file input[type="file"] {
-  width: 100% !important;
-  height: auto;
-  padding: 14px !important;
-  background: rgba(255,255,255,0.04) !important;
-  border: 1px dashed rgba(255,255,255,0.18) !important;
-  border-radius: 6px !important;
-  color: rgba(255,255,255,0.78) !important;
-  font-family: 'Inter', system-ui, sans-serif !important;
-  font-size: 13px !important;
-  cursor: pointer;
-  transition: border-color .2s ease, background .2s ease;
-}
-.hs-form .hs-fieldtype-file input[type="file"]:hover {
-  border-color: var(--beacon) !important;
-  background: rgba(230,48,39,0.04) !important;
-}
-.hs-form .hs-fieldtype-file input[type="file"]::-webkit-file-upload-button {
-  margin-right: 12px;
-  padding: 8px 14px;
-  background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%);
-  border: none;
-  border-radius: 4px;
-  color: #fff;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.hs-form .hs-fieldtype-file input[type="file"]::file-selector-button {
-  margin-right: 12px;
-  padding: 8px 14px;
-  background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%);
-  border: none;
-  border-radius: 4px;
-  color: #fff;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-
-/* === CRAFT NATIVE FORMS — replace HubSpot embeds === */
-.craft-form { display: grid; gap: 14px; }
-.craft-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.craft-form-row.three { grid-template-columns: 1fr 1fr 1fr; }
-@media (max-width: 600px) { .craft-form-row, .craft-form-row.three { grid-template-columns: 1fr; } }
-.craft-form-field { display: grid; gap: 6px; min-width: 0; }
-.craft-form-field label { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
-.craft-form-field label .req { color: var(--beacon); margin-left: 3px; }
-.craft-form input[type=text],
-.craft-form input[type=email],
-.craft-form input[type=tel],
-.craft-form input[type=number],
-.craft-form input[type=url],
-.craft-form select,
-.craft-form textarea {
-  width: 100%; min-width: 0; box-sizing: border-box;
-  padding: 13px 14px; font-family: inherit; font-size: 14px; font-weight: 500;
-  color: #fff; background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.12); border-radius: 6px;
-  outline: none; transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
-  -webkit-appearance: none; appearance: none;
-}
-.craft-form textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
-.craft-form input::placeholder, .craft-form textarea::placeholder { color: rgba(255,255,255,0.32); }
-.craft-form input:focus, .craft-form select:focus, .craft-form textarea:focus {
-  border-color: var(--beacon); background: rgba(255,255,255,0.06);
-  box-shadow: 0 0 0 3px rgba(230,48,39,0.15);
-}
-.craft-form select {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23E63027' d='M6 8L0 0h12z'/></svg>");
-  background-repeat: no-repeat; background-position: right 16px center; background-size: 10px;
-  padding-right: 38px;
-}
-.craft-form select option { background: var(--ink); color: #fff; }
-.craft-form-checkrow { display: inline-flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.5; padding: 8px 0; }
-.craft-form-checkrow input[type=checkbox] {
-  appearance: none; -webkit-appearance: none; width: 18px; height: 18px; flex-shrink: 0; margin: 1px 0 0;
-  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.25); border-radius: 4px; cursor: pointer; position: relative; transition: all .15s ease;
-}
-.craft-form-checkrow input[type=checkbox]:checked { background: var(--beacon); border-color: var(--beacon); }
-.craft-form-checkrow input[type=checkbox]:checked::after { content: ""; position: absolute; left: 5px; top: 2px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
-.craft-form-submit { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 28px; margin-top: 6px; background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%); border: 1px solid var(--beacon); border-radius: 6px; color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: filter .15s, transform .15s, box-shadow .2s; box-shadow: 0 8px 24px rgba(230,48,39,0.25); }
-.craft-form-submit:hover { transform: translateY(-1px); filter: brightness(1.08); box-shadow: 0 12px 28px rgba(230,48,39,0.4); }
-.craft-form-submit:disabled { opacity: 0.6; cursor: wait; transform: none; }
-.craft-form-submit::after { content: "→"; }
-.craft-form-fine { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 6px; line-height: 1.5; }
-.craft-form-success { padding: 36px 24px; text-align: center; background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.3); border-radius: 8px; }
-.craft-form-success-icon { width: 52px; height: 52px; margin: 0 auto 16px; border-radius: 50%; background: rgba(74,222,128,0.15); border: 1.5px solid #4ade80; color: #4ade80; display: grid; place-items: center; font-size: 26px; font-weight: 800; box-shadow: 0 0 24px rgba(74,222,128,0.3); }
-.craft-form-success-msg { color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.55; max-width: 380px; margin: 0 auto; }
