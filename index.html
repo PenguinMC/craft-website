@@ -1092,6 +1092,22 @@ header.hero { box-shadow: inset 0 -80px 80px -40px rgba(10,13,18,0.85); }
 /* Smooth scroll snap on section transitions */
 html { scroll-behavior: smooth; }
 
+
+/* === HOMEPAGE FLOW POLISH === */
+.section.acc, .section.sim, .section.location { background: var(--approach); }
+.section.testi, .section.ptrack { background: var(--ink); }
+.section .acc-head, .section .fleet-head, .section .sim-head, .section .testi-head,
+.location-grid, .ptrack-head {
+  margin-bottom: 36px;
+}
+.acc-head h2, .sim-head h2, .testi-head h2, .ptrack-head h2, .location h2 {
+  font-size: clamp(36px, 5.5vw, 64px) !important;
+  margin: 8px 0 14px !important;
+  line-height: 0.95 !important;
+}
+.section + .section, .ptrack + .section, .section + footer.footer {
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
 </style>
 <!-- JSON-LD: LocalBusiness / FlightSchool -->
 <script type="application/ld+json">
