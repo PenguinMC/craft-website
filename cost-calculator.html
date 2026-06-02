@@ -124,8 +124,8 @@
 .cc-est-rows { display: grid; gap: 14px; flex: 1; }
 .cc-est-row { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.18); }
 .cc-est-row.no-border { border-bottom: none; padding-bottom: 0; }
-.cc-est-row-l { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; }
-.cc-est-row-l small { display: block; font-family: var(--body); font-weight: 400; font-size: 11px; letter-spacing: 0.06em; opacity: 0.75; text-transform: none; margin-top: 2px; }
+.cc-est-row-l { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; padding-left: 0; margin-left: 0; text-indent: 0; }
+.cc-est-row-l small { display: block; font-family: var(--body); font-weight: 400; font-size: 11px; letter-spacing: 0.06em; opacity: 0.75; text-transform: none; margin: 2px 0 0 0; padding: 0; text-indent: 0; }
 .cc-est-row-r { font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: 0.02em; text-align: right; white-space: nowrap; }
 .cc-est-row-r small { font-weight: 500; opacity: 0.85; font-size: 13px; margin-left: 2px; }
 .cc-est-fixed-list { font-family: var(--body); font-weight: 400; font-size: 13px; opacity: 0.85; line-height: 1.65; padding-left: 0; margin-top: 6px; text-align: left; list-style: none; }
@@ -471,7 +471,7 @@
           <div class="cc-est-rows">
             <div class="cc-est-row"><span class="cc-est-row-l">Aircraft Cost</span><span class="cc-est-row-r" id="cc-out-aircraft">$12,750.00</span></div>
             <div class="cc-est-row"><span class="cc-est-row-l">Instruction Cost</span><span class="cc-est-row-r" id="cc-out-instr">$3,850.00</span></div>
-            <div class="cc-est-row"><span class="cc-est-row-l">Sim Cost <small>Instructor included</small></span><span class="cc-est-row-r" id="cc-out-sim">$420.00</span></div>
+            <div class="cc-est-row"><span class="cc-est-row-l" style="display:flex;flex-direction:column;align-items:flex-start;gap:2px"><span>Sim Cost</span><small style="margin:0;padding:0">Instructor included</small></span><span class="cc-est-row-r" id="cc-out-sim">$420.00</span></div>
             <div class="cc-est-row"><span class="cc-est-row-l">FAA Check Ride</span><span class="cc-est-row-r" id="cc-out-ride">$1,000.00</span></div>
             <div class="cc-est-row no-border" id="cc-prereq-row" style="display:block;text-align:left">
               <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:0.04em;text-transform:uppercase" id="cc-out-fixed-name">What You'll Need</div>
