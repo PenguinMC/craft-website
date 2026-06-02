@@ -160,14 +160,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 
 /* FOOTER SOCIAL ICONS */
-.footer-social { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; margin-bottom: 32px; padding-top: 24px; padding-bottom: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+.footer-social { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 24px; margin-bottom: 32px; padding-top: 24px; padding-bottom: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
 .footer-social-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.4); text-transform: uppercase; align-self: center; margin-right: 8px; }
 .footer-social a { display: grid !important; place-items: center; flex: 0 0 42px !important; width: 42px !important; height: 42px !important; min-width: 0; box-sizing: border-box; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); transition: all .25s var(--ease); position: relative; overflow: hidden; }
 .footer-social a::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%); opacity: 0; transition: opacity .25s var(--ease); }
 .footer-social a:hover { color: var(--white); border-color: var(--beacon); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(230,48,39,0.4); }
 .footer-social a:hover::before { opacity: 1; }
 .footer-social a svg { position: relative; z-index: 1; width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important; fill: currentColor; display: block; }
-@media (max-width: 600px) { .footer-social { justify-content: flex-start; } }
+@media (max-width: 600px) { .footer-social { justify-content: center; } }
 
 
 /* === FOOTER POLISH (site-wide) — matches homepage footer === */
@@ -188,7 +188,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .footer-contact { margin-top: 18px !important; font-size: 13px !important; }
 .footer-contact a, .footer-contact > a { color: rgba(255,255,255,0.85) !important; display: block !important; margin-bottom: 5px !important; }
 .footer-contact-label { font-size: 10px !important; color: rgba(255,255,255,0.35) !important; letter-spacing: 0.18em !important; text-transform: uppercase !important; margin-bottom: 6px !important; font-family: 'JetBrains Mono', monospace !important; }
-.footer-bottom { padding-top: 28px !important; border-top: 1px solid rgba(255,255,255,0.06) !important; font-size: 12px !important; color: rgba(255,255,255,0.45) !important; position: relative; z-index: 2; display: flex !important; justify-content: space-between !important; flex-wrap: wrap !important; gap: 14px !important; }
+.footer-bottom { padding-top: 28px !important; border-top: 1px solid rgba(255,255,255,0.06) !important; font-size: 12px !important; color: rgba(255,255,255,0.45) !important; position: relative; z-index: 2; display: flex !important; justify-content: center !important; align-items: center !important; flex-wrap: wrap !important; gap: 14px !important; text-align: center !important; }
+.footer-bottom > span { display: inline-flex; align-items: center; gap: 8px; }
 
 
 /* === STUB-HERO (financing, sim-membership, simple landing pages) === */
@@ -394,7 +395,4 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   width: 100% !important;
   height: 52px;
   margin-top: 8px;
-  padding: 0 28px !important;
-  background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%) !important;
-  border: 1px solid var(--beacon) !important;
-  border-radius: 6p
+  padding: 
