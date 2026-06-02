@@ -106,13 +106,39 @@
 .cs-panel.warn::before { background: linear-gradient(90deg, transparent, #ffc800, transparent); }
 
 /* DPE block */
-.cs-dpe { background: linear-gradient(135deg, rgba(230,48,39,0.08) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.2); padding: var(--section-py) 0; position: relative; overflow: hidden; }
-.cs-dpe-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.6; }
-.cs-dpe-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
-.cs-dpe h2 { font-family: var(--display); font-weight: 900; font-size: clamp(44px, 6vw, 84px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 20px; }
+.cs-dpe { background: linear-gradient(135deg, rgba(230,48,39,0.06) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.18); padding: 70px 0; position: relative; overflow: hidden; }
+.cs-dpe-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.03) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; }
+.cs-dpe-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
+.cs-dpe h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 4.8vw, 60px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 14px 0 14px; }
 .cs-dpe h2 .accent { color: var(--beacon); }
-.cs-dpe p { font-size: clamp(15px, 1.4vw, 17px); color: rgba(255,255,255,0.78); line-height: 1.7; margin: 0 auto 22px; max-width: 720px; }
-.cs-dpe blockquote { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 4vw, 48px); line-height: 1; letter-spacing: -0.005em; text-transform: uppercase; color: var(--beacon); margin: 28px 0 8px; border: none; padding: 0; }
+.cs-dpe p { font-size: 15px; color: rgba(255,255,255,0.72); line-height: 1.65; margin: 0 auto; max-width: 640px; }
+
+/* 7-Day Course Timeline (same pattern as /commercial) */
+.cs-days-sec { padding: var(--section-py) 0; position: relative; overflow: hidden; background: linear-gradient(180deg, var(--ink) 0%, rgba(230,48,39,0.04) 50%, var(--ink) 100%); }
+.cs-days-sec::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; pointer-events: none; }
+.cs-days-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.cs-days-head { text-align: center; margin-bottom: 50px; max-width: 760px; margin-left: auto; margin-right: auto; }
+.cs-days-head .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 6px 12px; border-radius: 4px; }
+.cs-days-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6vw, 72px); text-transform: uppercase; letter-spacing: -0.01em; margin: 14px 0 12px; line-height: 0.95; }
+.cs-days-head h2 .accent { color: var(--beacon); }
+.cs-days-head p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.65; }
+.cs-days-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; position: relative; }
+@media (max-width: 980px) { .cs-days-track { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .cs-days-track { grid-template-columns: 1fr; } }
+.cs-day { position: relative; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 12px; padding: 24px 24px 22px; transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease); overflow: hidden; }
+.cs-day::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.cs-day:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.55); box-shadow: 0 24px 50px -22px rgba(230,48,39,0.45); }
+.cs-day.final { border-color: rgba(230,48,39,0.55); background: linear-gradient(180deg, rgba(230,48,39,0.1) 0%, var(--approach) 50%, #0E1218 100%); box-shadow: 0 0 0 1px rgba(230,48,39,0.3) inset, 0 24px 50px -22px rgba(230,48,39,0.5); }
+.cs-day-num { font-family: var(--display); font-weight: 900; font-size: 56px; line-height: 0.95; letter-spacing: -0.03em; color: var(--beacon); margin-bottom: 2px; }
+.cs-day-num small { font-size: 13px; font-weight: 600; letter-spacing: 0.16em; color: rgba(255,255,255,0.5); text-transform: uppercase; display: block; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.cs-day-title { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.1; letter-spacing: -0.005em; text-transform: uppercase; color: #fff; margin: 14px 0 12px; }
+.cs-day-title .accent { color: var(--beacon); }
+.cs-day ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.cs-day li { padding-left: 16px; position: relative; font-size: 13px; color: rgba(255,255,255,0.76); line-height: 1.5; }
+.cs-day li::before { content: "▸"; position: absolute; left: 0; top: 0; color: var(--beacon); font-weight: 700; font-size: 10px; }
+.cs-day.final .cs-day-title { color: #fff; }
+.cs-day.final .cs-day-body { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.55; }
+.cs-day-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--beacon); text-transform: uppercase; padding: 4px 10px; border-radius: 3px; background: rgba(230,48,39,0.1); border: 1px solid rgba(230,48,39,0.4); margin-top: 14px; }
 
 /* Final CTA */
 .cs-cta { background: var(--ink); padding: var(--section-py) 0; position: relative; overflow: hidden; }
@@ -303,12 +329,12 @@
   <div class="cs-hero-inner">
     <span class="cs-eyebrow">Instrument Rating · 7-Day Accelerated</span>
     <h1>Punch through<br><span class="accent">the clouds.</span></h1>
-    <p>You&rsquo;re a frustrated VFR pilot tired of cancelling for low visibility and/or ceiling. Your Instrument Rating is the next logical step &mdash; and at CRAFT it&rsquo;s a 7-day program in the Diamond DA40NG along with the Redbird AATD simulator, solving your frustration.</p>
+    <p>You&rsquo;re a frustrated VFR pilot tired of cancelling for low visibility and ceiling. Your Instrument Rating is the next logical step. At CRAFT it&rsquo;s a 7-day program in the Diamond DA40NG paired with our Redbird AATD simulator, with DPE in days, not months.</p>
     <div class="cs-hero-stats">
       <div><div class="cs-hero-stat-num"><span class="accent">7</span> days</div><div class="cs-hero-stat-lbl">Train · Test · Done</div></div>
       <div><div class="cs-hero-stat-num"><span class="accent">20</span> hrs</div><div class="cs-hero-stat-lbl">Redbird AATD Time</div></div>
-      <div><div class="cs-hero-stat-num"><span class="accent">G1000</span></div><div class="cs-hero-stat-lbl">DA40NG · GFC700</div></div>
-      <div><div class="cs-hero-stat-num">DPE in <span class="accent">weeks</span></div><div class="cs-hero-stat-lbl">Not Months</div></div>
+      <div><div class="cs-hero-stat-num"><span class="accent">G1000</span></div><div class="cs-hero-stat-lbl">DA40NG · FADEC</div></div>
+      <div><div class="cs-hero-stat-num">DPE in <span class="accent">days</span></div><div class="cs-hero-stat-lbl">Not Months</div></div>
     </div>
   </div>
 </header>
@@ -335,7 +361,7 @@
     <div class="cs-sec-head">
       <span class="eyebrow">The Edge</span>
       <h2>Sim mornings.<br><span class="accent">Airplane afternoons.</span></h2>
-      <p>The FAA lets you log a meaningful chunk of your required instrument time in the Redbird AATD &mdash; pure approach reps without burning Hobbs, waiting on ATC, or chasing weather. Most students show up sharp on flight day because the procedure is already in muscle memory.</p>
+      <p>The FAA lets you log a meaningful chunk of your required instrument time in the Redbird AATD. Pure approach reps without burning Hobbs, waiting on ATC, or chasing weather. Most students show up sharp on flight day because the procedure is already in muscle memory.</p>
     </div>
     <div class="cs-sim-grid">
       <div class="cs-sim-copy">
@@ -343,7 +369,7 @@
         <p>An IFR student's biggest enemy is repetition cost. In the airplane, one approach + missed + reset eats 30 minutes of Hobbs and a chunk of fuel. In the sim, you can fly the same approach four times in 20 minutes, then hit the airplane with it dialed.</p>
         <ul class="cs-sim-pts">
           <li>Fly the same approach back-to-back without ATC delays</li>
-          <li>Restart from any point &mdash; FAF, missed, vector to final</li>
+          <li>Restart from any point: FAF, missed, or vector to final</li>
           <li>Train in pure IMC with zero outside reference</li>
           <li>Build a real instrument scan before the airplane piles cost on top</li>
           <li>FAA-approved for IPC, except circling and the actual landing</li>
@@ -352,8 +378,99 @@
       <div class="cs-sim-stat">
         <div class="pct">20<span style="font-size:0.4em;color:rgba(255,255,255,0.5)">hrs</span></div>
         <div class="pctlbl">Redbird AATD Loggable Time</div>
-        <div class="pctsub">FAA-approved AATD time toward your Instrument Rating &mdash; legally documented hours, real procedure repetition, zero airplane fuel burn.</div>
+        <div class="pctsub">FAA-approved AATD time toward your Instrument Rating. Legally documented hours, real procedure repetition, zero airplane fuel burn.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-days-sec">
+  <div class="cs-days-inner">
+    <div class="cs-days-head">
+      <span class="eyebrow">● 7 Days · Train, Test, Finish</span>
+      <h2>How we get it <span class="accent">done.</span></h2>
+      <p>Every accelerated IFR student at CRAFT follows the same seven-day arc. Day 7 is your check ride. The six days before are the path that gets you there ready.</p>
+    </div>
+    <div class="cs-days-track">
+
+      <article class="cs-day">
+        <div class="cs-day-num">01<small>Day One</small></div>
+        <h3 class="cs-day-title">Check-In &amp; <span class="accent">VOR Foundations</span></h3>
+        <ul>
+          <li>Document + logbook validation</li>
+          <li>Simulator orientation</li>
+          <li>VOR familiarization in the Redbird</li>
+          <li>Tracking, intercepting, holds, DME arcs</li>
+          <li>Ground instruction</li>
+        </ul>
+        <span class="cs-day-tag">● Setup</span>
+      </article>
+
+      <article class="cs-day">
+        <div class="cs-day-num">02<small>Day Two</small></div>
+        <h3 class="cs-day-title">Step-Down <span class="accent">Approaches</span></h3>
+        <ul>
+          <li>Fly and execute what was learned on Day 1</li>
+          <li>Step-down approaches in the simulator</li>
+          <li>Unusual attitude recovery</li>
+          <li>Ground instruction</li>
+        </ul>
+        <span class="cs-day-tag">● Apply &amp; Build</span>
+      </article>
+
+      <article class="cs-day">
+        <div class="cs-day-num">03<small>Day Three</small></div>
+        <h3 class="cs-day-title">Glide Slope <span class="accent">+ Partial Panel</span></h3>
+        <ul>
+          <li>Fly and execute what was learned on Day 2</li>
+          <li>Glide slope approaches in the simulator</li>
+          <li>Partial panel work</li>
+          <li>Ground instruction</li>
+        </ul>
+        <span class="cs-day-tag">● Build &amp; Stress</span>
+      </article>
+
+      <article class="cs-day">
+        <div class="cs-day-num">04<small>Day Four</small></div>
+        <h3 class="cs-day-title">Circling + <span class="accent">SIDs &amp; STARs</span></h3>
+        <ul>
+          <li>Fly and execute what was learned on Day 3</li>
+          <li>Circle-to-land approaches in the simulator</li>
+          <li>SIDs and STARs</li>
+          <li>Ground instruction</li>
+        </ul>
+        <span class="cs-day-tag">● Advanced Procedures</span>
+      </article>
+
+      <article class="cs-day">
+        <div class="cs-day-num">05<small>Day Five</small></div>
+        <h3 class="cs-day-title">Long <span class="accent">Cross-Country</span></h3>
+        <ul>
+          <li>Long IFR cross-country in the airplane</li>
+          <li>Ground instruction</li>
+          <li>Check ride prep: flight plan, AVIATE checklist, route brief</li>
+        </ul>
+        <span class="cs-day-tag">● Real-World Apply</span>
+      </article>
+
+      <article class="cs-day">
+        <div class="cs-day-num">06<small>Day Six</small></div>
+        <h3 class="cs-day-title">Full <span class="accent">Mock Check Ride</span></h3>
+        <ul>
+          <li>Full mock check ride: oral + flight</li>
+          <li>Final check ride preparation</li>
+          <li>Surface any remaining gaps</li>
+        </ul>
+        <span class="cs-day-tag">● Dress Rehearsal</span>
+      </article>
+
+      <article class="cs-day final">
+        <div class="cs-day-num">07<small>Day Seven</small></div>
+        <h3 class="cs-day-title">Pass <span class="accent">the Check Ride.</span></h3>
+        <p class="cs-day-body">Answer a few questions and pass the oral. Fly three approaches and pass the flight portion. Congratulations. You are now an instrument-rated pilot.</p>
+        <span class="cs-day-tag">● DPE Reserved</span>
+      </article>
+
     </div>
   </div>
 </section>
@@ -394,9 +511,9 @@
       <div class="cs-panel warn">
         <h3>Not Included</h3>
         <ul>
-          <li>DPE examiner fee &mdash; typically <strong>$800 to $1,500</strong>, paid directly to the examiner</li>
+          <li>DPE examiner fee, typically <strong>$800 to $1,500</strong>, paid directly to the examiner</li>
           <li>Airplane hours beyond 17 (15 training + 2 checkride) billed at $255/hr wet</li>
-          <li>Lodging (corporate hotel rates available 5–10 minutes from the airport &mdash; ask)</li>
+          <li>Lodging (corporate hotel rates available 5 to 10 minutes from the airport, just ask)</li>
         </ul>
       </div>
       <div class="cs-panel">
@@ -417,12 +534,9 @@
 <section class="cs-dpe">
   <div class="cs-dpe-bg"></div>
   <div class="cs-dpe-inner">
-    <span class="cs-eyebrow">DPE Availability</span>
-    <h2>Weeks.<br><span class="accent">Not months.</span></h2>
-    <p>The biggest reason "accelerated" stops being accelerated isn't instruction &mdash; it's checkrides. Across much of the country, pilots finish training and then wait six months for a Designated Pilot Examiner. That delay adds cost, stress, and uncertainty.</p>
-    <p>At CRAFT, DPE availability is built into how the program is planned. Exact timing varies, but checkrides are typically scheduled in weeks, not months &mdash; you finish without indefinite waiting.</p>
-    <blockquote>"Train. Test. Finish."</blockquote>
-    <p style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:8px">Accelerated training isn't about rushing. It's about removing the biggest bottleneck in the system.</p>
+    <span class="cs-eyebrow">DPE Reserved</span>
+    <h2>Days. <span class="accent">Not months.</span></h2>
+    <p>The biggest reason "accelerated" stops being accelerated isn't instruction, it's checkrides. At CRAFT, we book the DPE before we book your course. Your check ride is locked on Day 7 from the moment your dates are set.</p>
   </div>
 </section>
 
