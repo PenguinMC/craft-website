@@ -550,10 +550,10 @@ const RATE_PLANE_DA42 = 600;
 const RATE_INSTRUCTOR = 65; // PPL default; IFR + CPL use $75 via per-program iRate
 const RATE_SIM = 100;
 const PROGRAMS = {
-  ppl: { name:"Private Pilot", fleet:"DA40 NG · $255/hr wet · $65/hr instruction · ~50 hrs (FAA min 40)", rate:RATE_PLANE_DA40, iRate:65, fHrs:[40,50,80], iHrs:[30,40,80], gHrs:[20,30,70], sHrs:[0,3,10], prereq:{ name:"PPL · What You'll Need", items:["FAA Written Exam · ~$106","ForeFlight subscription","iPad (Mini or standard)","Bose A30 headphones (or equivalent)","ASA Private Pilot Syllabus","Current FAA Medical (3rd Class)","Student Pilot Certificate"] } },
-  ifr: { name:"Instrument Rating", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[15,30,50], iHrs:[20,30,50], gHrs:[10,20,40], sHrs:[15,20,40], prereq:{ name:"IFR · Prerequisites", items:["FAA Private Pilot Certificate","Current FAA Medical (3rd Class)","FAA Instrument Written Exam · ~$175","ForeFlight subscription","iPad with EFB charts","Bose A30 headphones (or equivalent)","50 hrs PIC cross-country","10 hrs simulated or actual instrument time","DPE fee ~$650 to $800 (not included)"] } },
-  cpl: { name:"Commercial Pilot", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[10,15,30], iHrs:[10,15,30], gHrs:[8,12,25], sHrs:[2,4,10], prereq:{ name:"CPL · Prerequisites", items:["FAA Private Pilot Certificate","FAA Instrument Rating recommended","Minimum 250 hrs total time","Current FAA Medical (2nd Class to exercise privileges)","Commercial Written Exam · ~$175","ASA Commercial ACS + Oral Exam Guide","DPE fee ~$800 (not included)"] } },
-  me: { name:"Multi-Engine Add-On", fleet:"DA42-VI NG · $600/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA42, iRate:75, fHrs:[6,8,15], iHrs:[6,8,15], gHrs:[3,5,12], sHrs:[0,2,8], prereq:{ name:"Multi · Prerequisites", items:["FAA Private or Commercial Certificate","Current FAA Medical","Renter's insurance with $10K hull (Starr Gate ~$60/mo)","No written exam required","DPE fee ~$1,500 cash (not included)","Extra hours billed at $600/hr wet"] } }
+  ppl: { name:"Private Pilot", fleet:"DA40 NG · $255/hr wet · $65/hr instruction · ~50 hrs (FAA min 40)", rate:RATE_PLANE_DA40, iRate:65, fHrs:[40,50,80], iHrs:[30,40,80], gHrs:[20,30,70], sHrs:[0,3,10], prereq:{ name:"What You'll Need", items:["Online Ground School &middot; ~$200","FAA Written Exam &middot; ~$150","ForeFlight &middot; ~$100","iPad &middot; ~$499","Bose A30 Headphones &middot; ~$899","Medical Certificate (3rd Class) &middot; ~$200","Student Pilot Certificate &middot; Free"] } },
+  ifr: { name:"Instrument Rating", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[15,30,50], iHrs:[20,30,50], gHrs:[10,20,40], sHrs:[15,20,40], prereq:null },
+  cpl: { name:"Commercial Pilot", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[10,15,30], iHrs:[10,15,30], gHrs:[8,12,25], sHrs:[2,4,10], prereq:null },
+  me: { name:"Multi-Engine Add-On", fleet:"DA42-VI NG · $600/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA42, iRate:75, fHrs:[6,8,15], iHrs:[6,8,15], gHrs:[3,5,12], sHrs:[0,2,8], prereq:null }
 };
 
 const $ = id => document.getElementById(id);
@@ -587,9 +587,15 @@ function loadProgram(key) {
   setSlider($('cc-ground'), p.gHrs[0], p.gHrs[1], p.gHrs[2]);
   $('cc-ground-min').textContent = p.gHrs[0]; $('cc-ground-max').textContent = p.gHrs[2];
   setSlider($('cc-sim'),    p.sHrs[0], p.sHrs[1], p.sHrs[2], true);
-  // Prerequisites section
-  $('cc-out-fixed-name').textContent = p.prereq.name;
-  $('cc-out-fixed-list').innerHTML = p.prereq.items.map(i => `<li>${i}</li>`).join('');
+  // Prerequisites section (PPL only — hidden for IFR/CPL/ME)
+  const prereqRow = $('cc-out-fixed-name').closest('.cc-est-row');
+  if (p.prereq) {
+    $('cc-out-fixed-name').textContent = p.prereq.name;
+    $('cc-out-fixed-list').innerHTML = p.prereq.items.map(i => `<li>${i}</li>`).join('');
+    if (prereqRow) prereqRow.style.display = '';
+  } else {
+    if (prereqRow) prereqRow.style.display = 'none';
+  }
   recalc();
 }
 function recalc() {
