@@ -120,6 +120,44 @@
 .ppl-cta p { font-size: 17px; color: rgba(255,255,255,0.7); margin: 0 0 32px; line-height: 1.55; }
 .ppl-cta-row { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
+/* CRAFT ADVANTAGE — Steam vs Glass / Levers vs FADEC */
+.ppl-adv { background: var(--ink); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+.ppl-adv::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; pointer-events: none; }
+.ppl-adv-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.ppl-adv-head { text-align: center; margin: 0 auto 56px; max-width: 760px; }
+.ppl-adv-head .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; }
+.ppl-adv-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5.2vw, 64px); text-transform: uppercase; letter-spacing: -0.01em; margin: 12px 0 14px; line-height: 0.95; }
+.ppl-adv-head h2 .accent { color: var(--beacon); }
+.ppl-adv-head p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.65; }
+.ppl-adv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 32px; }
+@media (max-width: 880px) { .ppl-adv-row { grid-template-columns: 1fr; gap: 16px; } }
+.ppl-adv-card { position: relative; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; transition: transform .3s var(--ease), border-color .3s var(--ease); }
+.ppl-adv-card.craft { border-color: rgba(230,48,39,0.5); box-shadow: 0 24px 60px -28px rgba(230,48,39,0.5); }
+.ppl-adv-card.craft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); z-index: 2; }
+.ppl-adv-card:hover { transform: translateY(-4px); }
+.ppl-adv-card.legacy:hover { border-color: rgba(255,255,255,0.18); }
+.ppl-adv-card.craft:hover { border-color: var(--beacon); box-shadow: 0 30px 70px -25px rgba(230,48,39,0.65); }
+.ppl-adv-tag { position: absolute; top: 16px; left: 16px; z-index: 3; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; padding: 6px 12px; border-radius: 3px; backdrop-filter: blur(8px); }
+.ppl-adv-card.legacy .ppl-adv-tag { background: rgba(20,24,31,0.7); color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.15); }
+.ppl-adv-card.craft .ppl-adv-tag { background: rgba(230,48,39,0.15); color: var(--beacon); border: 1px solid rgba(230,48,39,0.5); }
+.ppl-adv-img-wrap { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; background: #000; }
+.ppl-adv-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+.ppl-adv-card:hover .ppl-adv-img-wrap img { transform: scale(1.04); }
+.ppl-adv-card.legacy .ppl-adv-img-wrap::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(20,24,31,0.25) 0%, rgba(20,24,31,0.6) 100%); pointer-events: none; }
+.ppl-adv-card.legacy .ppl-adv-img-wrap img { filter: grayscale(0.5) brightness(0.85); }
+.ppl-adv-body { padding: 22px 24px 26px; }
+.ppl-adv-body h3 { font-family: var(--display); font-weight: 900; font-size: 24px; line-height: 1.1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 8px; color: #fff; }
+.ppl-adv-body h3 .accent { color: var(--beacon); }
+.ppl-adv-body p { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.6; margin: 0; }
+.ppl-adv-vs { display: flex; align-items: center; justify-content: center; margin: 12px 0 28px; font-family: var(--display); font-weight: 900; font-size: 20px; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); text-transform: uppercase; gap: 14px; }
+.ppl-adv-vs::before, .ppl-adv-vs::after { content: ""; flex: 1; max-width: 80px; height: 1px; background: linear-gradient(90deg, transparent, rgba(230,48,39,0.4), transparent); }
+.ppl-adv-takeaway { background: linear-gradient(180deg, rgba(230,48,39,0.06) 0%, var(--approach) 100%); border: 1px solid rgba(230,48,39,0.3); border-radius: 12px; padding: 28px 32px; margin-top: 12px; position: relative; }
+.ppl-adv-takeaway::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); border-radius: 12px 12px 0 0; }
+.ppl-adv-takeaway-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; margin-bottom: 10px; }
+.ppl-adv-takeaway-h { font-family: var(--display); font-weight: 800; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.2; text-transform: uppercase; letter-spacing: -0.005em; color: #fff; margin: 0 0 8px; }
+.ppl-adv-takeaway-h .accent { color: var(--beacon); }
+.ppl-adv-takeaway p { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.65; margin: 0; }
+
 /* TRAINING STAGES */
 .ppl-stages { background: linear-gradient(135deg, rgba(230,48,39,0.04) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.18); padding: var(--section-py) 0; }
 .ppl-stages-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
@@ -286,7 +324,7 @@
   <div class="ppl-hero-inner">
     <span class="ppl-eyebrow">Your First License · Self-Paced</span>
     <h1>Get<br><span class="accent">started.</span></h1>
-    <p>Your Private Pilot License — and your gateway to everything that comes next. Train at your own pace in Diamond DA40 NG glass-cockpit airplanes, work real Class C airspace with ATC, and finish with a dedicated DPE on schedule.</p>
+    <p>Your Private Pilot License and your gateway to everything that comes next. Train at your own pace in Diamond DA40 NG glass-cockpit airplanes, work real Class C airspace with ATC, and you have a dedicated flight instructor so you finish without having to wait for a checkride.</p>
     <div class="ppl-hero-stats">
       <div><div class="ppl-hero-stat-num">40 <span class="accent">hrs</span></div><div class="ppl-hero-stat-lbl">FAA Minimum</div></div>
       <div><div class="ppl-hero-stat-num"><span class="accent">58</span> hrs</div><div class="ppl-hero-stat-lbl">Avg pilot finishes in</div></div>
@@ -335,7 +373,7 @@
       <div class="ppl-why-card">
         <div class="ppl-why-card-num">▸ FACT 06</div>
         <h3>Train at your own pace</h3>
-        <p>Three months, six months, a year — fly 1, 2, or 3 lessons a week as your schedule allows. We meet you where your life is.</p>
+        <p>Three months plus, work at your pace. Fly 1, 2, or 3 lessons a week as your schedule allows. We meet you where your life is.</p>
       </div>
     </div>
   </div>
@@ -345,13 +383,13 @@
   <div class="ppl-hours-inner">
     <div class="ppl-hours-l">
       <h2>How many <span class="accent">hours</span> will it actually take?</h2>
-      <p>The FAA minimum is <strong style="color:#fff">40 hours</strong>. The national average is <strong style="color:#fff">58 hours</strong>. Where you land depends on training cadence, weather, and personal aptitude. The cost calculator gives you a real estimate based on your goals.</p>
+      <p>The FAA minimum is <strong style="color:#fff">40 hours</strong> of flight time. Where you land depends on training cadence, weather, and personal aptitude. We build every estimate at the 40-hour mark so you know your floor. The cost calculator gives you a real number based on your goals.</p>
     </div>
     <div class="ppl-hours-r">
-      <div class="ppl-hours-num">58<span style="font-size:0.4em;color:rgba(255,255,255,0.5);font-weight:500"> hrs</span></div>
-      <div class="ppl-hours-cap">▸ Average pilot · national data</div>
+      <div class="ppl-hours-num">40<span style="font-size:0.4em;color:rgba(255,255,255,0.5);font-weight:500"> hrs</span></div>
+      <div class="ppl-hours-cap">▸ FAA minimum · the floor</div>
       <div class="ppl-hours-row">
-        <div class="ppl-hours-cell"><div class="num">40 <span class="accent">hrs</span></div><div class="lbl">FAA minimum</div></div>
+        <div class="ppl-hours-cell"><div class="num">~$13.5<span class="accent">K</span></div><div class="lbl">Total at 40 hrs</div></div>
         <div class="ppl-hours-cell"><div class="num">3 <span class="accent">mo+</span></div><div class="lbl">Typical timeline</div></div>
       </div>
     </div>
@@ -371,6 +409,70 @@
       <div class="ppl-incl-item"><div class="ck">✓</div><div class="txt"><strong>One-on-one ground sessions</strong><p>Your CFI complements the online course — applying book material to your actual aircraft, your actual flying.</p></div></div>
       <div class="ppl-incl-item"><div class="ck">✓</div><div class="txt"><strong>Redbird AATD sim time</strong><p>$100/hr loggable simulator time. Perfect for hood work, emergency procedures, and weather days. Counts toward your rating.</p></div></div>
       <div class="ppl-incl-item"><div class="ck">✓</div><div class="txt"><strong>DPE coordination</strong><p>We work directly with local DPEs to schedule your checkride. When you're ready, the date is locked.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ppl-adv">
+  <div class="ppl-adv-inner">
+    <div class="ppl-adv-head">
+      <span class="eyebrow">▸ The CRAFT Advantage</span>
+      <h2>Learn on the plane you'll <span class="accent">actually fly.</span></h2>
+      <p>Most flight schools still train on 1970s cockpits. The skills don't transfer to airline equipment. CRAFT trains you on modern glass and FADEC from day one, so you spend zero time relearning when you upgrade.</p>
+    </div>
+
+    <div class="ppl-adv-row">
+      <article class="ppl-adv-card legacy">
+        <span class="ppl-adv-tag">Legacy &middot; Most Schools</span>
+        <div class="ppl-adv-img-wrap"><img src="/assets/steamgage.jpg" alt="Steam gauge analog cockpit" loading="lazy"></div>
+        <div class="ppl-adv-body">
+          <h3>Steam Gauges</h3>
+          <p>Six analog dials and a vacuum-driven attitude indicator. The cockpit you'd train in at most schools is older than most students. None of it transfers to a regional jet or major airline cockpit.</p>
+        </div>
+      </article>
+
+      <article class="ppl-adv-card craft">
+        <span class="ppl-adv-tag">CRAFT &middot; Modern</span>
+        <div class="ppl-adv-img-wrap"><img src="/assets/g1000glasscockpit.jpg" alt="Garmin G1000 NXi glass cockpit" loading="lazy"></div>
+        <div class="ppl-adv-body">
+          <h3>G1000 NXi <span class="accent">Glass Cockpit</span></h3>
+          <p>Two big PFD/MFD displays, synthetic vision, integrated GPS, traffic, weather, and a GFC700 digital autopilot. This is the same family of avionics you'll see in regional jets and corporate aircraft. The hours on this panel pay dividends for the rest of your career.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="ppl-adv-takeaway">
+      <div class="ppl-adv-takeaway-lbl">&blacktriangleright; Why it matters</div>
+      <div class="ppl-adv-takeaway-h">Modern panels = <span class="accent">faster transitions</span>, fewer hours relearning later.</div>
+      <p>Every hour you log on a G1000 platform is an hour you don't have to learn from scratch when you upgrade to an IFR rating, commercial, or your first airline type rating. Glass cockpit skills compound. Steam gauge skills don't.</p>
+    </div>
+
+    <div class="ppl-adv-vs" style="margin-top:56px">vs</div>
+
+    <div class="ppl-adv-row">
+      <article class="ppl-adv-card legacy">
+        <span class="ppl-adv-tag">Legacy &middot; Most Schools</span>
+        <div class="ppl-adv-img-wrap"><img src="/assets/threelevers.jpg" alt="Three engine control levers: throttle, propeller, mixture" loading="lazy"></div>
+        <div class="ppl-adv-body">
+          <h3>Three Levers</h3>
+          <p>Throttle, propeller pitch, mixture. Three controls to manage on every power change, every climb, every descent. Mismanage any of them and you're cooking cylinders or detonating fuel. Cognitive load that has nothing to do with actually flying the airplane.</p>
+        </div>
+      </article>
+
+      <article class="ppl-adv-card craft">
+        <span class="ppl-adv-tag">CRAFT &middot; Modern</span>
+        <div class="ppl-adv-img-wrap"><img src="/assets/fadec.gif" alt="FADEC single-lever power control in action" loading="lazy"></div>
+        <div class="ppl-adv-body">
+          <h3>FADEC <span class="accent">Single Lever</span></h3>
+          <p>One lever. Push for more power, pull for less. The Full Authority Digital Engine Control computer manages prop pitch, fuel flow, and mixture for you in real time. The Diamond DA40 NG was the first FAA-certified Part 23 piston aircraft with a single-lever FADEC.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="ppl-adv-takeaway">
+      <div class="ppl-adv-takeaway-lbl">&blacktriangleright; Airline transition</div>
+      <div class="ppl-adv-takeaway-h">One lever today = one lever <span class="accent">forever.</span></div>
+      <p>Every modern jet, every turboprop, every regional and major airline cockpit you'll ever sit in uses single-lever digital engine control. Learning on three levers is learning a skill you'll have to <em>un</em>learn when you make the jump. Train on FADEC at the PPL stage and the muscle memory carries straight through to the right seat of an E175, CRJ, or 737. You're not just learning to fly, you're learning to fly the future.</p>
     </div>
   </div>
 </section>
@@ -421,10 +523,10 @@
 <section class="ppl-price">
   <div class="ppl-price-inner">
     <h2>What you'll actually <span class="accent">spend.</span></h2>
-    <p class="ppl-price-sub">Honest estimate based on the FAA's national average pilot. Your cost will vary based on your training cadence and aptitude — use the calculator for your personal number.</p>
+    <p class="ppl-price-sub">Honest estimate built at the FAA minimum of 40 hours. Use the calculator for your personal number based on your training cadence.</p>
     <div class="ppl-price-card">
-      <span class="tag">▸ Estimate · 58 hours · CRAFT plane</span>
-      <div class="num">~$22<span class="accent">,000</span></div>
+      <span class="tag">▸ Estimate · 40 hours · CRAFT plane</span>
+      <div class="num">~$13<span class="accent">,500</span></div>
       <div class="lbl">Total program · including everything below</div>
       <div class="ppl-price-row">
         <div class="cell"><strong>$255/hr</strong><small>DA40 NG wet rate</small></div>
@@ -433,10 +535,10 @@
       </div>
       <div style="font-size:14px;color:rgba(255,255,255,0.8);line-height:1.7;text-align:left">
         <strong style="color:#fff;display:block;margin-bottom:8px;font-family:var(--display);text-transform:uppercase;letter-spacing:0.04em">Fixed costs included:</strong>
-        ASA Private Pilot training materials · FAA written exam fee (~$175) · DPE checkride fee ($800–1,500, not included in program estimate) · ForeFlight or Garmin Pilot EFB
+        ASA Private Pilot training materials · FAA written exam fee (~$175) · ForeFlight or Garmin Pilot EFB. DPE checkride fee ($800 to $1,500) is separate and varies by examiner.
       </div>
       <a href="/cost-calculator" class="btn btn-primary btn-arrow" style="margin-top:28px">Run My Personal Estimate</a>
-      <div class="ppl-price-foot">Estimate above assumes 58 hours total. FAA minimum 40 hours produces a lower cost; ~$17,500. DPE checkride fee varies by examiner. All aircraft hours billed wet (fuel + oil included).</div>
+      <div class="ppl-price-foot">Estimate above assumes 40 hours total at the FAA minimum: 40 hrs DA40 NG wet + dual instruction + ~5 hrs Redbird sim + ground prep + materials. All aircraft hours billed wet (fuel + oil included).</div>
     </div>
   </div>
 </section>
