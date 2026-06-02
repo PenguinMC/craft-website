@@ -113,7 +113,8 @@
 .cs-day { position: relative; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 12px; padding: 24px 24px 22px; transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease); overflow: hidden; }
 .cs-day::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
 .cs-day:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.55); box-shadow: 0 24px 50px -22px rgba(230,48,39,0.45); }
-.cs-day.final { border-color: rgba(230,48,39,0.55); background: linear-gradient(180deg, rgba(230,48,39,0.1) 0%, var(--approach) 50%, #0E1218 100%); box-shadow: 0 0 0 1px rgba(230,48,39,0.3) inset, 0 24px 50px -22px rgba(230,48,39,0.5); }
+.cs-day.final { border-color: rgba(230,48,39,0.55); background: linear-gradient(180deg, rgba(230,48,39,0.1) 0%, var(--approach) 50%, #0E1218 100%); box-shadow: 0 0 0 1px rgba(230,48,39,0.3) inset, 0 24px 50px -22px rgba(230,48,39,0.5); display: flex; flex-direction: column; align-items: center; text-align: center; padding: 28px 32px; grid-column: 1 / -1; }
+@media (max-width: 620px) { .cs-day.final { grid-column: 1; } }
 .cs-day-num { font-family: var(--display); font-weight: 900; font-size: 56px; line-height: 0.95; letter-spacing: -0.03em; color: var(--beacon); margin-bottom: 2px; }
 .cs-day-num small { font-size: 13px; font-weight: 600; letter-spacing: 0.16em; color: rgba(255,255,255,0.5); text-transform: uppercase; display: block; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
 .cs-day-title { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.1; letter-spacing: -0.005em; text-transform: uppercase; color: #fff; margin: 14px 0 12px; }
@@ -355,7 +356,7 @@
     <div class="cs-days-head">
       <span class="eyebrow">● 6 Days · Train, Test, Finish</span>
       <h2>How we get it <span class="accent">done.</span></h2>
-      <p>Every accelerated commercial student at CRAFT follows the same six-day arc. Day 6 is your check ride. The five days before are the path that gets you there ready.</p>
+      <p>This is our rough draft course outline, but we tailor it to each and every student. Every student has their own strengths and weaknesses, and that's the CRAFT advantage over a Part 141 school: we build the week around <em>you</em>, not the syllabus.</p>
     </div>
     <div class="cs-days-track">
 
@@ -370,7 +371,6 @@
           <li>Landings: normal, then performance landings</li>
           <li>Debrief, chair-fly homework</li>
         </ul>
-        <span class="cs-day-tag">● Setup &middot; Intro</span>
       </article>
 
       <article class="cs-day">
@@ -383,7 +383,6 @@
           <li>Landings: power-off 180 + short field tricks (flap trick, sight picture)</li>
           <li>Debrief and study targets</li>
         </ul>
-        <span class="cs-day-tag">● Targeted Practice</span>
       </article>
 
       <article class="cs-day">
@@ -396,7 +395,6 @@
           <li>All landings and takeoffs, repeat sub-standard</li>
           <li>Debrief</li>
         </ul>
-        <span class="cs-day-tag">● Dress Rehearsal</span>
       </article>
 
       <article class="cs-day">
@@ -408,7 +406,6 @@
           <li>Flight portion: everything inside ACS, no exceptions</li>
           <li>Debrief: final gaps surfaced</li>
         </ul>
-        <span class="cs-day-tag">● Full Sim Run</span>
       </article>
 
       <article class="cs-day">
@@ -420,14 +417,12 @@
           <li>Knock off any last rust before checkride day</li>
           <li>Debrief, get rested</li>
         </ul>
-        <span class="cs-day-tag">● Polish</span>
       </article>
 
       <article class="cs-day final">
         <div class="cs-day-num">06<small>Day Six</small></div>
         <h3 class="cs-day-title">Checkride <span class="accent">Day.</span></h3>
         <p class="cs-day-body">DPE is already booked. You've done five days of focused, repetition-based prep. Walk in, walk out a Commercial Pilot. New ticket, new privileges, paid-to-fly career on the table.</p>
-        <span class="cs-day-tag">● DPE Reserved</span>
       </article>
 
     </div>
