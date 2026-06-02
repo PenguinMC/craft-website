@@ -32,11 +32,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/shared.css?v=14">
 <style>
-.cs-hero { position: relative; min-height: 64vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
-.cs-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.08) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.7; animation: csGrid 30s linear infinite; }
+.cs-hero { position: relative; min-height: 64vh; background: #000; display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
+.cs-hero-bg { position: absolute; inset: 0; z-index: 0; background: #000 url('/assets/instumengbg.avif') center/cover no-repeat; }
+.cs-hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(10,13,18,0.55) 0%, rgba(10,13,18,0.7) 50%, rgba(10,13,18,0.95) 100%), linear-gradient(90deg, rgba(10,13,18,0.65) 0%, rgba(10,13,18,0.15) 60%, rgba(10,13,18,0.45) 100%); pointer-events: none; }
+@media (max-width: 880px) { .cs-hero-bg { background-image: none; background: var(--ink); } }
+.cs-hero-grid { position: absolute; inset: 0; z-index: 2; background-image: linear-gradient(rgba(230,48,39,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.08) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.45; animation: csGrid 30s linear infinite; pointer-events: none; }
 @keyframes csGrid { 0%{background-position:0 0,0 0} 100%{background-position:64px 64px,64px 64px} }
-.cs-hero-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%); pointer-events: none; }
-.cs-hero-sweep { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); filter: blur(0.5px); opacity: 0.5; animation: csSweep 7s ease-in-out infinite; }
+.cs-hero-vignette { position: absolute; inset: 0; z-index: 2; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%); pointer-events: none; }
+.cs-hero-sweep { position: absolute; left: 0; right: 0; top: 0; z-index: 3; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); filter: blur(0.5px); opacity: 0.5; animation: csSweep 7s ease-in-out infinite; }
 @keyframes csSweep { 0%,100% { transform: translateY(10vh); opacity: 0; } 10% { opacity: 0.6; } 50% { transform: translateY(45vh); opacity: 0.4; } 90% { opacity: 0.6; } }
 .cs-hero-inner { position: relative; z-index: 5; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%; }
 .cs-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 28px; }
@@ -323,6 +326,8 @@
 </nav>
 
 <header class="cs-hero">
+  <div class="cs-hero-bg"></div>
+  <div class="cs-hero-overlay"></div>
   <div class="cs-hero-grid"></div>
   <div class="cs-hero-vignette"></div>
   <div class="cs-hero-sweep"></div>
