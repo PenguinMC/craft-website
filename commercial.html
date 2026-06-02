@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/shared.css?v=15">
+<link rel="stylesheet" href="/assets/shared.css?v=16">
 <style>
 .cs-hero { position: relative; min-height: 64vh; background: #000; display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
 .cs-hero-bg { position: absolute; inset: 0; z-index: 0; background: #000 url('/assets/commbgnew.jpeg') center/cover no-repeat; }
@@ -56,15 +56,15 @@
 .cs-hero-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; color: rgba(255,255,255,0.45); text-transform: uppercase; margin-top: 6px; }
 
 .cs-price-band { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border-top: 1px solid rgba(230,48,39,0.2); border-bottom: 1px solid rgba(230,48,39,0.2); padding: 40px 0; }
-.cs-price-grid { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: 1fr; gap: 24px; }
+.cs-price-grid { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 880px) { .cs-price-grid { grid-template-columns: 1fr; } }
 .cs-price-card { background: rgba(10,13,18,0.55); border: 1px solid rgba(230,48,39,0.25); border-radius: 10px; padding: 26px 28px; position: relative; overflow: hidden; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); }
 .cs-price-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
 .cs-price-card:hover { transform: translateY(-3px); border-color: rgba(230,48,39,0.55); box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); }
-.cs-price-flex { display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap; }
 .cs-price-card .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
 .cs-price-card .num { font-family: var(--display); font-weight: 900; font-size: 64px; color: var(--white); line-height: 1; letter-spacing: -0.02em; }
 .cs-price-card .num .accent { color: var(--beacon); }
-.cs-price-card .sub { font-size: 14px; color: rgba(255,255,255,0.65); flex: 1; min-width: 240px; }
+.cs-price-card .sub { font-size: 17px !important; color: rgba(255,255,255,0.85) !important; line-height: 1.6 !important; margin-top: 12px !important; font-weight: 500 !important; }
 
 .cs-sec { padding: var(--section-py) 0; position: relative; overflow: hidden; }
 .cs-sec.dark { background: var(--ink); }
@@ -327,8 +327,8 @@
     <div class="cs-hero-stats">
       <div><div class="cs-hero-stat-num"><span class="accent">5</span> days</div><div class="cs-hero-stat-lbl">+ Day 6 Checkride</div></div>
       <div><div class="cs-hero-stat-num"><span class="accent">15</span> hrs</div><div class="cs-hero-stat-lbl">Dual Flight Instruction</div></div>
-      <div><div class="cs-hero-stat-num"><span class="accent">10</span> hrs</div><div class="cs-hero-stat-lbl">Ground Instruction</div></div>
       <div><div class="cs-hero-stat-num">DA40<span class="accent">NG</span></div><div class="cs-hero-stat-lbl">G1000 NXi · TAA</div></div>
+      <div><div class="cs-hero-stat-num">DPE <span class="accent">No Wait</span></div><div class="cs-hero-stat-lbl">Booked With Your Course</div></div>
     </div>
   </div>
 </header>
@@ -336,13 +336,16 @@
 <section class="cs-price-band">
   <div class="cs-price-grid">
     <div class="cs-price-card">
-      <div class="cs-price-flex">
-        <div>
-          <div class="lbl">Accelerated CPL · Diamond DA40NG</div>
-          <div class="num"><span class="accent">$</span>8,600</div>
-        </div>
-        <div class="sub">Dedicated CFI, up to 15 hours dual flight, 2 hours Redbird sim, 10 hours ground, 2 hours aircraft for the checkride, Commercial PTS/ACS &amp; Oral Exam Guide. Need extra dual? Standard rate is <strong>$255/hr</strong> in the DA40NG.</div>
-      </div>
+      <div class="lbl">Use CRAFT's Diamond DA40NG</div>
+      <div class="num"><span class="accent">$</span>8,600</div>
+      <div class="sub">Up to 15 hrs dual flight instruction · 2 hrs Redbird AATD · 2 hrs aircraft for the checkride · dedicated CFI · Commercial PTS/ACS &amp; Oral Exam Guide. Need extra dual? Standard rate is <strong>$255/hr</strong> in the DA40NG.</div>
+      <a href="/contact" class="btn btn-primary btn-arrow" style="margin-top:14px;display:inline-flex">Book Now</a>
+    </div>
+    <div class="cs-price-card">
+      <div class="lbl">Bring Your Own Plane</div>
+      <div class="num" style="font-size:32px;line-height:1.1;color:#fff;margin:8px 0 8px">Contact us<br><span style="font-size:14px;font-weight:500;letter-spacing:0.04em;color:var(--beacon);text-transform:uppercase;font-family:'JetBrains Mono',monospace">for BYOP options &amp; pricing</span></div>
+      <div class="sub">Use your own commercial-rated aircraft and CRAFT's CFI. We tailor the program to your airframe and avionics; pricing varies by aircraft and equipment. Reach out for a quote.</div>
+      <a href="/contact" class="btn btn-light btn-arrow" style="margin-top:14px;display:inline-flex">Request BYOP Quote</a>
     </div>
   </div>
 </section>
