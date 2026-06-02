@@ -569,7 +569,36 @@
   </div>
 </section>
 
-<!-- BOOK -->
+<!-- BOOK — Calendly inline embed, themed -->
+<section class="df-cal" id="book">
+  <div class="df-cal-inner">
+    <div class="df-cal-head">
+      <span class="eyebrow">Book Your Slot</span>
+      <h2>Pick a time.<br><span class="accent">Step into the cockpit.</span></h2>
+      <p>Live availability from CRAFT&rsquo;s booking calendar. Pick a slot that fits your schedule. We&rsquo;ll confirm within an hour and walk you through what to bring.</p>
+    </div>
+    <div class="df-cal-frame">
+      <div class="df-cal-frame-meta">
+        <span>Discovery Flight &middot; <span style="color:var(--beacon)">$325</span></span>
+        <span class="live">Live Calendar</span>
+      </div>
+      <!-- Calendly inline widget themed with CRAFT colors -->
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/craftchs/fly?primary_color=e63027&background_color=14181f&text_color=ffffff&hide_event_type_details=0&hide_gdpr_banner=1"></div>
+    </div>
+    <div class="df-cal-pills">
+      <span class="df-cal-pill">Confirmation in 1 hr</span>
+      <span class="df-cal-pill">Bring a Friend (2 fly)</span>
+      <span class="df-cal-pill">Min Age 14</span>
+      <span class="df-cal-pill">~1h 45m on Site</span>
+    </div>
+    <div class="df-cal-fallback">
+      Calendar not loading? <a href="https://calendly.com/craftchs/fly" target="_blank" rel="noopener">Open Calendly directly &rarr;</a>
+      &nbsp;or call <a href="tel:+18438006498">843.800.6498</a>
+    </div>
+  </div>
+</section>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
 <!-- AIRLINE PAY (career payoff) -->
 <section class="df-pay" id="pay">
@@ -839,42 +868,3 @@ const PAY_TIERS = {
   }
 };
 const GUARANTEE_HRS = 75; // monthly guarantee minimum
-const $df = id => document.getElementById(id);
-const fmtUSD = v => '$' + Math.round(v).toLocaleString();
-
-let currentTier = 'rgl-fo';
-function updatePayPct() {
-  const sl = $df('df-pay-year');
-  const min = +sl.min, max = +sl.max, val = +sl.value;
-  sl.style.setProperty('--df-pct', ((val - min) / (max - min)) * 100 + '%');
-}
-function recalcPay() {
-  const t = PAY_TIERS[currentTier];
-  const year = +$df('df-pay-year').value;
-  const hr = t.rates[Math.min(year, t.rates.length) - 1] || t.rates[t.rates.length - 1];
-  const guarantee = currentTier === 'maj-cap' ? 80 : 75;
-  const monthly = hr * guarantee;
-  const annual = monthly * 12;
-  $df('df-pay-out').textContent = fmtUSD(annual);
-  $df('df-pay-monthly').textContent = fmtUSD(monthly);
-  $df('df-pay-tier-name').textContent = t.short;
-  $df('df-pay-tier-display').textContent = t.label;
-  $df('df-pay-year-name').textContent = 'YEAR ' + year + (year === 12 ? '+' : '');
-  $df('df-pay-year-display').textContent = 'Year ' + year + (year === 12 ? '+' : '');
-  $df('df-pay-detail').textContent = t.note(hr);
-  $df('df-pay-min-day').textContent = t.minDay;
-  updatePayPct();
-}
-document.querySelectorAll('.df-pay-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.df-pay-tab').forEach(x => x.classList.toggle('active', x === tab));
-    currentTier = tab.dataset.tier;
-    recalcPay();
-  });
-});
-$df('df-pay-year')?.addEventListener('input', recalcPay);
-recalcPay();
-</script>
-
-<script src="/assets/chatbot.js" defer></script>
-<script type="text/javascript" src="https://assets.calendly.com/assets/exter
