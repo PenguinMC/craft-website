@@ -160,7 +160,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 
 /* FOOTER SOCIAL ICONS */
-.footer-social { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+.footer-social { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; margin-bottom: 32px; padding-top: 24px; padding-bottom: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
 .footer-social-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.4); text-transform: uppercase; align-self: center; margin-right: 8px; }
 .footer-social a { display: grid !important; place-items: center; flex: 0 0 42px !important; width: 42px !important; height: 42px !important; min-width: 0; box-sizing: border-box; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); transition: all .25s var(--ease); position: relative; overflow: hidden; }
 .footer-social a::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%); opacity: 0; transition: opacity .25s var(--ease); }
@@ -397,6 +397,4 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   padding: 0 28px !important;
   background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%) !important;
   border: 1px solid var(--beacon) !important;
-  border-radius: 6px !important;
-  color: #fff !important;
-  f
+  border-radius: 6p
