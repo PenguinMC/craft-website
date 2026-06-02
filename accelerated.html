@@ -60,6 +60,44 @@
 .acx-hero-meta .accent { color: var(--beacon); }
 @media (max-width: 880px) { .acx-hero-meta { display: none; } }
 
+/* CRAFT ADVANTAGE — Steam vs Glass / Levers vs FADEC */
+.acx-adv { background: var(--ink); padding: var(--section-py) 0 60px; position: relative; overflow: hidden; }
+.acx-adv::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; pointer-events: none; }
+.acx-adv-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.acx-adv-head { text-align: center; margin: 0 auto 56px; max-width: 760px; }
+.acx-adv-head .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 6px 12px; border-radius: 4px; }
+.acx-adv-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6vw, 72px); text-transform: uppercase; letter-spacing: -0.01em; margin: 16px 0 14px; line-height: 0.95; }
+.acx-adv-head h2 .accent { color: var(--beacon); }
+.acx-adv-head p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.65; }
+.acx-adv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 32px; }
+@media (max-width: 880px) { .acx-adv-row { grid-template-columns: 1fr; gap: 16px; } }
+.acx-adv-card { position: relative; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; transition: transform .3s var(--ease), border-color .3s var(--ease); }
+.acx-adv-card.craft { border-color: rgba(230,48,39,0.5); box-shadow: 0 24px 60px -28px rgba(230,48,39,0.5); }
+.acx-adv-card.craft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); z-index: 2; }
+.acx-adv-card:hover { transform: translateY(-4px); }
+.acx-adv-card.legacy:hover { border-color: rgba(255,255,255,0.18); }
+.acx-adv-card.craft:hover { border-color: var(--beacon); box-shadow: 0 30px 70px -25px rgba(230,48,39,0.65); }
+.acx-adv-tag { position: absolute; top: 16px; left: 16px; z-index: 3; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; padding: 6px 12px; border-radius: 3px; backdrop-filter: blur(8px); }
+.acx-adv-card.legacy .acx-adv-tag { background: rgba(20,24,31,0.7); color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.15); }
+.acx-adv-card.craft .acx-adv-tag { background: rgba(230,48,39,0.15); color: var(--beacon); border: 1px solid rgba(230,48,39,0.5); }
+.acx-adv-img-wrap { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; background: #000; }
+.acx-adv-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+.acx-adv-card:hover .acx-adv-img-wrap img { transform: scale(1.04); }
+.acx-adv-card.legacy .acx-adv-img-wrap::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(20,24,31,0.25) 0%, rgba(20,24,31,0.6) 100%); pointer-events: none; }
+.acx-adv-card.legacy .acx-adv-img-wrap img { filter: grayscale(0.5) brightness(0.85); }
+.acx-adv-body { padding: 22px 24px 26px; }
+.acx-adv-body h3 { font-family: var(--display); font-weight: 900; font-size: 24px; line-height: 1.1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 8px; color: #fff; }
+.acx-adv-body h3 .accent { color: var(--beacon); }
+.acx-adv-body p { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.6; margin: 0; }
+.acx-adv-vs { display: flex; align-items: center; justify-content: center; margin: 12px 0 28px; font-family: var(--display); font-weight: 900; font-size: 20px; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); text-transform: uppercase; gap: 14px; }
+.acx-adv-vs::before, .acx-adv-vs::after { content: ""; flex: 1; max-width: 80px; height: 1px; background: linear-gradient(90deg, transparent, rgba(230,48,39,0.4), transparent); }
+.acx-adv-takeaway { background: linear-gradient(180deg, rgba(230,48,39,0.06) 0%, var(--approach) 100%); border: 1px solid rgba(230,48,39,0.3); border-radius: 12px; padding: 28px 32px; margin-top: 12px; position: relative; }
+.acx-adv-takeaway::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); border-radius: 12px 12px 0 0; }
+.acx-adv-takeaway-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; margin-bottom: 10px; }
+.acx-adv-takeaway-h { font-family: var(--display); font-weight: 800; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.2; text-transform: uppercase; letter-spacing: -0.005em; color: #fff; margin: 0 0 8px; }
+.acx-adv-takeaway-h .accent { color: var(--beacon); }
+.acx-adv-takeaway p { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.65; margin: 0; }
+
 /* Course grid */
 .acx-grid-sec { background: var(--ink); padding: 60px 0 var(--section-py); }
 .acx-grid { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
@@ -280,6 +318,70 @@
   </div>
   <div class="acx-hero-meta">96% PASS · DPE <span class="accent">RESERVED</span> · KCHS</div>
 </header>
+
+<section class="acx-adv">
+  <div class="acx-adv-inner">
+    <div class="acx-adv-head">
+      <span class="eyebrow">● The CRAFT Advantage</span>
+      <h2>Train on the platform you'll <span class="accent">actually fly.</span></h2>
+      <p>Why CRAFT students transition faster, log fewer relearning hours, and walk into airline cockpits feeling at home. Every track below runs on the same modern equipment.</p>
+    </div>
+
+    <div class="acx-adv-row">
+      <article class="acx-adv-card legacy">
+        <span class="acx-adv-tag">Legacy &middot; Most Schools</span>
+        <div class="acx-adv-img-wrap"><img src="/assets/steamgage.jpg" alt="Steam gauge analog cockpit" loading="lazy"></div>
+        <div class="acx-adv-body">
+          <h3>Steam Gauges</h3>
+          <p>Six analog dials and a vacuum-driven attitude indicator. The cockpit you'd train in at most accelerated schools is older than most students. None of it transfers to a regional jet or major airline cockpit.</p>
+        </div>
+      </article>
+
+      <article class="acx-adv-card craft">
+        <span class="acx-adv-tag">CRAFT &middot; Modern</span>
+        <div class="acx-adv-img-wrap"><img src="/assets/g1000glasscockpit.jpg" alt="Garmin G1000 NXi glass cockpit" loading="lazy"></div>
+        <div class="acx-adv-body">
+          <h3>G1000 NXi <span class="accent">Glass Cockpit</span></h3>
+          <p>Two big PFD/MFD displays, synthetic vision, integrated GPS, traffic, weather, and a GFC700 digital autopilot. Same family of avionics you'll see in regional jets and corporate aircraft. Every hour pays dividends for the rest of your career.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="acx-adv-takeaway">
+      <div class="acx-adv-takeaway-lbl">● Why it matters</div>
+      <div class="acx-adv-takeaway-h">Modern panels = <span class="accent">faster ratings</span>, fewer hours relearning later.</div>
+      <p>Every hour you log on a G1000 platform is an hour you don't have to relearn when you upgrade to IFR, Commercial, or your first type rating. Glass cockpit skills compound. Steam gauge skills don't.</p>
+    </div>
+
+    <div class="acx-adv-vs" style="margin-top:56px">vs</div>
+
+    <div class="acx-adv-row">
+      <article class="acx-adv-card legacy">
+        <span class="acx-adv-tag">Legacy &middot; Most Schools</span>
+        <div class="acx-adv-img-wrap"><img src="/assets/threelevers.jpg" alt="Three engine control levers: throttle, propeller, mixture" loading="lazy"></div>
+        <div class="acx-adv-body">
+          <h3>Three Levers</h3>
+          <p>Throttle, propeller pitch, mixture. Three controls to juggle on every power change, climb, and descent. Mismanage any of them and you're cooking cylinders or detonating fuel. Cognitive load that has nothing to do with actually flying.</p>
+        </div>
+      </article>
+
+      <article class="acx-adv-card craft">
+        <span class="acx-adv-tag">CRAFT &middot; Modern</span>
+        <div class="acx-adv-img-wrap"><img src="/assets/fadec.gif" alt="FADEC single-lever power control" loading="lazy"></div>
+        <div class="acx-adv-body">
+          <h3>FADEC <span class="accent">Single Lever</span></h3>
+          <p>One lever. Push for more power, pull for less. Full Authority Digital Engine Control manages prop pitch, fuel flow, and mixture in real time. Diamond DA40 NG and DA42 NG were among the first FAA-certified piston aircraft with single-lever FADEC.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="acx-adv-takeaway">
+      <div class="acx-adv-takeaway-lbl">● Airline transition</div>
+      <div class="acx-adv-takeaway-h">One lever today = one lever <span class="accent">forever.</span></div>
+      <p>Every modern jet, every turboprop, every regional and major airline cockpit you'll ever sit in uses single-lever digital engine control. Train on FADEC in your accelerated IFR, Commercial, or Multi here, and the muscle memory carries straight into the right seat of an E175, CRJ, or 737.</p>
+    </div>
+  </div>
+</section>
 
 <section class="acx-grid-sec">
   <div class="acx-grid">
