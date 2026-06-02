@@ -161,12 +161,15 @@
 .cc-feat h3 { font-family: var(--display); font-weight: 900; font-size: 22px; line-height: 1.05; text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 10px; color: var(--white); }
 .cc-feat p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.55; margin: 0; }
 
+
+.cc-jump-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 22px; padding: 16px 28px; font-family: var(--display); font-weight: 800; font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(230,48,39,0.1); color: var(--beacon); border: 1px solid rgba(230,48,39,0.45); border-radius: 8px; cursor: pointer; transition: all .25s var(--ease); width: 100%; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04); }
+.cc-jump-btn:hover { background: var(--beacon); color: var(--white); border-color: var(--beacon); transform: translateY(-1px); box-shadow: 0 10px 26px rgba(230,48,39,0.45); }
+.cc-jump-btn svg { animation: ccJumpBounce 1.8s ease-in-out infinite; }
+@keyframes ccJumpBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+
 /* === STEP 3: Airline Pay Slider (ported from /discovery-flight) === */
 .cc-pay { background: var(--ink); padding: 40px 0 80px; position: relative; overflow: hidden; }
-.cc-pay-grid { position: absolute; inset: 0; pointer-events: none; }
-.cc-pay-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.06) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.5; animation: ccPayGrid 30s linear infinite; }
-@keyframes ccPayGrid { 0% { background-position: 0 0, 0 0; } 100% { background-position: 64px 64px, 64px 64px; } }
-.cc-pay-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 50% 30%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%); }
+.cc-pay-grid, .cc-pay-vignette { display: none; }
 .cc-pay-inner { position: relative; z-index: 5; max-width: 980px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
 .cc-pay h2 { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6vw, 80px); line-height: 0.95; letter-spacing: -0.015em; text-transform: uppercase; margin: 0 0 18px; }
 .cc-pay h2 .accent { color: var(--beacon); }
@@ -458,6 +461,8 @@
             <input type="range" id="cc-ride" class="cc-slider" min="800" max="1500" step="50" value="1000" />
             <div class="cc-ctrl-hint"><span>$800</span><span>$1,500</span></div>
           </div>
+
+          <a href="#airline-pay" class="cc-jump-btn">See what you can earn<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></a>
         </div>
 
         <!-- RIGHT: estimate panel -->
