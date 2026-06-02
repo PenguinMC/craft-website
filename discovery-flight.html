@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Discovery Flight — $325 · Sim, Flight & Debrief | CRAFT Flight Training</title>
+<title>Discovery Flight, $325 · Sim, Flight & Debrief | CRAFT Flight Training</title>
 <meta name="description" content="30 minutes in our Redbird AATD simulator, one hour flying a Diamond DA40NG over Charleston, then a 15-minute debrief. $325 all-in. The first step toward your pilot license at CRAFT." />
 <!-- SEO: canonical, OpenGraph, Twitter Card -->
 <link rel="canonical" href="https://flycraftchs.com/discovery-flight" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="CRAFT Flight Training" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:title" content="Discovery Flight — $325 · Sim, Flight &amp; Debrief | CRAFT Flight Training" />
+<meta property="og:title" content="Discovery Flight, $325 · Sim, Flight &amp; Debrief | CRAFT Flight Training" />
 <meta property="og:description" content="30 minutes in our Redbird AATD simulator, one hour flying a Diamond DA40NG over Charleston, then a 15-minute debrief. $325 all-in. The first step toward your pilot license at CRAFT." />
 <meta property="og:url" content="https://flycraftchs.com/discovery-flight" />
 <meta property="og:image" content="https://flycraftchs.com/assets/discobg.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Discovery Flight — $325 · Sim, Flight &amp; Debrief | CRAFT Flight Training" />
+<meta name="twitter:title" content="Discovery Flight, $325 · Sim, Flight &amp; Debrief | CRAFT Flight Training" />
 <meta name="twitter:description" content="30 minutes in our Redbird AATD simulator, one hour flying a Diamond DA40NG over Charleston, then a 15-minute debrief. $325 all-in. The first step toward your pilot license at CRAFT." />
 <meta name="twitter:image" content="https://flycraftchs.com/assets/discobg.jpg" />
 <meta name="theme-color" content="#E63027" />
@@ -191,12 +191,11 @@
 }
 .df-incl-tick { color: var(--beacon); font-weight: 700; flex: 0 0 24px; font-size: 18px; }
 
-/* Pricing */
-.df-pricing { background: var(--ink); padding: var(--section-py) 0; text-align: center; }
-.df-pricing-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beacon); margin-bottom: 16px; }
-.df-pricing h2 { font-family: var(--display); font-weight: 900; font-size: clamp(80px, 12vw, 180px); line-height: 1; letter-spacing: -0.03em; color: var(--white); margin-bottom: 12px; }
-.df-pricing-sub { font-size: 18px; color: rgba(255,255,255,0.65); margin-bottom: 8px; }
-.df-pricing-note { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+/* Pricing CTA */
+.df-pricing { background: linear-gradient(180deg, var(--ink) 0%, rgba(230,48,39,0.08) 50%, var(--ink) 100%); padding: 70px 0; text-align: center; position: relative; overflow: hidden; }
+.df-pricing::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.df-pricing::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.df-pricing-cta { font-size: clamp(20px, 2.4vw, 26px) !important; padding: 22px 56px !important; box-shadow: 0 14px 36px rgba(230,48,39,0.4) !important; letter-spacing: 0.1em !important; }
 
 /* FAQ */
 .df-faq { background: var(--approach); padding: var(--section-py) 0; }
@@ -275,7 +274,7 @@
   max-width: 600px; margin: 0 auto; line-height: 1.6;
 }
 
-/* The framed embed — tactical card around the Calendly iframe */
+/* The framed embed, tactical card around the Calendly iframe */
 .df-cal-frame {
   position: relative;
   background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%);
@@ -460,7 +459,7 @@
   <div class="df-hero-inner">
     <span class="df-hero-eyebrow">● Discovery Flight · $325 · Sim + Flight + Debrief</span>
     <h1>Your first hour<br><span class="accent">at the controls.</span></h1>
-    <p class="df-hero-sub">30 minutes in our state-of-the-art Redbird AATD simulator. One full hour flying a Diamond DA40NG over Charleston. Then 15 minutes to debrief and talk next steps. No experience needed. A real CFI in the right seat — and by the end you'll know whether this is for you, or whether it's already in your blood.</p>
+    <p class="df-hero-sub">30 minutes in our state-of-the-art Redbird AATD simulator. One full hour flying a Diamond DA40NG over Charleston. Then 15 minutes to debrief and talk next steps. No experience needed. A flight instructor in the right seat the whole time. By the end of the day you'll know if flying is for you. Most people walk away knowing it is.</p>
     <div class="df-hero-cta">
       <a href="#book" class="btn btn-primary btn-arrow">Book Discovery Flight</a>
       <a href="#what" class="btn btn-ghost">What to Expect</a>
@@ -474,13 +473,13 @@
     <div>
       <span class="eyebrow">What Is a Discovery Flight?</span>
       <h2>Honestly? <span class="accent">A test drive.</span></h2>
-      <p>A Discovery Flight is the cleanest way to find out if flight training is right for you — without committing to a $20K program first. Sim time, real flight time, and a real conversation. $325, all-in.</p>
-      <p>You start in the Redbird AATD to get oriented, then move to the actual DA40NG you'd train in. You're in the left seat — the pilot's seat. Your CFI handles takeoff and landing; everything in between is you on the controls.</p>
+      <p>A Discovery Flight is the cleanest way to find out if flight training is right for you. Sim time, real flight time, and a real conversation. $325, all-in.</p>
+      <p>You start in the Redbird AATD to get oriented, then move to the actual DA40NG you'd train in. You're in the left seat, the pilot's seat. Your CFI handles takeoff and landing; everything in between is you on the controls.</p>
       <div class="df-what-stats">
         <div><div class="df-what-stat-num">30</div><div class="df-what-stat-lbl">Min Redbird Sim</div></div>
         <div><div class="df-what-stat-num">60</div><div class="df-what-stat-lbl">Min in the Air</div></div>
         <div><div class="df-what-stat-num">15</div><div class="df-what-stat-lbl">Min Debrief</div></div>
-        <div><div class="df-what-stat-num">$0</div><div class="df-what-stat-lbl">Pressure to Continue</div></div>
+        <div><div class="df-what-stat-num">No</div><div class="df-what-stat-lbl">Pressure to Continue</div></div>
       </div>
     </div>
     <div class="df-what-visual">
@@ -499,20 +498,20 @@
   <div class="df-steps-head">
     <span class="eyebrow">What You'll Do</span>
     <h2>Three stages. <span class="accent">One unforgettable day.</span></h2>
-    <p>Show up at our FBO (Signature or ) 15 minutes early. The whole thing wraps in about two hours door-to-door — sim, flight, and debrief.</p>
+    <p>Show up at our office 15 minutes early. The whole thing wraps in about two hours door-to-door: sim, flight, and debrief.</p>
   </div>
   <div class="df-steps-grid">
     <div class="df-step">
       <div class="df-step-num">01</div>
       <div class="df-step-title">Redbird Sim</div>
       <div class="df-step-time">30 minutes</div>
-      <div class="df-step-desc">Climb into one of our two state-of-the-art Redbird AATD simulators. Your CFI walks you through the controls, the panel, and basic maneuvers — straight-and-level flight, gentle turns, climbs and descents — so you're already comfortable before you ever leave the ground.</div>
+      <div class="df-step-desc">Climb into one of our two state-of-the-art Redbird AATD simulators. Your CFI walks you through the controls, the panel, and basic maneuvers, straight-and-level flight, gentle turns, climbs and descents, so you're already comfortable before you ever leave the ground.</div>
     </div>
     <div class="df-step">
       <div class="df-step-num">02</div>
       <div class="df-step-title">Fly Charleston</div>
       <div class="df-step-time">1 hour airborne</div>
-      <div class="df-step-desc">A full hour at the controls of the Diamond DA40NG. CFI handles takeoff and landing — everything in between is you. Coastline, harbor, the bridges from above. Skills you just practiced in the sim, now over the real city. CFI is on the controls anytime you want.</div>
+      <div class="df-step-desc">A full hour at the controls of the Diamond DA40NG. CFI handles takeoff and landing, everything in between is you. Coastline, harbor, the bridges from above. Skills you just practiced in the sim, now over the real city. CFI is on the controls anytime you want.</div>
     </div>
     <div class="df-step">
       <div class="df-step-num">03</div>
@@ -533,7 +532,7 @@
       <p>And if you decide to enroll in any CRAFT program afterward, the $325 applies as credit toward your tuition.</p>
     </div>
     <ul class="df-incl-list">
-      <li><span class="df-incl-tick">✓</span><span>~1h 45min total — 30 sim / 60 flight / 15 debrief</span></li>
+      <li><span class="df-incl-tick">✓</span><span>~1h 45min total, 30 sim / 60 flight / 15 debrief</span></li>
       <li><span class="df-incl-tick">✓</span><span>30 minutes in a Redbird AATD simulator</span></li>
       <li><span class="df-incl-tick">✓</span><span>One full hour flying a Diamond DA40NG over Charleston</span></li>
       <li><span class="df-incl-tick">✓</span><span>Certified Flight Instructor in the right seat the entire time</span></li>
@@ -545,14 +544,10 @@
   </div>
 </section>
 
-<!-- PRICING -->
+<!-- PRICING / CTA -->
 <section class="df-pricing">
   <div class="container">
-    <div class="df-pricing-eyebrow">Honest Pricing</div>
-    <h2>$325</h2>
-    <div class="df-pricing-sub">All-in. Sim, flight, debrief. No surprises.</div>
-    <div class="df-pricing-note">If you decide flight training is right for you, the $325 applies as credit toward any CRAFT enrollment. If it's not for you, no follow-up. We're not going to hard-sell you.</div>
-    <a href="#book" class="btn btn-primary btn-arrow">Reserve Your Slot</a>
+    <a href="#book" class="btn btn-primary btn-arrow df-pricing-cta">Reserve Your Slot</a>
   </div>
 </section>
 
@@ -563,14 +558,14 @@
     <h2>The questions <span class="accent">we get most.</span></h2>
   </div>
   <div class="df-faq-list">
-    <div class="df-faq-item"><button class="df-faq-q"><span>Do I need any experience?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">None. Most Discovery Flight passengers have never been in a small aircraft before. Your CFI handles everything you don't yet know — and you'll learn what you need to learn in the briefing.</div></div>
-    <div class="df-faq-item"><button class="df-faq-q"><span>Will I really fly the plane?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">Yes. You'll be in the left seat (the pilot's seat) with hands on the controls for most of the flight. Your CFI handles takeoff and landing — though we'll let you try the takeoff if you're up for it. With a full hour airborne, you get serious stick time, not a quick lap.</div></div>
-    <div class="df-faq-item"><button class="df-faq-q"><span>What if the weather is bad?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">We rebook at no cost. CRAFT only flies when conditions are clearly safe for a discovery flight — we're conservative on this and you'll never feel pressured. Charleston has 320+ VFR days a year, so rebooks are uncommon.</div></div>
-    <div class="df-faq-item"><button class="df-faq-q"><span>Is this a sales pitch for flight school?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">It's an honest answer to "do I actually want to be a pilot?" If you decide flight training isn't for you, no follow-up. If it is, the $325 applies as credit toward any accelerated program. We don't make money on Discovery Flights — they cost more to operate than $325. We do them because some students stay.</div></div>
-    <div class="df-faq-item"><button class="df-faq-q"><span>Can I bring someone?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">Bring as many people as you want — family, friends, the skeptical uncle. Everyone&rsquo;s welcome at the FBO for the briefing, the photos on the ramp, and the debrief afterward. <strong>Two people total can actually fly</strong> — typically you in the left seat and one guest along for the ride. Everyone else hangs out at the FBO and meets you when you taxi back.</div></div>
-    <div class="df-faq-item"><button class="df-faq-q"><span>How do I get there?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">We use  and Atlantic Aviation at Charleston International Airport (KCHS). Address: 6060 S. Aviation Ave, Suite 109, North Charleston, SC 29406. Free parking. Show up 15 minutes early. We'll meet you in the lobby — we'll confirm which FBO when you book.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>Do I need any experience?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">None. Most Discovery Flight passengers have never been in a small aircraft before. Your CFI handles everything you don't yet know, and you'll learn what you need to learn in the briefing.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>Will I really fly the plane?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">Yes. You'll be in the left seat (the pilot's seat) with hands on the controls for most of the flight. Your CFI handles takeoff and landing, though we'll let you try the takeoff if you're up for it. With a full hour airborne, you get serious stick time, not a quick lap.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>What if the weather is bad?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">We rebook at no cost. CRAFT only flies when conditions are clearly safe for a discovery flight, we're conservative on this and you'll never feel pressured. Charleston has 320+ VFR days a year, so rebooks are uncommon.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>Is this a sales pitch for flight school?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">It's an honest answer to "do I actually want to be a pilot?" If you decide flight training isn't for you, no follow-up. If it is, the $325 applies as credit toward any accelerated program. We don't make money on Discovery Flights, they cost more to operate than $325. We do them because some students stay.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>Can I bring someone?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">Bring as many people as you want, family, friends, the skeptical uncle. Everyone&rsquo;s welcome at the FBO for the briefing, the photos on the ramp, and the debrief afterward. <strong>Two people total can actually fly</strong>, typically you in the left seat and one guest along for the ride. Everyone else hangs out at the FBO and meets you when you taxi back.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>How do I get there?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">We use  and Atlantic Aviation at Charleston International Airport (KCHS). Address: 6060 S. Aviation Ave, Suite 109, North Charleston, SC 29406. Free parking. Show up 15 minutes early. We'll meet you in the lobby, we'll confirm which FBO when you book.</div></div>
     <div class="df-faq-item"><button class="df-faq-q"><span>How long is the whole appointment?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">About two hours door-to-door. 30 minutes in the Redbird sim + 60 minutes flying + 15 minutes debrief = ~1h 45min core, plus arrive-early time and check-out. Block off 2½ hours and you're set.</div></div>
-    <div class="df-faq-item"><button class="df-faq-q"><span>Is there an age limit?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">Minimum age for the Discovery Flight is <strong>14</strong>. No upper age limit — we have students starting in their 60s. Spectators of any age are welcome at the FBO.</div></div>
+    <div class="df-faq-item"><button class="df-faq-q"><span>Is there an age limit?</span><span class="df-faq-q-mark">+</span></button><div class="df-faq-a">Minimum age for the Discovery Flight is <strong>14</strong>. No upper age limit, we have students starting in their 60s. Spectators of any age are welcome at the FBO.</div></div>
   </div>
 </section>
 
@@ -585,7 +580,7 @@
   <div class="df-pay-inner">
     <span class="df-pay-eyebrow"><span class="ll-dot"></span>WHY PILOTS · CAREER OUTLOOK</span>
     <h2>What you can <span class="accent">actually</span> earn.</h2>
-    <p class="df-pay-sub">Airline pay is <strong>seniority-based</strong>. Year 1 in the right seat of a regional turboprop is one number. By year 12 in the left seat of a wide-body, it&rsquo;s another. And once you&rsquo;re senior at a major, the contract minimum guarantees you a paycheck whether you fly 1 day or 20 — drag the slider to see how the math works.</p>
+    <p class="df-pay-sub">Airline pay is <strong>seniority-based</strong>. Year 1 in the right seat of a regional turboprop is one number. By year 12 in the left seat of a wide-body, it&rsquo;s another. And once you&rsquo;re senior at a major, the contract minimum guarantees you a paycheck whether you fly 1 day or 20, drag the slider to see how the math works.</p>
 
     <div class="df-pay-card">
       <div class="df-pay-readout">
@@ -629,7 +624,7 @@
   </div>
 </section>
 
-<!-- BOOK — Calendly inline embed, themed -->
+<!-- BOOK, Calendly inline embed, themed -->
 <section class="df-cal" id="book">
   <div class="df-cal-inner">
     <div class="df-cal-head">
@@ -642,7 +637,7 @@
         <span>Discovery Flight &middot; <span style="color:var(--beacon)">$325</span></span>
         <span class="live">Live Calendar</span>
       </div>
-      <!-- Calendly inline widget — themed with CRAFT colors -->
+      <!-- Calendly inline widget, themed with CRAFT colors -->
       <div class="calendly-inline-widget"
            data-url="https://calendly.com/craftchs/fly?primary_color=e63027&background_color=14181f&text_color=ffffff&hide_event_type_details=0&hide_gdpr_banner=1"></div>
     </div>
@@ -882,6 +877,4 @@ recalcPay();
 </script>
 
 <script src="/assets/chatbot.js" defer></script>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-</body>
-</html>
+<script type="text/javascript" src="https://assets.calendly.com/assets/exter
