@@ -116,6 +116,30 @@
 .cs-dpe h2 .accent { color: var(--beacon); }
 .cs-dpe p { font-size: 15px; color: rgba(255,255,255,0.72); line-height: 1.65; margin: 0 auto; max-width: 640px; }
 
+/* Featured Student Testimonial — Thomas Brainsky */
+.cs-testi { background: linear-gradient(180deg, var(--approach) 0%, var(--ink) 100%); padding: var(--section-py) 0; position: relative; overflow: hidden; border-top: 1px solid rgba(230,48,39,0.18); border-bottom: 1px solid rgba(230,48,39,0.18); }
+.cs-testi::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.4; pointer-events: none; }
+.cs-testi-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.cs-testi-head { text-align: center; margin-bottom: 44px; max-width: 720px; margin-left: auto; margin-right: auto; }
+.cs-testi-head .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.08); border: 1px solid rgba(230,48,39,0.4); padding: 6px 12px; border-radius: 4px; }
+.cs-testi-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5.2vw, 64px); text-transform: uppercase; letter-spacing: -0.01em; margin: 14px 0 8px; line-height: 0.95; color: #fff; }
+.cs-testi-head h2 .accent { color: var(--beacon); }
+.cs-testi-head p { font-size: 15px; color: rgba(255,255,255,0.68); line-height: 1.6; margin: 0; }
+.cs-testi-grid { display: grid; grid-template-columns: 360px 1fr; gap: 36px; align-items: stretch; max-width: 1080px; margin: 0 auto; }
+@media (max-width: 880px) { .cs-testi-grid { grid-template-columns: 1fr; gap: 24px; max-width: 520px; } }
+.cs-testi-video { position: relative; aspect-ratio: 9/16; background: #000; border: 1px solid rgba(230,48,39,0.3); border-radius: 14px; overflow: hidden; box-shadow: 0 30px 60px -25px rgba(230,48,39,0.45); }
+.cs-testi-video::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); z-index: 3; }
+.cs-testi-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.cs-testi-tag { position: absolute; top: 14px; left: 14px; z-index: 4; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--beacon); padding: 5px 10px; border-radius: 3px; background: rgba(20,24,31,0.7); border: 1px solid rgba(230,48,39,0.5); backdrop-filter: blur(8px); }
+.cs-testi-card { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.25); border-radius: 14px; padding: 32px 36px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+.cs-testi-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.cs-testi-mark { font-family: var(--display); font-weight: 900; font-size: 72px; line-height: 0.7; color: var(--beacon); opacity: 0.4; margin-bottom: 8px; }
+.cs-testi-quote { font-size: clamp(15px, 1.4vw, 17px); line-height: 1.65; color: rgba(255,255,255,0.88); margin: 0 0 22px; font-style: italic; }
+.cs-testi-attr { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
+.cs-testi-name { font-family: var(--display); font-weight: 900; font-size: 22px; line-height: 1.1; letter-spacing: -0.005em; color: #fff; margin: 0; }
+.cs-testi-role { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; color: var(--beacon); text-transform: uppercase; margin-top: 4px; }
+.cs-testi-stars { color: var(--beacon); font-size: 16px; letter-spacing: 2px; }
+
 /* 7-Day Course Timeline (same pattern as /commercial) */
 .cs-days-sec { padding: var(--section-py) 0; position: relative; overflow: hidden; background: linear-gradient(180deg, var(--ink) 0%, rgba(230,48,39,0.04) 50%, var(--ink) 100%); }
 .cs-days-sec::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; pointer-events: none; }
@@ -476,6 +500,33 @@
         <span class="cs-day-tag">● DPE Reserved</span>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<section class="cs-testi">
+  <div class="cs-testi-inner">
+    <div class="cs-testi-head">
+      <span class="eyebrow">● Real Student &middot; Real Result</span>
+      <h2>From the pilot who <span class="accent">finished.</span></h2>
+      <p>Thomas came in for his accelerated IFR and walked out instrument-rated seven days later. Here&rsquo;s what he had to say.</p>
+    </div>
+    <div class="cs-testi-grid">
+      <div class="cs-testi-video">
+        <span class="cs-testi-tag">● Live Review</span>
+        <iframe src="https://www.youtube.com/embed/0X3ak1Gh8rs?rel=0&modestbranding=1&playsinline=1" title="Thomas Brainsky &mdash; CRAFT Accelerated IFR Review" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="cs-testi-card">
+        <div class="cs-testi-mark">&ldquo;</div>
+        <p class="cs-testi-quote">If you are looking for a solid accelerated flight school, you really need to check this place out. 6 full days of ground instruction, simulator and plenty of time in the sky. Matt was my instructor: personable, knowledgeable, and patient. Your check ride is already scheduled for day 7 so there is no worry about not flying. These guys are so good they can send you a rescue plane to your check ride if something fails on yours. They really do stand out.</p>
+        <div class="cs-testi-attr">
+          <div>
+            <h3 class="cs-testi-name">Thomas Brainsky</h3>
+            <div class="cs-testi-role">Accelerated IFR Student</div>
+          </div>
+          <div class="cs-testi-stars">★ ★ ★ ★ ★</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
