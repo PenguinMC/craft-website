@@ -128,7 +128,7 @@
 .cc-est-row-l small { display: block; font-family: var(--body); font-weight: 400; font-size: 11px; letter-spacing: 0.06em; opacity: 0.75; text-transform: none; margin-top: 2px; }
 .cc-est-row-r { font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: 0.02em; text-align: right; white-space: nowrap; }
 .cc-est-row-r small { font-weight: 500; opacity: 0.85; font-size: 13px; margin-left: 2px; }
-.cc-est-fixed-list { font-family: var(--body); font-weight: 400; font-size: 11px; opacity: 0.85; line-height: 1.6; padding-left: 14px; margin-top: 6px; }
+.cc-est-fixed-list { font-family: var(--body); font-weight: 400; font-size: 13px; opacity: 0.85; line-height: 1.65; padding-left: 18px; margin-top: 6px; text-align: left; }
 .cc-est-fixed-list li { list-style: disc; }
 .cc-est-total { padding-top: 18px; border-top: 2px solid rgba(255,255,255,0.4); margin-top: 6px; }
 .cc-est-total .cc-est-row-l { font-size: 18px; }
@@ -426,9 +426,9 @@
             <div class="cc-est-row"><span class="cc-est-row-l">Instruction Cost</span><span class="cc-est-row-r" id="cc-out-instr">$3,850.00</span></div>
             <div class="cc-est-row"><span class="cc-est-row-l">Sim Cost <small>Instructor included</small></span><span class="cc-est-row-r" id="cc-out-sim">$420.00</span></div>
             <div class="cc-est-row"><span class="cc-est-row-l">FAA Check Ride</span><span class="cc-est-row-r" id="cc-out-ride">$1,000.00</span></div>
-            <div class="cc-est-row no-border">
-              <span class="cc-est-row-l">Prerequisites <span id="cc-out-fixed-name" style="display:block;font-size:11px;color:rgba(255,255,255,0.5);text-transform:none;letter-spacing:0;font-weight:400;margin-top:2px">PPL</span><ul class="cc-est-fixed-list" id="cc-out-fixed-list"><li>FAA Written Exam</li><li>ForeFlight</li></ul></span>
-              <span class="cc-est-row-r" id="cc-out-fixed" style="font-size:11px;font-weight:600;letter-spacing:0.14em;color:var(--beacon);text-transform:uppercase">Required</span>
+            <div class="cc-est-row no-border" id="cc-prereq-row" style="display:block;text-align:left">
+              <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:0.04em;text-transform:uppercase" id="cc-out-fixed-name">What You'll Need</div>
+              <ul class="cc-est-fixed-list" id="cc-out-fixed-list" style="margin-top:10px;padding-left:18px;text-align:left"></ul>
             </div>
             <div class="cc-est-row cc-est-total"><span class="cc-est-row-l">Total Program Cost</span><span class="cc-est-row-r" id="cc-out-total">$19,515</span></div>
           </div>
@@ -587,12 +587,11 @@ function loadProgram(key) {
   setSlider($('cc-ground'), p.gHrs[0], p.gHrs[1], p.gHrs[2]);
   $('cc-ground-min').textContent = p.gHrs[0]; $('cc-ground-max').textContent = p.gHrs[2];
   setSlider($('cc-sim'),    p.sHrs[0], p.sHrs[1], p.sHrs[2], true);
-  // Prerequisites section (PPL only — hidden for IFR/CPL/ME)
-  const prereqRow = $('cc-out-fixed-name').closest('.cc-est-row');
+  // What You'll Need section (PPL only — hidden for IFR/CPL/ME)
+  const prereqRow = $('cc-prereq-row');
   if (p.prereq) {
-    $('cc-out-fixed-name').textContent = p.prereq.name;
     $('cc-out-fixed-list').innerHTML = p.prereq.items.map(i => `<li>${i}</li>`).join('');
-    if (prereqRow) prereqRow.style.display = '';
+    if (prereqRow) prereqRow.style.display = 'block';
   } else {
     if (prereqRow) prereqRow.style.display = 'none';
   }
