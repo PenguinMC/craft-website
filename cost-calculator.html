@@ -379,18 +379,11 @@
           <div class="cc-ctrl">
             <div class="cc-ctrl-label"><span class="cc-ctrl-name">Training Program</span></div>
             <select id="cc-program" class="cc-select">
-              <option value="ppl">Private Pilot</option>
-              <option value="ifr">Accelerated IFR</option>
-              <option value="cpl">Accelerated Commercial</option>
-              <option value="me">Multi-Engine Add-On</option>
-              <option value="cmel">Commercial Multi-Engine Initial</option>
-              <option value="mei">Multi-Engine Instructor (MEI)</option>
-              <option value="atp">ATP Checkride Prep</option>
-              <option value="cfi">CFI Initial</option>
-              <option value="cfii">CFI-I (CFII) Add-On</option>
-              <option value="bundle">CFI + CFI-I Bundle</option>
+              <option value="ppl">Private Pilot (Self-Paced)</option>
+              <option value="ifr">Instrument Rating (Self-Paced)</option>
+              <option value="cpl">Commercial Pilot (Self-Paced)</option>
             </select>
-            <div class="cc-ctrl-hint"><span id="cc-program-fleet">DA40 NG · $255/hr wet</span></div>
+            <div class="cc-ctrl-hint"><span id="cc-program-fleet">DA40 NG · $255/hr wet · $65/hr instruction</span></div>
           </div>
 
           <div class="cc-ctrl">
@@ -443,7 +436,7 @@
             <p class="cc-est-cta-p">You're almost there. Lock your spot with a Discovery Flight and a CFI will walk you through your plan.</p>
             <a href="/discovery-flight" class="cc-est-cta-btn">Get Started Today</a>
           </div>
-          <div class="cc-disclaimer"><strong>Disclaimer:</strong> This calculator covers <strong>self-paced (Part 61) training</strong> only — Private Pilot and at-your-own-pace ratings. Accelerated programs are flat-rate packages priced on the <a href="/accelerated" style="color:rgba(255,255,255,0.9);text-decoration:underline">Accelerated page</a>. Results are <strong>estimates only</strong>; actual costs vary by student progress, weather, and scheduling.</div>
+          <div class="cc-disclaimer"><strong>Disclaimer:</strong> This calculator covers <strong>at-your-own-pace (Part 61) training</strong> for Private Pilot, Instrument, and Commercial. <strong>Accelerated programs are flat-rate packages</strong> with fixed pricing on each course page. Results are <strong>estimates only</strong>; actual costs vary by student progress, weather, and scheduling.</div>
         </aside>
       </div>
     </div>
@@ -553,19 +546,12 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener
 // Calculator program data — CRAFT pricing
 const RATE_PLANE_DA40 = 255;
 const RATE_PLANE_DA42 = 600;
-const RATE_INSTRUCTOR = 55;
+const RATE_INSTRUCTOR = 65; // PPL default; IFR + CPL use $75 via per-program iRate
 const RATE_SIM = 100;
 const PROGRAMS = {
-  ppl: { name:"Private Pilot", fleet:"DA40 NG · $255/hr wet · ~50 hrs (FAA min 40, nat'l avg 60–75)", rate:RATE_PLANE_DA40, fHrs:[40,50,80], iHrs:[30,40,80], gHrs:[20,30,70], sHrs:[0,3,15], fixed:{ name:"PPL · CRAFT Materials", price:1495, items:["ASA Complete PPL Syllabus","FAA Written Exam ($160)","ForeFlight or Garmin Pilot"] } },
-  ifr: { name:"Accelerated IFR", fleet:"DA40 NG · 6 days + 7th-day checkride", rate:RATE_PLANE_DA40, fHrs:[15,17,30], iHrs:[20,30,40], gHrs:[5,10,20], sHrs:[10,20,25], fixed:{ name:"IFR Package · CRAFT Plane", price:9800, items:["Course base price (in our DA40 NG and Redbird AATD simulator)","BYOP option: $5,850","DPE fee $650–$800 (not included)","Materials: Inst. Flying Hbk + Procedures + ACS + Oral guide + G1000 PFD"] } },
-  cpl: { name:"Accelerated Commercial", fleet:"DA40 NG · 5 days + 6th-day checkride", rate:RATE_PLANE_DA40, fHrs:[10,15,25], iHrs:[10,15,25], gHrs:[5,10,20], sHrs:[1,2,8], fixed:{ name:"CPL Package", price:8600, items:["Course base price (DA40 NG)","DPE fee ~$800 (not included)","Extra hours billed at $255/hr wet","Min 240 hrs total time prereq","ASA Commercial PTS + Oral Exam Guide"] } },
-  me: { name:"Multi-Engine Add-On", fleet:"DA42-VI NG · 3 days + 4th-day checkride", rate:RATE_PLANE_DA42, fHrs:[6,8,12], iHrs:[6,8,12], gHrs:[3,5,12], sHrs:[0,2,8], fixed:{ name:"Multi Add-On Package", price:9000, items:["Course base price (DA42-VI NG)","3 hrs aircraft for checkride","DPE fee $1,500 cash (not included)","$10K hull insurance required (~$60/mo Starr Gate)","Extra hrs $600/hr wet"] } },
-  cmel: { name:"Commercial Multi-Engine Initial (CMEL)", fleet:"DA42-VI NG · 10 days + 11th-day checkride", rate:RATE_PLANE_DA42, fHrs:[25,35,50], iHrs:[25,35,50], gHrs:[10,15,30], sHrs:[2,5,15], fixed:{ name:"CMEL Initial Package", price:25500, items:["Course base price (DA42-VI NG, 35 hrs dual)","Aircraft for checkride","250 hrs + IR prereq","DPE fee not included","Adds CSEL in ~6 hrs after"] } },
-  mei: { name:"Multi-Engine Instructor (MEI)", fleet:"DA42-VI NG · 3 days + 4th-day checkride", rate:RATE_PLANE_DA42, fHrs:[6,8,12], iHrs:[6,8,12], gHrs:[4,6,15], sHrs:[1,3,8], fixed:{ name:"MEI Add-On Package", price:9000, items:["Course base price (DA42-VI NG)","3 hrs aircraft for checkride","15 hrs ME PIC prereq","DPE fee not included","If CFII held → ME-Inst privileges automatic"] } },
-  atp: { name:"ATP Checkride Prep", fleet:"DA42-VI NG · 3-day accelerated", rate:RATE_PLANE_DA42, fHrs:[4,6,10], iHrs:[4,6,10], gHrs:[3,4,10], sHrs:[2,4,10], fixed:{ name:"ATP Prep Package", price:7750, items:["Course base price (DA42-VI NG)","Aircraft for checkride","CTP + ATP written required first","IFR currency required","DPE fee not included"] } },
-  cfi: { name:"CFI Initial", fleet:"DA40 NG · 10–12 days · 1-on-1 or 2-student max", rate:RATE_PLANE_DA40, fHrs:[14,18,30], iHrs:[14,18,30], gHrs:[40,53,70], sHrs:[2,4,15], fixed:{ name:"CFI Initial Package", price:12000, items:["Course base price (DA40 NG)","50+ hrs classroom (FOI, FIA, FARs, lesson plans)","Aircraft for checkride","Spin endorsement","DPE fee $1,500–$1,700 (not included)"] } },
-  cfii: { name:"CFI-I (CFII) Add-On", fleet:"DA40 NG · 3 days + 4th-day checkride", rate:RATE_PLANE_DA40, fHrs:[6,8,15], iHrs:[8,12,20], gHrs:[4,6,15], sHrs:[2,6,15], fixed:{ name:"CFI-I Package", price:5600, items:["Course base price (DA40 NG, G1000)","BYOP option: $3,200","Aircraft for checkride","DPE fee ~$800 (not included)","FII written required as prereq"] } },
-  bundle: { name:"CFI + CFI-I Bundle", fleet:"DA40 NG · ~14–16 days back-to-back · save $200", rate:RATE_PLANE_DA40, fHrs:[20,26,40], iHrs:[22,30,45], gHrs:[44,59,80], sHrs:[4,10,25], fixed:{ name:"CFI + CFI-I Bundle", price:16950, items:["CFI Initial $12,000 + CFI-I $4,950","Bundle savings $200","Two DPE fees apply ($1,500–1,700 + ~$800)","Spin endorsement + FII written prereqs"] } }
+  ppl: { name:"Private Pilot", fleet:"DA40 NG · $255/hr wet · $65/hr instruction · ~50 hrs (FAA min 40)", rate:RATE_PLANE_DA40, iRate:65, fHrs:[40,50,80], iHrs:[30,40,80], gHrs:[20,30,70], sHrs:[0,3,15], fixed:{ name:"PPL · CRAFT Materials", price:1495, items:["ASA Complete PPL Syllabus","FAA Written Exam (~$160)","ForeFlight or Garmin Pilot"] } },
+  ifr: { name:"Instrument Rating", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[15,30,50], iHrs:[20,30,50], gHrs:[10,20,40], sHrs:[15,20,40], fixed:{ name:"IFR · CRAFT Materials", price:495, items:["Instrument Flying Handbook + Procedures","Instrument Pilot Oral Exam Guide","Instrument Rating ACS + G1000 PFD Pilot's Guide","DPE fee not included (varies)"] } },
+  cpl: { name:"Commercial Pilot", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[10,15,30], iHrs:[10,15,30], gHrs:[8,12,25], sHrs:[2,4,10], fixed:{ name:"CPL · CRAFT Materials", price:295, items:["Commercial ACS + Oral Exam Guide","Min 250 hrs total time required","DPE fee ~$800 (not included)","Aircraft for checkride included"] } }
 };
 
 const $ = id => document.getElementById(id);
@@ -617,7 +603,7 @@ function recalc() {
   $('cc-sim-val').textContent    = sim;
   $('cc-ride-val').textContent   = fmt(ride);
   const aircraft = flight * p.rate;
-  const instruction = (instr + ground) * RATE_INSTRUCTOR;
+  const instruction = (instr + ground) * (p.iRate || RATE_INSTRUCTOR);
   const simCost = sim * RATE_SIM;
   const fixed = p.fixed.price;
   const total = aircraft + instruction + simCost + ride + fixed;
