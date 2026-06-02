@@ -706,11 +706,9 @@
 <div class="fleet-filter-bar">
   <div class="fleet-filter-inner">
     <div class="fleet-filters">
-      <button class="fleet-filter-btn active" data-filter="all">All Aircraft <span class="fleet-filter-count">06</span></button>
-      <button class="fleet-filter-btn" data-filter="da40">DA40 NG <span class="fleet-filter-count">05</span></button>
-      <button class="fleet-filter-btn" data-filter="da42">DA42-VI NG <span class="fleet-filter-count">01</span></button>
+      <span class="fleet-filter-btn active" style="cursor:default">Our Aircraft <span class="fleet-filter-count">06</span></span>
     </div>
-    <div class="fleet-filter-meta">FBO <span class="accent">SIGNATURE &amp; ATLANTIC</span> · KCHS · 32.8986°N 80.0405°W</div>
+    <div class="fleet-filter-meta">KCHS &middot; 32.8986&deg;N 80.0405&deg;W</div>
   </div>
 </div>
 
@@ -1007,12 +1005,8 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
   });
 });
 
-// Filter
-const buttons = document.querySelectorAll('.fleet-filter-btn');
-const cards = document.querySelectorAll('.fleet-card');
-function applyFilter(filter) {
-  buttons.forEach(b => b.classList.toggle('active', b.dataset.filter === fi
 
 <script src="/assets/chatbot.js" defer></script>
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
