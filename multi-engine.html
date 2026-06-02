@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/shared.css?v=15">
 <style>
 .cs-hero { position: relative; min-height: 64vh; background: #000; display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
-.cs-hero-bg { position: absolute; inset: 0; z-index: 0; background: #000 url('/assets/mebg.jpg') center 75%/cover no-repeat; }
+.cs-hero-bg { position: absolute; inset: 0; z-index: 0; background: #000 url('/assets/mebg.jpg') center 90%/cover no-repeat; }
 .cs-hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(10,13,18,0.55) 0%, rgba(10,13,18,0.7) 50%, rgba(10,13,18,0.95) 100%), linear-gradient(90deg, rgba(10,13,18,0.65) 0%, rgba(10,13,18,0.15) 60%, rgba(10,13,18,0.45) 100%); pointer-events: none; }
 @media (max-width: 880px) { .cs-hero-bg { background-image: none; background: var(--ink); } }
 .cs-hero-grid { position: absolute; inset: 0; z-index: 2; background-image: linear-gradient(rgba(230,48,39,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.08) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.45; animation: csGrid 30s linear infinite; pointer-events: none; }
@@ -119,13 +119,39 @@
 .cs-meta li { padding-left: 20px; position: relative; font-size: 14px; color: rgba(255,255,255,0.76); line-height: 1.55; }
 .cs-meta li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--beacon); font-weight: 700; }
 
-.cs-dpe { background: linear-gradient(135deg, rgba(230,48,39,0.08) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.2); padding: var(--section-py) 0; position: relative; overflow: hidden; }
-.cs-dpe-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.6; }
-.cs-dpe-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
-.cs-dpe h2 { font-family: var(--display); font-weight: 900; font-size: clamp(44px, 6vw, 84px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 20px; }
+.cs-dpe { background: linear-gradient(135deg, rgba(230,48,39,0.06) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.18); padding: 70px 0; position: relative; overflow: hidden; }
+.cs-dpe-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.03) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; }
+.cs-dpe-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
+.cs-dpe h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 4.8vw, 60px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 14px 0 14px; }
 .cs-dpe h2 .accent { color: var(--beacon); }
-.cs-dpe p { font-size: clamp(15px, 1.4vw, 17px); color: rgba(255,255,255,0.78); line-height: 1.7; margin: 0 auto 22px; max-width: 720px; }
-.cs-dpe blockquote { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 4vw, 48px); line-height: 1; letter-spacing: -0.005em; text-transform: uppercase; color: var(--beacon); margin: 28px 0 8px; border: none; padding: 0; }
+.cs-dpe p { font-size: 15px; color: rgba(255,255,255,0.72); line-height: 1.65; margin: 0 auto; max-width: 640px; }
+
+/* 4-Day Course Timeline (Multi-Engine Add-On) */
+.cs-days-sec { padding: var(--section-py) 0; position: relative; overflow: hidden; background: linear-gradient(180deg, var(--ink) 0%, rgba(230,48,39,0.04) 50%, var(--ink) 100%); }
+.cs-days-sec::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; pointer-events: none; }
+.cs-days-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.cs-days-head { text-align: center; margin-bottom: 50px; max-width: 760px; margin-left: auto; margin-right: auto; }
+.cs-days-head .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 6px 12px; border-radius: 4px; }
+.cs-days-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6vw, 72px); text-transform: uppercase; letter-spacing: -0.01em; margin: 14px 0 12px; line-height: 0.95; }
+.cs-days-head h2 .accent { color: var(--beacon); }
+.cs-days-head p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.65; }
+.cs-days-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; position: relative; }
+@media (max-width: 980px) { .cs-days-track { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .cs-days-track { grid-template-columns: 1fr; } }
+.cs-day { position: relative; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 12px; padding: 24px 24px 22px; transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease); overflow: hidden; }
+.cs-day::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.cs-day:hover { transform: translateY(-4px); border-color: rgba(230,48,39,0.55); box-shadow: 0 24px 50px -22px rgba(230,48,39,0.45); }
+.cs-day.final { border-color: rgba(230,48,39,0.55); background: linear-gradient(180deg, rgba(230,48,39,0.1) 0%, var(--approach) 50%, #0E1218 100%); box-shadow: 0 0 0 1px rgba(230,48,39,0.3) inset, 0 24px 50px -22px rgba(230,48,39,0.5); }
+.cs-day-num { font-family: var(--display); font-weight: 900; font-size: 56px; line-height: 0.95; letter-spacing: -0.03em; color: var(--beacon); margin-bottom: 2px; }
+.cs-day-num small { font-size: 13px; font-weight: 600; letter-spacing: 0.16em; color: rgba(255,255,255,0.5); text-transform: uppercase; display: block; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.cs-day-title { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.1; letter-spacing: -0.005em; text-transform: uppercase; color: #fff; margin: 14px 0 12px; }
+.cs-day-title .accent { color: var(--beacon); }
+.cs-day ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.cs-day li { padding-left: 16px; position: relative; font-size: 13px; color: rgba(255,255,255,0.76); line-height: 1.5; }
+.cs-day li::before { content: "▸"; position: absolute; left: 0; top: 0; color: var(--beacon); font-weight: 700; font-size: 10px; }
+.cs-day.final .cs-day-title { color: #fff; }
+.cs-day.final .cs-day-body { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.55; }
+.cs-day-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--beacon); text-transform: uppercase; padding: 4px 10px; border-radius: 3px; background: rgba(230,48,39,0.1); border: 1px solid rgba(230,48,39,0.4); margin-top: 14px; }
 
 .cs-cta { background: var(--ink); padding: var(--section-py) 0; position: relative; overflow: hidden; }
 .cs-cta-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.05) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; }
@@ -316,12 +342,12 @@
   <div class="cs-hero-inner">
     <span class="cs-eyebrow">Multi-Engine · Diamond DA42 NG</span>
     <h1>Twin engines.<br><span class="accent">Twice the career.</span></h1>
-    <p>Every multi-engine course at CRAFT runs in the Diamond DA42 NG &mdash; Jet-A diesel twin, single-lever digital engine controls, G1000 with GFC700 autopilot. Modern systems means cleaner training, fewer surprises, and a smoother bridge to airline-style operations.</p>
+    <p>Every multi-engine course at CRAFT runs in the Diamond DA42 NG. Jet-A diesel twin, single-lever FADEC engine controls, G1000 NXi with GFC700 digital autopilot, the same family of automation airlines fly behind. Modern systems means cleaner training, fewer surprises, and a smoother bridge to the airline cockpit.</p>
     <div class="cs-hero-stats">
-      <div><div class="cs-hero-stat-num"><span class="accent">DA42</span>-VI</div><div class="cs-hero-stat-lbl">Diesel · Jet-A · G1000</div></div>
+      <div><div class="cs-hero-stat-num"><span class="accent">DA42</span> NG</div><div class="cs-hero-stat-lbl">Diesel · Jet-A · G1000 NXi</div></div>
       <div><div class="cs-hero-stat-num"><span class="accent">4</span> tracks</div><div class="cs-hero-stat-lbl">Add-On · CMEL · MEI · ATP</div></div>
       <div><div class="cs-hero-stat-num"><span class="accent">3–10</span> days</div><div class="cs-hero-stat-lbl">Course Dependent</div></div>
-      <div><div class="cs-hero-stat-num">DPE in <span class="accent">weeks</span></div><div class="cs-hero-stat-lbl">Not Months</div></div>
+      <div><div class="cs-hero-stat-num">DPE in <span class="accent">days</span></div><div class="cs-hero-stat-lbl">Not Months</div></div>
     </div>
   </div>
 </header>
@@ -508,14 +534,68 @@
   </div>
 </section>
 
+<section class="cs-days-sec">
+  <div class="cs-days-inner">
+    <div class="cs-days-head">
+      <span class="eyebrow">● 4 Days · Multi-Engine Add-On</span>
+      <h2>How we get it <span class="accent">done.</span></h2>
+      <p>The Multi-Engine Add-On track is a four-day build. Day 4 is your check ride. The three days before are the ramp that gets you there ready.</p>
+    </div>
+    <div class="cs-days-track">
+
+      <article class="cs-day">
+        <div class="cs-day-num">01<small>Day One</small></div>
+        <h3 class="cs-day-title">Check-In &amp; <span class="accent">Ground</span></h3>
+        <ul>
+          <li>Document and logbook check</li>
+          <li>Full DA42 NG airplane familiarization</li>
+          <li>All the maneuvers ground brief</li>
+          <li>Multi-engine aerodynamics: critical engine, Vmc, drag rise</li>
+        </ul>
+        <span class="cs-day-tag">● Ground &amp; Systems</span>
+      </article>
+
+      <article class="cs-day">
+        <div class="cs-day-num">02<small>Day Two</small></div>
+        <h3 class="cs-day-title">Air Work + <span class="accent">Vmc</span></h3>
+        <ul>
+          <li>Flight 1: basic air work in the twin</li>
+          <li>Slow flight, stalls, steep turns</li>
+          <li>Takeoffs and landings, OEI ops</li>
+          <li>Flight 2: same maneuvers, plus the Vmc demo</li>
+        </ul>
+        <span class="cs-day-tag">● Two-Flight Day</span>
+      </article>
+
+      <article class="cs-day">
+        <div class="cs-day-num">03<small>Day Three</small></div>
+        <h3 class="cs-day-title">Single-Engine <span class="accent">Approaches</span></h3>
+        <ul>
+          <li>Single-engine approaches</li>
+          <li>OEI instrument approaches</li>
+          <li>Final combined flight: everything pulled together</li>
+          <li>Mock-checkride pace</li>
+        </ul>
+        <span class="cs-day-tag">● IFR + OEI</span>
+      </article>
+
+      <article class="cs-day final">
+        <div class="cs-day-num">04<small>Day Four</small></div>
+        <h3 class="cs-day-title">Check Ride <span class="accent">Day.</span></h3>
+        <p class="cs-day-body">DPE is already booked. You've done three days of focused twin time. Walk in, walk out a multi-engine pilot. New ticket, new privileges, every airline cockpit on the table.</p>
+        <span class="cs-day-tag">● DPE Reserved</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
 <section class="cs-dpe">
   <div class="cs-dpe-bg"></div>
   <div class="cs-dpe-inner">
-    <span class="cs-eyebrow">DPE Availability</span>
-    <h2>Weeks.<br><span class="accent">Not months.</span></h2>
-    <p>The biggest reason "accelerated" stops being accelerated isn't instruction &mdash; it's checkrides. At CRAFT, DPE availability is built into the planning process for every program. Exact timing varies, but checkrides are typically scheduled in weeks, not months.</p>
-    <blockquote>"Train. Test. Finish."</blockquote>
-    <p style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:8px">Accelerated training isn't about rushing. It's about removing the biggest bottleneck in the system.</p>
+    <span class="cs-eyebrow">DPE Reserved</span>
+    <h2>Days. <span class="accent">Not months.</span></h2>
+    <p>The biggest reason "accelerated" stops being accelerated isn't instruction, it's checkrides. At CRAFT, we book the DPE before we book your course. Your check ride is locked from the moment your dates are set.</p>
   </div>
 </section>
 
