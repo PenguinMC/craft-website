@@ -6,7 +6,7 @@
 <title>Reviews — Student Stories &amp; Testimonials | CRAFT Flight Training</title>
 <meta name="description" content="What CRAFT students say about training in Charleston. Video and photo testimonials from accelerated IFR, CPL, CFI, and Multi students." />
 <!-- SEO: canonical, OpenGraph, Twitter Card -->
-<link rel="canonical" href="https://flycraftchs.com/reviews" />
+<link rel="canonical" href="/reviews" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="CRAFT Flight Training" />
 <meta property="og:locale" content="en_US" />
@@ -83,6 +83,9 @@
 .rv-video-frame iframe, .rv-video-frame video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .rv-video-poster { position: absolute; inset: 0; background-size: cover; background-position: center; display: grid; place-items: center; transition: opacity .3s; }
 .rv-video-poster::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,13,18,0.2) 0%, rgba(10,13,18,0.65) 100%); pointer-events: none; }
+.rv-video-frame.vertical iframe { background:#000; }
+.rv-video-frame.vertical { background:#000; }
+.rv-video-frame { overflow: hidden; }
 .rv-video-play { position: relative; z-index: 2; width: 76px; height: 76px; border-radius: 50%; background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%); display: grid; place-items: center; box-shadow: 0 12px 32px rgba(230,48,39,0.55), 0 0 0 1px rgba(230,48,39,0.5); transition: transform .25s var(--ease); }
 .rv-video-frame:hover .rv-video-play { transform: scale(1.1); }
 .rv-video-play::before { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--beacon); opacity: 0; animation: rvPulse 2.4s ease-out infinite; }
@@ -265,7 +268,7 @@
                 <div class="nav-dd-desc">843.800.6498 · craft@flycraftchs.com</div>
               </div>
             </a>
-            <a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener" class="nav-dd-item">
+            <a href="/reviews" class="nav-dd-item">
               <div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
               <div>
                 <div class="nav-dd-title">Reviews</div>
@@ -336,9 +339,9 @@
 
     <div class="rv-video-grid" id="rv-videos">
 
-      <!-- VIDEO CARD · IFR · placeholder YouTube embed -->
+      <!-- VIDEO CARD · IFR · Thomas Brainsky · real Google review + YouTube short -->
       <article class="rv-video" data-program="ifr">
-        <div class="rv-video-frame" data-yt="dQw4w9WgXcQ">
+        <div class="rv-video-frame vertical" data-yt="0X3ak1Gh8rs">
           <span class="rv-video-tag">IFR · 7 Days</span>
           <div class="rv-video-poster" style="background:linear-gradient(135deg, #14181F 0%, #0A0D12 100%)">
             <button class="rv-video-play" aria-label="Play video">
@@ -348,9 +351,9 @@
         </div>
         <div class="rv-video-meta">
           <div class="stars">★★★★★</div>
-          <h3>Rated In a Week.</h3>
-          <div class="who">Marcus T. · <span class="accent">Accelerated IFR</span> · Class of 2025</div>
-          <p>&ldquo;The Redbird mornings were the unlock. I'd already flown the approach four times in the sim before we touched the airplane &mdash; airplane time was just polish.&rdquo;</p>
+          <h3>Day 7 Checkride. No Wait.</h3>
+          <div class="who">Thomas Brainsky · <span class="accent">Accelerated IFR Student</span></div>
+          <p>&ldquo;6 full days of ground instruction, simulator and plenty of time in the sky. Matt was my instructor: personable, knowledgeable, and patient. Your checkride is already scheduled for day 7 so there is no worry about not flying. These guys are so good they can send a rescue plane to your checkride if something fails on yours. They really do stand out.&rdquo;</p>
         </div>
       </article>
 
@@ -534,7 +537,7 @@
     <div class="rv-cta-btns">
       <a href="/discovery-flight" class="btn btn-primary btn-arrow">Take a Discovery Flight</a>
       <a href="/accelerated" class="btn btn-ghost">See Programs</a>
-      <a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener" class="btn btn-ghost">Google Reviews</a>
+      <a href="/reviews" class="btn btn-ghost">Google Reviews</a>
     </div>
   </div>
 </section>
@@ -582,7 +585,7 @@
         <ul>
           <li><a href="/company">About CRAFT</a></li>
           <li><a href="/contact">Contact</a></li>
-          <li><a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener">Reviews</a></li>
+          <li><a href="/reviews">Reviews</a></li>
           <li><a href="/discovery-flight">Book Discovery</a></li>
           <li><a href="tel:+18438006498">843.800.6498</a></li>
           <li><a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a></li>
