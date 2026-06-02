@@ -424,10 +424,23 @@
           <div class="cc-ctrl">
             <div class="cc-ctrl-label"><span class="cc-ctrl-name">Training Program</span></div>
             <select id="cc-program" class="cc-select">
-              <option value="ppl">Private Pilot (Self-Paced)</option>
-              <option value="ifr">Instrument Rating (Self-Paced)</option>
-              <option value="cpl">Commercial Pilot (Self-Paced)</option>
-              <option value="me">Multi-Engine Add-On (Self-Paced)</option>
+              <optgroup label="At Your Own Pace (Part 61)">
+                <option value="ppl">Private Pilot</option>
+                <option value="ifr">Instrument Rating</option>
+                <option value="cpl">Commercial Pilot</option>
+                <option value="me">Multi-Engine Add-On</option>
+                <option value="cfi">CFI Initial</option>
+                <option value="cfii">CFI-I (CFII) Add-On</option>
+                <option value="mei">MEI Add-On</option>
+              </optgroup>
+              <optgroup label="Accelerated (Flat-Rate Packages)">
+                <option value="ifr-accel">Accelerated IFR &middot; $9,800</option>
+                <option value="cpl-accel">Accelerated Commercial &middot; $8,600</option>
+                <option value="me-accel">Accelerated Multi Add-On &middot; $9,500</option>
+                <option value="cfi-accel">Accelerated CFI Initial &middot; $12,000</option>
+                <option value="cfii-accel">Accelerated CFI-I &middot; $5,600</option>
+                <option value="mei-accel">Accelerated MEI &middot; $9,500</option>
+              </optgroup>
             </select>
             <div class="cc-ctrl-hint"><span id="cc-program-fleet">DA40 NG · $255/hr wet · $65/hr instruction</span></div>
           </div>
@@ -469,7 +482,8 @@
         <aside class="cc-est">
           <h3 class="cc-est-h">Estimated<br>Training Cost</h3>
           <div class="cc-est-rows">
-            <div class="cc-est-row"><span class="cc-est-row-l">Aircraft Cost</span><span class="cc-est-row-r" id="cc-out-aircraft">$12,750.00</span></div>
+            <div class="cc-est-row" id="cc-base-row" style="display:none"><span class="cc-est-row-l">Package Base</span><span class="cc-est-row-r" id="cc-out-base">$9,800.00</span></div>
+            <div class="cc-est-row"><span class="cc-est-row-l">Aircraft Cost <small style="margin:0;padding:0" id="cc-aircraft-hint"></small></span><span class="cc-est-row-r" id="cc-out-aircraft">$12,750.00</span></div>
             <div class="cc-est-row"><span class="cc-est-row-l">Instruction Cost</span><span class="cc-est-row-r" id="cc-out-instr">$3,850.00</span></div>
             <div class="cc-est-row"><span class="cc-est-row-l" style="display:flex;flex-direction:column;align-items:flex-start;gap:2px"><span>Sim Cost</span><small style="margin:0;padding:0">Instructor included</small></span><span class="cc-est-row-r" id="cc-out-sim">$420.00</span></div>
             <div class="cc-est-row"><span class="cc-est-row-l">FAA Check Ride</span><span class="cc-est-row-r" id="cc-out-ride">$1,000.00</span></div>
@@ -621,10 +635,22 @@ const RATE_PLANE_DA42 = 600;
 const RATE_INSTRUCTOR = 65; // PPL default; IFR + CPL use $75 via per-program iRate
 const RATE_SIM = 100;
 const PROGRAMS = {
-  ppl: { name:"Private Pilot", fleet:"DA40 NG · $255/hr wet · $65/hr instruction · ~50 hrs (FAA min 40)", rate:RATE_PLANE_DA40, iRate:65, fHrs:[40,50,80], iHrs:[30,40,80], gHrs:[20,30,70], sHrs:[0,3,10], prereq:{ name:"What You'll Need", items:["Online Ground School &middot; ~$200","FAA Written Exam &middot; ~$150","ForeFlight &middot; ~$100","iPad &middot; ~$499","Bose A30 Headphones &middot; ~$899","Medical Certificate (3rd Class) &middot; ~$200","Student Pilot Certificate &middot; Free after you book a Discovery Flight with us"] } },
-  ifr: { name:"Instrument Rating", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[15,30,50], iHrs:[20,30,50], gHrs:[10,20,40], sHrs:[15,20,40], prereq:null },
-  cpl: { name:"Commercial Pilot", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[10,15,30], iHrs:[10,15,30], gHrs:[8,12,25], sHrs:[2,4,10], prereq:null },
-  me: { name:"Multi-Engine Add-On", fleet:"DA42-VI NG · $600/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA42, iRate:75, fHrs:[6,8,15], iHrs:[6,8,15], gHrs:[3,5,12], sHrs:[0,2,8], prereq:null }
+  // SELF-PACED programs — standard hourly billing
+  ppl: { name:"Private Pilot", mode:"paced", fleet:"DA40 NG · $255/hr wet · $65/hr instruction · ~50 hrs (FAA min 40)", rate:RATE_PLANE_DA40, iRate:65, fHrs:[40,50,80], iHrs:[30,40,80], gHrs:[20,30,70], sHrs:[0,3,10], prereq:{ name:"What You'll Need", items:["Online Ground School &middot; ~$200","FAA Written Exam &middot; ~$150","ForeFlight &middot; ~$100","iPad &middot; ~$499","Bose A30 Headphones &middot; ~$899","Medical Certificate (3rd Class) &middot; ~$200","Student Pilot Certificate &middot; Free after you book a Discovery Flight with us"] } },
+  ifr: { name:"Instrument Rating", mode:"paced", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[15,30,50], iHrs:[20,30,50], gHrs:[10,20,40], sHrs:[15,20,40], prereq:null },
+  cpl: { name:"Commercial Pilot", mode:"paced", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[10,15,30], iHrs:[10,15,30], gHrs:[8,12,25], sHrs:[2,4,10], prereq:null },
+  me: { name:"Multi-Engine Add-On", mode:"paced", fleet:"DA42-VI NG · $600/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA42, iRate:75, fHrs:[6,8,15], iHrs:[6,8,15], gHrs:[3,5,12], sHrs:[0,2,8], prereq:null },
+  cfi: { name:"CFI Initial", mode:"paced", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[12,16,30], iHrs:[14,18,30], gHrs:[40,53,70], sHrs:[2,4,12], prereq:null },
+  cfii: { name:"CFI-I (CFII) Add-On", mode:"paced", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[6,8,15], iHrs:[8,12,20], gHrs:[4,6,15], sHrs:[2,6,15], prereq:null },
+  mei: { name:"MEI Add-On", mode:"paced", fleet:"DA42-VI NG · $600/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA42, iRate:75, fHrs:[6,8,15], iHrs:[6,8,15], gHrs:[4,6,12], sHrs:[1,3,8], prereq:null },
+
+  // ACCELERATED programs — flat-rate base price + only overage hours billed; instruction always $0 (included)
+  "ifr-accel": { name:"Accelerated IFR", mode:"accel", fleet:"DA40 NG · 7-day finish · DPE booked with course", rate:RATE_PLANE_DA40, base:9800, incl:{f:15, s:20}, fHrs:[15,15,30], iHrs:[0,0,0], gHrs:[0,0,0], sHrs:[20,20,40], prereq:null },
+  "cpl-accel": { name:"Accelerated Commercial", mode:"accel", fleet:"DA40 NG · 5 days + Day 6 checkride", rate:RATE_PLANE_DA40, base:8600, incl:{f:15, s:2}, fHrs:[15,15,30], iHrs:[0,0,0], gHrs:[0,0,0], sHrs:[2,2,10], prereq:null },
+  "me-accel": { name:"Accelerated Multi-Engine Add-On", mode:"accel", fleet:"DA42-VI NG · 3 days + Day 4 checkride", rate:RATE_PLANE_DA42, base:9500, incl:{f:8, s:2}, fHrs:[8,8,15], iHrs:[0,0,0], gHrs:[0,0,0], sHrs:[2,2,8], prereq:null },
+  "cfi-accel": { name:"Accelerated CFI Initial", mode:"accel", fleet:"DA40 NG · 10-12 days · right-seat", rate:RATE_PLANE_DA40, base:12000, incl:{f:18, s:4}, fHrs:[18,18,30], iHrs:[0,0,0], gHrs:[0,0,0], sHrs:[4,4,15], prereq:null },
+  "cfii-accel": { name:"Accelerated CFI-I (CFII) Add-On", mode:"accel", fleet:"DA40 NG · 3 days + Day 4 checkride", rate:RATE_PLANE_DA40, base:5600, incl:{f:8, s:6}, fHrs:[8,8,15], iHrs:[0,0,0], gHrs:[0,0,0], sHrs:[6,6,15], prereq:null },
+  "mei-accel": { name:"Accelerated MEI Add-On", mode:"accel", fleet:"DA42-VI NG · 3 days + Day 4 checkride", rate:RATE_PLANE_DA42, base:9500, incl:{f:8, s:3}, fHrs:[8,8,15], iHrs:[0,0,0], gHrs:[0,0,0], sHrs:[3,3,8], prereq:null }
 };
 
 const $ = id => document.getElementById(id);
@@ -658,7 +684,8 @@ function loadProgram(key) {
   setSlider($('cc-ground'), p.gHrs[0], p.gHrs[1], p.gHrs[2]);
   $('cc-ground-min').textContent = p.gHrs[0]; $('cc-ground-max').textContent = p.gHrs[2];
   setSlider($('cc-sim'),    p.sHrs[0], p.sHrs[1], p.sHrs[2], true);
-  // What You'll Need section (PPL only — hidden for IFR/CPL/ME)
+
+  // What You'll Need section (PPL only)
   const prereqRow = $('cc-prereq-row');
   if (p.prereq) {
     $('cc-out-fixed-list').innerHTML = p.prereq.items.map(i => `<li>${i}</li>`).join('');
@@ -666,6 +693,27 @@ function loadProgram(key) {
   } else {
     if (prereqRow) prereqRow.style.display = 'none';
   }
+
+  // Package base price row + instruction-included note for accelerated programs
+  const baseRow = $('cc-base-row');
+  const instrRow = document.getElementById('cc-out-instr')?.closest('.cc-est-row');
+  if (p.mode === 'accel') {
+    if (baseRow) {
+      baseRow.style.display = 'flex';
+      $('cc-out-base').textContent = fmtCents(p.base || 0);
+    }
+    if (instrRow) {
+      const instrLeft = instrRow.querySelector('.cc-est-row-l');
+      if (instrLeft) instrLeft.innerHTML = 'Instruction Cost <small style="margin:0;padding:0;color:var(--beacon)">Included in package</small>';
+    }
+  } else {
+    if (baseRow) baseRow.style.display = 'none';
+    if (instrRow) {
+      const instrLeft = instrRow.querySelector('.cc-est-row-l');
+      if (instrLeft) instrLeft.innerHTML = 'Instruction Cost';
+    }
+  }
+
   recalc();
 }
 function recalc() {
@@ -680,10 +728,36 @@ function recalc() {
   $('cc-ground-val').textContent = ground;
   $('cc-sim-val').textContent    = sim;
   $('cc-ride-val').textContent   = fmt(ride);
-  const aircraft = flight * p.rate;
-  const instruction = (instr + ground) * (p.iRate || RATE_INSTRUCTOR);
-  const simCost = sim * RATE_SIM;
-  const total = aircraft + instruction + simCost + ride;
+
+  let aircraft, instruction, simCost, base = 0;
+  if (p.mode === 'accel') {
+    // Accelerated: base flat price + only overage hours billed; instruction always $0
+    base = p.base || 0;
+    const overF = Math.max(0, flight - (p.incl?.f || 0));
+    const overS = Math.max(0, sim - (p.incl?.s || 0));
+    aircraft = overF * p.rate;
+    simCost  = overS * RATE_SIM;
+    instruction = 0;
+  } else {
+    // Self-paced: standard hourly billing
+    aircraft = flight * p.rate;
+    instruction = (instr + ground) * (p.iRate || RATE_INSTRUCTOR);
+    simCost = sim * RATE_SIM;
+  }
+
+  const total = base + aircraft + instruction + simCost + ride;
+  // Accelerated overage hint
+  const hint = $('cc-aircraft-hint');
+  if (hint) {
+    if (p.mode === 'accel') {
+      const incl = p.incl?.f || 0;
+      const over = Math.max(0, flight - incl);
+      hint.textContent = over > 0 ? `${over} hrs over ${incl} included · billed at $${p.rate}/hr` : `${incl} hrs included in package`;
+      hint.style.color = over > 0 ? 'var(--beacon)' : 'rgba(255,255,255,0.5)';
+    } else {
+      hint.textContent = '';
+    }
+  }
   $('cc-out-aircraft').textContent = fmtCents(aircraft);
   $('cc-out-instr').textContent    = fmtCents(instruction);
   $('cc-out-sim').textContent      = fmtCents(simCost);
