@@ -92,7 +92,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .footer-col ul { list-style: none; display: grid; gap: 10px; }
 .footer-col a { color: rgba(255,255,255,0.7); font-size: 14px; transition: color .2s var(--ease); }
 .footer-col a:hover { color: var(--beacon); }
-.footer-bottom { padding-top: 18px; margin-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(255,255,255,0.4); }
+.footer-bottom { padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(255,255,255,0.4); }
 .footer-bottom a { color: rgba(255,255,255,0.6); }
 .footer-bottom a:hover { color: var(--beacon); }
 
@@ -160,7 +160,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 
 /* FOOTER SOCIAL ICONS */
-.footer-social { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; padding-bottom: 4px; border-top: 1px solid rgba(255,255,255,0.08); }
+.footer-social { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
 .footer-social-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.4); text-transform: uppercase; align-self: center; margin-right: 8px; }
 .footer-social a { display: grid !important; place-items: center; flex: 0 0 42px !important; width: 42px !important; height: 42px !important; min-width: 0; box-sizing: border-box; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); transition: all .25s var(--ease); position: relative; overflow: hidden; }
 .footer-social a::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%); opacity: 0; transition: opacity .25s var(--ease); }
@@ -168,6 +168,22 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .footer-social a:hover::before { opacity: 1; }
 .footer-social a svg { position: relative; z-index: 1; width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important; fill: currentColor; display: block; }
 @media (max-width: 600px) { .footer-social { justify-content: flex-start; } }
+
+
+/* === FOOTER POLISH (site-wide) — matches homepage footer === */
+.footer { padding: 100px 0 50px !important; border-top: 1px solid rgba(230,48,39,0.18); }
+.footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); z-index: 3; }
+.footer .container { max-width: 1440px; padding: 0 var(--gut); }
+.footer-top { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 56px; margin-bottom: 56px; position: relative; z-index: 2; }
+@media (max-width: 980px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; } }
+@media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; gap: 32px; } }
+.footer-col h4 { color: var(--beacon); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; margin-bottom: 22px; }
+.footer-col ul { gap: 12px; }
+.footer-col a { font-size: 14px; line-height: 1.4; color: rgba(255,255,255,0.78); }
+.footer-col a:hover { color: var(--white); }
+.footer-brand img { height: 56px; }
+.footer-tag { font-size: 14px; color: rgba(255,255,255,0.62); max-width: 360px; line-height: 1.65; margin-top: 18px; }
+.footer-bottom { padding-top: 36px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; color: rgba(255,255,255,0.45); position: relative; z-index: 2; }
 
 
 /* === HUBSPOT FORMS — TACTICAL DARK OVERRIDE === */
@@ -406,52 +422,4 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .hs-form .hs-error-msgs,
 .hs-form .hs-error-msg,
 .hs-form ul.no-list label.hs-error-msg {
-  list-style: none !important;
-  padding: 0 !important;
-  margin: 6px 0 0 0 !important;
-  color: #ff6b5b !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.04em !important;
-  text-transform: none !important;
-}
-.hs-form .hs-input.invalid.error,
-.hs-form input.invalid.error,
-.hs-form textarea.invalid.error,
-.hs-form select.invalid.error {
-  border-color: #ff6b5b !important;
-  background: rgba(255,107,91,0.06) !important;
-}
-/* Submitted thank-you state */
-.submitted-message {
-  padding: 32px 20px !important;
-  text-align: center;
-  color: rgba(255,255,255,0.85);
-  font-size: 15px;
-  background: rgba(74,222,128,0.06);
-  border: 1px solid rgba(74,222,128,0.25);
-  border-radius: 8px;
-}
-.submitted-message p { margin: 0; }
-/* reCAPTCHA v3 badge — tuck out of the way (ToS still satisfied) */
-.grecaptcha-badge {
-  visibility: hidden !important;
-}
-/* hCaptcha / reCAPTCHA v2 — leave visible but theme container */
-.hs-form .hs_recaptcha,
-.hs-form .grecaptcha {
-  margin-top: 10px;
-}
-/* HubSpot Forms v3 frame container baseline */
-.hs-form-frame,
-.hbspt-form {
-  width: 100%;
-}
-/* Mobile */
-@media (max-width: 640px) {
-  .hs-form fieldset.form-columns-2,
-  .hs-form fieldset.form-columns-3 {
-    grid-template-columns: 1fr;
-  }
-}
+  list
