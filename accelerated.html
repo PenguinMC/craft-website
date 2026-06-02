@@ -33,11 +33,15 @@
 <link rel="stylesheet" href="/assets/shared.css">
 <style>
 /* HERO — restored "Rated in Weeks. Not Years." big-type style */
-.acx-hero { position: relative; min-height: 70vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
-.acx-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.7; animation: acxGrid 30s linear infinite; }
+.acx-hero { position: relative; min-height: 70vh; background: #000; display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
+.acx-hero-video { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #000 url('https://img.youtube.com/vi/OMPuQnDtDWk/maxresdefault.jpg') center/cover no-repeat; }
+.acx-hero-video iframe { position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%); border: 0; pointer-events: none; }
+.acx-hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(10,13,18,0.55) 0%, rgba(10,13,18,0.7) 50%, rgba(10,13,18,0.92) 100%), linear-gradient(90deg, rgba(10,13,18,0.7) 0%, rgba(10,13,18,0.2) 60%, rgba(10,13,18,0.45) 100%); pointer-events: none; }
+@media (max-width: 880px) { .acx-hero-video iframe { display: none; } }
+.acx-hero-grid { position: absolute; inset: 0; z-index: 2; background-image: linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.45; animation: acxGrid 30s linear infinite; pointer-events: none; }
 @keyframes acxGrid { 0%{background-position:0 0,0 0} 100%{background-position:64px 64px,64px 64px} }
-.acx-hero-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%), radial-gradient(80% 100% at 50% 100%, rgba(10,13,18,0.85) 0%, rgba(10,13,18,0) 60%); pointer-events: none; }
-.acx-hero-sweep { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); filter: blur(0.5px); opacity: 0.5; animation: acxSweep 7s ease-in-out infinite; }
+.acx-hero-vignette { position: absolute; inset: 0; z-index: 2; background: radial-gradient(60% 80% at 70% 50%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%), radial-gradient(80% 100% at 50% 100%, rgba(10,13,18,0.85) 0%, rgba(10,13,18,0) 60%); pointer-events: none; }
+.acx-hero-sweep { position: absolute; left: 0; right: 0; top: 0; z-index: 3; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); filter: blur(0.5px); opacity: 0.5; animation: acxSweep 7s ease-in-out infinite; }
 @keyframes acxSweep { 0%,100% { transform: translateY(10vh); opacity: 0; } 10% { opacity: 0.6; } 50% { transform: translateY(45vh); opacity: 0.4; } 90% { opacity: 0.6; } }
 .acx-hero-inner { position: relative; z-index: 5; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); width: 100%; }
 .acx-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 28px; }
@@ -89,11 +93,25 @@
 /* DPE block */
 .acx-dpe { background: linear-gradient(135deg, rgba(230,48,39,0.08) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.2); padding: var(--section-py) 0; position: relative; overflow: hidden; }
 .acx-dpe-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.6; }
-.acx-dpe-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
+.acx-dpe-inner { position: relative; z-index: 2; max-width: 960px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
 .acx-dpe h2 { font-family: var(--display); font-weight: 900; font-size: clamp(44px, 6vw, 84px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 20px; }
 .acx-dpe h2 .accent { color: var(--beacon); }
 .acx-dpe p { font-size: clamp(15px, 1.4vw, 17px); color: rgba(255,255,255,0.78); line-height: 1.7; margin: 0 auto 22px; max-width: 720px; }
-.acx-dpe blockquote { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 4vw, 48px); line-height: 1; letter-spacing: -0.005em; text-transform: uppercase; color: var(--beacon); margin: 28px 0 8px; border: none; padding: 0; }
+.acx-dpe-pull { display: inline-block; font-family: var(--display); font-weight: 900; font-size: clamp(20px, 2.6vw, 32px); line-height: 1.1; letter-spacing: -0.005em; text-transform: uppercase; color: var(--white); padding: 18px 28px; margin: 12px auto 36px; border: 1px solid rgba(230,48,39,0.45); border-radius: 8px; background: linear-gradient(180deg, rgba(230,48,39,0.12) 0%, rgba(230,48,39,0.04) 100%); box-shadow: 0 0 0 1px rgba(230,48,39,0.08) inset, 0 24px 48px -28px rgba(230,48,39,0.5); }
+.acx-dpe-pull .accent { color: var(--beacon); }
+.acx-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; text-align: left; position: relative; }
+@media (max-width: 820px) { .acx-flow { grid-template-columns: 1fr; gap: 16px; } }
+.acx-flow-step { position: relative; padding: 26px 24px; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.18); border-radius: 12px; overflow: hidden; transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease); }
+.acx-flow-step::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.acx-flow-step:hover { transform: translateY(-3px); border-color: rgba(230,48,39,0.5); box-shadow: 0 24px 48px -24px rgba(230,48,39,0.35); }
+.acx-flow-num { font-family: var(--display); font-weight: 900; font-size: 52px; line-height: 1; letter-spacing: -0.02em; color: var(--beacon); margin-bottom: 4px; }
+.acx-flow-title { font-family: var(--display); font-weight: 800; font-size: 20px; line-height: 1.15; letter-spacing: -0.005em; text-transform: uppercase; color: var(--white); margin: 0 0 8px; }
+.acx-flow-desc { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.55; margin: 0; }
+.acx-flow-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; color: var(--beacon); text-transform: uppercase; margin-top: 12px; padding: 5px 10px; background: rgba(230,48,39,0.08); border: 1px solid rgba(230,48,39,0.3); border-radius: 3px; }
+.acx-dpe-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 40px; padding: 14px 26px; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; background: var(--beacon); color: var(--white); border: 1px solid var(--beacon); border-radius: 6px; text-decoration: none; transition: all .2s var(--ease); box-shadow: 0 8px 22px rgba(230,48,39,0.3); }
+.acx-dpe-cta:hover { background: var(--beacon-dark); border-color: var(--beacon-dark); transform: translateY(-1px); box-shadow: 0 12px 28px rgba(230,48,39,0.45); }
+.acx-dpe-cta::after { content: "→"; transition: transform .2s; }
+.acx-dpe-cta:hover::after { transform: translateX(3px); }
 
 /* Final CTA */
 .acx-cta { background: var(--ink); padding: var(--section-py) 0; position: relative; overflow: hidden; }
@@ -242,6 +260,10 @@
 </nav>
 
 <header class="acx-hero">
+  <div class="acx-hero-video">
+    <iframe src="https://www.youtube.com/embed/OMPuQnDtDWk?autoplay=1&mute=1&loop=1&playlist=OMPuQnDtDWk&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+  <div class="acx-hero-overlay"></div>
   <div class="acx-hero-grid"></div>
   <div class="acx-hero-vignette"></div>
   <div class="acx-hero-sweep"></div>
@@ -367,12 +389,35 @@
     <span class="acx-eyebrow">DPE Reserved</span>
     <h2>DPE Reserved Around<br><span class="accent">Your Accelerated Course.</span></h2>
     <p>The biggest reason "accelerated" stops being accelerated isn't instruction &mdash; it's checkrides. At CRAFT, we book the DPE <em>before</em> we book your course. Your checkride is locked on the final day from the moment your dates are set. No waiting weeks for an examiner. No drift. No bottleneck.</p>
-    <blockquote>"Train. Test. Finish."</blockquote>
-    <p style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:8px">Accelerated training isn't about rushing. It's about removing the biggest bottleneck in the system.</p>
+
+    <div class="acx-dpe-pull">The DPE is the biggest <span class="accent">bottleneck</span> in flight training.<br>We&rsquo;ve already removed it.</div>
+
+    <div class="acx-flow">
+      <div class="acx-flow-step">
+        <div class="acx-flow-num">01</div>
+        <h3 class="acx-flow-title">You tell us your goals</h3>
+        <p class="acx-flow-desc">PPL holder coming in from out of town for IFR? Pilot stacking the multi add-on? Tell us the rating you need and the dates that actually work around your job.</p>
+        <span class="acx-flow-tag">● Step One · Quote</span>
+      </div>
+      <div class="acx-flow-step">
+        <div class="acx-flow-num">02</div>
+        <h3 class="acx-flow-title">We lock the DPE first</h3>
+        <p class="acx-flow-desc">Before we put a single block on the schedule, we coordinate with our DPE network and reserve the checkride date. Your final day is locked the moment you commit.</p>
+        <span class="acx-flow-tag">● Step Two · Reserve</span>
+      </div>
+      <div class="acx-flow-step">
+        <div class="acx-flow-num">03</div>
+        <h3 class="acx-flow-title">You fly home rated</h3>
+        <p class="acx-flow-desc">Dedicated CFI, dedicated airplane, sim built in. Train Monday, test Friday (or whatever your course length is). Disappear for a week &mdash; come back a rated pilot.</p>
+        <span class="acx-flow-tag">● Step Three · Finish</span>
+      </div>
+    </div>
+
+    <a href="#quote" class="acx-dpe-cta">Lock My Dates</a>
   </div>
 </section>
 
-<section class="acx-cta">
+<section class="acx-cta" id="quote">
   <div class="acx-cta-bg"></div>
   <div class="acx-cta-inner" style="max-width:880px">
     <span class="acx-eyebrow">Get Your Quote</span>
@@ -399,57 +444,4 @@
           <span style="display:block;font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;">Mon&ndash;Sat 9am&ndash;4pm</span>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Train</h4>
-        <ul>
-          <li><a href="/discovery-flight">Discovery Flight</a></li>
-          <li><a href="/accelerated">Accelerated Programs</a></li>
-          <li><a href="/private-pilot">Private Pilot</a></li>
-          <li><a href="/accelerated">Accelerated IFR</a></li>
-          <li><a href="/accelerated">Multi-Engine</a></li>
-          <li><a href="/accelerated">CFI &middot; CFII</a></li>
-          <li><a href="/sim-membership">Sim Membership</a></li>
-          <li><a href="/cost-calculator">Cost Calculator</a></li>
-          <li><a href="/financing">Financing</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Aircraft</h4>
-        <ul>
-          <li><a href="/fleet">The Fleet</a></li>
-          <li><a href="/fleet?type=da40">DA40 NG &middot; ×5</a></li>
-          <li><a href="/fleet?type=da42">DA42 NG &middot; ×1</a></li>
-          <li><a href="/sim-membership">Redbird AATD &middot; ×2</a></li>
-          <li><a href="/sim-membership">Aircraft Rental</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/company">About CRAFT</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="https://flycraftchs.com/reviews/" target="_blank" rel="noopener">Reviews</a></li>
-          <li><a href="/discovery-flight">Book Discovery</a></li>
-          <li><a href="tel:+18438006498">843.800.6498</a></li>
-          <li><a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a></li>
-        </ul>
-      </div>
-    </div>
-      <div class="footer-social">
-        <span class="footer-social-lbl">Follow</span>
-        <a href="https://facebook.com/flycraftchs" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
-        <a href="https://instagram.com/craftflighttraining" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.81.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.81-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.81-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.81.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.94c-3.15 0-3.51.01-4.75.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.27.83-.39.39-.63.76-.83 1.27-.15.39-.33.97-.38 2.04-.06 1.24-.07 1.6-.07 4.75s.01 3.51.07 4.75c.05 1.07.23 1.65.38 2.04.2.51.44.88.83 1.27.39.39.76.63 1.27.83.39.15.97.33 2.04.38 1.24.06 1.6.07 4.75.07s3.51-.01 4.75-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.27-.83.39-.39.63-.76.83-1.27.15-.39.33-.97.38-2.04.06-1.24.07-1.6.07-4.75s-.01-3.51-.07-4.75c-.05-1.07-.23-1.65-.38-2.04-.2-.51-.44-.88-.83-1.27-.39-.39-.76-.63-1.27-.83-.39-.15-.97-.33-2.04-.38C15.51 4.11 15.15 4.1 12 4.1zM12 7.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9zm0 8.16a3.21 3.21 0 1 0 0-6.42 3.21 3.21 0 0 0 0 6.42zm6.3-8.36a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0z"/></svg></a>
-        <a href="https://linkedin.com/company/craft-flight-training" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
-        <a href="https://tiktok.com/@craftflighttraining" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.95a8.16 8.16 0 0 0 4.77 1.52V7.13a4.85 4.85 0 0 1-1.84-.44z"/></svg></a>
-      </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 CRAFT Flight Training &middot; All Rights Reserved &middot; KCHS</span>
-      <span><a href="/contact">Privacy</a> &middot; <a href="/contact">Terms</a></span>
-    </div>
-  </div>
-</footer>
-
-<script src="/assets/chatbot.js" defer></script>
-<script>
-document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
-document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElemen
+      <div class="foot
