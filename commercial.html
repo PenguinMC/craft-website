@@ -96,9 +96,11 @@
 .cs-panel li::before { content: "▸"; position: absolute; left: 0; top: 0; color: var(--beacon); font-weight: 700; font-size: 11px; }
 
 /* 6-Day Course Timeline */
-.cs-days-sec { padding: var(--section-py) 0; position: relative; overflow: hidden; background: linear-gradient(180deg, var(--ink) 0%, rgba(230,48,39,0.04) 50%, var(--ink) 100%); }
+.cs-days-sec { padding: var(--section-py) 0; position: relative; overflow: hidden; background: #000; }
+.cs-days-sec::after { content: ""; position: absolute; inset: 0; background: url('/assets/commbg.avif') center/cover no-repeat; opacity: 0.35; z-index: 0; filter: saturate(0.85); }
+.cs-days-sec-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(10,13,18,0.85) 0%, rgba(10,13,18,0.7) 30%, rgba(10,13,18,0.7) 70%, rgba(10,13,18,0.92) 100%); pointer-events: none; }
 .cs-days-sec::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; pointer-events: none; }
-.cs-days-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.cs-days-inner { position: relative; z-index: 3; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
 .cs-days-head { text-align: center; margin-bottom: 50px; max-width: 760px; margin-left: auto; margin-right: auto; }
 .cs-days-head .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 6px 12px; border-radius: 4px; }
 .cs-days-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6vw, 72px); text-transform: uppercase; letter-spacing: -0.01em; margin: 14px 0 12px; line-height: 0.95; }
@@ -124,13 +126,12 @@
 .cs-panel.warn { border-color: rgba(255,200,0,0.3); }
 .cs-panel.warn::before { background: linear-gradient(90deg, transparent, #ffc800, transparent); }
 
-.cs-dpe { background: linear-gradient(135deg, rgba(230,48,39,0.08) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.2); padding: var(--section-py) 0; position: relative; overflow: hidden; }
-.cs-dpe-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.6; }
-.cs-dpe-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
-.cs-dpe h2 { font-family: var(--display); font-weight: 900; font-size: clamp(44px, 6vw, 84px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 20px; }
+.cs-dpe { background: linear-gradient(135deg, rgba(230,48,39,0.06) 0%, var(--ink) 100%); border-top: 1px solid rgba(230,48,39,0.18); padding: 70px 0; position: relative; overflow: hidden; }
+.cs-dpe-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.03) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; }
+.cs-dpe-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
+.cs-dpe h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 4.8vw, 60px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 14px 0 14px; }
 .cs-dpe h2 .accent { color: var(--beacon); }
-.cs-dpe p { font-size: clamp(15px, 1.4vw, 17px); color: rgba(255,255,255,0.78); line-height: 1.7; margin: 0 auto 22px; max-width: 720px; }
-.cs-dpe blockquote { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 4vw, 48px); line-height: 1; letter-spacing: -0.005em; text-transform: uppercase; color: var(--beacon); margin: 28px 0 8px; border: none; padding: 0; }
+.cs-dpe p { font-size: 15px; color: rgba(255,255,255,0.72); line-height: 1.65; margin: 0 auto; max-width: 640px; }
 
 .cs-cta { background: var(--ink); padding: var(--section-py) 0; position: relative; overflow: hidden; }
 .cs-cta-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.05) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; }
@@ -344,11 +345,12 @@
 </section>
 
 <section class="cs-days-sec">
+  <div class="cs-days-sec-overlay"></div>
   <div class="cs-days-inner">
     <div class="cs-days-head">
       <span class="eyebrow">● 6 Days · Train, Test, Finish</span>
       <h2>How we get it <span class="accent">done.</span></h2>
-      <p>Every accelerated commercial student at CRAFT follows the same six-day arc. Day 6 is your DPE. The five days before are the path that gets you there ready.</p>
+      <p>Every accelerated commercial student at CRAFT follows the same six-day arc. Day 6 is your check ride. The five days before are the path that gets you there ready.</p>
     </div>
     <div class="cs-days-track">
 
@@ -484,12 +486,9 @@
 <section class="cs-dpe">
   <div class="cs-dpe-bg"></div>
   <div class="cs-dpe-inner">
-    <span class="cs-eyebrow">DPE Availability</span>
-    <h2>Weeks.<br><span class="accent">Not months.</span></h2>
-    <p>The biggest reason "accelerated" stops being accelerated isn't instruction &mdash; it's checkrides. Across much of the country, pilots finish training and then wait six months for a Designated Pilot Examiner. That delay adds cost, stress, and uncertainty.</p>
-    <p>At CRAFT, DPE availability is built into how the program is planned. Exact timing varies, but checkrides are typically scheduled in weeks, not months &mdash; you finish without indefinite waiting.</p>
-    <blockquote>"Train. Test. Finish."</blockquote>
-    <p style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:8px">Accelerated training isn't about rushing. It's about removing the biggest bottleneck in the system.</p>
+    <span class="cs-eyebrow">DPE Reserved</span>
+    <h2>Days. <span class="accent">Not months.</span></h2>
+    <p>The biggest reason "accelerated" stops being accelerated isn't instruction, it's checkrides. At CRAFT, we book the DPE before we book your course. Your check ride is locked on the final day from the moment your dates are set.</p>
   </div>
 </section>
 
