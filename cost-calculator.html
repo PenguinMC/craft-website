@@ -160,6 +160,48 @@
 .cc-feat-icon { width: 44px; height: 44px; border-radius: 8px; background: rgba(230,48,39,0.12); border: 1px solid rgba(230,48,39,0.3); display: grid; place-items: center; color: var(--beacon); font-size: 22px; margin-bottom: 18px; }
 .cc-feat h3 { font-family: var(--display); font-weight: 900; font-size: 22px; line-height: 1.05; text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 10px; color: var(--white); }
 .cc-feat p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.55; margin: 0; }
+
+/* === STEP 3: Airline Pay Slider (ported from /discovery-flight) === */
+.cc-pay { background: var(--ink); padding: 80px 0; position: relative; overflow: hidden; border-top: 1px solid rgba(230,48,39,0.15); }
+.cc-pay-grid { position: absolute; inset: 0; pointer-events: none; }
+.cc-pay-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.06) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.5; animation: ccPayGrid 30s linear infinite; }
+@keyframes ccPayGrid { 0% { background-position: 0 0, 0 0; } 100% { background-position: 64px 64px, 64px 64px; } }
+.cc-pay-vignette { position: absolute; inset: 0; background: radial-gradient(60% 80% at 50% 30%, rgba(230,48,39,0.18) 0%, rgba(230,48,39,0) 60%); }
+.cc-pay-inner { position: relative; z-index: 5; max-width: 980px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
+.cc-pay h2 { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6vw, 80px); line-height: 0.95; letter-spacing: -0.015em; text-transform: uppercase; margin: 0 0 18px; }
+.cc-pay h2 .accent { color: var(--beacon); }
+.cc-pay-sub { font-size: clamp(15px, 1.4vw, 17px); color: rgba(255,255,255,0.75); max-width: 720px; margin: 0 auto 44px; line-height: 1.6; }
+.cc-pay-sub strong { color: var(--white); font-weight: 600; }
+.cc-pay-card { background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(230,48,39,0.3); border-radius: 16px; padding: 36px; box-shadow: 0 30px 60px -25px rgba(230,48,39,0.4); position: relative; overflow: hidden; text-align: left; }
+.cc-pay-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); }
+.cc-pay-readout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; align-items: center; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 28px; }
+@media (max-width: 720px) { .cc-pay-readout { grid-template-columns: 1fr; gap: 20px; } }
+.cc-pay-readout-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; margin-bottom: 8px; }
+.cc-pay-readout-num { font-family: var(--display); font-weight: 900; font-size: clamp(56px, 8vw, 96px); line-height: 1; letter-spacing: -0.02em; color: var(--white); }
+.cc-pay-readout-num small { font-family: var(--body); font-weight: 500; font-size: 0.32em; color: rgba(255,255,255,0.55); margin-left: 6px; vertical-align: super; }
+.cc-pay-readout-sub { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 12px; line-height: 1.55; }
+.cc-pay-readout-r { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cc-pay-stat { background: rgba(10,13,18,0.6); border: 1px solid rgba(230,48,39,0.18); border-radius: 8px; padding: 16px; }
+.cc-pay-stat-num { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1; color: var(--white); margin-bottom: 6px; }
+.cc-pay-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); text-transform: uppercase; line-height: 1.4; }
+.cc-pay-controls { display: grid; gap: 28px; }
+.cc-pay-ctrl-row { display: grid; gap: 12px; }
+.cc-pay-ctrl-label { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+.cc-pay-ctrl-val { color: var(--beacon); font-weight: 700; }
+.cc-pay-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.cc-pay-tab { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 10px 14px; border-radius: 4px; background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: all .2s var(--ease); }
+.cc-pay-tab:hover { background: rgba(230,48,39,0.08); border-color: rgba(230,48,39,0.4); color: var(--white); }
+.cc-pay-tab.active { background: rgba(230,48,39,0.12); border-color: var(--beacon); color: var(--beacon); box-shadow: 0 0 0 1px var(--beacon), 0 0 18px rgba(230,48,39,0.25); }
+.cc-pay-slider { width: 100%; -webkit-appearance: none; appearance: none; height: 24px; background: transparent; cursor: pointer; }
+.cc-pay-slider::-webkit-slider-runnable-track { background: linear-gradient(to right, var(--beacon) var(--cc-pay-pct,0%), rgba(255,255,255,0.08) var(--cc-pay-pct,0%)); height: 6px; border-radius: 3px; border: 1px solid rgba(255,255,255,0.06); }
+.cc-pay-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; background: var(--white); border: 2px solid var(--beacon); border-radius: 50%; margin-top: -10px; box-shadow: 0 4px 12px rgba(230,48,39,0.4); cursor: pointer; }
+.cc-pay-slider::-moz-range-track { background: rgba(255,255,255,0.08); height: 6px; border-radius: 3px; }
+.cc-pay-slider::-moz-range-thumb { width: 24px; height: 24px; background: var(--white); border: 2px solid var(--beacon); border-radius: 50%; cursor: pointer; }
+.cc-pay-ctrl-hint { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+.cc-pay-fine { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 24px; line-height: 1.6; }
+.cc-pay-fine strong { color: var(--white); font-weight: 600; }
+.cc-pay-cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+
 </style>
 </head>
 <body>
@@ -475,6 +517,59 @@
 </section>
 
 <!-- FOOTER -->
+<!-- STEP 3: Airline Pay -->
+<section class="cc-pay" id="airline-pay">
+  <div class="cc-pay-grid">
+    <div class="cc-pay-grid-bg"></div>
+    <div class="cc-pay-vignette"></div>
+  </div>
+  <div class="cc-pay-inner">
+    <div class="cc-step-pill"><span class="cc-step-num">3</span><span class="cc-step-lbl">What You Can Earn</span></div>
+    <h2>Once you have <span class="accent">the hours.</span></h2>
+    <p class="cc-pay-sub">Most pilots reach airline-eligible hours in <strong>1 to 2 years</strong> after their commercial. Airline pay is <strong>seniority-based</strong>: the right seat of a regional in year 1, the left seat of a wide-body by year 12. Drag the slider to see what your paycheck looks like at each step.</p>
+
+    <div class="cc-pay-card">
+      <div class="cc-pay-readout">
+        <div class="cc-pay-readout-l">
+          <div class="cc-pay-readout-eyebrow"><span id="cc-pay-tier-name">REGIONAL FO</span> &middot; <span id="cc-pay-year-name">YEAR 1</span></div>
+          <div class="cc-pay-readout-num"><span id="cc-pay-out">$92,000</span><small>/yr</small></div>
+          <div class="cc-pay-readout-sub" id="cc-pay-detail">75 hrs/mo guarantee &middot; ~$102/hr &middot; regional turboprop FO base</div>
+        </div>
+        <div class="cc-pay-readout-r">
+          <div class="cc-pay-stat"><div class="cc-pay-stat-num" id="cc-pay-monthly">$7,667</div><div class="cc-pay-stat-lbl">Monthly</div></div>
+          <div class="cc-pay-stat"><div class="cc-pay-stat-num" id="cc-pay-min-day">1 day</div><div class="cc-pay-stat-lbl">Min trip = full guarantee at top of seniority</div></div>
+        </div>
+      </div>
+
+      <div class="cc-pay-controls">
+        <div class="cc-pay-ctrl-row">
+          <div class="cc-pay-ctrl-label"><span>Tier</span><span class="cc-pay-ctrl-val" id="cc-pay-tier-display">Regional First Officer</span></div>
+          <div class="cc-pay-tabs">
+            <button class="cc-pay-tab active" data-tier="rgl-fo">Regional FO</button>
+            <button class="cc-pay-tab" data-tier="rgl-cap">Regional Captain</button>
+            <button class="cc-pay-tab" data-tier="maj-fo">Major FO</button>
+            <button class="cc-pay-tab" data-tier="maj-cap">Major Captain</button>
+          </div>
+        </div>
+        <div class="cc-pay-ctrl-row">
+          <div class="cc-pay-ctrl-label"><span>Year of Seniority</span><span class="cc-pay-ctrl-val" id="cc-pay-year-display">Year 1</span></div>
+          <input type="range" id="cc-pay-year" class="cc-pay-slider" min="1" max="12" value="1" step="1" />
+          <div class="cc-pay-ctrl-hint"><span>Year 1</span><span>Year 12+</span></div>
+        </div>
+      </div>
+
+      <div class="cc-pay-fine">
+        <strong>Pay shown is industry-typical hourly &times; the contract <em>guaranteed</em> monthly hours</strong> (about 75 to 80 hrs/mo). When you&rsquo;re senior enough to bid the line you want, even one trip a month earns the full guarantee. Numbers are pre-tax estimates from public 2025 to 2026 contracts; per-airline values vary.
+      </div>
+    </div>
+
+    <div class="cc-pay-cta-row">
+      <a href="/discovery-flight" class="btn btn-primary btn-arrow">Book Discovery Flight &mdash; $325</a>
+      <a href="/accelerated" class="btn btn-ghost">See Accelerated Programs</a>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="container">
     <div class="footer-top">
@@ -658,5 +753,50 @@ form?.addEventListener('submit', e => {
 </script>
 
 <script src="/assets/chatbot.js" defer></script>
+
+
+<script>
+// === STEP 3 Airline Pay (ported from /discovery-flight) ===
+const PAY_TIERS = {
+  'rgl-fo': { label: 'Regional First Officer', short: 'REGIONAL FO', minDay: '4-5 days', rates: [102, 105, 108, 112, 116, 120, 124, 128, 132, 136, 140, 145], note: tier => '75 hrs/mo guarantee · ~$' + tier + '/hr · regional turboprop FO' },
+  'rgl-cap': { label: 'Regional Captain', short: 'REGIONAL CAPTAIN', minDay: '3-4 days', rates: [180, 188, 196, 204, 212, 220, 228, 236, 244, 250, 256, 262], note: tier => '75 hrs/mo guarantee · ~$' + tier + '/hr · regional left-seat upgrade ~Year 2-3' },
+  'maj-fo': { label: 'Major First Officer', short: 'MAJOR FO', minDay: '2-3 days', rates: [120, 145, 170, 192, 210, 226, 242, 256, 270, 282, 294, 306], note: tier => '75 hrs/mo guarantee · ~$' + tier + '/hr · narrow-body major FO' },
+  'maj-cap': { label: 'Major Captain', short: 'MAJOR CAPTAIN', minDay: '1 day', rates: [285, 310, 335, 360, 380, 400, 416, 432, 446, 460, 474, 488], note: tier => '80 hrs/mo guarantee · ~$' + tier + '/hr · wide-body senior · 1-trip-month possible at top of seniority' }
+};
+const $cp = id => document.getElementById(id);
+const fmtPayUSD = v => '$' + Math.round(v).toLocaleString();
+let ccCurrentTier = 'rgl-fo';
+function updateCcPayPct() {
+  const sl = $cp('cc-pay-year'); if (!sl) return;
+  const min = +sl.min, max = +sl.max, val = +sl.value;
+  sl.style.setProperty('--cc-pay-pct', ((val - min) / (max - min)) * 100 + '%');
+}
+function recalcCcPay() {
+  const t = PAY_TIERS[ccCurrentTier]; if (!t) return;
+  const year = +$cp('cc-pay-year').value;
+  const hr = t.rates[Math.min(year, t.rates.length) - 1] || t.rates[t.rates.length - 1];
+  const guarantee = ccCurrentTier === 'maj-cap' ? 80 : 75;
+  const monthly = hr * guarantee;
+  const annual = monthly * 12;
+  $cp('cc-pay-out').textContent = fmtPayUSD(annual);
+  $cp('cc-pay-monthly').textContent = fmtPayUSD(monthly);
+  $cp('cc-pay-tier-name').textContent = t.short;
+  $cp('cc-pay-tier-display').textContent = t.label;
+  $cp('cc-pay-year-name').textContent = 'YEAR ' + year + (year === 12 ? '+' : '');
+  $cp('cc-pay-year-display').textContent = 'Year ' + year + (year === 12 ? '+' : '');
+  $cp('cc-pay-detail').textContent = t.note(hr);
+  $cp('cc-pay-min-day').textContent = t.minDay;
+  updateCcPayPct();
+}
+document.querySelectorAll('.cc-pay-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.cc-pay-tab').forEach(x => x.classList.toggle('active', x === tab));
+    ccCurrentTier = tab.dataset.tier;
+    recalcCcPay();
+  });
+});
+$cp('cc-pay-year')?.addEventListener('input', recalcCcPay);
+recalcCcPay();
+</script>
 </body>
 </html>
