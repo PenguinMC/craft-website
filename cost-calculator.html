@@ -679,9 +679,9 @@ function loadProgram(key) {
   $('cc-program-fleet').textContent = p.fleet;
   setSlider($('cc-flight'), p.fHrs[0], p.fHrs[1], p.fHrs[2]);
   $('cc-flight-min').textContent = p.fHrs[0]; $('cc-flight-max').textContent = p.fHrs[2];
-  setSlider($('cc-instr'),  p.iHrs[0], p.iHrs[1], p.iHrs[2]);
+  setSlider($('cc-instr'),  p.iHrs[0], p.iHrs[1], p.iHrs[2], true);
   $('cc-instr-min').textContent = p.iHrs[0]; $('cc-instr-max').textContent = p.iHrs[2];
-  setSlider($('cc-ground'), p.gHrs[0], p.gHrs[1], p.gHrs[2]);
+  setSlider($('cc-ground'), p.gHrs[0], p.gHrs[1], p.gHrs[2], true);
   $('cc-ground-min').textContent = p.gHrs[0]; $('cc-ground-max').textContent = p.gHrs[2];
   setSlider($('cc-sim'),    p.sHrs[0], p.sHrs[1], p.sHrs[2], true);
 
