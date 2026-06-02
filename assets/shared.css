@@ -171,19 +171,24 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 
 /* === FOOTER POLISH (site-wide) — matches homepage footer === */
-.footer { padding: 100px 0 50px !important; border-top: 1px solid rgba(230,48,39,0.18); }
+.footer { padding: 80px 0 40px !important; border-top: 1px solid rgba(230,48,39,0.18); }
 .footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); z-index: 3; }
-.footer .container { max-width: 1440px; padding: 0 var(--gut); }
-.footer-top { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 56px; margin-bottom: 56px; position: relative; z-index: 2; }
-@media (max-width: 980px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; } }
-@media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; gap: 32px; } }
-.footer-col h4 { color: var(--beacon); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; margin-bottom: 22px; }
-.footer-col ul { gap: 12px; }
-.footer-col a { font-size: 14px; line-height: 1.4; color: rgba(255,255,255,0.78); }
-.footer-col a:hover { color: var(--white); }
-.footer-brand img { height: 56px; }
-.footer-tag { font-size: 14px; color: rgba(255,255,255,0.62); max-width: 360px; line-height: 1.65; margin-top: 18px; }
-.footer-bottom { padding-top: 36px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; color: rgba(255,255,255,0.45); position: relative; z-index: 2; }
+.footer .container { max-width: 1280px; padding: 0 var(--gut); }
+.footer-top { display: grid !important; grid-template-columns: 1.4fr 1fr 1fr 1fr !important; gap: 48px !important; margin-bottom: 48px !important; align-items: start !important; position: relative; z-index: 2; }
+@media (max-width: 980px) { .footer-top { grid-template-columns: 1fr 1fr !important; gap: 36px !important; } }
+@media (max-width: 600px) { .footer-top { grid-template-columns: 1fr !important; gap: 32px !important; } }
+.footer-col h4 { color: var(--beacon) !important; font-family: 'JetBrains Mono', monospace !important; font-size: 11px !important; font-weight: 700 !important; letter-spacing: 0.22em !important; margin-bottom: 18px !important; }
+.footer-col ul { display: grid !important; gap: 10px !important; list-style: none !important; padding: 0 !important; margin: 0 !important; }
+.footer-col li { margin: 0 !important; padding: 0 !important; }
+.footer-col a { font-size: 14px !important; line-height: 1.4 !important; color: rgba(255,255,255,0.78) !important; }
+.footer-col a:hover { color: var(--white) !important; }
+.footer-brand { margin-bottom: 14px !important; }
+.footer-brand img { height: 44px !important; }
+.footer-tag { font-size: 13px !important; color: rgba(255,255,255,0.6) !important; max-width: 320px !important; line-height: 1.6 !important; margin-top: 14px !important; }
+.footer-contact { margin-top: 18px !important; font-size: 13px !important; }
+.footer-contact a, .footer-contact > a { color: rgba(255,255,255,0.85) !important; display: block !important; margin-bottom: 5px !important; }
+.footer-contact-label { font-size: 10px !important; color: rgba(255,255,255,0.35) !important; letter-spacing: 0.18em !important; text-transform: uppercase !important; margin-bottom: 6px !important; font-family: 'JetBrains Mono', monospace !important; }
+.footer-bottom { padding-top: 28px !important; border-top: 1px solid rgba(255,255,255,0.06) !important; font-size: 12px !important; color: rgba(255,255,255,0.45) !important; position: relative; z-index: 2; display: flex !important; justify-content: space-between !important; flex-wrap: wrap !important; gap: 14px !important; }
 
 
 /* === HUBSPOT FORMS — TACTICAL DARK OVERRIDE === */
@@ -381,45 +386,4 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   border: 1px solid var(--beacon) !important;
   border-radius: 6px !important;
   color: #fff !important;
-  font-family: 'Barlow Condensed', 'Inter', system-ui, sans-serif !important;
-  font-weight: 700 !important;
-  font-size: 16px !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
-  cursor: pointer;
-  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease !important;
-  box-shadow: 0 8px 24px rgba(230,48,39,0.25);
-}
-.hs-form .hs-button:hover,
-.hs-form input[type="submit"]:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.08);
-  box-shadow: 0 12px 28px rgba(230,48,39,0.4);
-}
-.hs-form .hs-button:active,
-.hs-form input[type="submit"]:active {
-  transform: translateY(0);
-  filter: brightness(0.95);
-}
-.hs-form .actions {
-  margin-top: 4px;
-  padding: 0 !important;
-}
-/* Help / legal text */
-.hs-form .hs-richtext,
-.hs-form .hs-richtext p,
-.hs-form legend.hs-field-desc {
-  font-size: 12px !important;
-  color: rgba(255,255,255,0.5) !important;
-  line-height: 1.55 !important;
-  margin: 0 0 10px 0 !important;
-}
-.hs-form .hs-richtext a {
-  color: var(--beacon) !important;
-  text-decoration: underline;
-}
-/* Validation errors */
-.hs-form .hs-error-msgs,
-.hs-form .hs-error-msg,
-.hs-form ul.no-list label.hs-error-msg {
-  list
+  f
