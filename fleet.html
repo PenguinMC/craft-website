@@ -507,6 +507,44 @@
   .fleet-card:hover .fc-art-plane { transform: none; }
   .fleet-card:hover .fc-art::after { animation: none; opacity: 0; }
 }
+/* CRAFT ADVANTAGE — Steam vs Glass / Levers vs FADEC */
+.fadv { background: var(--ink); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+.fadv::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.04) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; pointer-events: none; }
+.fadv-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+.fadv-head { text-align: center; margin: 0 auto 56px; max-width: 760px; }
+.fadv-head .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 6px 12px; border-radius: 4px; }
+.fadv-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5.5vw, 68px); text-transform: uppercase; letter-spacing: -0.01em; margin: 16px 0 14px; line-height: 0.95; }
+.fadv-head h2 .accent { color: var(--beacon); }
+.fadv-head p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.65; }
+.fadv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 32px; }
+@media (max-width: 880px) { .fadv-row { grid-template-columns: 1fr; gap: 16px; } }
+.fadv-card { position: relative; background: linear-gradient(180deg, var(--approach) 0%, #0E1218 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; transition: transform .3s var(--ease), border-color .3s var(--ease); }
+.fadv-card.craft { border-color: rgba(230,48,39,0.5); box-shadow: 0 24px 60px -28px rgba(230,48,39,0.5); }
+.fadv-card.craft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); z-index: 2; }
+.fadv-card:hover { transform: translateY(-4px); }
+.fadv-card.legacy:hover { border-color: rgba(255,255,255,0.18); }
+.fadv-card.craft:hover { border-color: var(--beacon); box-shadow: 0 30px 70px -25px rgba(230,48,39,0.65); }
+.fadv-tag { position: absolute; top: 16px; left: 16px; z-index: 3; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; padding: 6px 12px; border-radius: 3px; backdrop-filter: blur(8px); }
+.fadv-card.legacy .fadv-tag { background: rgba(20,24,31,0.7); color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.15); }
+.fadv-card.craft .fadv-tag { background: rgba(230,48,39,0.15); color: var(--beacon); border: 1px solid rgba(230,48,39,0.5); }
+.fadv-img-wrap { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; background: #000; }
+.fadv-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+.fadv-card:hover .fadv-img-wrap img { transform: scale(1.04); }
+.fadv-card.legacy .fadv-img-wrap::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(20,24,31,0.25) 0%, rgba(20,24,31,0.6) 100%); pointer-events: none; }
+.fadv-card.legacy .fadv-img-wrap img { filter: grayscale(0.5) brightness(0.85); }
+.fadv-body { padding: 22px 24px 26px; }
+.fadv-body h3 { font-family: var(--display); font-weight: 900; font-size: 24px; line-height: 1.1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 8px; color: #fff; }
+.fadv-body h3 .accent { color: var(--beacon); }
+.fadv-body p { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.6; margin: 0; }
+.fadv-vs { display: flex; align-items: center; justify-content: center; margin: 12px 0 28px; font-family: var(--display); font-weight: 900; font-size: 20px; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); text-transform: uppercase; gap: 14px; }
+.fadv-vs::before, .fadv-vs::after { content: ""; flex: 1; max-width: 80px; height: 1px; background: linear-gradient(90deg, transparent, rgba(230,48,39,0.4), transparent); }
+.fadv-takeaway { background: linear-gradient(180deg, rgba(230,48,39,0.06) 0%, var(--approach) 100%); border: 1px solid rgba(230,48,39,0.3); border-radius: 12px; padding: 28px 32px; margin-top: 12px; position: relative; }
+.fadv-takeaway::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon), transparent); border-radius: 12px 12px 0 0; }
+.fadv-takeaway-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; margin-bottom: 10px; }
+.fadv-takeaway-h { font-family: var(--display); font-weight: 800; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.2; text-transform: uppercase; letter-spacing: -0.005em; color: #fff; margin: 0 0 8px; }
+.fadv-takeaway-h .accent { color: var(--beacon); }
+.fadv-takeaway p { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.65; margin: 0; }
+
 </style>
 </head>
 <body>
@@ -654,7 +692,7 @@
   <div class="fleet-hero-inner">
     <span class="fleet-hero-eyebrow"><span class="ll-dot"></span>FLEET MANIFEST · KCHS · ALL ACTIVE</span>
     <h1>The only <span class="accent">all-Diamond</span><br>fleet in <span class="stroke">Charleston.</span></h1>
-    <p>Five Diamond DA40 NGs and a multi-engine DA42 NG. Every aircraft glass-cockpit, Jet-A, and built this century — no 1970s 172s, no mixed-fuel paperwork, no panel relearn between trainers. CRAFT students train in this fleet, and rated pilots <span style="color:var(--beacon);font-weight:600">can rent the same airplanes</span> at standard rates.</p>
+    <p>Five Diamond DA40 NGs and a multi-engine DA42 NG. Every aircraft glass-cockpit, Jet-A, and built this century. No 1970s 172s, just one single FADEC lever, and no panel relearn between trainers. CRAFT students train in this fleet, and rated pilots <span style="color:var(--beacon);font-weight:600">can rent the same airplanes</span> at standard rates.</p>
     <div class="fleet-hero-stats">
       <div class="fleet-hero-stat"><div class="fleet-hero-stat-num"><span class="accent">6</span></div><div class="fleet-hero-stat-lbl">Total Aircraft</div></div>
       <div class="fleet-hero-stat"><div class="fleet-hero-stat-num">5</div><div class="fleet-hero-stat-lbl">DA40 NG · SE</div></div>
@@ -813,11 +851,76 @@
   </div>
 </section>
 
+<!-- CRAFT Advantage comparison -->
+<section class="fadv">
+  <div class="fadv-inner">
+    <div class="fadv-head">
+      <span class="eyebrow">● The CRAFT Advantage</span>
+      <h2>Why this fleet is <span class="accent">the right choice.</span></h2>
+      <p>Every airplane in our hangar is glass-cockpit, Jet-A, single-lever FADEC. Here is what that actually means for a pilot logging hours.</p>
+    </div>
+
+    <div class="fadv-row">
+      <article class="fadv-card legacy">
+        <span class="fadv-tag">Legacy &middot; Most Fleets</span>
+        <div class="fadv-img-wrap"><img src="/assets/steamgage.jpg" alt="Steam gauge analog cockpit" loading="lazy"></div>
+        <div class="fadv-body">
+          <h3>Steam Gauges</h3>
+          <p>Six analog dials and a vacuum-driven attitude indicator. The cockpit at most flight schools is older than most students. None of it transfers to a regional jet or major airline cockpit.</p>
+        </div>
+      </article>
+
+      <article class="fadv-card craft">
+        <span class="fadv-tag">CRAFT &middot; This Fleet</span>
+        <div class="fadv-img-wrap"><img src="/assets/g1000glasscockpit.jpg" alt="Garmin G1000 NXi glass cockpit" loading="lazy"></div>
+        <div class="fadv-body">
+          <h3>G1000 NXi <span class="accent">Glass Cockpit</span></h3>
+          <p>Two big PFD/MFD displays, synthetic vision, integrated GPS, traffic, weather, and a GFC700 digital autopilot in every airframe. Same family of avionics you will see in regional jets and corporate aircraft.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="fadv-takeaway">
+      <div class="fadv-takeaway-lbl">● Why it matters</div>
+      <div class="fadv-takeaway-h">Glass-cockpit hours <span class="accent">compound.</span> Steam-gauge hours don't.</div>
+      <p>Every hour you log in this fleet is an hour you do not have to relearn when you upgrade to IFR, Commercial, or your first type rating. Train in the cockpit you will actually fly.</p>
+    </div>
+
+    <div class="fadv-vs" style="margin-top:56px">vs</div>
+
+    <div class="fadv-row">
+      <article class="fadv-card legacy">
+        <span class="fadv-tag">Legacy &middot; Most Fleets</span>
+        <div class="fadv-img-wrap"><img src="/assets/threelevers.jpg" alt="Three engine control levers: throttle, propeller, mixture" loading="lazy"></div>
+        <div class="fadv-body">
+          <h3>Three Levers</h3>
+          <p>Throttle, propeller pitch, mixture. Three controls to juggle on every power change, climb, and descent. Mismanage any of them and you are cooking cylinders or detonating fuel. Pure cognitive load.</p>
+        </div>
+      </article>
+
+      <article class="fadv-card craft">
+        <span class="fadv-tag">CRAFT &middot; This Fleet</span>
+        <div class="fadv-img-wrap"><img src="/assets/fadec.gif" alt="FADEC single-lever power control" loading="lazy"></div>
+        <div class="fadv-body">
+          <h3>FADEC <span class="accent">Single Lever</span></h3>
+          <p>One lever. Push for more power, pull for less. Full Authority Digital Engine Control manages prop pitch, fuel flow, and mixture in real time. Both DA40 NG and DA42 NG run single-lever FADEC.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="fadv-takeaway">
+      <div class="fadv-takeaway-lbl">● Airline transition</div>
+      <div class="fadv-takeaway-h">One lever today = one lever <span class="accent">forever.</span></div>
+      <p>Every modern jet, every turboprop, every regional and major airline cockpit you will ever sit in uses single-lever digital engine control. Train on FADEC now and the muscle memory carries straight into the right seat of an E175, CRJ, or 737.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="fleet-cta">
   <div class="fleet-cta-grid"></div>
   <div class="fleet-cta-inner">
-    <h2>Want to fly one? <span class="accent">Pick a tail.</span></h2>
+    <h2>Train where the <span class="accent">pros do.</span></h2>
     <p>Every CRAFT student trains in this exact fleet. Discovery Flight ($325) gets you in the left seat of a DA40 NG over Charleston. The rest of the fleet is on the other side of your accelerated program.</p>
     <div class="fleet-cta-btns">
       <a href="/discovery-flight" class="btn btn-primary btn-arrow">Book Discovery Flight</a>
