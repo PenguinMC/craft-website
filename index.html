@@ -604,14 +604,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .acc-card {
   background: var(--runway);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 8px; padding: 24px 26px;
+  border-radius: 8px; padding: 32px;
   position: relative;
   display: flex; flex-direction: column;
   transition: transform .3s var(--ease), border-color .3s var(--ease);
 }
-.acc-list li { padding: 5px 0 5px 22px !important; font-size: 14px !important; line-height: 1.45 !important; }
-.acc-card h3 { font-size: 28px !important; margin-bottom: 8px !important; }
-.acc-time { font-size: 13px !important; margin-bottom: 16px !important; }
 .acc-card:hover { transform: translateY(-4px); border-color: var(--beacon); }
 .acc-card.feat {
   background: linear-gradient(180deg, #2a1011 0%, #1a0c0d 100%);
@@ -1704,10 +1701,11 @@ ptFill.style.width = '0%';
         <h3>Private Pilot</h3>
         <div class="acc-time"><strong>At your own pace</strong> · self-paced training · zero pressure</div>
         <ul class="acc-list">
-          <li>Diamond DA40 NG glass cockpit</li>
-          <li>Redbird AATD sim included</li>
-          <li>Dedicated CFI &middot; DPE coordinated</li>
-          <li>Written test prep included</li>
+          <li>Diamond DA40 NG FADEC glass cockpit</li>
+          <li>Redbird AATD simulator</li>
+          <li>Dedicated flight instructor</li>
+          <li>ASA materials + written test prep</li>
+          <li>Checkride aircraft + DPE coordination</li>
         </ul>
         <div class="acc-price-row" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,0.08);padding-top:18px;margin-top:auto;margin-bottom:18px">
           <div style="font-family:var(--display);font-weight:900;font-size:34px;line-height:1;letter-spacing:-0.02em;color:var(--white)"><span class="accent">$</span>255<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:rgba(255,255,255,0.55);letter-spacing:0.04em;margin-left:6px">/hr wet</span></div>
@@ -1722,9 +1720,10 @@ ptFill.style.width = '0%';
         <h3>Accelerated <span class="accent">IFR</span></h3>
         <div class="acc-time"><strong>7 days</strong> · 30 hrs combined · BYO-aircraft option</div>
         <ul class="acc-list">
-          <li>15 hrs DA40 NG + 20 hrs Redbird AATD</li>
-          <li>Dedicated CFII &middot; DPE pre-scheduled</li>
-          <li>For PPL holders with IFR written done</li>
+          <li>15 hrs DA40 NG (or your aircraft)</li>
+          <li>Up to 20 hrs Redbird AATD</li>
+          <li>Dedicated CFII · single-instructor consistency</li>
+          <li>For PPL holders with the IFR written done</li>
           <li><strong>96% first-time pass rate</strong></li>
         </ul>
         <div class="acc-price-row" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-top:1px solid rgba(230,48,39,0.25);padding-top:18px;margin-top:auto;margin-bottom:18px">
@@ -1740,8 +1739,10 @@ ptFill.style.width = '0%';
         <div class="acc-time"><strong>4 days</strong> · DA42-VI NG twin turbodiesel · ME add-on for any rating</div>
         <ul class="acc-list">
           <li><strong>8 hrs multi included</strong> in the DA42-VI NG</li>
-          <li>Twin AE 300 turbodiesels &middot; FADEC single-lever</li>
-          <li>Dedicated CFI &middot; DPE pre-scheduled</li>
+          <li>DA42-VI NG Twin AE 300 turbodiesels</li>
+          <li>Dedicated flight instructor</li>
+          <li>FADEC engines: reliable, easy-start, single-lever ops</li>
+          <li>Minimal task saturation: workload management built into the platform</li>
           <li>Add to PPL, IFR, or CPL</li>
         </ul>
         <div class="acc-price-row" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,0.08);padding-top:18px;margin-top:auto;margin-bottom:18px">
@@ -1990,4 +1991,4 @@ ptFill.style.width = '0%';
     </div>
       <div class="footer-social">
         <span class="footer-social-lbl">Follow</span>
-        <a href="https://www.facebook.com/craftchs" target="_blank" rel=
+        <a href="https://www.facebook.com/craftchs" target="_blank" rel="noopener" aria-label="Face
