@@ -604,19 +604,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .acc-card {
   background: var(--runway);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 8px; padding: 28px 28px 24px;
+  border-radius: 8px; padding: 24px 26px;
   position: relative;
   display: flex; flex-direction: column;
   transition: transform .3s var(--ease), border-color .3s var(--ease);
 }
-.acc-list { flex-grow: 0 !important; margin-bottom: 18px !important; }
-.acc-list li { padding: 7px 0 7px 24px !important; font-size: 14.5px !important; line-height: 1.5 !important; }
+.acc-list li { padding: 5px 0 5px 22px !important; font-size: 14px !important; line-height: 1.45 !important; }
 .acc-card h3 { font-size: 28px !important; margin-bottom: 8px !important; }
-.acc-time { font-size: 13px !important; margin-bottom: 18px !important; }
-.acc-locked { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 0 0; border-top: 1px dashed rgba(255,255,255,0.1); margin-top: auto; }
-.acc-locked-chip { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 8px; border-radius: 4px; background: rgba(230,48,39,0.08); border: 1px solid rgba(230,48,39,0.25); color: rgba(255,255,255,0.85); display: inline-flex; align-items: center; gap: 5px; }
-.acc-locked-chip::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--beacon); display: inline-block; }
-.acc-card.feat .acc-locked-chip { background: rgba(230,48,39,0.12); border-color: rgba(230,48,39,0.4); }
+.acc-time { font-size: 13px !important; margin-bottom: 16px !important; }
 .acc-card:hover { transform: translateY(-4px); border-color: var(--beacon); }
 .acc-card.feat {
   background: linear-gradient(180deg, #2a1011 0%, #1a0c0d 100%);
@@ -1714,12 +1709,7 @@ ptFill.style.width = '0%';
           <li>Dedicated CFI &middot; DPE coordinated</li>
           <li>Written test prep included</li>
         </ul>
-        <div class="acc-locked">
-          <span class="acc-locked-chip">FAA Part 61</span>
-          <span class="acc-locked-chip">G1000 NXi</span>
-          <span class="acc-locked-chip">Class C ATC</span>
-        </div>
-        <div class="acc-price-row" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:16px;margin-top:18px;margin-bottom:18px">
+        <div class="acc-price-row" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,0.08);padding-top:18px;margin-top:auto;margin-bottom:18px">
           <div style="font-family:var(--display);font-weight:900;font-size:34px;line-height:1;letter-spacing:-0.02em;color:var(--white)"><span class="accent">$</span>255<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:rgba(255,255,255,0.55);letter-spacing:0.04em;margin-left:6px">/hr wet</span></div>
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:rgba(255,255,255,0.5);text-transform:uppercase;text-align:right">Self-Paced<br>+ $65/hr CFI</div>
         </div>
@@ -1737,12 +1727,7 @@ ptFill.style.width = '0%';
           <li>For PPL holders with IFR written done</li>
           <li><strong>96% first-time pass rate</strong></li>
         </ul>
-        <div class="acc-locked">
-          <span class="acc-locked-chip">DPE Locked</span>
-          <span class="acc-locked-chip">BYO Aircraft OK</span>
-          <span class="acc-locked-chip">30 Hrs Combined</span>
-        </div>
-        <div class="acc-price-row" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:16px;margin-top:18px;margin-bottom:18px">
+        <div class="acc-price-row" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-top:1px solid rgba(230,48,39,0.25);padding-top:18px;margin-top:auto;margin-bottom:18px">
           <div style="font-family:var(--display);font-weight:900;font-size:34px;line-height:1;letter-spacing:-0.02em;color:var(--white)"><span class="accent">$</span>9,800</div>
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:rgba(255,255,255,0.5);text-transform:uppercase;text-align:right">7 Days<br>All-Inclusive</div>
         </div>
@@ -1759,12 +1744,7 @@ ptFill.style.width = '0%';
           <li>Dedicated CFI &middot; DPE pre-scheduled</li>
           <li>Add to PPL, IFR, or CPL</li>
         </ul>
-        <div class="acc-locked">
-          <span class="acc-locked-chip">DA42-VI NG</span>
-          <span class="acc-locked-chip">Twin Diesel</span>
-          <span class="acc-locked-chip">Day-4 Checkride</span>
-        </div>
-        <div class="acc-price-row" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:16px;margin-top:18px;margin-bottom:18px">
+        <div class="acc-price-row" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,0.08);padding-top:18px;margin-top:auto;margin-bottom:18px">
           <div style="font-family:var(--display);font-weight:900;font-size:34px;line-height:1;letter-spacing:-0.02em;color:var(--white)"><span class="accent">$</span>9,500</div>
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:rgba(255,255,255,0.5);text-transform:uppercase;text-align:right">4 Days<br>DA42-VI NG</div>
         </div>
@@ -1979,4 +1959,35 @@ ptFill.style.width = '0%';
           <li><a href="/accelerated">Accelerated Programs</a></li>
           <li><a href="/private-pilot">Private Pilot</a></li>
           <li><a href="/accelerated">Accelerated IFR</a></li>
-          <li><a href="/accelerated">Mult
+          <li><a href="/accelerated">Multi-Engine</a></li>
+          <li><a href="/accelerated">CFI &middot; CFII</a></li>
+          <li><a href="/sim-membership">Sim Membership</a></li>
+          <li><a href="/cost-calculator">Cost Calculator</a></li>
+          <li><a href="/financing">Financing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Aircraft</h4>
+        <ul>
+          <li><a href="/fleet">The Fleet</a></li>
+          <li><a href="/fleet?type=da40">DA40 NG &middot; ×5</a></li>
+          <li><a href="/fleet?type=da42">DA42-VI NG &middot; ×1</a></li>
+          <li><a href="/sim-membership">Redbird AATD &middot; ×2</a></li>
+          <li><a href="/sim-membership">Aircraft Rental</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/company">About CRAFT</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/reviews">Reviews</a></li>
+          <li><a href="/discovery-flight">Book Discovery</a></li>
+          <li><a href="tel:+18438006498">843.800.6498</a></li>
+          <li><a href="mailto:craft@flycraftchs.com">craft@flycraftchs.com</a></li>
+        </ul>
+      </div>
+    </div>
+      <div class="footer-social">
+        <span class="footer-social-lbl">Follow</span>
+        <a href="https://www.facebook.com/craftchs" target="_blank" rel=
