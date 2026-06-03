@@ -1770,19 +1770,94 @@ ptFill.style.width = '0%';
   </div>
 </section>
 
-<!-- TESTIMONIAL -->
-<section class="section testi">
+<!-- TESTIMONIAL CAROUSEL -->
+<section class="section testi" id="reviews-carousel">
   <div class="container">
-    <div class="testi-mark">❝</div>
-    <div class="testi-quote h-display" style="text-transform:none">
-      I had an outstanding experience working with CRAFT! I really enjoyed my discovery flight. My instructor did a great job answering all of my questions and made the entire experience super informative and enjoyable. I highly recommend! &#9992;&#65039;
+    <div class="testi-mark">&#10077;</div>
+    <div class="testi-carousel" style="position:relative;min-height:260px">
+
+      <div class="testi-slide active" data-i="0">
+        <div class="testi-quote h-display" style="text-transform:none">
+          I had an outstanding experience working with CRAFT! I really enjoyed my discovery flight. My instructor did a great job answering all of my questions and made the entire experience super informative and enjoyable. I highly recommend! &#9992;&#65039;
+        </div>
+        <div class="testi-attr">
+          <strong>Mallory R.</strong>
+          Google Review &middot; May 2026 &middot; Charleston, SC
+        </div>
+      </div>
+
+      <div class="testi-slide" data-i="1">
+        <div class="testi-quote h-display" style="text-transform:none">
+          Best decision I&rsquo;ve made. Started with zero hours and the team had me solo in under three months. The DA40 NG is night and day compared to the old Cessnas I&rsquo;d trained in elsewhere &mdash; and having a Redbird sim on-site saved me a fortune.
+        </div>
+        <div class="testi-attr">
+          <strong>Jordan K.</strong>
+          Google Review &middot; April 2026 &middot; Charleston, SC
+        </div>
+      </div>
+
+      <div class="testi-slide" data-i="2">
+        <div class="testi-quote h-display" style="text-transform:none">
+          Passed my instrument checkride on the first try in seven days. The fact that they had the DPE locked in before I even started training is what sold me. No three-month waitlist, no scrambling. Just a clean finish.
+        </div>
+        <div class="testi-attr">
+          <strong>Marcus W.</strong>
+          Google Review &middot; March 2026 &middot; Charleston, SC
+        </div>
+      </div>
+
+      <div class="testi-slide" data-i="3">
+        <div class="testi-quote h-display" style="text-transform:none">
+          I&rsquo;m 56 years old and CRAFT made me feel like it was never too late. My CFI was patient, professional, and actually fun to fly with. KCHS is busy but you learn fast working with real ATC every flight.
+        </div>
+        <div class="testi-attr">
+          <strong>Diane P.</strong>
+          Google Review &middot; February 2026 &middot; Charleston, SC
+        </div>
+      </div>
+
     </div>
-    <div class="testi-attr">
-      <strong>Mallory R.</strong>
-      Google Review &middot; May 2026
+    <div class="testi-dots" style="display:flex;justify-content:center;gap:10px;margin-top:36px">
+      <button class="testi-dot active" data-go="0" aria-label="Review 1"></button>
+      <button class="testi-dot" data-go="1" aria-label="Review 2"></button>
+      <button class="testi-dot" data-go="2" aria-label="Review 3"></button>
+      <button class="testi-dot" data-go="3" aria-label="Review 4"></button>
     </div>
   </div>
 </section>
+<style>
+.testi-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.7s ease; pointer-events: none; }
+.testi-slide.active { opacity: 1; pointer-events: auto; position: relative; }
+.testi-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.18); border: none; cursor: pointer; padding: 0; transition: background 0.3s ease, transform 0.3s ease; }
+.testi-dot:hover { background: rgba(255,255,255,0.35); }
+.testi-dot.active { background: var(--beacon); transform: scale(1.25); }
+</style>
+<script>
+(function(){
+  const slides = document.querySelectorAll('#reviews-carousel .testi-slide');
+  const dots = document.querySelectorAll('#reviews-carousel .testi-dot');
+  if (!slides.length) return;
+  let i = 0, dir = 1, timer = null;
+  function show(n){
+    slides.forEach((s,k)=>s.classList.toggle('active', k===n));
+    dots.forEach((d,k)=>d.classList.toggle('active', k===n));
+    i = n;
+  }
+  function tick(){
+    let next = i + dir;
+    if (next >= slides.length) { dir = -1; next = i + dir; }
+    else if (next < 0) { dir = 1; next = i + dir; }
+    show(next);
+  }
+  function start(){ timer = setInterval(tick, 6500); }
+  function stop(){ if (timer) clearInterval(timer); timer = null; }
+  dots.forEach(d => d.addEventListener('click', () => { stop(); show(parseInt(d.dataset.go,10)); start(); }));
+  const wrap = document.getElementById('reviews-carousel');
+  wrap.addEventListener('mouseenter', stop);
+  wrap.addEventListener('mouseleave', start);
+  start();
+})();
+</script>
 
 <!-- LOCATION -->
 <section class="section location" id="location">
@@ -1922,78 +1997,4 @@ ptFill.style.width = '0%';
 
 <!-- COST CALCULATOR DATA + LOGIC -->
 <script>
-const CC_PROGRAMS = {
-  ppl:      { name:"Private Pilot",       sub:"Part 61 · ~3 mo · 58 hrs",   price:20188, planeHrs:50, simHrs:6,  industry: 30000  },
-  "acc-ifr":{ name:"Accelerated IFR",     sub:"1 wk · 62 hrs",               price:19334, planeHrs:40, simHrs:20, industry: 28000  },
-  "acc-cpl":{ name:"Accelerated CPL",     sub:"~6 wk · 148 hrs",             price:41225, planeHrs:120,simHrs:24, industry: 55000  },
-
-};
-const RATE_PLANE = 255, RATE_SIM = 70;
-const APR = 0.0899, MONTHS = 84;
-function ccCalc() {
-  const k = document.querySelector('.calc-prog.active')?.dataset.k || 'bronze';
-  const p = CC_PROGRAMS[k];
-  const prior = parseInt(document.getElementById('cc-prior').value, 10) || 0;
-  const fin = document.querySelector('.calc-fin-opt.active')?.dataset.fin || 'cash';
-  // Discount: prior hours come off at full rate up to the program's plane hours
-  const ph = Math.max(0, p.planeHrs - prior);
-  const planeCost = ph * RATE_PLANE;
-  const simCost = p.simHrs * RATE_SIM;
-  const groundFees = p.price - (p.planeHrs * RATE_PLANE) - (p.simHrs * RATE_SIM);
-  const total = Math.max(1000, Math.round(planeCost + simCost + groundFees));
-  document.getElementById('cc-tag').textContent = (p.sub.includes('Bundle') || k.includes('bronze')||k.includes('silver')||k.includes('gold')) ? 'Pro Pilot Bundle' : 'Single Program';
-  document.getElementById('cc-name').textContent = p.name;
-  document.getElementById('cc-sub').textContent = p.sub;
-  document.getElementById('cc-prior-val').textContent = prior;
-  document.getElementById('cc-total').textContent = '$' + total.toLocaleString();
-  document.getElementById('cc-craft-num').textContent = '$' + total.toLocaleString();
-  document.getElementById('cc-industry-num').textContent = '$' + p.industry.toLocaleString();
-  document.getElementById('cc-savings').textContent = '~$' + (p.industry - total).toLocaleString();
-  if (fin === 'financed') {
-    const r = APR/12;
-    const m = Math.round(total * (r * Math.pow(1+r, MONTHS)) / (Math.pow(1+r, MONTHS) - 1));
-    document.getElementById('cc-monthly-num').textContent = '$' + m.toLocaleString();
-    document.getElementById('cc-monthly').style.display = '';
-  } else {
-    document.getElementById('cc-monthly').style.display = 'none';
-  }
-}
-document.querySelectorAll('.calc-prog').forEach(b => b.addEventListener('click', () => {
-  document.querySelectorAll('.calc-prog').forEach(x => x.classList.toggle('active', x === b));
-  ccCalc();
-}));
-document.querySelectorAll('.calc-fin-opt').forEach(b => b.addEventListener('click', () => {
-  document.querySelectorAll('.calc-fin-opt').forEach(x => x.classList.toggle('active', x === b));
-  ccCalc();
-}));
-document.getElementById('cc-prior')?.addEventListener('input', ccCalc);
-ccCalc();
-</script>
-
-<!-- Cost calc gate logic -->
-<script>
-(function(){
-  const form = document.getElementById('cc-gate-form');
-  const gate = document.getElementById('cc-gate');
-  const grid = document.getElementById('cc-grid');
-  if (!form) return;
-  if (localStorage.getItem('craft_calc_unlocked') === '1') {
-    if (gate) gate.style.display = 'none';
-    if (grid) grid.style.display = '';
-  }
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    const data = new FormData(form);
-    const submitBtn = form.querySelector('button[type=submit]');
-    if (submitBtn) submitBtn.textContent = 'Unlocking…';
-    fetch(form.action, { method: 'POST', body: data, headers: {Accept: 'application/json'} })
-      .catch(()=>{})
-      .finally(() => {
-        localStorage.setItem('craft_calc_unlocked', '1');
-        if (gate) gate.style.display = 'none';
-        if (grid) grid.style.display = '';
-        document.getElementById('calculator')?.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-  });
-})();
-</script
+const CC
