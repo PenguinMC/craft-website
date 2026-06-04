@@ -307,7 +307,7 @@
 
 <header class="acx-hero">
   <div class="acx-hero-video">
-    <iframe src="https://www.youtube.com/embed/OMPuQnDtDWk?autoplay=1&mute=1&loop=1&playlist=OMPuQnDtDWk&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe id="acx-hero-yt" data-yt="OMPuQnDtDWk" title="CRAFT accelerated programs hero video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
   </div>
   <div class="acx-hero-overlay"></div>
   <div class="acx-hero-grid"></div>
@@ -343,7 +343,7 @@
         <div class="acx-card-spec"><div class="num"><span class="accent">$</span>9,800</div><div class="lbl">Course Price</div></div>
         <div class="acx-card-spec"><div class="num">PPL</div><div class="lbl">Prerequisite</div></div>
       </div>
-      <a href="/ifr" class="acx-card-cta">Learn More</a>
+      <a href="/ifr" class="acx-card-cta" aria-label="Learn more about Accelerated IFR">Learn More</a>
     </article>
 
     <article class="acx-card">
@@ -359,7 +359,7 @@
         <div class="acx-card-spec"><div class="num"><span class="accent">$</span>8,600</div><div class="lbl">Course Price</div></div>
         <div class="acx-card-spec"><div class="num">240hrs</div><div class="lbl">Prerequisite</div></div>
       </div>
-      <a href="/commercial" class="acx-card-cta">Learn More</a>
+      <a href="/commercial" class="acx-card-cta" aria-label="Learn more about Accelerated Commercial">Learn More</a>
     </article>
 
     <article class="acx-card">
@@ -375,7 +375,7 @@
         <div class="acx-card-spec"><div class="num"><span class="accent">$</span>9,500</div><div class="lbl">Course Price</div></div>
         <div class="acx-card-spec"><div class="num">PPL</div><div class="lbl">Prerequisite</div></div>
       </div>
-      <a href="/multi-engine" class="acx-card-cta">Learn More</a>
+      <a href="/multi-engine" class="acx-card-cta" aria-label="Learn more about Accelerated Multi-Engine">Learn More</a>
     </article>
 
     <article class="acx-card">
@@ -391,7 +391,7 @@
         <div class="acx-card-spec"><div class="num"><span class="accent">$</span>12,000</div><div class="lbl">Course Price</div></div>
         <div class="acx-card-spec"><div class="num">CPL</div><div class="lbl">Prerequisite</div></div>
       </div>
-      <a href="/cfi" class="acx-card-cta">Learn More</a>
+      <a href="/cfi" class="acx-card-cta" aria-label="Learn more about Accelerated CFI">Learn More</a>
     </article>
 
     <article class="acx-card">
@@ -407,7 +407,7 @@
         <div class="acx-card-spec"><div class="num"><span class="accent">$</span>5,600</div><div class="lbl">Course Price</div></div>
         <div class="acx-card-spec"><div class="num">CFI</div><div class="lbl">Prerequisite</div></div>
       </div>
-      <a href="/cfii" class="acx-card-cta">Learn More</a>
+      <a href="/cfii" class="acx-card-cta" aria-label="Learn more about Accelerated CFI-I">Learn More</a>
     </article>
 
     <article class="acx-card">
@@ -423,7 +423,7 @@
         <div class="acx-card-spec"><div class="num"><span class="accent">$</span>9,500</div><div class="lbl">Course Price</div></div>
         <div class="acx-card-spec"><div class="num">ME + <span class="accent">CFI</span></div><div class="lbl">Prerequisite</div></div>
       </div>
-      <a href="/multi-engine" class="acx-card-cta">Learn More</a>
+      <a href="/multi-engine" class="acx-card-cta" aria-label="Learn more about Accelerated Multi-Engine">Learn More</a>
     </article>
 
   </div>
@@ -534,11 +534,50 @@
     <h2>Tell us your goals.<br><span class="accent">We'll line it up.</span></h2>
     <p>Quick form. A CFI follows up within an hour during business days.</p>
     <div style="background:linear-gradient(180deg,var(--approach) 0%,#0E1218 100%);border:1px solid rgba(230,48,39,0.3);border-radius:14px;padding:32px;margin-top:24px;text-align:left;">
-      <div id="hbsp-form-b3cac9ae-fd0e-4fd4-80a3-edd9ce68f502"></div><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script><script>(function(){function init(){if(window.hbspt&&window.hbspt.forms){hbspt.forms.create({region:"na2",portalId:"246141088",formId:"b3cac9ae-fd0e-4fd4-80a3-edd9ce68f502",target:"#hbsp-form-b3cac9ae-fd0e-4fd4-80a3-edd9ce68f502"});}else{setTimeout(init,80);}}init();})();</script>
+      <div id="hbsp-form-b3cac9ae-fd0e-4fd4-80a3-edd9ce68f502"></div>
+<script>
+(function(){
+  var target = document.getElementById('hbsp-form-b3cac9ae-fd0e-4fd4-80a3-edd9ce68f502');
+  if (!target) return;
+  var loaded = false;
+  var load = function(){
+    if (loaded) return; loaded = true;
+    var s = document.createElement('script');
+    s.src = 'https://js.hsforms.net/forms/embed/v2.js';
+    s.async = true;
+    s.onload = function(){
+      var tryInit = function(){
+        if (window.hbspt && window.hbspt.forms) {
+          hbspt.forms.create({region:"na2",portalId:"246141088",formId:"b3cac9ae-fd0e-4fd4-80a3-edd9ce68f502",target:"#hbsp-form-b3cac9ae-fd0e-4fd4-80a3-edd9ce68f502"});
+        } else { setTimeout(tryInit, 80); }
+      };
+      tryInit();
+    };
+    document.head.appendChild(s);
+  };
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { load(); io.disconnect(); } });
+    }, { rootMargin: '400px' });
+    io.observe(target);
+  } else { load(); }
+})();
+</script>
     </div>
   </div>
 </section>
-<script>(function(){var s=document.createElement('script');s.src='https://js-na2.hsforms.net/forms/embed/246141088.js';s.defer=true;document.head.appendChild(s);})();</script>
+<script>
+(function(){
+  var load = function(){
+    var s = document.createElement('script');
+    s.src = 'https://js-na2.hsforms.net/forms/embed/246141088.js';
+    s.async = true;
+    document.head.appendChild(s);
+  };
+  if ('requestIdleCallback' in window) requestIdleCallback(load, {timeout: 3000});
+  else setTimeout(load, 2500);
+})();
+</script>
 
 <footer class="footer">
   <div class="container">
@@ -608,6 +647,17 @@
 <script>
 document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
 document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
+</script>
+
+<!-- Hero YouTube iframe — desktop only, src set inline so it loads during initial parse -->
+<script>
+(function(){
+  if (window.innerWidth < 881) return;
+  var f = document.getElementById('acx-hero-yt');
+  if (!f) return;
+  var y = f.dataset.yt;
+  f.src = 'https://www.youtube.com/embed/' + y + '?autoplay=1&mute=1&loop=1&playlist=' + y + '&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1';
+})();
 </script>
 </body>
 </html>
