@@ -1190,7 +1190,7 @@ html { scroll-behavior: smooth; }
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="brand">
-      <img src="/assets/craft-logo.png" alt="CRAFT Flight Training" width="160" height="40" decoding="async" />
+      <img src="/assets/craft-logo.png" alt="CRAFT Flight Training" width="163" height="40" decoding="async" />
     </a>
     <button class="nav-mobile-toggle" aria-label="Menu" data-mobile-toggle>☰</button>
     <div class="nav-links" id="nav-links">
@@ -1336,8 +1336,9 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-video-wrap" id="hero-video-wrap" data-yt="OMPuQnDtDWk">
-    <!-- iframe injected by JS on desktop only after first paint -->
+  <div class="hero-video-wrap" id="hero-video-wrap">
+    <iframe id="hero-yt" data-yt="OMPuQnDtDWk" title="CRAFT Flight Training hero video"
+      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-inner">
@@ -1892,7 +1893,7 @@ ptFill.style.width = '0%';
         </div>
       </div>
       <div class="location-map" style="position:relative;aspect-ratio:1/1;background:var(--ink);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);">
-        <iframe
+        <iframe title="CRAFT Flight Training location map" 
           src="https://www.google.com/maps?q=6060+S+Aviation+Ave+Suite+109+North+Charleston+SC+29406&output=embed"
           style="position:absolute;inset:0;width:100%;height:100%;border:0;filter:invert(0.92) hue-rotate(180deg) saturate(0.85);"
           loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
@@ -1929,8 +1930,34 @@ ptFill.style.width = '0%';
     </div>
     <div style="max-width:680px;margin:0 auto;background:linear-gradient(180deg,var(--approach) 0%, #0E1218 100%);border:1px solid rgba(230,48,39,0.25);border-radius:12px;padding:36px;box-shadow:0 30px 60px -25px rgba(230,48,39,0.3)">
       <div id="hbsp-form-677d5614-45c0-4da0-ba39-18d7468e946b"></div>
-      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-      <script>(function(){function init(){if(window.hbspt&&window.hbspt.forms){hbspt.forms.create({region:"na2",portalId:"246141088",formId:"677d5614-45c0-4da0-ba39-18d7468e946b",target:"#hbsp-form-677d5614-45c0-4da0-ba39-18d7468e946b"});}else{setTimeout(init,80);}}init();})();</script>
+      <script>
+(function(){
+  var target = document.getElementById('hbsp-form-677d5614-45c0-4da0-ba39-18d7468e946b');
+  if (!target) return;
+  var loaded = false;
+  var load = function(){
+    if (loaded) return; loaded = true;
+    var s = document.createElement('script');
+    s.src = 'https://js.hsforms.net/forms/embed/v2.js';
+    s.async = true;
+    s.onload = function(){
+      var tryInit = function(){
+        if (window.hbspt && window.hbspt.forms) {
+          hbspt.forms.create({region:"na2",portalId:"246141088",formId:"677d5614-45c0-4da0-ba39-18d7468e946b",target:"#hbsp-form-677d5614-45c0-4da0-ba39-18d7468e946b"});
+        } else { setTimeout(tryInit, 80); }
+      };
+      tryInit();
+    };
+    document.head.appendChild(s);
+  };
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { load(); io.disconnect(); } });
+    }, { rootMargin: '400px' });
+    io.observe(target);
+  } else { load(); }
+})();
+</script>
       <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.06)">Or call us at <a href="tel:+18438006498" style="color:var(--beacon)">843.800.6498</a> &middot; email <a href="mailto:craft@flycraftchs.com" style="color:var(--beacon)">craft@flycraftchs.com</a> &middot; Mon&ndash;Sat 9am&ndash;4pm.</div>
     </div>
   </div>
@@ -1941,7 +1968,7 @@ ptFill.style.width = '0%';
   <div class="container">
     <div class="footer-top">
       <div>
-        <div class="footer-brand"><img src="/assets/craft-logo.png" alt="CRAFT" width="100" height="32" decoding="async" /></div>
+        <div class="footer-brand"><img src="/assets/craft-logo.png" alt="CRAFT" width="100" height="25" decoding="async" /></div>
         <p class="footer-tag">Charleston's accelerated flight school. Sim-first, Diamond Jet-A, KCHS-based. 96% first-time pass rate. Class C airspace, real ATC.</p>
         <div class="footer-contact">
           <div class="footer-contact-label">Visit / Call / Email</div>
@@ -2004,55 +2031,7 @@ ptFill.style.width = '0%';
 <!-- Mobile sticky CTA -->
 <a href="/discovery-flight" class="btn btn-primary mobile-cta btn-arrow">Discovery Flight &mdash; $325</a>
 
-<!-- COST CALCULATOR DATA + LOGIC -->
-<script>
-const CC_PROGRAMS = {
-  ppl:      { name:"Private Pilot",       sub:"Part 61 · ~3 mo · 58 hrs",   price:20188, planeHrs:50, simHrs:6,  industry: 30000  },
-  "acc-ifr":{ name:"Accelerated IFR",     sub:"1 wk · 62 hrs",               price:19334, planeHrs:40, simHrs:20, industry: 28000  },
-  "acc-cpl":{ name:"Accelerated CPL",     sub:"~6 wk · 148 hrs",             price:41225, planeHrs:120,simHrs:24, industry: 55000  },
-
-};
-const RATE_PLANE = 255, RATE_SIM = 70;
-const APR = 0.0899, MONTHS = 84;
-function ccCalc() {
-  const k = document.querySelector('.calc-prog.active')?.dataset.k || 'bronze';
-  const p = CC_PROGRAMS[k];
-  const prior = parseInt(document.getElementById('cc-prior').value, 10) || 0;
-  const fin = document.querySelector('.calc-fin-opt.active')?.dataset.fin || 'cash';
-  // Discount: prior hours come off at full rate up to the program's plane hours
-  const ph = Math.max(0, p.planeHrs - prior);
-  const planeCost = ph * RATE_PLANE;
-  const simCost = p.simHrs * RATE_SIM;
-  const groundFees = p.price - (p.planeHrs * RATE_PLANE) - (p.simHrs * RATE_SIM);
-  const total = Math.max(1000, Math.round(planeCost + simCost + groundFees));
-  document.getElementById('cc-tag').textContent = (p.sub.includes('Bundle') || k.includes('bronze')||k.includes('silver')||k.includes('gold')) ? 'Pro Pilot Bundle' : 'Single Program';
-  document.getElementById('cc-name').textContent = p.name;
-  document.getElementById('cc-sub').textContent = p.sub;
-  document.getElementById('cc-prior-val').textContent = prior;
-  document.getElementById('cc-total').textContent = '$' + total.toLocaleString();
-  document.getElementById('cc-craft-num').textContent = '$' + total.toLocaleString();
-  document.getElementById('cc-industry-num').textContent = '$' + p.industry.toLocaleString();
-  document.getElementById('cc-savings').textContent = '~$' + (p.industry - total).toLocaleString();
-  if (fin === 'financed') {
-    const r = APR/12;
-    const m = Math.round(total * (r * Math.pow(1+r, MONTHS)) / (Math.pow(1+r, MONTHS) - 1));
-    document.getElementById('cc-monthly-num').textContent = '$' + m.toLocaleString();
-    document.getElementById('cc-monthly').style.display = '';
-  } else {
-    document.getElementById('cc-monthly').style.display = 'none';
-  }
-}
-document.querySelectorAll('.calc-prog').forEach(b => b.addEventListener('click', () => {
-  document.querySelectorAll('.calc-prog').forEach(x => x.classList.toggle('active', x === b));
-  ccCalc();
-}));
-document.querySelectorAll('.calc-fin-opt').forEach(b => b.addEventListener('click', () => {
-  document.querySelectorAll('.calc-fin-opt').forEach(x => x.classList.toggle('active', x === b));
-  ccCalc();
-}));
-document.getElementById('cc-prior')?.addEventListener('input', ccCalc);
-ccCalc();
-</script>
+<!-- Cost calculator JS removed — calculator lives at /cost-calculator -->
 
 <!-- Cost calc gate logic -->
 <script>
@@ -2082,39 +2061,17 @@ ccCalc();
 })();
 </script>
 
-<!-- Deferred YouTube hero iframe (desktop only, after first paint) -->
+<!-- Hero YouTube iframe — desktop only, src set inline so it loads during initial parse like before -->
 <script>
 (function(){
-  if (window.innerWidth < 881) return;
-  var wrap = document.getElementById('hero-video-wrap');
-  if (!wrap) return;
-  var inject = function(){
-    var y = wrap.dataset.yt;
-    var i = document.createElement('iframe');
-    i.id = 'hero-yt';
-    i.src = 'https://www.youtube.com/embed/' + y + '?autoplay=1&mute=1&loop=1&playlist=' + y + '&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1';
-    i.setAttribute('frameborder','0');
-    i.setAttribute('allow','autoplay; encrypted-media');
-    i.setAttribute('allowfullscreen','');
-    wrap.appendChild(i);
-  };
-  if ('requestIdleCallback' in window) { requestIdleCallback(inject, {timeout: 2500}); }
-  else { setTimeout(inject, 1500); }
+  if (window.innerWidth < 881) return; // mobile: leave src empty, never loads
+  var f = document.getElementById('hero-yt');
+  if (!f) return;
+  var y = f.dataset.yt;
+  f.src = 'https://www.youtube.com/embed/' + y + '?autoplay=1&mute=1&loop=1&playlist=' + y + '&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1';
 })();
 </script>
 
-<!-- Chatbot — defer until after first paint so it doesn't compete with hero/LCP -->
-<script>
-(function(){
-  var load = function(){
-    var s = document.createElement('script');
-    s.src = '/assets/chatbot.js';
-    s.defer = true;
-    document.body.appendChild(s);
-  };
-  if ('requestIdleCallback' in window) { requestIdleCallback(load, {timeout: 3000}); }
-  else { setTimeout(load, 2000); }
-})();
-</script>
+<script src="/assets/chatbot.js" defer></script>
 </body>
 </html>
