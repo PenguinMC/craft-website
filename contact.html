@@ -38,7 +38,7 @@
 </style>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-900.woff2" crossorigin>
-<link rel="stylesheet" href="/assets/shared.css?v=21">
+<link rel="stylesheet" href="/assets/shared.css?v=22">
 <style>
 .ct-hero { position: relative; min-height: 50vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 60px; overflow: hidden; }
 .ct-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.7; animation: ctGrid 30s linear infinite; }
@@ -345,7 +345,22 @@
         <p>One form. We route it to whoever owns intake that day &mdash; usually you'll hear back within a couple hours.</p>
       </div>
       <!-- HubSpot Form: CRAFT Contact General -->
-<div id="hbsp-form-870b2177-3a5b-4bbb-961e-43923f1d3b84"></div><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script><script>(function(){function init(){if(window.hbspt&&window.hbspt.forms){hbspt.forms.create({region:"na1",portalId:"50822208",formId:"870b2177-3a5b-4bbb-961e-43923f1d3b84",target:"#hbsp-form-870b2177-3a5b-4bbb-961e-43923f1d3b84",cssRequired:"",cssClass:"craft-hs-form"});}else{setTimeout(init,80);}}init();})();</script>
+<div class="craft-form-wrap" id="craft-form-homepage">
+<form class="craft-form" data-hs-portal="50822208" data-hs-form="870b2177-3a5b-4bbb-961e-43923f1d3b84" data-success="Thanks! A CFI on shift will reply within a few hours." action="javascript:void(0)" method="POST" novalidate>
+<div class="craft-form-row">
+<input type="text" name="firstname" placeholder="First Name" required>
+<input type="text" name="lastname" placeholder="Last Name" required>
+</div>
+<input type="email" name="email" placeholder="Email" required>
+<input type="tel" name="phone" placeholder="Phone" required>
+<label class="craft-form-lbl">What interests you?</label>
+<select name="program_interest" required><option value="">Please Select</option><option value="discovery_flight">Discovery Flight</option><option value="school_tour">School Tour</option><option value="ppl">Private Pilot (PPL)</option><option value="accel_ifr">Accelerated IFR</option><option value="accel_cpl">Accelerated Commercial</option><option value="multi_engine">Multi-Engine</option><option value="cfi">CFI Initial</option><option value="cfii">CFI-I Add-On</option><option value="sim_membership">Sim Membership</option><option value="researching">Just Researching</option></select>
+<label class="craft-form-lbl">Anything else we should know?</label>
+<textarea name="message" placeholder="…"></textarea>
+<button type="submit" class="craft-form-btn">Send Message</button>
+<div class="craft-form-status"></div>
+</form>
+</div>
     </div>
 
     <div class="ct-side">
@@ -444,5 +459,6 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener
 </script>
 <script src="/assets/price-sync.js" defer></script>
 <script src="/assets/hs-form-restyler.js" defer></script>
+<script src="/assets/craft-forms.js" defer></script>
 </body>
 </html>

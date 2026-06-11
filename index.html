@@ -37,7 +37,7 @@
 </style>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-900.woff2" crossorigin>
-<link rel="stylesheet" href="/assets/shared.css?v=21">
+<link rel="stylesheet" href="/assets/shared.css?v=22">
 <style>
 
 /* === COHESION PASS — match all sections to the .ptrack tactical aesthetic === */
@@ -1937,35 +1937,20 @@ ptFill.style.width = '0%';
       <p style="font-size:17px;color:rgba(255,255,255,0.7);margin-top:14px;max-width:560px;margin-left:auto;margin-right:auto">A real CFI on shift will respond within a couple of hours during business days. We won't put you on a list.</p>
     </div>
     <div style="max-width:680px;margin:0 auto;background:linear-gradient(180deg,var(--approach) 0%, #0E1218 100%);border:1px solid rgba(230,48,39,0.25);border-radius:12px;padding:36px;box-shadow:0 30px 60px -25px rgba(230,48,39,0.3)">
-      <div id="hbsp-form-870b2177-3a5b-4bbb-961e-43923f1d3b84"></div>
-      <script>
-(function(){
-  var target = document.getElementById('hbsp-form-870b2177-3a5b-4bbb-961e-43923f1d3b84');
-  if (!target) return;
-  var loaded = false;
-  var load = function(){
-    if (loaded) return; loaded = true;
-    var s = document.createElement('script');
-    s.src = 'https://js.hsforms.net/forms/embed/v2.js';
-    s.async = true;
-    s.onload = function(){
-      var tryInit = function(){
-        if (window.hbspt && window.hbspt.forms) {
-          hbspt.forms.create({region:"na1",portalId:"50822208",formId:"870b2177-3a5b-4bbb-961e-43923f1d3b84",target:"#hbsp-form-870b2177-3a5b-4bbb-961e-43923f1d3b84",cssRequired:"",cssClass:"craft-hs-form"});
-        } else { setTimeout(tryInit, 80); }
-      };
-      tryInit();
-    };
-    document.head.appendChild(s);
-  };
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if (e.isIntersecting) { load(); io.disconnect(); } });
-    }, { rootMargin: '400px' });
-    io.observe(target);
-  } else { load(); }
-})();
-</script>
+      <div class="craft-form-wrap" data-success="Thanks! A CFI on shift will reply within a few hours."><form class="craft-form" data-hs-portal="50822208" data-hs-form="870b2177-3a5b-4bbb-961e-43923f1d3b84" data-success="Thanks! A CFI on shift will reply within a few hours." action="javascript:void(0)" method="POST" novalidate>
+<div class="craft-form-row">
+<input type="text" name="firstname" placeholder="First Name" required>
+<input type="text" name="lastname" placeholder="Last Name" required>
+</div>
+<input type="email" name="email" placeholder="Email" required>
+<input type="tel" name="phone" placeholder="Phone" required>
+<label class="craft-form-lbl">What interests you?</label>
+<select name="program_interest" required><option value="">Please Select</option><option value="discovery_flight">Discovery Flight</option><option value="school_tour">School Tour</option><option value="ppl">Private Pilot (PPL)</option><option value="accel_ifr">Accelerated IFR</option><option value="accel_cpl">Accelerated Commercial</option><option value="multi_engine">Multi-Engine</option><option value="cfi">CFI Initial</option><option value="cfii">CFI-I Add-On</option><option value="sim_membership">Sim Membership</option><option value="researching">Just Researching</option></select>
+<label class="craft-form-lbl">Anything else we should know?</label>
+<textarea name="message" placeholder="…"></textarea>
+<button type="submit" class="craft-form-btn">Send Message</button>
+<div class="craft-form-status"></div>
+</form></div>
       <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.06)">Or call us at <a href="tel:+18438006498" style="color:var(--beacon)">843.800.6498</a> &middot; email <a href="mailto:craft@flycraftchs.com" style="color:var(--beacon)">craft@flycraftchs.com</a> &middot; Mon&ndash;Sat 9am&ndash;4pm.</div>
     </div>
   </div>
@@ -2083,5 +2068,6 @@ ptFill.style.width = '0%';
 <script src="/assets/chatbot.js" defer></script>
 <script src="/assets/price-sync.js" defer></script>
 <script src="/assets/hs-form-restyler.js" defer></script>
+<script src="/assets/craft-forms.js" defer></script>
 </body>
 </html>

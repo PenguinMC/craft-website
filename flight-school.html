@@ -38,7 +38,7 @@
 </style>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-900.woff2" crossorigin>
-<link rel="stylesheet" href="/assets/shared.css?v=21">
+<link rel="stylesheet" href="/assets/shared.css?v=22">
 <style>
 /* HERO */
 .fs-hero { position: relative; min-height: 70vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
@@ -603,7 +603,22 @@
     <h2>Schedule a tour.<br><span class="accent">Meet a CFI.</span></h2>
     <p>No pressure, no commitment. Quick form below — we'll match you with a CFI and Flight Circle access.</p>
     <div style="background:linear-gradient(180deg,var(--approach) 0%,#0E1218 100%);border:1px solid rgba(230,48,39,0.3);border-radius:14px;padding:32px;margin-top:24px;text-align:left;">
-      <div id="hbsp-form-01e019b1-e27a-4df1-a310-56cc88f2a7d2"></div><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script><script>(function(){function init(){if(window.hbspt&&window.hbspt.forms){hbspt.forms.create({region:"na1",portalId:"50822208",formId:"01e019b1-e27a-4df1-a310-56cc88f2a7d2",target:"#hbsp-form-01e019b1-e27a-4df1-a310-56cc88f2a7d2",cssRequired:"",cssClass:"craft-hs-form"});}else{setTimeout(init,80);}}init();})();</script>
+      <div class="craft-form-wrap" id="craft-form-flight_school">
+<form class="craft-form" data-hs-portal="50822208" data-hs-form="01e019b1-e27a-4df1-a310-56cc88f2a7d2" data-success="Thanks. We will email you a Flight Circle invite within a day." action="javascript:void(0)" method="POST" novalidate>
+<div class="craft-form-row">
+<input type="text" name="firstname" placeholder="First Name" required>
+<input type="text" name="lastname" placeholder="Last Name" required>
+</div>
+<input type="email" name="email" placeholder="Email" required>
+<input type="tel" name="phone" placeholder="Phone" required>
+<label class="craft-form-lbl">What rating are you working on?</label>
+<select name="program_interest" required><option value="">Please Select</option><option value="ppl">Private Pilot (PPL)</option><option value="accel_ifr">Instrument Rating (IFR)</option><option value="accel_cpl">Commercial Pilot (CPL)</option><option value="multi_engine">Multi-Engine Add-On</option><option value="cfi">CFI Initial</option><option value="researching">Just Researching</option></select>
+<label class="craft-form-lbl">Anything else?</label>
+<textarea name="message" placeholder="…"></textarea>
+<button type="submit" class="craft-form-btn">Get Started</button>
+<div class="craft-form-status"></div>
+</form>
+</div>
     </div>
   </div>
 </section>
@@ -680,5 +695,6 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener
 </script>
 <script src="/assets/price-sync.js" defer></script>
 <script src="/assets/hs-form-restyler.js" defer></script>
+<script src="/assets/craft-forms.js" defer></script>
 </body>
 </html>

@@ -38,7 +38,7 @@
 </style>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-900.woff2" crossorigin>
-<link rel="stylesheet" href="/assets/shared.css?v=21">
+<link rel="stylesheet" href="/assets/shared.css?v=22">
 <style>
 .cr-hero { position: relative; min-height: 50vh; background: var(--ink); display: flex; align-items: center; padding: 140px 0 60px; overflow: hidden; }
 .cr-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.07) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.7; animation: crGrid 30s linear infinite; }
@@ -281,7 +281,20 @@
       <p>One form. PDFs are easiest. We read everything that comes through.</p>
     </div>
     <!-- HubSpot Form: CRAFT Careers Application -->
-<div id="hbsp-form-4b1ded9e-709f-4292-885a-52a243ddada2"></div><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script><script>(function(){function init(){if(window.hbspt&&window.hbspt.forms){hbspt.forms.create({region:"na1",portalId:"50822208",formId:"4b1ded9e-709f-4292-885a-52a243ddada2",target:"#hbsp-form-4b1ded9e-709f-4292-885a-52a243ddada2",cssRequired:"",cssClass:"craft-hs-form"});}else{setTimeout(init,80);}}init();})();</script>
+<div class="craft-form-wrap" id="craft-form-careers">
+<form class="craft-form" data-hs-portal="50822208" data-hs-form="4b1ded9e-709f-4292-885a-52a243ddada2" data-success="Application received. Barry will be in touch within a week." action="javascript:void(0)" method="POST" novalidate>
+<div class="craft-form-row">
+<input type="text" name="firstname" placeholder="First Name" required>
+<input type="text" name="lastname" placeholder="Last Name" required>
+</div>
+<input type="email" name="email" placeholder="Email" required>
+<input type="tel" name="phone" placeholder="Phone" required>
+<label class="craft-form-lbl">Ratings + total time + brief background</label>
+<textarea name="message" placeholder="…" required></textarea>
+<button type="submit" class="craft-form-btn">Apply</button>
+<div class="craft-form-status"></div>
+</form>
+</div>
   </div>
 </section>
 
@@ -361,5 +374,6 @@ document.querySelector('.cr-file input[type=file]')?.addEventListener('change', 
 </script>
 <script src="/assets/price-sync.js" defer></script>
 <script src="/assets/hs-form-restyler.js" defer></script>
+<script src="/assets/craft-forms.js" defer></script>
 </body>
 </html>

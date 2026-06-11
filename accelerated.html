@@ -38,7 +38,7 @@
 </style>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-900.woff2" crossorigin>
-<link rel="stylesheet" href="/assets/shared.css?v=21">
+<link rel="stylesheet" href="/assets/shared.css?v=22">
 <style>
 /* HERO — restored "Rated in Weeks. Not Years." big-type style */
 .acx-hero { position: relative; min-height: 70vh; background: #000; display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
@@ -534,35 +534,20 @@
     <h2>Tell us your goals.<br><span class="accent">We'll line it up.</span></h2>
     <p>Quick form. A CFI follows up within an hour during business days.</p>
     <div style="background:linear-gradient(180deg,var(--approach) 0%,#0E1218 100%);border:1px solid rgba(230,48,39,0.3);border-radius:14px;padding:32px;margin-top:24px;text-align:left;">
-      <div id="hbsp-form-abc1c335-31db-4e46-8b57-b364118570c7"></div>
-<script>
-(function(){
-  var target = document.getElementById('hbsp-form-abc1c335-31db-4e46-8b57-b364118570c7');
-  if (!target) return;
-  var loaded = false;
-  var load = function(){
-    if (loaded) return; loaded = true;
-    var s = document.createElement('script');
-    s.src = 'https://js.hsforms.net/forms/embed/v2.js';
-    s.async = true;
-    s.onload = function(){
-      var tryInit = function(){
-        if (window.hbspt && window.hbspt.forms) {
-          hbspt.forms.create({region:"na1",portalId:"50822208",formId:"abc1c335-31db-4e46-8b57-b364118570c7",target:"#hbsp-form-abc1c335-31db-4e46-8b57-b364118570c7",cssRequired:"",cssClass:"craft-hs-form"});
-        } else { setTimeout(tryInit, 80); }
-      };
-      tryInit();
-    };
-    document.head.appendChild(s);
-  };
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if (e.isIntersecting) { load(); io.disconnect(); } });
-    }, { rootMargin: '400px' });
-    io.observe(target);
-  } else { load(); }
-})();
-</script>
+      <div class="craft-form-wrap" data-success="Got it. We will text you within 24 hours to lock your dates."><form class="craft-form" data-hs-portal="50822208" data-hs-form="abc1c335-31db-4e46-8b57-b364118570c7" data-success="Got it. We will text you within 24 hours to lock your dates." action="javascript:void(0)" method="POST" novalidate>
+<div class="craft-form-row">
+<input type="text" name="firstname" placeholder="First Name" required>
+<input type="text" name="lastname" placeholder="Last Name" required>
+</div>
+<input type="email" name="email" placeholder="Email" required>
+<input type="tel" name="phone" placeholder="Phone" required>
+<label class="craft-form-lbl">Which course?</label>
+<select name="program_interest" required><option value="">Please Select</option><option value="accel_ifr">Accelerated IFR</option><option value="accel_cpl">Accelerated Commercial</option><option value="multi_engine">Multi-Engine</option><option value="cfi">CFI Initial</option><option value="cfii">CFI-I Add-On</option><option value="mei">MEI Add-On</option><option value="researching">Not sure yet</option></select>
+<label class="craft-form-lbl">Target dates / questions?</label>
+<textarea name="message" placeholder="…"></textarea>
+<button type="submit" class="craft-form-btn">Reserve My Dates</button>
+<div class="craft-form-status"></div>
+</form></div>
     </div>
   </div>
 </section>
@@ -661,5 +646,6 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener
 </script>
 <script src="/assets/price-sync.js" defer></script>
 <script src="/assets/hs-form-restyler.js" defer></script>
+<script src="/assets/craft-forms.js" defer></script>
 </body>
 </html>
