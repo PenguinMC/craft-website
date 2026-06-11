@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
   }
   if (!body || typeof body !== 'object') return res.status(400).json({ error: 'Missing body' });
 
-  const { password, prices } = body;
+  const { password, prices, verify } = body;
 
   // Auth
   if (!process.env.ADMIN_PASSWORD) {
@@ -50,6 +50,12 @@ module.exports = async (req, res) => {
   }
   if (password !== process.env.ADMIN_PASSWORD) {
     return res.status(401).json({ error: 'Wrong password' });
+  }
+
+  // Verify-only mode: client asked us to confirm the password is valid before
+  // showing the prices form. Don't touch GitHub.
+  if (verify === true) {
+    return res.status(200).json({ success: true, verified: true });
   }
 
   // Validate prices payload
@@ -114,11 +120,4 @@ module.exports = async (req, res) => {
 
     if (!putRes.ok) {
       const t = await putRes.text();
-      return res.status(502).json({ error: 'GitHub commit failed', details: t.slice(0, 300) });
-    }
-
-    return res.status(200).json({ success: true, prices: cleaned });
-  } catch (e) {
-    return res.status(500).json({ error: 'Server error', details: String(e).slice(0, 300) });
-  }
-};
+      return res.status(502).json({ error: 'GitHub com
