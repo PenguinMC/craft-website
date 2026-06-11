@@ -727,3 +727,29 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+
+/* === Override Chrome / Safari autofill that paints inputs white === */
+.craft-form input:-webkit-autofill,
+.craft-form input:-webkit-autofill:hover,
+.craft-form input:-webkit-autofill:focus,
+.craft-form input:-webkit-autofill:active,
+.craft-form select:-webkit-autofill,
+.craft-form textarea:-webkit-autofill {
+  -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0 1000px #14181F inset !important;
+  box-shadow: 0 0 0 1000px #14181F inset !important;
+  caret-color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  background-color: #14181F !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  border-radius: 6px !important;
+}
+.craft-form input:-webkit-autofill:focus {
+  border-color: var(--beacon) !important;
+}
+/* Firefox autofill */
+.craft-form input:autofill {
+  background-color: #14181F !important;
+  color: #fff !important;
+}
