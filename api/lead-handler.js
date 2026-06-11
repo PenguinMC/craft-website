@@ -244,6 +244,8 @@ function buildEmail(templateKey, vars) {
   return { subject: subject, html: html, text: text };
 }
 
+function sleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+
 function isoFromNow(seconds) {
   return new Date(Date.now() + seconds * 1000).toISOString();
 }
@@ -281,6 +283,7 @@ module.exports = async (req, res) => {
       out.sent.push({ type: 'internal_alert', id: r1.id });
     } catch (e) { out.errors.push({ type: 'internal_alert', err: String(e) }); }
 
+    await sleep(250);
     try {
       const e = buildEmail(cfg.welcome, vars);
       const r1 = await sendEmail({ to: email, subject: e.subject, html: e.html, text: e.text });
@@ -301,6 +304,7 @@ module.exports = async (req, res) => {
       for (var i = 0; i < sequence.length; i++) {
         var step = sequence[i];
         if (!step.key) continue;
+        await sleep(250); // stay under Resend 5 req/sec rate limit
         try {
           var es = buildEmail(step.key, vars);
           var rs = await sendEmail({ to: email, subject: es.subject, html: es.html, text: es.text, scheduled_at: isoFromNow(step.day * 86400) });
