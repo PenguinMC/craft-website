@@ -56,8 +56,7 @@
 .cb-panel.cb-open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
 .cb-panel::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--beacon, #E63027), transparent); z-index: 5; }
 .cb-head { padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); background: linear-gradient(180deg, rgba(230,48,39,0.08) 0%, transparent 100%); display: flex; align-items: center; gap: 12px; }
-.cb-head-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--beacon, #E63027); border: 1.5px solid var(--beacon, #E63027); display: grid; place-items: center; flex-shrink: 0; box-shadow: 0 0 18px rgba(230,48,39,0.45); overflow: hidden; }
-.cb-head-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cb-head-avatar { width: 38px; height: 38px; border-radius: 50%; background: rgba(230,48,39,0.15); border: 1.5px solid var(--beacon, #E63027); display: grid; place-items: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 18px; color: var(--beacon, #E63027); flex-shrink: 0; box-shadow: 0 0 18px rgba(230,48,39,0.3); }
 .cb-head-info { flex: 1; min-width: 0; }
 .cb-head-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; color: #fff; line-height: 1; }
 .cb-head-status { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; color: #4ade80; text-transform: uppercase; margin-top: 4px; display: flex; align-items: center; gap: 6px; }
@@ -91,25 +90,21 @@
 .cb-send { padding: 0 16px; background: var(--beacon, #E63027); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-size: 13px; transition: background .15s, transform .15s; flex-shrink: 0; }
 .cb-send:hover { background: var(--beacon-dark, #B81E16); transform: translateY(-1px); }
 .cb-foot { padding: 0 16px 12px; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.18em; color: rgba(255,255,255,0.3); text-transform: uppercase; text-align: center; }
-
-
-.cb-gate { position: absolute; inset: 60px 0 0 0; z-index: 10; background: linear-gradient(180deg, #14181F 0%, #0A0D12 100%); padding: 24px 22px; display: flex; flex-direction: column; gap: 14px; transition: opacity .35s ease; }
-.cb-gate.cb-gate-hidden { opacity: 0; pointer-events: none; }
-.cb-gate-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon, #E63027); text-transform: uppercase; }
-.cb-gate-h { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 22px; line-height: 1; text-transform: uppercase; letter-spacing: 0.01em; color: #fff; margin: 0; }
-.cb-gate-p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; margin: -4px 0 6px; }
-.cb-gate-field { display: grid; gap: 5px; }
-.cb-gate-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; color: rgba(255,255,255,0.55); text-transform: uppercase; }
-.cb-gate-input { width: 100%; min-width: 0; box-sizing: border-box; padding: 11px 12px; font-family: inherit; font-size: 14px; color: #fff; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; transition: border-color .15s ease, background .15s ease; }
-.cb-gate-input:focus { outline: none; border-color: var(--beacon, #E63027); background: rgba(255,255,255,0.06); box-shadow: 0 0 0 3px rgba(230,48,39,0.15); }
-.cb-gate-input::placeholder { color: rgba(255,255,255,0.32); }
-.cb-gate-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.cb-gate-row .cb-gate-field { min-width: 0; }
-.cb-gate-field { min-width: 0; }
-.cb-gate-btn { padding: 12px 16px; background: linear-gradient(135deg, var(--beacon, #E63027), var(--beacon-dark, #B81E16)); color: #fff; border: 1px solid var(--beacon, #E63027); border-radius: 6px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; transition: filter .15s, transform .15s; box-shadow: 0 6px 18px rgba(230,48,39,0.25); margin-top: 4px; }
-.cb-gate-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
-.cb-gate-btn:disabled { opacity: 0.6; cursor: wait; }
-.cb-gate-fine { font-size: 10px; color: rgba(255,255,255,0.35); line-height: 1.5; text-align: center; margin-top: 4px; }
+.cb-gate { position: absolute; left: 0; right: 0; top: 64px; bottom: 0; background: linear-gradient(180deg, rgba(20,24,31,0.98) 0%, rgba(10,13,18,0.99) 100%); backdrop-filter: blur(4px); z-index: 5; display: flex; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+.cb-gate.cb-gate-done { display: none; }
+.cb-gate-inner { width: 100%; max-width: 340px; }
+.cb-gate-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.01em; text-transform: uppercase; color: #fff; margin-bottom: 6px; text-align: center; }
+.cb-gate-sub { font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 22px; line-height: 1.45; text-align: center; }
+.cb-gate-form { display: flex; flex-direction: column; gap: 10px; }
+.cb-gate-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.cb-gate-form input { width: 100%; padding: 11px 13px; font-family: inherit; font-size: 13px; color: #fff; background: rgba(10,13,18,0.7); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; outline: none; transition: border-color 0.15s ease, background 0.15s ease; }
+.cb-gate-form input:focus { border-color: var(--beacon, #E63027); background: rgba(230,48,39,0.04); }
+.cb-gate-form input::placeholder { color: rgba(255,255,255,0.3); }
+.cb-gate-btn { padding: 13px 16px; background: var(--beacon, #E63027); color: #fff; border: none; border-radius: 6px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.15s ease, transform 0.1s ease; margin-top: 4px; }
+.cb-gate-btn:hover { background: var(--beacon-dark, #B81E16); }
+.cb-gate-btn:disabled { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); cursor: not-allowed; }
+.cb-gate-err { font-size: 11px; color: var(--beacon, #E63027); min-height: 14px; text-align: center; }
+.cb-gate-fine { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.14em; color: rgba(255,255,255,0.3); text-transform: uppercase; text-align: center; margin-top: 4px; }
 
 @media (max-width: 480px) {
   .cb-fab { bottom: 16px; right: 16px; width: 54px; height: 54px; }
@@ -135,7 +130,7 @@
   panel.className = 'cb-panel';
   panel.innerHTML = `
     <div class="cb-head">
-      <div class="cb-head-avatar"><img src="/assets/favicon.svg" alt="CRAFT" onerror="this.onerror=null;this.src='/assets/favicon-32.png'" /></div>
+      <div class="cb-head-avatar">CR</div>
       <div class="cb-head-info">
         <div class="cb-head-title">CRAFT Assistant</div>
         <div class="cb-head-status">Online · KCHS</div>
@@ -143,141 +138,13 @@
       <button class="cb-head-close" aria-label="Close">×</button>
     </div>
     <div class="cb-gate" id="cb-gate">
-      <div class="cb-gate-eyebrow">▸ Quick intro</div>
-      <h3 class="cb-gate-h">Who am I talking to?</h3>
-      <p class="cb-gate-p">Drop your contact so a CFI can follow up if you ask something the bot can't answer. We won't spam you.</p>
-      <div class="cb-gate-row">
-        <div class="cb-gate-field">
-          <label class="cb-gate-label">First Name</label>
-          <input class="cb-gate-input" type="text" id="cb-gate-fn" required autocomplete="given-name" placeholder="John" />
-        </div>
-        <div class="cb-gate-field">
-          <label class="cb-gate-label">Last Name</label>
-          <input class="cb-gate-input" type="text" id="cb-gate-ln" required autocomplete="family-name" placeholder="Doe" />
-        </div>
-      </div>
-      <div class="cb-gate-field">
-        <label class="cb-gate-label">Email</label>
-        <input class="cb-gate-input" type="email" id="cb-gate-em" required autocomplete="email" placeholder="you@example.com" />
-      </div>
-      <div class="cb-gate-field">
-        <label class="cb-gate-label">Phone</label>
-        <input class="cb-gate-input" type="tel" id="cb-gate-ph" required autocomplete="tel" placeholder="+1 000 000 0000" />
-      </div>
-      <button class="cb-gate-btn" id="cb-gate-btn">Start Chat &nbsp;→</button>
-      <div class="cb-gate-fine">No spam, no telemarketing. Mon–Sat 9am–4pm response time.</div>
-    </div>
-    <div class="cb-msgs" id="cb-msgs"></div>
-    <div class="cb-quick" id="cb-quick">
-      <button class="cb-quick-btn" data-q="Tell me about Discovery Flight">Discovery Flight</button>
-      <button class="cb-quick-btn" data-q="What's the cost of PPL?">PPL Cost</button>
-      <button class="cb-quick-btn" data-q="Tell me about the fleet">Fleet</button>
-      <button class="cb-quick-btn" data-q="Where are you located?">Location</button>
-      <button class="cb-quick-btn" data-q="Talk to a real person">Contact</button>
-    </div>
-    <div class="cb-input-row">
-      <input class="cb-input" type="text" placeholder="Ask anything…" autocomplete="off" id="cb-input" />
-      <button class="cb-send" id="cb-send">Send</button>
-    </div>
-    <div class="cb-foot">Auto-responder · For complex stuff <a href="/contact" style="color:var(--beacon,#E63027)">talk to a real CFI</a></div>`;
-  document.body.appendChild(panel);
-
-  const msgs = panel.querySelector('#cb-msgs');
-  const input = panel.querySelector('#cb-input');
-  const send  = panel.querySelector('#cb-send');
-  const close = panel.querySelector('.cb-head-close');
-
-  function addMsg(text, who) {
-    const m = document.createElement('div');
-    m.className = 'cb-msg ' + who;
-    m.innerHTML = text;
-    msgs.appendChild(m);
-    msgs.scrollTop = msgs.scrollHeight;
-    return m;
-  }
-  function showTyping() {
-    const t = document.createElement('div');
-    t.className = 'cb-typing';
-    t.innerHTML = '<span></span><span></span><span></span>';
-    msgs.appendChild(t);
-    msgs.scrollTop = msgs.scrollHeight;
-    return t;
-  }
-  function ask(question) {
-    if (!question || !question.trim()) return;
-    addMsg(question, 'user');
-    input.value = '';
-    const t = showTyping();
-    setTimeout(() => {
-      t.remove();
-      addMsg(findAnswer(question), 'bot');
-    }, 400 + Math.random() * 500);
-  }
-
-  // First-time greeting
-  let greeted = false;
-  function greet(force) {
-    if (greeted && !force) return;
-    greeted = true;
-    const nm = localStorage.getItem('craft_chat_name');
-    const hello = nm ? `Hey ${nm} 👋` : "Hey 👋";
-    setTimeout(() => addMsg(hello + " I'm the CRAFT assistant. Ask me anything — Discovery Flight, ratings, pricing, the fleet, our team. Or tap a quick button below.", 'bot'), 250);
-  }
-
-  // --- Gate logic ---
-  const gate = panel.querySelector('#cb-gate');
-  const gateBtn = panel.querySelector('#cb-gate-btn');
-  const gFn = panel.querySelector('#cb-gate-fn');
-  const gLn = panel.querySelector('#cb-gate-ln');
-  const gEm = panel.querySelector('#cb-gate-em');
-  const gPh = panel.querySelector('#cb-gate-ph');
-  const isUnlocked = () => localStorage.getItem('craft_chat_unlocked') === '1';
-  function applyGateState() {
-    if (isUnlocked()) {
-      gate.classList.add('cb-gate-hidden');
-      setTimeout(() => { gate.style.display = 'none'; }, 350);
-    }
-  }
-  applyGateState();
-  gateBtn.addEventListener('click', () => {
-    if (!gFn.value || !gLn.value || !gEm.value || !gPh.value) {
-      [gFn, gLn, gEm, gPh].forEach(i => { if (!i.value) i.style.borderColor = 'var(--beacon, #E63027)'; });
-      return;
-    }
-    if (!gEm.checkValidity()) { gEm.reportValidity(); return; }
-    gateBtn.disabled = true;
-    gateBtn.textContent = 'Connecting…';
-    const payload = {
-      submittedAt: Date.now(),
-      fields: [
-        { objectTypeId: '0-1', name: 'firstname', value: gFn.value.trim() },
-        { objectTypeId: '0-1', name: 'lastname',  value: gLn.value.trim() },
-        { objectTypeId: '0-1', name: 'email',     value: gEm.value.trim() },
-        { objectTypeId: '0-1', name: 'phone',     value: gPh.value.trim() }
-      ],
-      context: { pageUri: location.href, pageName: document.title }
-    };
-    fetch('https://api.hsforms.com/submissions/v3/integration/submit/246141088/1ec3a44f-6b63-4d94-8990-678b1d191a11', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(() => {}).finally(() => {
-      localStorage.setItem('craft_chat_unlocked', '1');
-      localStorage.setItem('craft_chat_name', gFn.value.trim());
-      gate.classList.add('cb-gate-hidden');
-      setTimeout(() => { gate.style.display = 'none'; greet(true); input.focus(); }, 350);
-    });
-  });
-
-  fab.addEventListener('click', () => {
-    panel.classList.toggle('cb-open');
-    fab.classList.toggle('cb-open');
-    if (panel.classList.contains('cb-open')) {
-      if (isUnlocked()) { greet(); setTimeout(()=>input.focus(), 350); }
-    }
-  });
-  close.addEventListener('click', () => { panel.classList.remove('cb-open'); fab.classList.remove('cb-open'); });
-  send.addEventListener('click', () => ask(input.value));
-  input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); ask(input.value); } });
-  panel.querySelectorAll('.cb-quick-btn').forEach(b => b.addEventListener('click', () => ask(b.dataset.q)));
-})();
+      <div class="cb-gate-inner">
+        <div class="cb-gate-title">Quick intro first</div>
+        <div class="cb-gate-sub">So we can text or email you if you have follow-up questions.</div>
+        <form id="cb-gate-form" class="cb-gate-form" autocomplete="off">
+          <div class="cb-gate-row">
+            <input type="text" name="firstname" placeholder="First name" required>
+            <input type="text" name="lastname" placeholder="Last name" required>
+          </div>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="tel" name="phone" placeholder="Phone

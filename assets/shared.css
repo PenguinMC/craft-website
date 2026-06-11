@@ -518,3 +518,103 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 /* Hide HubSpot's branding chip if it shows */
 .hbspt-form .hs-form-iframe { background: transparent !important; }
+
+/* =========================================================================
+   HubSpot embedded form overrides - aggressive specificity via .craft-hs-form
+   (added via cssClass option in hbspt.forms.create; cssRequired:"" disables
+   HubSpot's own stylesheet so these rules are unopposed)
+   ========================================================================= */
+.craft-hs-form, .craft-hs-form form, body .craft-hs-form, body .craft-hs-form form {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  color: rgba(255,255,255,0.85) !important;
+}
+.craft-hs-form .hs-form-field { margin-bottom: 18px !important; display: block !important; }
+.craft-hs-form .hs-form-field > label,
+.craft-hs-form label {
+  display: block !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: rgba(255,255,255,0.65) !important;
+  margin-bottom: 8px !important;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace !important;
+}
+.craft-hs-form .hs-form-required { color: #E63027 !important; margin-left: 4px !important; }
+.craft-hs-form input[type=text],
+.craft-hs-form input[type=email],
+.craft-hs-form input[type=tel],
+.craft-hs-form input[type=number],
+.craft-hs-form input.hs-input,
+.craft-hs-form textarea,
+.craft-hs-form select {
+  width: 100% !important;
+  background: #14181F !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  border-radius: 6px !important;
+  padding: 12px 14px !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  box-shadow: none !important;
+}
+.craft-hs-form select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23E63027' d='M6 8L0 0h12z'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 14px center !important;
+  padding-right: 36px !important;
+}
+.craft-hs-form select option { background: #14181F !important; color: #fff !important; }
+.craft-hs-form input:focus, .craft-hs-form textarea:focus, .craft-hs-form select:focus {
+  border-color: #E63027 !important;
+  background: rgba(230,48,39,0.04) !important;
+}
+.craft-hs-form textarea { min-height: 110px !important; resize: vertical !important; }
+.craft-hs-form ::placeholder { color: rgba(255,255,255,0.3) !important; }
+.craft-hs-form .hs-button,
+.craft-hs-form input[type=submit],
+.craft-hs-form .hs-submit input {
+  display: inline-block !important;
+  width: 100% !important;
+  background: #E63027 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 16px 24px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  cursor: pointer !important;
+  margin-top: 8px !important;
+  box-shadow: 0 10px 24px rgba(230,48,39,0.35) !important;
+  text-shadow: none !important;
+  transition: background 0.15s ease, transform 0.1s ease !important;
+}
+.craft-hs-form .hs-button:hover, .craft-hs-form input[type=submit]:hover {
+  background: #B81E16 !important;
+  transform: translateY(-1px) !important;
+}
+.craft-hs-form .hs-error-msgs { list-style: none !important; margin: 6px 0 0 !important; padding: 0 !important; }
+.craft-hs-form .hs-error-msg, .craft-hs-form .hs-error-msgs li label {
+  font-size: 12px !important;
+  color: #E63027 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  letter-spacing: 0.04em !important;
+  text-transform: none !important;
+}
+.craft-hs-form .submitted-message {
+  background: rgba(46,204,113,0.08) !important;
+  border: 1px solid rgba(46,204,113,0.3) !important;
+  border-radius: 6px !important;
+  padding: 16px 18px !important;
+  color: #b8efc7 !important;
+  font-size: 14px !important;
+}
+/* Hide legal/captcha stuff cleanly */
+.craft-hs-form .legal-consent-container { font-size: 11px; color: rgba(255,255,255,0.4) !important; margin-top: 12px !important; }
