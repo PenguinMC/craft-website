@@ -5,7 +5,7 @@
   "da42_wet_hourly": 600,
   "sim_hourly": 100,
   "discovery_flight": 325,
-  "accel_ifr": 9900,
+  "accel_ifr": 999,
   "accel_cpl": 8600,
   "accel_multi": 9500,
   "accel_cfi": 12000,
