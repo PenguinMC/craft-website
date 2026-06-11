@@ -14,5 +14,4 @@
     { "source": "/about-craft", "destination": "/company", "permanent": true },
     { "source": "/about/:slug*", "destination": "/company", "permanent": true },
     { "source": "/about", "destination": "/company", "permanent": true },
-
-    { "source": "/privatepilot/:slug
+    { "source": "/privatepilot/:slug*
