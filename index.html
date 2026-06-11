@@ -1211,7 +1211,7 @@ html { scroll-behavior: smooth; }
               <div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div>
               <div>
                 <div class="nav-dd-title">Discovery Flight</div>
-                <div class="nav-dd-desc">$325 · Your first hour at the controls</div>
+                <div class="nav-dd-desc">$<span data-price="discovery_flight">325</span> · Your first hour at the controls</div>
               </div>
             </a>
           </div>
@@ -1229,7 +1229,7 @@ html { scroll-behavior: smooth; }
               <div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
               <div>
                 <div class="nav-dd-title">Sim Membership</div>
-                <div class="nav-dd-desc">Train smarter, fly sharper · $100/hr Redbird AATD</div>
+                <div class="nav-dd-desc">Train smarter, fly sharper · $<span data-price="sim_hourly">100</span>/hr Redbird AATD</div>
               </div>
             </a>
           </div>          <div class="nav-dd-section">
@@ -1276,7 +1276,7 @@ html { scroll-behavior: smooth; }
               <div class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
               <div>
                 <div class="nav-dd-title">Redbird AATD</div>
-                <div class="nav-dd-desc">AATD Redbird sims · $100/hr</div>
+                <div class="nav-dd-desc">AATD Redbird sims · $<span data-price="sim_hourly">100</span>/hr</div>
               </div>
             </a>
           </div>
@@ -1527,7 +1527,7 @@ const PT_DATA = [
   {
     tag: 'Step 1 · No Experience Required',
     title: 'Discovery <span class="accent">Flight</span>',
-    sub: '$325 · ~1h 45min · age 14+',
+    sub: '$<span data-price="discovery_flight">325</span> · ~1h 45min · age 14+',
     desc: '<strong>Your test drive.</strong> 30 minutes in our state-of-the-art Redbird simulator, then one full hour in the air over Charleston in a Diamond DA40 NG with a real instructor. You\'re in the left seat. You fly. Then a 15-minute debrief and honest conversation about whether this is for you.',
     bullets: [
       'No license, no medical, no prior experience needed',
@@ -1536,7 +1536,7 @@ const PT_DATA = [
       'Hours count toward your Private Pilot License if you continue'
     ],
     stats: [
-      { k: 'Cost', v: '$325 all-in' },
+      { k: 'Cost', v: '$<span data-price="discovery_flight">325</span> all-in' },
       { k: 'Time', v: '~1h 45min' },
       { k: 'Prereq', v: 'None · 14+' }
     ],
@@ -1594,7 +1594,7 @@ const PT_DATA = [
       { k: 'Hours', v: '240+ prereq' },
       { k: 'Cost', v: '$8,600' }
     ],
-    earn: { k: 'You can earn', v: '$30–$100/hr', sub: 'First paid pilot jobs: tours, banner-tow, aerial work.' }
+    earn: { k: 'You can earn', v: '$30–$<span data-price="sim_hourly">100</span>/hr', sub: 'First paid pilot jobs: tours, banner-tow, aerial work.' }
   },
   {
     tag: 'Step 5 · Accelerated · 4 Days',
@@ -1781,10 +1781,10 @@ ptFill.style.width = '0%';
         <ul class="sim-bullets">
           <li><strong>20 sim hours</strong> count toward IFR training and lock in flows before they cost you airplane time.</li>
           <li><strong>True-to-aircraft realism</strong> with weather, IMC, and emergency scenarios you can't legally practice in the airplane.</li>
-          <li><strong>$100/hr sim time</strong> — the smartest hour in your logbook before you ever burn fuel.</li>
+          <li><strong>$<span data-price="sim_hourly">100</span>/hr sim time</strong> — the smartest hour in your logbook before you ever burn fuel.</li>
           <li><strong>Available for rated pilots</strong> for currency, IPC prep, and type-rating prep — not just students.</li>
         </ul>
-        <a href="#discovery" class="btn btn-primary btn-arrow">Try the Sim — $100/hr</a>
+        <a href="#discovery" class="btn btn-primary btn-arrow">Try the Sim — $<span data-price="sim_hourly">100</span>/hr</a>
       </div>
     </div>
   </div>
@@ -1917,12 +1917,12 @@ ptFill.style.width = '0%';
   <div class="container" style="position:relative;z-index:2;text-align:center;max-width:760px">
     <span class="eyebrow" style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:0.22em;color:var(--beacon);text-transform:uppercase;background:rgba(230,48,39,0.06);border:1px solid rgba(230,48,39,0.3);padding:8px 14px;border-radius:4px;margin-bottom:24px">
       <span style="width:8px;height:8px;border-radius:50%;background:var(--beacon);box-shadow:0 0 8px var(--beacon);animation:blink 1.4s ease-in-out infinite;display:inline-block"></span>
-      Discovery Flight &middot; $325 &middot; ~1h 45min
+      Discovery Flight &middot; $<span data-price="discovery_flight">325</span> &middot; ~1h 45min
     </span>
     <h2 class="h-display" style="font-size:clamp(48px,7vw,96px);margin-bottom:20px">Stop scrolling. <span class="accent">Start flying.</span></h2>
     <p style="font-size:clamp(16px,1.4vw,19px);color:rgba(255,255,255,0.78);max-width:640px;margin:0 auto 36px;line-height:1.55">Book a discovery flight in the DA40 NG. You're in the left seat. You fly. If it's for you, you'll know in the first ten minutes &mdash; and we'll get you into the next cohort.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-      <a href="/discovery-flight" class="btn btn-primary btn-arrow">Book Discovery Flight &mdash; $325</a>
+      <a href="/discovery-flight" class="btn btn-primary btn-arrow">Book Discovery Flight &mdash; $<span data-price="discovery_flight">325</span></a>
       <a href="tel:+18438006498" class="btn btn-ghost">Call 843.800.6498</a>
     </div>
   </div>
@@ -2037,7 +2037,7 @@ ptFill.style.width = '0%';
 </footer>
 
 <!-- Mobile sticky CTA -->
-<a href="/discovery-flight" class="btn btn-primary mobile-cta btn-arrow">Discovery Flight &mdash; $325</a>
+<a href="/discovery-flight" class="btn btn-primary mobile-cta btn-arrow">Discovery Flight &mdash; $<span data-price="discovery_flight">325</span></a>
 
 <!-- Cost calculator JS removed — calculator lives at /cost-calculator -->
 
