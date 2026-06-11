@@ -20,8 +20,9 @@ const OUT = path.join(SRC, '_dist');
 // Files/folders that should NOT be copied to the production output.
 const SKIP = new Set([
   '_dist', 'node_modules', '.git', '.gitignore', '.github',
-  'build.js', 'package.json', 'package-lock.json', 'yarn.lock', 'api',
+  'build.js', 'package.json', 'package-lock.json', 'yarn.lock',
   'README.md', 'LICENSE.md', 'deploy.bat',
+  'api', // Vercel serverless functions read from project root, not from _dist
 ]);
 
 const HTML_OPTS = {
