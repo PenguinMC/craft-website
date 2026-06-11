@@ -399,7 +399,19 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   border: 1px solid var(--beacon) !important;
   border-radius: 6px !important;
   color: #fff !important;
-  f
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  cursor: pointer !important;
+  box-shadow: 0 10px 24px rgba(230,48,39,0.35);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.hs-form .hs-button:hover,
+.hs-form input[type="submit"]:hover {
+  transform: translateY(-1px);
+}
 /* =========================================================================
    HubSpot embedded form overrides (matches CRAFT tactical dark theme)
    ========================================================================= */
@@ -673,17 +685,4 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .craft-form-btn:hover { background: var(--beacon-dark); transform: translateY(-1px); }
 .craft-form-btn:disabled { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); cursor: not-allowed; transform: none; box-shadow: none; }
 .craft-form-status { font-size: 13px; min-height: 18px; padding-top: 4px; text-align: center; }
-.craft-form-status.ok { color: #b8efc7; }
-.craft-form-status.err { color: var(--beacon); }
-.craft-form-wrap.craft-form-done .craft-form { display: none; }
-.craft-form-wrap.craft-form-done::after {
-  content: attr(data-success);
-  display: block;
-  background: rgba(46,204,113,0.08);
-  border: 1px solid rgba(46,204,113,0.3);
-  border-radius: 8px;
-  padding: 20px 22px;
-  color: #b8efc7;
-  font-size: 14px;
-  text-align: center;
-}
+.
