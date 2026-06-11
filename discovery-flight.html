@@ -626,7 +626,7 @@
     </div>
 
     <div class="df-pay-cta-row">
-      <a href="/discovery-flight#book" class="btn btn-primary btn-arrow">Book Discovery Flight &mdash; $325</a>
+      <a href="/discovery-flight#book" class="btn btn-primary btn-arrow">Book Discovery Flight &mdash; $<span data-price="discovery_flight">325</span></a>
       <a href="/accelerated" class="btn btn-ghost">See Accelerated Programs</a>
     </div>
   </div>
@@ -642,7 +642,7 @@
     </div>
     <div class="df-cal-frame">
       <div class="df-cal-frame-meta">
-        <span>Discovery Flight &middot; <span style="color:var(--beacon)">$325</span></span>
+        <span>Discovery Flight &middot; <span style="color:var(--beacon)">$<span data-price="discovery_flight">325</span></span></span>
         <span class="live">Live Calendar</span>
       </div>
       <!-- Calendly inline widget, themed with CRAFT colors -->
@@ -727,7 +727,7 @@
   </div>
 </footer>
 
-<a href="#book" class="btn btn-primary mobile-cta btn-arrow">Book Discovery Flight &mdash; $325</a>
+<a href="#book" class="btn btn-primary mobile-cta btn-arrow">Book Discovery Flight &mdash; $<span data-price="discovery_flight">325</span></a>
 
 <style>
 /* === Modern footer reinforcement (matches homepage) === */
@@ -886,5 +886,6 @@ recalcPay();
 
 <script src="/assets/chatbot.js" defer></script>
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script src="/assets/price-sync.js" defer></script>
 </body>
 </html>

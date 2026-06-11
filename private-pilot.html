@@ -536,8 +536,8 @@
       <div class="num">~$13<span class="accent">,500</span></div>
       <div class="lbl">Total program · including everything below</div>
       <div class="ppl-price-row">
-        <div class="cell"><strong>$255/hr</strong><small>DA40 NG wet rate</small></div>
-        <div class="cell"><strong>$65/hr</strong><small>Instruction</small></div>
+        <div class="cell"><strong>$<span data-price="ppl_aircraft_hourly">255</span>/hr</strong><small>DA40 NG wet rate</small></div>
+        <div class="cell"><strong>$<span data-price="ppl_cfi_hourly">65</span>/hr</strong><small>Instruction</small></div>
         <div class="cell"><strong>$100/hr</strong><small>Redbird AATD sim</small></div>
       </div>
       <div style="font-size:14px;color:rgba(255,255,255,0.8);line-height:1.7;text-align:left">
@@ -631,5 +631,6 @@ document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => 
 document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
 </script>
 
+<script src="/assets/price-sync.js" defer></script>
 </body>
 </html>

@@ -315,7 +315,7 @@
   <div class="cs-price-grid">
     <div class="cs-price-card">
       <div class="lbl">Accelerated CFI-I · Diamond DA40NG</div>
-      <div class="num"><span class="accent">$</span>5,600</div>
+      <div class="num"><span class="accent">$</span><span data-price="accel_cfii" data-fmt="comma">5,600</span></div>
       <div class="sub">Dedicated CFI-I, Redbird AATD simulator instruction, aircraft for the checkride, up to 6 hours dual in the DA40NG with G1000. Already have a CFI? This is your add-on.</div>
     </div>
     <div class="cs-price-card bundle">
@@ -496,5 +496,6 @@
 document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
 document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
 </script>
+<script src="/assets/price-sync.js" defer></script>
 </body>
 </html>

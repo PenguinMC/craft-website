@@ -383,7 +383,7 @@
   <div class="cs-price-grid">
     <div class="cs-price-card">
       <div class="lbl">Use CRAFT's Diamond DA40NG</div>
-      <div class="num"><span class="accent">$</span>9,800</div>
+      <div class="num"><span class="accent">$</span><span data-price="accel_ifr" data-fmt="comma">9,800</span></div>
       <div class="sub">Up to 30 hrs instrument flight instruction · 15 hrs Redbird AATD · 15 hrs in DA40 NG · 2 hrs checkride aircraft · dedicated CFII · all training materials</div>
       <a href="/contact" class="btn btn-primary btn-arrow" style="margin-top:14px;display:inline-flex">Book Now</a>
     </div>
@@ -684,5 +684,6 @@
 document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
 document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
 </script>
+<script src="/assets/price-sync.js" defer></script>
 </body>
 </html>

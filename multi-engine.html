@@ -387,7 +387,7 @@
         </ul>
         <div class="cs-track-foot">
           <div>
-            <div class="cs-track-price"><span class="accent">$</span>9,500</div>
+            <div class="cs-track-price"><span class="accent">$</span><span data-price="accel_multi" data-fmt="comma">9,500</span></div>
             <div class="cs-track-price-suf">Course Price</div>
           </div>
           <div class="cs-track-time"><span class="accent">3</span> days · 4-day finish</div>
@@ -435,7 +435,7 @@
         </ul>
         <div class="cs-track-foot">
           <div>
-            <div class="cs-track-price"><span class="accent">$</span>9,500</div>
+            <div class="cs-track-price"><span class="accent">$</span><span data-price="accel_multi" data-fmt="comma">9,500</span></div>
             <div class="cs-track-price-suf">Course Price</div>
           </div>
           <div class="cs-track-time"><span class="accent">3</span> days · 4-day finish</div>
@@ -684,5 +684,6 @@
 document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
 document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
 </script>
+<script src="/assets/price-sync.js" defer></script>
 </body>
 </html>

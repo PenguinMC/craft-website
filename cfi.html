@@ -332,7 +332,7 @@
   <div class="cs-price-grid">
     <div class="cs-price-card">
       <div class="lbl">Accelerated CFI · Diamond DA40NG</div>
-      <div class="num"><span class="accent">$</span>12,000</div>
+      <div class="num"><span class="accent">$</span><span data-price="accel_cfi" data-fmt="comma">12,000</span></div>
       <div class="sub">10 to 12 days · 50+ hours of classroom instruction (FOI, FIA, FARs, lesson plan dev), Redbird sim, up to 18 hours dual in the DA40NG, all training materials, aircraft for the checkride.</div>
     </div>
     <div class="cs-price-card bundle">
@@ -533,5 +533,6 @@
 document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
 document.querySelectorAll('.nav-item .nav-link').forEach(b => b.addEventListener('click', e => { if (window.innerWidth > 980) return; e.preventDefault(); b.parentElement.classList.toggle('open'); }));
 </script>
+<script src="/assets/price-sync.js" defer></script>
 </body>
 </html>

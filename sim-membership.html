@@ -194,7 +194,7 @@
   <div style="position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--beacon),transparent)"></div>
   <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px;margin-bottom:20px">
     <h2 style="font-family:var(--display);font-weight:800;font-size:30px;text-transform:uppercase;letter-spacing:-0.005em;line-height:1;margin:0">What you get</h2>
-    <div style="font-family:var(--display);font-weight:900;font-size:48px;color:var(--beacon);line-height:1">$100<span style="font-size:0.4em;color:rgba(255,255,255,0.6)">/hr</span></div>
+    <div style="font-family:var(--display);font-weight:900;font-size:48px;color:var(--beacon);line-height:1">$<span data-price="sim_hourly">100</span><span style="font-size:0.4em;color:rgba(255,255,255,0.6)">/hr</span></div>
   </div>
   <ul style="list-style:none;display:grid;gap:10px;padding:0;margin:0">
     <li style="padding-left:22px;position:relative;font-size:14px;color:rgba(255,255,255,0.78);line-height:1.55"><span style="position:absolute;left:0;top:0;color:var(--beacon);font-weight:700">&blacktriangleright;</span>FAA-loggable AATD time toward your Instrument Rating</li>
@@ -284,5 +284,6 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
   b.add
 
 <script src="/assets/chatbot.js" defer></script>
+<script src="/assets/price-sync.js" defer></script>
 </body>
 </html>
