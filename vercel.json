@@ -7,21 +7,12 @@
     { "source": "/discovery-flight", "destination": "/discovery-flight.html" },
     { "source": "/fleet", "destination": "/fleet.html" }
   ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" }
-      ]
-    },
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
-    }
-  ]
-}
+  "redirects": [
+    { "source": "/contact-us/:slug*", "destination": "/contact", "permanent": true },
+    { "source": "/contact-us", "destination": "/contact", "permanent": true },
+    { "source": "/about-craft/:slug*", "destination": "/company", "permanent": true },
+    { "source": "/about-craft", "destination": "/company", "permanent": true },
+    { "source": "/about/:slug*", "destination": "/company", "permanent": true },
+    { "source": "/about", "destination": "/company", "permanent": true },
+
+    { "source": "/privatepilot/:slug
