@@ -2,7 +2,7 @@
 // Sends 4 brand-styled HTML emails via Resend per new lead.
 
 const RESEND_API = 'https://api.resend.com/emails';
-const FROM = 'Parker at CRAFT <onboarding@resend.dev>';
+const FROM = 'Parker at CRAFT <parker@flycraftchs.com>';
 const REPLY_TO = 'parker@flycraftchs.com';
 
 function r(tmpl, vars) {
@@ -16,7 +16,7 @@ function wrap(o) {
   html += '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="background-color:#14181F;border:1px solid rgba(230,48,39,0.25);border-radius:10px;max-width:600px;width:100%;">';
   html += '<tr><td style="background-color:#E63027;height:4px;border-radius:10px 10px 0 0;"></td></tr>';
   html += '<tr><td style="padding:32px 40px 20px;">';
-  html += '<div style="font-family:\'Arial Black\',\'Helvetica Neue\',Arial,sans-serif;font-weight:900;font-size:28px;letter-spacing:0.06em;color:#ffffff;">CRAFT<span style="color:#E63027;">.</span></div>';
+  html += '<img src="https://parkerh.com/assets/craft-logo.png" alt="CRAFT" width="160" height="40" style="display:block;height:40px;width:auto;border:0;" />';
   html += '<div style="font-family:\'Courier New\',monospace;font-size:10px;letter-spacing:0.22em;color:#E63027;text-transform:uppercase;margin-top:4px;">Flight Training and Simulation</div>';
   html += '</td></tr>';
   html += '<tr><td style="padding:0 40px 12px;"><h1 style="font-family:\'Arial Black\',\'Helvetica Neue\',Arial,sans-serif;font-weight:900;font-size:30px;line-height:1.1;letter-spacing:-0.01em;color:#ffffff;margin:0 0 8px;text-transform:uppercase;">' + o.title + '</h1></td></tr>';
