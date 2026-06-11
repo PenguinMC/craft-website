@@ -1,4 +1,4 @@
-// /api/lead-handler.js — Vercel serverless function.
+// /api/lead-handler.js - Vercel serverless function.
 // Sends 4 brand-styled HTML emails via Resend per new lead.
 
 const RESEND_API = 'https://api.resend.com/emails';
