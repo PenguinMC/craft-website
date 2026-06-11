@@ -4,14 +4,407 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/discovery-flight", "destination": "/discovery-flight.html" },
-    { "source": "/fleet", "destination": "/fleet.html" }
+    {
+      "source": "/discovery-flight",
+      "destination": "/discovery-flight.html"
+    },
+    {
+      "source": "/fleet",
+      "destination": "/fleet.html"
+    }
   ],
   "redirects": [
-    { "source": "/contact-us/:slug*", "destination": "/contact", "permanent": true },
-    { "source": "/contact-us", "destination": "/contact", "permanent": true },
-    { "source": "/about-craft/:slug*", "destination": "/company", "permanent": true },
-    { "source": "/about-craft", "destination": "/company", "permanent": true },
-    { "source": "/about/:slug*", "destination": "/company", "permanent": true },
-    { "source": "/about", "destination": "/company", "permanent": true },
-    { "source": "/privatepilot/:slug*
+    {
+      "source": "/contact-us/:slug*",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/about-craft/:slug*",
+      "destination": "/company",
+      "permanent": true
+    },
+    {
+      "source": "/about-craft",
+      "destination": "/company",
+      "permanent": true
+    },
+    {
+      "source": "/about/:slug*",
+      "destination": "/company",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/company",
+      "permanent": true
+    },
+    {
+      "source": "/privatepilot/:slug*",
+      "destination": "/private-pilot",
+      "permanent": true
+    },
+    {
+      "source": "/privatepilot",
+      "destination": "/private-pilot",
+      "permanent": true
+    },
+    {
+      "source": "/private-pilot-training/:slug*",
+      "destination": "/private-pilot",
+      "permanent": true
+    },
+    {
+      "source": "/private-pilot-training",
+      "destination": "/private-pilot",
+      "permanent": true
+    },
+    {
+      "source": "/ifr-training/:slug*",
+      "destination": "/ifr",
+      "permanent": true
+    },
+    {
+      "source": "/ifr-training",
+      "destination": "/ifr",
+      "permanent": true
+    },
+    {
+      "source": "/instrument-training/:slug*",
+      "destination": "/ifr",
+      "permanent": true
+    },
+    {
+      "source": "/instrument-training",
+      "destination": "/ifr",
+      "permanent": true
+    },
+    {
+      "source": "/commercial-course/:slug*",
+      "destination": "/commercial",
+      "permanent": true
+    },
+    {
+      "source": "/commercial-course",
+      "destination": "/commercial",
+      "permanent": true
+    },
+    {
+      "source": "/commercial-training/:slug*",
+      "destination": "/commercial",
+      "permanent": true
+    },
+    {
+      "source": "/commercial-training",
+      "destination": "/commercial",
+      "permanent": true
+    },
+    {
+      "source": "/cfi-training/:slug*",
+      "destination": "/cfi",
+      "permanent": true
+    },
+    {
+      "source": "/cfi-training",
+      "destination": "/cfi",
+      "permanent": true
+    },
+    {
+      "source": "/cfi-course/:slug*",
+      "destination": "/cfi",
+      "permanent": true
+    },
+    {
+      "source": "/cfi-course",
+      "destination": "/cfi",
+      "permanent": true
+    },
+    {
+      "source": "/cfi-instrument-course/:slug*",
+      "destination": "/cfii",
+      "permanent": true
+    },
+    {
+      "source": "/cfi-instrument-course",
+      "destination": "/cfii",
+      "permanent": true
+    },
+    {
+      "source": "/cfii-course/:slug*",
+      "destination": "/cfii",
+      "permanent": true
+    },
+    {
+      "source": "/cfii-course",
+      "destination": "/cfii",
+      "permanent": true
+    },
+    {
+      "source": "/multi-engine-courses/:slug*",
+      "destination": "/multi-engine",
+      "permanent": true
+    },
+    {
+      "source": "/multi-engine-courses",
+      "destination": "/multi-engine",
+      "permanent": true
+    },
+    {
+      "source": "/multi-engine-training/:slug*",
+      "destination": "/multi-engine",
+      "permanent": true
+    },
+    {
+      "source": "/multi-engine-training",
+      "destination": "/multi-engine",
+      "permanent": true
+    },
+    {
+      "source": "/the-craft-fleet/:slug*",
+      "destination": "/fleet",
+      "permanent": true
+    },
+    {
+      "source": "/the-craft-fleet",
+      "destination": "/fleet",
+      "permanent": true
+    },
+    {
+      "source": "/available-aircraft/:slug*",
+      "destination": "/fleet",
+      "permanent": true
+    },
+    {
+      "source": "/available-aircraft",
+      "destination": "/fleet",
+      "permanent": true
+    },
+    {
+      "source": "/aircraft-rental/:slug*",
+      "destination": "/fleet",
+      "permanent": true
+    },
+    {
+      "source": "/aircraft-rental",
+      "destination": "/fleet",
+      "permanent": true
+    },
+    {
+      "source": "/membership-licensure/:slug*",
+      "destination": "/sim-membership",
+      "permanent": true
+    },
+    {
+      "source": "/membership-licensure",
+      "destination": "/sim-membership",
+      "permanent": true
+    },
+    {
+      "source": "/sim-rental/:slug*",
+      "destination": "/sim-membership",
+      "permanent": true
+    },
+    {
+      "source": "/sim-rental",
+      "destination": "/sim-membership",
+      "permanent": true
+    },
+    {
+      "source": "/faqs/:slug*",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/faqs",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/faq/:slug*",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/training-getting-started/:slug*",
+      "destination": "/discovery-flight",
+      "permanent": true
+    },
+    {
+      "source": "/training-getting-started",
+      "destination": "/discovery-flight",
+      "permanent": true
+    },
+    {
+      "source": "/get-started/:slug*",
+      "destination": "/discovery-flight",
+      "permanent": true
+    },
+    {
+      "source": "/get-started",
+      "destination": "/discovery-flight",
+      "permanent": true
+    },
+    {
+      "source": "/discovery/:slug*",
+      "destination": "/discovery-flight",
+      "permanent": true
+    },
+    {
+      "source": "/discovery",
+      "destination": "/discovery-flight",
+      "permanent": true
+    },
+    {
+      "source": "/thank-you/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/thank-you",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/army-cap/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/army-cap",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/summer-camp/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/summer-camp",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/purdue/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/purdue",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/purdue-global/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/purdue-global",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/news/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/news",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-admin/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-admin",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-includes/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-includes",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-login.php",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/xmlrpc.php",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=()"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
