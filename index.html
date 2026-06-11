@@ -1574,7 +1574,7 @@ const PT_DATA = [
     stats: [
       { k: 'Time', v: '7 days' },
       { k: 'Plane', v: 'DA40 NG' },
-      { k: 'Cost', v: '$9,800' }
+      { k: 'Cost', v: '$<span data-price="accel_ifr" data-fmt="comma">9,800</span>' }
     ],
     earn: { k: 'What you can do', v: 'File IFR, fly through weather', sub: 'Cancel fewer flights. Travel reliably.' }
   },
@@ -1592,7 +1592,7 @@ const PT_DATA = [
     stats: [
       { k: 'Time', v: '6 days' },
       { k: 'Hours', v: '240+ prereq' },
-      { k: 'Cost', v: '$8,600' }
+      { k: 'Cost', v: '$<span data-price="accel_cpl" data-fmt="comma">8,600</span>' }
     ],
     earn: { k: 'You can earn', v: '$30–$<span data-price="sim_hourly">100</span>/hr', sub: 'First paid pilot jobs: tours, banner-tow, aerial work.' }
   },
@@ -1627,7 +1627,7 @@ const PT_DATA = [
     ],
     stats: [
       { k: 'Time', v: '10–12 days' },
-      { k: 'CFI Cost', v: '$12,000' },
+      { k: 'CFI Cost', v: '$<span data-price="accel_cfi" data-fmt="comma">12,000</span>' },
       { k: 'Bundle', v: 'CFI+CFII $16,950' }
     ],
     earn: { k: 'You can earn', v: '$30–$60/hr', sub: 'Teach + log PIC time toward your 1,500-hour airline minimum.' }
@@ -1716,7 +1716,7 @@ ptFill.style.width = '0%';
         </ul>
         <div class="acc-price-row" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,0.08);padding-top:18px;margin-top:auto;margin-bottom:18px">
           <div style="font-family:var(--display);font-weight:900;font-size:52px;line-height:1;letter-spacing:-0.025em;color:var(--white)"><span class="accent">$</span><span data-price="ppl_aircraft_hourly">255</span><span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;color:rgba(255,255,255,0.55);letter-spacing:0.04em;margin-left:6px">/hr wet</span></div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:rgba(255,255,255,0.5);text-transform:uppercase;text-align:right">Self-Paced<br>+ $65/hr CFI</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:rgba(255,255,255,0.5);text-transform:uppercase;text-align:right">Self-Paced<br>+ $<span data-price="ppl_cfi_hourly">65</span>/hr CFI</div>
         </div>
         <a href="/private-pilot" class="btn btn-light btn-block btn-arrow">See Full Details</a>
       </div>

@@ -442,15 +442,15 @@
                 <option value="mei">MEI Add-On</option>
               </optgroup>
               <optgroup label="Accelerated (Flat-Rate Packages)">
-                <option value="ifr-accel">Accelerated IFR &middot; $9,800</option>
-                <option value="cpl-accel">Accelerated Commercial &middot; $8,600</option>
-                <option value="me-accel">Accelerated Multi Add-On &middot; $9,500</option>
-                <option value="cfi-accel">Accelerated CFI Initial &middot; $12,000</option>
-                <option value="cfii-accel">Accelerated CFI-I &middot; $5,600</option>
-                <option value="mei-accel">Accelerated MEI &middot; $9,500</option>
+                <option value="ifr-accel">Accelerated IFR &middot; $<span data-price="accel_ifr" data-fmt="comma">9,800</span></option>
+                <option value="cpl-accel">Accelerated Commercial &middot; $<span data-price="accel_cpl" data-fmt="comma">8,600</span></option>
+                <option value="me-accel">Accelerated Multi Add-On &middot; $<span data-price="accel_multi" data-fmt="comma">9,500</span></option>
+                <option value="cfi-accel">Accelerated CFI Initial &middot; $<span data-price="accel_cfi" data-fmt="comma">12,000</span></option>
+                <option value="cfii-accel">Accelerated CFI-I &middot; $<span data-price="accel_cfii" data-fmt="comma">5,600</span></option>
+                <option value="mei-accel">Accelerated MEI &middot; $<span data-price="accel_multi" data-fmt="comma">9,500</span></option>
               </optgroup>
             </select>
-            <div class="cc-ctrl-hint"><span id="cc-program-fleet">DA40 NG · $255/hr wet · $65/hr instruction</span></div>
+            <div class="cc-ctrl-hint"><span id="cc-program-fleet">DA40 NG · $<span data-price="ppl_aircraft_hourly">255</span>/hr wet · $<span data-price="ppl_cfi_hourly">65</span>/hr instruction</span></div>
           </div>
 
           <div class="cc-ctrl">
@@ -490,7 +490,7 @@
         <aside class="cc-est">
           <h3 class="cc-est-h">Estimated<br>Training Cost</h3>
           <div class="cc-est-rows">
-            <div class="cc-est-row" id="cc-base-row" style="display:none"><span class="cc-est-row-l">Package Base</span><span class="cc-est-row-r" id="cc-out-base">$9,800.00</span></div>
+            <div class="cc-est-row" id="cc-base-row" style="display:none"><span class="cc-est-row-l">Package Base</span><span class="cc-est-row-r" id="cc-out-base">$<span data-price="accel_ifr" data-fmt="comma">9,800</span>.00</span></div>
             <div class="cc-est-row"><span class="cc-est-row-l">Aircraft Cost <small style="margin:0;padding:0" id="cc-aircraft-hint"></small></span><span class="cc-est-row-r" id="cc-out-aircraft">$12,750.00</span></div>
             <div class="cc-est-row"><span class="cc-est-row-l">Instruction Cost</span><span class="cc-est-row-r" id="cc-out-instr">$3,850.00</span></div>
             <div class="cc-est-row"><span class="cc-est-row-l" style="display:flex;flex-direction:column;align-items:flex-start;gap:2px"><span>Sim Cost</span><small style="margin:0;padding:0">Instructor included</small></span><span class="cc-est-row-r" id="cc-out-sim">$420.00</span></div>
@@ -644,13 +644,13 @@ const RATE_INSTRUCTOR = 65; // PPL default; IFR + CPL use $75 via per-program iR
 const RATE_SIM = 100;
 const PROGRAMS = {
   // SELF-PACED programs — standard hourly billing
-  ppl: { name:"Private Pilot", mode:"paced", fleet:"DA40 NG · $255/hr wet · $65/hr instruction · ~50 hrs (FAA min 40)", rate:RATE_PLANE_DA40, iRate:65, fHrs:[40,50,80], iHrs:[30,40,80], gHrs:[20,30,70], sHrs:[0,3,10], prereq:{ name:"What You'll Need", items:["Online Ground School &middot; ~$200","FAA Written Exam &middot; ~$150","ForeFlight &middot; ~$100","iPad &middot; ~$499","Bose A30 Headphones &middot; ~$899","Medical Certificate (3rd Class) &middot; ~$200","Student Pilot Certificate &middot; Free after you book a Discovery Flight with us"] } },
-  ifr: { name:"Instrument Rating", mode:"paced", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[15,30,50], iHrs:[20,30,50], gHrs:[10,20,40], sHrs:[15,20,40], prereq:null },
-  cpl: { name:"Commercial Pilot", mode:"paced", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[10,15,30], iHrs:[10,15,30], gHrs:[8,12,25], sHrs:[2,4,10], prereq:null },
-  me: { name:"Multi-Engine Add-On", mode:"paced", fleet:"DA42-VI NG · $600/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA42, iRate:75, fHrs:[6,8,15], iHrs:[6,8,15], gHrs:[3,5,12], sHrs:[0,2,8], prereq:null },
-  cfi: { name:"CFI Initial", mode:"paced", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[12,16,30], iHrs:[14,18,30], gHrs:[40,53,70], sHrs:[2,4,12], prereq:null },
-  cfii: { name:"CFI-I Add-On", mode:"paced", fleet:"DA40 NG · $255/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[6,8,15], iHrs:[8,12,20], gHrs:[4,6,15], sHrs:[2,6,15], prereq:null },
-  mei: { name:"MEI Add-On", mode:"paced", fleet:"DA42-VI NG · $600/hr wet · $75/hr instruction · self-paced", rate:RATE_PLANE_DA42, iRate:75, fHrs:[6,8,15], iHrs:[6,8,15], gHrs:[4,6,12], sHrs:[1,3,8], prereq:null },
+  ppl: { name:"Private Pilot", mode:"paced", fleet:"DA40 NG · $<span data-price="ppl_aircraft_hourly">255</span>/hr wet · $<span data-price="ppl_cfi_hourly">65</span>/hr instruction · ~50 hrs (FAA min 40)", rate:RATE_PLANE_DA40, iRate:65, fHrs:[40,50,80], iHrs:[30,40,80], gHrs:[20,30,70], sHrs:[0,3,10], prereq:{ name:"What You'll Need", items:["Online Ground School &middot; ~$200","FAA Written Exam &middot; ~$150","ForeFlight &middot; ~$100","iPad &middot; ~$499","Bose A30 Headphones &middot; ~$899","Medical Certificate (3rd Class) &middot; ~$200","Student Pilot Certificate &middot; Free after you book a Discovery Flight with us"] } },
+  ifr: { name:"Instrument Rating", mode:"paced", fleet:"DA40 NG · $<span data-price="ppl_aircraft_hourly">255</span>/hr wet · $<span data-price="advanced_cfi_hourly">75</span>/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[15,30,50], iHrs:[20,30,50], gHrs:[10,20,40], sHrs:[15,20,40], prereq:null },
+  cpl: { name:"Commercial Pilot", mode:"paced", fleet:"DA40 NG · $<span data-price="ppl_aircraft_hourly">255</span>/hr wet · $<span data-price="advanced_cfi_hourly">75</span>/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[10,15,30], iHrs:[10,15,30], gHrs:[8,12,25], sHrs:[2,4,10], prereq:null },
+  me: { name:"Multi-Engine Add-On", mode:"paced", fleet:"DA42-VI NG · $<span data-price="da42_wet_hourly">600</span>/hr wet · $<span data-price="advanced_cfi_hourly">75</span>/hr instruction · self-paced", rate:RATE_PLANE_DA42, iRate:75, fHrs:[6,8,15], iHrs:[6,8,15], gHrs:[3,5,12], sHrs:[0,2,8], prereq:null },
+  cfi: { name:"CFI Initial", mode:"paced", fleet:"DA40 NG · $<span data-price="ppl_aircraft_hourly">255</span>/hr wet · $<span data-price="advanced_cfi_hourly">75</span>/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[12,16,30], iHrs:[14,18,30], gHrs:[40,53,70], sHrs:[2,4,12], prereq:null },
+  cfii: { name:"CFI-I Add-On", mode:"paced", fleet:"DA40 NG · $<span data-price="ppl_aircraft_hourly">255</span>/hr wet · $<span data-price="advanced_cfi_hourly">75</span>/hr instruction · self-paced", rate:RATE_PLANE_DA40, iRate:75, fHrs:[6,8,15], iHrs:[8,12,20], gHrs:[4,6,15], sHrs:[2,6,15], prereq:null },
+  mei: { name:"MEI Add-On", mode:"paced", fleet:"DA42-VI NG · $<span data-price="da42_wet_hourly">600</span>/hr wet · $<span data-price="advanced_cfi_hourly">75</span>/hr instruction · self-paced", rate:RATE_PLANE_DA42, iRate:75, fHrs:[6,8,15], iHrs:[6,8,15], gHrs:[4,6,12], sHrs:[1,3,8], prereq:null },
 
   // ACCELERATED programs — flat-rate base price + only overage hours billed; instruction always $0 (included)
   "ifr-accel": { name:"Accelerated IFR", mode:"accel", fleet:"DA40 NG · 7-day finish · DPE booked with course", rate:RATE_PLANE_DA40, base:9800, incl:{f:15, s:20}, fHrs:[15,15,30], iHrs:[0,0,0], gHrs:[0,0,0], sHrs:[20,20,40], prereq:null },
