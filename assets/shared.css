@@ -686,3 +686,44 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .craft-form-btn:disabled { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); cursor: not-allowed; transform: none; box-shadow: none; }
 .craft-form-status { font-size: 13px; min-height: 18px; padding-top: 4px; text-align: center; }
 .
+
+/* === .craft-form success state (replaces old ::after approach) === */
+.craft-form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 36px 28px;
+  background: linear-gradient(180deg, rgba(46,204,113,0.08) 0%, rgba(46,204,113,0.03) 100%);
+  border: 1px solid rgba(46,204,113,0.35);
+  border-radius: 10px;
+  animation: craftFormFadeIn 0.4s ease;
+}
+.craft-form-success-icon {
+  width: 64px; height: 64px;
+  display: grid; place-items: center;
+  background: rgba(46,204,113,0.12);
+  border: 1px solid rgba(46,204,113,0.4);
+  border-radius: 50%;
+  color: #6ee7b7;
+  margin-bottom: 16px;
+}
+.craft-form-success-h {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.craft-form-success-p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.7);
+  max-width: 360px;
+}
+@keyframes craftFormFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

@@ -109,14 +109,14 @@
 
 
 
-.cb-gate { position: absolute; inset: 60px 0 0 0; z-index: 10; background: linear-gradient(180deg, #14181F 0%, #0A0D12 100%); padding: 24px 22px; display: flex; flex-direction: column; gap: 14px; transition: opacity .35s ease; }
+.cb-gate { position: absolute; inset: 60px 0 0 0; z-index: 10; background: linear-gradient(180deg, #14181F 0%, #0A0D12 100%); padding: 24px 22px; display: flex; flex-direction: column; align-items: stretch; gap: 12px; transition: opacity .35s ease; }
 .cb-gate.cb-gate-hidden { opacity: 0; pointer-events: none; }
 .cb-gate-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon, #E63027); text-transform: uppercase; }
 .cb-gate-h { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 22px; line-height: 1; text-transform: uppercase; letter-spacing: 0.01em; color: #fff; margin: 0; }
 .cb-gate-p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; margin: -4px 0 6px; }
-.cb-gate-field { display: grid; gap: 5px; }
+.cb-gate-field { display: flex; flex-direction: column; gap: 6px; width: 100%; }
 .cb-gate-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; color: rgba(255,255,255,0.55); text-transform: uppercase; }
-.cb-gate-input { width: 100%; min-width: 0; box-sizing: border-box; padding: 11px 12px; font-family: inherit; font-size: 14px; color: #fff; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; transition: border-color .15s ease, background .15s ease; }
+.cb-gate-input { display: block; width: 100%; min-width: 0; box-sizing: border-box; padding: 11px 12px; font-family: inherit; font-size: 14px; color: #fff; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; transition: border-color .15s ease, background .15s ease; }
 .cb-gate-input:focus { outline: none; border-color: var(--beacon, #E63027); background: rgba(255,255,255,0.06); box-shadow: 0 0 0 3px rgba(230,48,39,0.15); }
 .cb-gate-input::placeholder { color: rgba(255,255,255,0.32); }
 .cb-gate-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
