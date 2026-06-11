@@ -129,6 +129,41 @@ const T = {
     "ctaLabel": null,
     "ctaUrl": null
   },
+  "day1_universal": {
+    "subject": "Did you get my note yesterday?",
+    "title": "Quick bump",
+    "body": "<p>{firstname},</p><p>Hit reply if you got my note yesterday and it just slipped down the inbox. No worries either way.</p><p>If easier, text or call <a href=\"tel:+18438006498\" style=\"color:#E63027;\">843.800.6498</a>.</p>",
+    "ctaLabel": "Book Discovery Flight",
+    "ctaUrl": "https://parkerh.com/discovery-flight"
+  },
+  "day14_lastcall": {
+    "subject": "Seriously, just book the Discovery Flight",
+    "title": "Two weeks in",
+    "body": "<p>{firstname},</p><p>Two weeks since you reached out. If you have not booked a Discovery Flight yet, this is the email where I tell you to just do it.</p><p>$325 buys you certainty. One hour at the controls of a DA40 NG. You will either love it and start training, or you will know it is not for you. Both answers are valuable.</p><p>The downside of waiting is just waiting. The skies do not get easier.</p>",
+    "ctaLabel": "Book Discovery Flight",
+    "ctaUrl": "https://parkerh.com/discovery-flight"
+  },
+  "day30_cooldown": {
+    "subject": "Still thinking about flying?",
+    "title": "30 day check",
+    "body": "<p>{firstname},</p><p>One month since you first reached out. No pressure. Just a soft check.</p><p>A few things happened at CRAFT this month worth knowing about.</p><p style=\"color:rgba(255,255,255,0.85);\">- New DA42-VI NG in the fleet for Multi training<br>- Accelerated CFI cohorts running every month<br>- $0 down financing now available through new partners</p><p>If flying is still on your mind, reply here or call <a href=\"tel:+18438006498\" style=\"color:#E63027;\">843.800.6498</a>. If not, I will back off.</p>",
+    "ctaLabel": "See What is New",
+    "ctaUrl": "https://parkerh.com/"
+  },
+  "day60_winback": {
+    "subject": "Charleston skies are still here",
+    "title": "Still ready when you are",
+    "body": "<p>{firstname},</p><p>Two months. Life has probably gotten in the way. Totally fine.</p><p>I am not going to keep emailing weekly. But I will check in every few months because that is the kind of thing that helps people actually pull the trigger when the timing is right.</p><p>Updates from CRAFT:</p><p style=\"color:rgba(255,255,255,0.85);\">- 96 percent first-time checkride pass rate (still)<br>- Accelerated bookings now 2 to 3 months out<br>- Discovery Flight still $325</p><p>Whenever you are ready, the number is the same. <a href=\"tel:+18438006498\" style=\"color:#E63027;\">843.800.6498</a>.</p>",
+    "ctaLabel": "Book Discovery Flight",
+    "ctaUrl": "https://parkerh.com/discovery-flight"
+  },
+  "day120_quarterly": {
+    "subject": "Quick CRAFT update from Charleston",
+    "title": "Just a friendly nudge",
+    "body": "<p>{firstname},</p><p>Quarterly check-in. No sales pitch. Just letting you know we are still here, still flying.</p><p>If anything has changed on your end and flight training is back on the table, reply or call <a href=\"tel:+18438006498\" style=\"color:#E63027;\">843.800.6498</a>.</p><p>If not, no worries. I will check back in three months.</p><p>Blue skies.</p>",
+    "ctaLabel": null,
+    "ctaUrl": null
+  },
   "internal_alert": {
     "subject": "{temp} LEAD: {firstname} {lastname} ({source})",
     "title": "{temp} lead",
@@ -252,20 +287,26 @@ module.exports = async (req, res) => {
       out.sent.push({ type: 'welcome', id: r1.id });
     } catch (e) { out.errors.push({ type: 'welcome', err: String(e) }); }
 
-    if (cfg.day3) {
-      try {
-        const e = buildEmail(cfg.day3, vars);
-        const r1 = await sendEmail({ to: email, subject: e.subject, html: e.html, text: e.text, scheduled_at: isoFromNow(3 * 86400) });
-        out.sent.push({ type: 'day3', id: r1.id });
-      } catch (e) { out.errors.push({ type: 'day3', err: String(e) }); }
-    }
-
+    // Skip extended sequence for Careers (Barry handles those manually)
     if (cfg.source !== 'Careers') {
-      try {
-        const e = buildEmail('day7_final', vars);
-        const r1 = await sendEmail({ to: email, subject: e.subject, html: e.html, text: e.text, scheduled_at: isoFromNow(7 * 86400) });
-        out.sent.push({ type: 'day7', id: r1.id });
-      } catch (e) { out.errors.push({ type: 'day7', err: String(e) }); }
+      var sequence = [
+        { day: 1, key: 'day1_universal' },
+        { day: 3, key: cfg.day3 },
+        { day: 7, key: 'day3_' + (cfg.source === 'Cost Calculator' ? 'cost_calc' : cfg.source === 'Accelerated' ? 'accelerated' : cfg.source === 'Flight School' ? 'flight_school' : cfg.source === 'Chatbot Gate' ? 'chatbot' : 'homepage') },
+        { day: 14, key: 'day14_lastcall' },
+        { day: 30, key: 'day30_cooldown' },
+        { day: 60, key: 'day60_winback' },
+        { day: 120, key: 'day120_quarterly' }
+      ];
+      for (var i = 0; i < sequence.length; i++) {
+        var step = sequence[i];
+        if (!step.key) continue;
+        try {
+          var es = buildEmail(step.key, vars);
+          var rs = await sendEmail({ to: email, subject: es.subject, html: es.html, text: es.text, scheduled_at: isoFromNow(step.day * 86400) });
+          out.sent.push({ type: 'day' + step.day, id: rs.id });
+        } catch (e) { out.errors.push({ type: 'day' + step.day, err: String(e) }); }
+      }
     }
 
     res.status(200).json({ ok: true, sent: out.sent, errors: out.errors });
