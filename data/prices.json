@@ -1,11 +1,11 @@
 {
-  "ppl_aircraft_hourly": 2550,
+  "ppl_aircraft_hourly": 260,
   "ppl_cfi_hourly": 65,
   "advanced_cfi_hourly": 75,
   "da42_wet_hourly": 600,
   "sim_hourly": 100,
   "discovery_flight": 325,
-  "accel_ifr": 9800,
+  "accel_ifr": 9900,
   "accel_cpl": 8600,
   "accel_multi": 9500,
   "accel_cfi": 12000,
