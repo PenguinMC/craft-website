@@ -376,15 +376,15 @@
     <h2 class="cc-form-h">Enter your <span class="accent">info</span><br>to access the calculator.</h2>
     <p class="cc-form-sub">Just your name, email, and phone number — that's it.</p>
     <div class="cc-form-card">
-      <form class="cc-form" id="cc-form" action="https://formspree.io/f/manjzakl" method="POST" novalidate>
+      <form class="cc-form" id="cc-form" data-hs-portal="50822208" data-hs-form="910de1fd-7ca7-4f62-88d4-e9cad413831f" method="POST" novalidate>
         <div class="cc-form-row">
           <div class="cc-form-field">
             <label class="cc-form-label">First Name <span class="req">*</span></label>
-            <input required type="text" name="firstName" placeholder="John" autocomplete="given-name" />
+            <input required type="text" name="firstname" placeholder="John" autocomplete="given-name" />
           </div>
           <div class="cc-form-field">
             <label class="cc-form-label">Last Name <span class="req">*</span></label>
-            <input required type="text" name="lastName" placeholder="Doe" autocomplete="family-name" />
+            <input required type="text" name="lastname" placeholder="Doe" autocomplete="family-name" />
           </div>
         </div>
         <div class="cc-form-row">
@@ -805,10 +805,22 @@ if (localStorage.getItem('craft_calc_unlocked') === '1') {
 }
 form?.addEventListener('submit', e => {
   e.preventDefault();
-  const data = new FormData(form);
+  const fd = new FormData(form);
+  const portal = form.dataset.hsPortal;
+  const formId = form.dataset.hsForm;
   const submitBtn = form.querySelector('button[type=submit]');
   if (submitBtn) submitBtn.textContent = 'Unlocking…';
-  fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+  const fields = [];
+  fd.forEach((v, k) => fields.push({ name: k, value: String(v) }));
+  const payload = {
+    fields: fields,
+    context: { pageUri: location.href, pageName: document.title }
+  };
+  fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + portal + '/' + formId, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
     .catch(() => {})
     .finally(() => {
       localStorage.setItem('craft_calc_unlocked', '1');
@@ -852,18 +864,4 @@ function recalcCcPay() {
   $cp('cc-pay-year-display').textContent = 'Year ' + year + (year === 12 ? '+' : '');
   $cp('cc-pay-detail').textContent = t.note(hr);
   $cp('cc-pay-min-day').textContent = t.minDay;
-  updateCcPayPct();
-}
-document.querySelectorAll('.cc-pay-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.cc-pay-tab').forEach(x => x.classList.toggle('active', x === tab));
-    ccCurrentTier = tab.dataset.tier;
-    recalcCcPay();
-  });
-});
-$cp('cc-pay-year')?.addEventListener('input', recalcCcPay);
-recalcCcPay();
-</script>
-<script src="/assets/price-sync.js" defer></script>
-</body>
-</html>
+  updateCcPay
