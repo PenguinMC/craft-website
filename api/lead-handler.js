@@ -1,370 +1,227 @@
-// /api/lead-handler.js — Vercel serverless function.
-// Triggered by the website forms via POST. For every new lead:
-//   1. Sends a branded welcome email to the lead (Resend)
-//   2. Sends an internal alert email to Parker (Resend)
-//   3. Schedules day-3 + day-7 + day-14 followup emails (Resend scheduled_at)
-//
-// Twilio SMS is deliberately not wired here — added later once the toll-free
-// number is purchased + verified.
-//
-// Required Vercel env vars: RESEND_API_KEY, OWNER_EMAIL (where alerts go).
+// /api/lead-handler.js
+// Vercel serverless function. Fires alongside HubSpot form submit.
+// Sends 4 brand-styled HTML emails via Resend per new lead.
 
 const RESEND_API = 'https://api.resend.com/emails';
-
-// Senders. Until the flycraftchs.com domain is verified in Resend we send
-// from Resend's own domain with reply-to set to Parker's email so replies still land.
-const FROM = 'Parker @ CRAFT <onboarding@resend.dev>';
+const FROM = 'Parker at CRAFT <onboarding@resend.dev>';
 const REPLY_TO = 'parker@flycraftchs.com';
 
-// ---------- Tiny email-template renderer (no Mustache, no jinja) ----------
-function render(tmpl, vars) {
-  return tmpl.replace(/\{(\w+)\}/g, (_, k) => vars[k] || '');
+// Render {var} placeholders. No em dashes anywhere in templates.
+function r(tmpl, vars) {
+  return String(tmpl).replace(/\{(\w+)\}/g, (_, k) => vars[k] || '');
 }
 
-// ---------- Email bodies ----------
-// Each entry: {subject, body}. {firstname}, {program}, etc. resolved at send time.
-const EMAILS = {
+// ---------- Brand-styled HTML wrapper ----------
+// Keeps inline styles only (best for Gmail/Outlook/Apple Mail).
+// Dark surface, beacon-red accents, large display headline, CTA button.
+function wrap({ title, body, ctaLabel, ctaUrl, footerNote }) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${title}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#0A0D12;color:#ffffff;font-family:'Helvetica Neue',Arial,sans-serif;line-height:1.55;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#0A0D12;padding:24px 0;">
+<tr><td align="center">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="background-color:#14181F;border:1px solid rgba(230,48,39,0.25);border-radius:10px;max-width:600px;width:100%;">
+<tr>
+<td style="background-color:#E63027;height:4px;border-radius:10px 10px 0 0;"></td>
+</tr>
+<tr>
+<td style="padding:32px 40px 20px;">
+<div style="font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:28px;letter-spacing:0.06em;color:#ffffff;">
+CRAFT<span style="color:#E63027;">.</span>
+</div>
+<div style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.22em;color:#E63027;text-transform:uppercase;margin-top:4px;">
+Flight Training and Simulation
+</div>
+</td>
+</tr>
+<tr>
+<td style="padding:0 40px 12px;">
+<h1 style="font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:30px;line-height:1.1;letter-spacing:-0.01em;color:#ffffff;margin:0 0 8px;text-transform:uppercase;">
+${title}
+</h1>
+</td>
+</tr>
+<tr>
+<td style="padding:0 40px 24px;color:#ffffff;font-size:15px;line-height:1.65;">
+${body}
+</td>
+</tr>
+${ctaLabel ? `<tr>
+<td style="padding:0 40px 28px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td style="background-color:#E63027;border-radius:6px;">
+<a href="${ctaUrl}" style="display:inline-block;padding:14px 28px;color:#ffffff;font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;">${ctaLabel} &rarr;</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>` : ''}
+<tr>
+<td style="padding:24px 40px 28px;border-top:1px solid rgba(255,255,255,0.08);">
+<div style="font-size:14px;color:#ffffff;line-height:1.6;">
+Parker Hughes<br>
+<span style="color:rgba(255,255,255,0.6);">Training Advisor and CFI</span><br>
+<a href="tel:+18438006498" style="color:#E63027;text-decoration:none;">843.800.6498</a> &middot;
+<a href="mailto:parker@flycraftchs.com" style="color:#E63027;text-decoration:none;">parker@flycraftchs.com</a>
+</div>
+${footerNote ? `<div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:14px;line-height:1.5;">${footerNote}</div>` : ''}
+</td>
+</tr>
+<tr>
+<td style="padding:18px 40px;background-color:#0A0D12;border-top:1px solid rgba(255,255,255,0.05);border-radius:0 0 10px 10px;font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.22em;color:rgba(255,255,255,0.35);text-transform:uppercase;">
+CRAFT &middot; KCHS &middot; 6060 S Aviation Ave, North Charleston SC
+</td>
+</tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>`;
+}
+
+// Plain-text version (auto-generated from HTML body). Strips HTML.
+function toText(html, signoff) {
+  return html
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>/gi, '\n\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&middot;/g, '·')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim() + '\n\n' + (signoff || 'Parker Hughes\nTraining Advisor and CFI\nCRAFT Flight Training and Simulation\n843.800.6498');
+}
+
+// ---------- Templates ----------
+// All templates use {firstname}, {program}, {phone}, {email}, etc.
+// Copy is direct. No em dashes. No "I am not a salesperson" defensiveness.
+const T = {
   homepage_welcome: {
-    subject: "Got your message — what's next at CRAFT",
-    body: `Hey {firstname},
-
-Got your message just now. I'm Parker — Training Advisor and CFI at CRAFT. A real human read it.
-
-Quick — what are you most interested in?
-
-  → Just curious about flying: book a Discovery Flight ($325). One hour at the controls of a DA40 NG with a CFI in the right seat. Best way to see if this is for you.
-
-  → Already know you want to learn: we can skip the Discovery and put you straight into Private Pilot training. We're KCHS-based, Class C airspace, 96% first-time checkride pass rate.
-
-  → Accelerated student (already PPL'd, want IFR/CPL/Multi fast): we run 4-10 day immersive programs. Hit reply with which rating you're after and I'll send you the schedule.
-
-Easiest next step: hit reply, or just call me at 843.800.6498. I pick up.
-
-Parker
-Training Advisor & CFI
-CRAFT Flight Training & Simulation
-KCHS · 843.800.6498`
+    subject: "Got your message at CRAFT",
+    title: "What is next for you?",
+    body: `<p>Hey {firstname},</p>
+<p>Got your message. I am Parker, Training Advisor at CRAFT.</p>
+<p>Three ways this usually goes:</p>
+<p><strong style="color:#E63027;">Curious about flying.</strong> Book a Discovery Flight. $325 for one hour at the controls of a DA40 NG with a CFI in the right seat. You will know if this is for you.</p>
+<p><strong style="color:#E63027;">Ready to get your PPL.</strong> We can skip the Discovery and put you straight into Private Pilot training. KCHS Class C, 96 percent first-time pass rate.</p>
+<p><strong style="color:#E63027;">Already a pilot, want a rating fast.</strong> Reply with which rating (IFR, CPL, Multi, CFI) and I will send you the schedule.</p>
+<p>Easiest next step: reply to this email or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>. I pick up.</p>`,
+    ctaLabel: "Book Discovery Flight",
+    ctaUrl: "https://parkerh.com/discovery-flight"
   },
   accelerated_welcome: {
-    subject: "Accelerated {program} at CRAFT — let's lock dates",
-    body: `{firstname},
-
-Got your inquiry for our accelerated {program} program.
-
-How this works:
-  → You arrive in Charleston with prerequisites in hand (logbook, current medical, written passed if applicable).
-  → We fly twice a day, every day. DA40 NG (or DA42 for Multi). Real Class C ATC at KCHS.
-  → Checkride scheduled before you arrive. 96% first-time pass rate.
-
-What I need from you to lock dates:
-  1. Your current ratings + total time
-  2. Target start date (we book 2-4 weeks out usually)
-  3. Whether you need housing assistance
-
-Reply with those three things and I'll send you a quote + the actual schedule. Or call — 843.800.6498. Fastest way.
-
-Parker
-Training Advisor & CFI
-CRAFT · KCHS · 843.800.6498`
+    subject: "Accelerated {program} at CRAFT",
+    title: "Let us lock dates",
+    body: `<p>{firstname},</p>
+<p>Got your inquiry for our accelerated {program} program. Quick rundown.</p>
+<p>You arrive in Charleston with prerequisites done. We fly twice a day. DA40 NG or DA42 for Multi. Real Class C ATC at KCHS. Checkride pre-scheduled. 96 percent first-time pass.</p>
+<p><strong style="color:#E63027;">Typical timelines:</strong></p>
+<p style="color:rgba(255,255,255,0.85);">IFR 7 days &middot; Commercial 6 days &middot; Multi 4 days<br>CFI 10 to 12 days &middot; CFI-I 3 days &middot; MEI 3 days</p>
+<p>To lock dates, reply with:</p>
+<p style="color:rgba(255,255,255,0.85);">1. Current ratings plus total time<br>2. Target start window<br>3. Whether you need housing help (we have a list)</p>
+<p>I will come back with a quote and the actual schedule. Or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a> for the fastest path.</p>`,
+    ctaLabel: "See Accelerated Programs",
+    ctaUrl: "https://parkerh.com/accelerated"
   },
   flight_school_welcome: {
-    subject: "Your PPL journey at CRAFT, step by step",
-    body: `Hey {firstname},
-
-Got your interest in our Private Pilot program. Here's exactly what this looks like:
-
-PHASE 1 — Discovery Flight ($325)
-Optional but recommended. One hour DA40 NG with a CFI. Counts toward your 40-hour minimum if you continue.
-
-PHASE 2 — Ground school + first solo (~25 flight hrs)
-Sporty's online ground school. Fly 2-3x per week. First solo around 15-25 hours.
-
-PHASE 3 — Cross-country + checkride prep (~25 flight hrs)
-Solo XCs, night ops, instrument intro.
-
-PHASE 4 — Checkride
-DPE scheduled before you finish phase 3.
-
-Cost: budget $14-18K all-in. National avg is $18-22K. We don't pad hours.
-
-Next step: book a Discovery Flight → flycraftchs.com/discovery-flight
-Or call: 843.800.6498
-
-Parker
-Training Advisor & CFI
-CRAFT · KCHS · 843.800.6498`
+    subject: "Your PPL journey at CRAFT",
+    title: "Step by step",
+    body: `<p>Hey {firstname},</p>
+<p>Here is exactly what the Private Pilot path looks like at CRAFT.</p>
+<p><strong style="color:#E63027;">Phase 1.</strong> Discovery Flight, $325. One hour DA40 NG. Counts toward your 40 hour minimum if you continue.</p>
+<p><strong style="color:#E63027;">Phase 2.</strong> Ground school plus first solo. Sporty's online ground school. Fly two or three times a week. First solo around 15 to 25 hours.</p>
+<p><strong style="color:#E63027;">Phase 3.</strong> Cross country plus checkride prep. Solo XCs, night ops, instrument intro. Final stage check with our chief.</p>
+<p><strong style="color:#E63027;">Phase 4.</strong> Checkride. DPE pre-scheduled. We do not run programs without one locked.</p>
+<p>Budget 14 to 18 thousand all in. National average is 18 to 22. We are lower because we do not pad hours. Our students average 58 hours to checkride. National average is 70.</p>
+<p>Next step: book a Discovery so you feel it for yourself. Or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
+    ctaLabel: "Book Discovery Flight",
+    ctaUrl: "https://parkerh.com/discovery-flight"
   },
   cost_calc_welcome: {
-    subject: "Your CRAFT cost estimate — what's next",
-    body: `{firstname},
-
-Saw you ran the cost calculator. That's the closest estimate you'll get before training starts — based on real student data at our school.
-
-A couple things the calculator doesn't show:
-  → Self-paced estimate. Accelerated programs are priced separately (flat-fee).
-  → Assumes FAA minimums. National avg is 70 hrs for PPL, our students avg ~58 hrs.
-  → Discovery Flight counts toward your minimum if you start training afterward.
-
-Two next steps:
-  1. Still researching → book a Discovery Flight ($325, 1 hr DA40 NG).
-  2. Ready to start → reply with your target start date.
-
-Either way, hit reply or call 843.800.6498.
-
-Parker
-Training Advisor & CFI
-CRAFT · KCHS · 843.800.6498`
+    subject: "Your CRAFT cost estimate",
+    title: "What is next",
+    body: `<p>{firstname},</p>
+<p>Saw you ran the cost calculator. Those numbers come from real student data at our school, not industry averages.</p>
+<p>A couple things the calculator does not show.</p>
+<p>The estimate is for self-paced training. Accelerated programs are priced as flat fees and include everything.</p>
+<p>It assumes you will meet FAA minimums. National average is 70 hours for PPL. Our students average 58. We do not pad hours.</p>
+<p>Discovery Flight counts toward your minimum if you start training after.</p>
+<p>Two next steps depending on where you are.</p>
+<p><strong style="color:#E63027;">Still researching:</strong> book a Discovery Flight, $325, one hour DA40 NG. Best $325 you spend before committing anywhere.</p>
+<p><strong style="color:#E63027;">Ready to start:</strong> reply with your target start date and I will get you on the schedule.</p>
+<p>Either way, reply here or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
+    ctaLabel: "Book Discovery Flight",
+    ctaUrl: "https://parkerh.com/discovery-flight"
   },
   chatbot_welcome: {
-    subject: "Thanks for chatting — here's how to actually get started",
-    body: `Hey {firstname},
-
-The bot can answer the easy questions. For everything else — pricing specifics, schedule availability, financing, ratings transfer — that's a 5-minute call.
-
-Easiest next step: call me at 843.800.6498. I pick up.
-
-If you'd rather email, hit reply with:
-  → What you're trying to get (PPL? IFR add-on? Just curious?)
-  → Any timeline you're working with
-  → What questions the bot couldn't answer
-
-Parker
-Training Advisor & CFI
-CRAFT · KCHS · 843.800.6498`
+    subject: "Thanks for chatting with CRAFT",
+    title: "Let us actually talk",
+    body: `<p>Hey {firstname},</p>
+<p>The bot can answer the easy questions. For everything else, the specifics about your situation, schedule, financing, transferring ratings, that is a five minute phone call.</p>
+<p>Easiest next step: call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>. I pick up.</p>
+<p>If you would rather type, reply to this email with:</p>
+<p style="color:rgba(255,255,255,0.85);">What you are trying to get (PPL? IFR add on? Just curious?)<br>Any timeline you are working with<br>What questions the bot could not answer</p>
+<p>I will get back same day during business hours.</p>`,
+    ctaLabel: "Book Discovery Flight",
+    ctaUrl: "https://parkerh.com/discovery-flight"
   },
   careers_welcome: {
-    subject: "Application received — Barry will be in touch",
-    body: `{firstname},
-
-Got your application. Quick on next steps:
-
-Barry Emerson (Director of Flight Operations) reviews every application personally. He'll reach out within a week. If we move forward:
-  1. Phone screen (~30 min)
-  2. In-person interview at KCHS + facility tour
-  3. Sim eval in the Redbird AATD
-  4. References + offer
-
-Anything to add (recent ratings, hours, references), just reply.
-
-Parker
-Training Advisor & CFI
-CRAFT · KCHS · 843.800.6498`
+    subject: "Application received at CRAFT",
+    title: "Barry will be in touch",
+    body: `<p>{firstname},</p>
+<p>Got your application. Quick on next steps.</p>
+<p>Barry Emerson, our Director of Flight Operations, reviews every application personally. He will reach out within a week for an initial chat.</p>
+<p>If we move forward, the process is:</p>
+<p style="color:rgba(255,255,255,0.85);">1. Phone screen with Barry, around 30 minutes<br>2. In-person interview at KCHS plus facility tour<br>3. Sim eval in the Redbird AATD<br>4. Reference checks plus offer</p>
+<p>In the meantime if you want to add anything to your application (recent ratings, hours updates, references), just reply.</p>`,
+    ctaLabel: null,
+    ctaUrl: null
   },
   // Day-3 nudges
   day3_homepage: {
-    subject: "Quick check — still thinking about flight training?",
-    body: `{firstname},
-
-Three days since you reached out. Haven't heard back, which is totally normal — life happens.
-
-If you're still curious, easiest next step is a Discovery Flight: 1 hr DA40 NG, $325, no commitment.
-
-Book: flycraftchs.com/discovery-flight
-Or text 843.800.6498 with questions. No sales pressure — I'm a flight instructor first.
-
-Parker`
+    subject: "Still thinking about flying?",
+    title: "Quick check in",
+    body: `<p>{firstname},</p>
+<p>Three days since you reached out. No reply yet, which is normal. Life happens.</p>
+<p>If you are still curious, easiest next step is a Discovery Flight. One hour, $325, no commitment. Fastest way to know if flight training is something you actually want.</p>
+<p>Or text <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a> with questions.</p>`,
+    ctaLabel: "Book Discovery Flight",
+    ctaUrl: "https://parkerh.com/discovery-flight"
   },
   day3_accelerated: {
-    subject: "Locking dates for your accelerated {program}?",
-    body: `{firstname},
-
-Following up on your accelerated inquiry. We book slots 2-4 weeks out — if you want to start within the next month, now's the time.
-
-Couple things:
-  → Prerequisites must be met before arrival
-  → DPE pre-scheduled
-  → 96% first-time pass rate
-
-Reply or call: 843.800.6498.
-
-Parker`
+    subject: "Locking accelerated dates?",
+    title: "Still want to fly soon?",
+    body: `<p>{firstname},</p>
+<p>Following up on your accelerated inquiry. We book slots two to four weeks out. If you want to start within the next month, now is the time to lock dates.</p>
+<p>If you are not ready yet, just reply with your target window and I will keep an eye on availability.</p>
+<p>Reply here or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
+    ctaLabel: "See Accelerated Programs",
+    ctaUrl: "https://parkerh.com/accelerated"
   },
   day3_flight_school: {
     subject: "Have you flown yet?",
-    body: `{firstname},
-
-If you haven't done a Discovery Flight yet, do that before anything else. $325 to know for sure whether flight training is right for you — before you commit to a full program.
-
-flycraftchs.com/discovery-flight
-Or 843.800.6498.
-
-Parker`
+    title: "Discovery Flight first",
+    body: `<p>{firstname},</p>
+<p>Quick check in. If you have not done a Discovery Flight yet, do that before anything else.</p>
+<p>$325 to know for sure whether flight training is right for you, before you commit to a full program. Some people get up there and love it. Others realize it is not for them. Either answer saves you a lot of money.</p>
+<p>One hour, DA40 NG, you do most of the flying. Counts toward your PPL hours if you continue.</p>`,
+    ctaLabel: "Book Discovery Flight",
+    ctaUrl: "https://parkerh.com/discovery-flight"
   },
   day3_cost_calc: {
-    subject: "Comparing CRAFT to other flight schools?",
-    body: `{firstname},
-
-If you're comparing schools, here's what to look at:
-
-1. Hourly rates: ours = $325/hr DA40 NG wet, $65/hr instructor
-2. Avg hours to checkride: schools that look cheaper often pad to 70+. We're at ~58.
-3. Pass rate: 96% (national avg 78%)
-4. Aircraft: DA40 NGs w/ G1000 NXi. Most schools fly C172s.
-5. Class C airspace: KCHS is real airline traffic.
-
-Worth a call before you commit anywhere: 843.800.6498.
-
-Parker`
-  },
-  day3_chatbot: {
-    subject: "Still researching? Here's what to do next.",
-    body: `{firstname},
-
-Most people who chat with our bot are in research mode. Here's my honest advice: stop researching online and go fly.
-
-$325, 1 hour, real airplane → you'll know for sure: flycraftchs.com/discovery-flight
-Or 843.800.6498.
-
-Parker`
-  },
-  day7_final: {
-    subject: "Last check-in — wishing you blue skies",
-    body: `{firstname},
-
-This is my last automated email. I won't keep nudging.
-
-If flight training isn't right now — totally fine. When you're ready, we'll be here.
-
-843.800.6498. Or reply to this anytime.
-
-Blue skies and tailwinds,
-
-Parker
-Training Advisor & CFI
-CRAFT · KCHS · 843.800.6498`
-  },
-  internal_alert: {
-    subject: "🚨 {temp} LEAD: {firstname} {lastname} — {source}",
-    body: `{temp} lead just hit. Source: {source}.
-
-NAME    {firstname} {lastname}
-EMAIL   {email}
-PHONE   {phone}
-INTEREST {program}
-
-→ Open in HubSpot: https://app.hubspot.com/contacts/50822208/objects/0-1
-→ Click to call: tel:{phone}
-
-Call within 5 minutes if HOT, within 1 hour if WARM, within 24 hr if COLD.`
-  }
-};
-
-// Map form ID → which welcome / day-3 template to use, and lead temperature/source
-const FORM_MAP = {
-  '870b2177-3a5b-4bbb-961e-43923f1d3b84': { welcome: 'homepage_welcome', day3: 'day3_homepage', source: 'Homepage Contact', temp: 'WARM' },
-  'abc1c335-31db-4e46-8b57-b364118570c7': { welcome: 'accelerated_welcome', day3: 'day3_accelerated', source: 'Accelerated', temp: 'HOT' },
-  '4b1ded9e-709f-4292-885a-52a243ddada2': { welcome: 'careers_welcome', day3: null, source: 'Careers', temp: 'WARM' },
-  '01e019b1-e27a-4df1-a310-56cc88f2a7d2': { welcome: 'flight_school_welcome', day3: 'day3_flight_school', source: 'Flight School', temp: 'WARM' },
-  '910de1fd-7ca7-4f62-88d4-e9cad413831f': { welcome: 'cost_calc_welcome', day3: 'day3_cost_calc', source: 'Cost Calculator', temp: 'HOT' },
-  'a22614d5-4579-4ad1-95d1-d497805dae61': { welcome: 'chatbot_welcome', day3: 'day3_chatbot', source: 'Chatbot Gate', temp: 'COLD' }
-};
-
-async function sendEmail({ to, subject, body, scheduled_at, replyTo }) {
-  const payload = {
-    from: FROM,
-    to: Array.isArray(to) ? to : [to],
-    subject,
-    text: body,
-    reply_to: replyTo || REPLY_TO
-  };
-  if (scheduled_at) payload.scheduled_at = scheduled_at;
-
-  const r = await fetch(RESEND_API, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  });
-  const data = await r.json();
-  if (!r.ok) throw new Error(`Resend ${r.status}: ${JSON.stringify(data)}`);
-  return data;
-}
-
-function isoFromNow(seconds) {
-  return new Date(Date.now() + seconds * 1000).toISOString();
-}
-
-module.exports = async (req, res) => {
-  // CORS — allow form POST from any flycraftchs/parkerh subdomain
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') { res.status(204).end(); return; }
-  if (req.method !== 'POST') { res.status(405).json({ error: 'POST only' }); return; }
-
-  try {
-    const { formId, firstname = '', lastname = '', email = '', phone = '', program_interest = '', message = '' } = req.body || {};
-
-    if (!email || !firstname) {
-      res.status(400).json({ error: 'firstname + email required' });
-      return;
-    }
-    const formCfg = FORM_MAP[formId] || FORM_MAP['870b2177-3a5b-4bbb-961e-43923f1d3b84'];
-    const vars = {
-      firstname, lastname, email, phone,
-      program: program_interest || 'flight training',
-      source: formCfg.source,
-      temp: formCfg.temp
-    };
-
-    const results = { sent: [], errors: [] };
-    const ownerEmail = process.env.OWNER_EMAIL || 'parkerhughes@flycraftchs.com';
-
-    // 1) Internal alert to Parker — instant
-    try {
-      const internal = EMAILS.internal_alert;
-      const r = await sendEmail({
-        to: ownerEmail,
-        subject: render(internal.subject, vars),
-        body: render(internal.body, vars),
-        replyTo: email   // so Parker can hit reply and go straight to the lead
-      });
-      results.sent.push({ type: 'internal_alert', id: r.id });
-    } catch (e) { results.errors.push({ type: 'internal_alert', err: String(e) }); }
-
-    // 2) Welcome email to lead — instant
-    try {
-      const w = EMAILS[formCfg.welcome];
-      const r = await sendEmail({
-        to: email,
-        subject: render(w.subject, vars),
-        body: render(w.body, vars)
-      });
-      results.sent.push({ type: 'welcome', id: r.id });
-    } catch (e) { results.errors.push({ type: 'welcome', err: String(e) }); }
-
-    // 3) Day-3 followup — scheduled
-    if (formCfg.day3) {
-      try {
-        const d3 = EMAILS[formCfg.day3];
-        const r = await sendEmail({
-          to: email,
-          subject: render(d3.subject, vars),
-          body: render(d3.body, vars),
-          scheduled_at: isoFromNow(3 * 24 * 60 * 60)  // +3 days
-        });
-        results.sent.push({ type: 'day3', id: r.id });
-      } catch (e) { results.errors.push({ type: 'day3', err: String(e) }); }
-    }
-
-    // 4) Day-7 final touch — scheduled (skip for careers — Barry handles it)
-    if (formCfg.source !== 'Careers') {
-      try {
-        const d7 = EMAILS.day7_final;
-        const r = await sendEmail({
-          to: email,
-          subject: render(d7.subject, vars),
-          body: render(d7.body, vars),
-          scheduled_at: isoFromNow(7 * 24 * 60 * 60)
-        });
-        results.sent.push({ type: 'day7', id: r.id });
-      } catch (e) { results.errors.push({ type: 'day7', err: String(e) }); }
-    }
-
-    res.status(200).json({ ok: true, ...results });
-  } catch (e) {
-    res.status(500).json({ error: String(e) });
-  }
-};
+    subject: "Comparing CRAFT to other schools?",
+    title: "What to actually look at",
+    body: `<p>{firstname},</p>
+<p>If you are comparing flight schools, here is what matters more than sticker price.</p>
+<p><strong style="color:#E63027;">Hourly rates.</strong> Easy to compare. Ours: $325 per hour DA40 NG wet, $65 per hour instructor.</p>
+<p><strong style="color:#E63027;">Average hours to checkride.</strong> Schools that look cheaper often pad to 70 plus hours. We average 58.</p>
+<p><strong style="color:#E63027;">Pass rate.</strong> Ours is 96 percent first time. National is 78. Failing your checkride costs another $500 plus in re-test fees.</p>
+<p><strong style="color:#E63027;">Aircraft.</strong> DA40 NGs with G1000 NXi avionics. Most schools fly C172s from the 80s.</p>
+<p><strong style="color:#E63027;">Class C airspace.</strong> KCHS is real airline traffic. Schools at uncontrolled fields do not prep you for the real world.</p>
+<p>Worth a ca
