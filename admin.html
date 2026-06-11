@@ -4,34 +4,29 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>CRAFT Admin · Pricing</title>
+<title>CRAFT Admin Pricing</title>
 <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
 <style>
 :root{--ink:#0A0D12;--approach:#14191F;--runway:#1A2028;--beacon:#E63027;--beacon-dark:#B61F18;--white:#fff}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--ink);color:var(--white);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:60px 20px;background-image:linear-gradient(rgba(230,48,39,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(230,48,39,.05) 1px,transparent 1px);background-size:64px 64px}
-.card{background:var(--approach);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:36px 32px;width:100%;max-width:640px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);position:relative}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--ink);color:var(--white);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:60px 20px}
+.card{background:var(--approach);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:36px 32px;width:100%;max-width:640px;position:relative}
 .card::before{content:"";display:block;position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--beacon),transparent);border-radius:12px 12px 0 0}
 h1{font-size:24px;font-weight:800;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:6px;color:var(--white)}
 h1 .accent{color:var(--beacon)}
 .subtitle{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:28px}
 .row{display:grid;grid-template-columns:1fr 140px;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05)}
-.row:last-child{border-bottom:none}
 .row label{font-size:14px;color:rgba(255,255,255,.85);font-weight:500}
 .row label small{display:block;font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;font-weight:400}
 .input-wrap{position:relative}
 .input-wrap::before{content:"$";position:absolute;left:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.45);font-size:14px;pointer-events:none}
-input[type=number],input[type=password]{width:100%;background:var(--runway);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:10px 12px 10px 26px;color:var(--white);font-size:14px;font-family:inherit;outline:none;transition:border-color .15s ease,background .15s ease}
-input[type=password]{padding:14px 16px;font-size:15px;letter-spacing:.06em}
-input[type=number]:focus,input[type=password]:focus{border-color:var(--beacon);background:rgba(230,48,39,.06)}
-input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-input[type=number]{-moz-appearance:textfield}
+input[type=number],input[type=password]{width:100%;background:var(--runway);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:10px 12px 10px 26px;color:var(--white);font-size:14px;font-family:inherit;outline:none}
+input[type=password]{padding:14px 16px;font-size:15px}
+input[type=number]:focus,input[type=password]:focus{border-color:var(--beacon)}
 .section-head{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--beacon);margin:24px 0 6px;padding-bottom:8px;border-bottom:1px solid rgba(230,48,39,.2);font-weight:600}
-.section-head:first-of-type{margin-top:0}
-.btn{display:inline-block;width:100%;background:var(--beacon);color:var(--white);border:none;padding:14px 20px;border-radius:6px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;margin-top:24px;transition:background .15s ease,transform .1s ease}
+.btn{display:inline-block;width:100%;background:var(--beacon);color:var(--white);border:none;padding:14px 20px;border-radius:6px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;margin-top:24px}
 .btn:hover{background:var(--beacon-dark)}
-.btn:active{transform:scale(.98)}
-.btn:disabled{background:rgba(255,255,255,.1);color:rgba(255,255,255,.4);cursor:not-allowed;transform:none}
+.btn:disabled{background:rgba(255,255,255,.1);color:rgba(255,255,255,.4);cursor:not-allowed}
 .status{margin-top:16px;padding:12px 14px;border-radius:6px;font-size:13px;display:none}
 .status.ok{display:block;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);color:#b8efc7}
 .status.err{display:block;background:rgba(230,48,39,.1);border:1px solid rgba(230,48,39,.3);color:#ffb3ad}
@@ -41,8 +36,7 @@ input[type=number]{-moz-appearance:textfield}
 .password-row label{display:block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:10px;font-weight:600}
 .prices-screen{display:none}
 .session-row{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.05);font-size:12px;color:rgba(255,255,255,.5)}
-.session-row a{color:var(--beacon);cursor:pointer;text-decoration:none}
-.session-row a:hover{text-decoration:underline}
+.session-row a{color:var(--beacon);cursor:pointer}
 </style>
 </head>
 <body>
@@ -52,7 +46,7 @@ input[type=number]{-moz-appearance:textfield}
 <h1>CRAFT <span class="accent">Admin</span></h1>
 <p class="subtitle">Enter the admin password to view and edit prices.</p>
 <form id="unlock-form" autocomplete="off">
-<div class="password-row"><label for="pw-lock">Admin password</label><input type="password" id="pw-lock" name="pw" required autocomplete="current-password" autofocus></div>
+<div class="password-row"><label for="pw-lock">Admin password</label><input type="password" id="pw-lock" required autofocus></div>
 <button type="submit" class="btn" id="unlock-btn">Unlock</button>
 <div class="status" id="lock-status"></div>
 </form>
@@ -65,14 +59,14 @@ input[type=number]{-moz-appearance:textfield}
 <div class="row"><label>DA40 NG (wet)<small>per hour</small></label><div class="input-wrap"><input type="number" name="ppl_aircraft_hourly" min="0" max="9999" required></div></div>
 <div class="row"><label>DA42-VI NG (wet)<small>per hour</small></label><div class="input-wrap"><input type="number" name="da42_wet_hourly" min="0" max="9999" required></div></div>
 <div class="row"><label>CFI &middot; Private Pilot<small>per hour</small></label><div class="input-wrap"><input type="number" name="ppl_cfi_hourly" min="0" max="999" required></div></div>
-<div class="row"><label>CFI &middot; Advanced (IFR/CPL/Multi/CFI)<small>per hour</small></label><div class="input-wrap"><input type="number" name="advanced_cfi_hourly" min="0" max="999" required></div></div>
+<div class="row"><label>CFI &middot; Advanced<small>IFR/CPL/Multi/CFI</small></label><div class="input-wrap"><input type="number" name="advanced_cfi_hourly" min="0" max="999" required></div></div>
 <div class="row"><label>Redbird AATD Sim<small>per hour</small></label><div class="input-wrap"><input type="number" name="sim_hourly" min="0" max="999" required></div></div>
 <div class="section-head">Programs &amp; Packages</div>
 <div class="row"><label>Discovery Flight<small>flat fee</small></label><div class="input-wrap"><input type="number" name="discovery_flight" min="0" max="9999" required></div></div>
-<div class="row"><label>Accelerated IFR<small>7 days, all-inclusive</small></label><div class="input-wrap"><input type="number" name="accel_ifr" min="0" max="99999" required></div></div>
+<div class="row"><label>Accelerated IFR<small>7 days</small></label><div class="input-wrap"><input type="number" name="accel_ifr" min="0" max="99999" required></div></div>
 <div class="row"><label>Accelerated CPL<small>5 days + checkride</small></label><div class="input-wrap"><input type="number" name="accel_cpl" min="0" max="99999" required></div></div>
-<div class="row"><label>Accelerated Multi-Engine<small>4 days, DA42-VI NG</small></label><div class="input-wrap"><input type="number" name="accel_multi" min="0" max="99999" required></div></div>
-<div class="row"><label>Accelerated CFI<small>10&ndash;12 days</small></label><div class="input-wrap"><input type="number" name="accel_cfi" min="0" max="99999" required></div></div>
+<div class="row"><label>Accelerated Multi-Engine<small>4 days</small></label><div class="input-wrap"><input type="number" name="accel_multi" min="0" max="99999" required></div></div>
+<div class="row"><label>Accelerated CFI<small>10-12 days</small></label><div class="input-wrap"><input type="number" name="accel_cfi" min="0" max="99999" required></div></div>
 <div class="row"><label>Accelerated CFI-I<small>3 days + checkride</small></label><div class="input-wrap"><input type="number" name="accel_cfii" min="0" max="99999" required></div></div>
 <div class="row"><label>Accelerated MEI<small>3 days + checkride</small></label><div class="input-wrap"><input type="number" name="accel_mei" min="0" max="99999" required></div></div>
 <button type="submit" class="btn" id="save-btn">Save &amp; deploy</button>
@@ -99,12 +93,9 @@ function showStatus(el,kind,msg){el.className='status '+kind;el.textContent=msg;
 function unlock(){
   lockScreen.style.display='none';
   pricesScreen.style.display='block';
-  fetch('/data/prices.json?t='+Date.now(),{cache:'no-cache'})
-    .then(function(r){return r.json();})
-    .then(function(p){KEYS.forEach(function(k){var i=pricesForm.querySelector('input[name="'+k+'"]');if(i&&p[k]!==undefined)i.value=p[k];});})
-    .catch(function(){showStatus(status,'err','Could not load current prices.');});
+  fetch('/data/prices.json?t='+Date.now(),{cache:'no-cache'}).then(function(r){return r.json();}).then(function(p){KEYS.forEach(function(k){var i=pricesForm.querySelector('input[name="'+k+'"]');if(i&&p[k]!==undefined)i.value=p[k];});}).catch(function(){showStatus(status,'err','Could not load current prices.');});
 }
-function lock(){
+function lockReset(){
   sessionPassword=null;
   pricesScreen.style.display='none';
   lockScreen.style.display='block';
@@ -118,14 +109,33 @@ unlockForm.addEventListener('submit',function(e){
   e.preventDefault();
   var pw=pwLock.value;
   unlockBtn.disabled=true;
-  unlockBtn.textContent='Verifying…';
+  unlockBtn.textContent='Verifying...';
   lockStatus.className='status';
   lockStatus.textContent='';
-  fetch('/api/admin-save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw,verify:true})})
-    .then(function(r){return r.json().then(function(j){return {status:r.status,body:j};});})
-    .then(function(resp){
-      var passwordOK=(resp.status===200)||(resp.status===400&&resp.body&&/prices/i.test(resp.body.error||''));
-      if(passwordOK){sessionPassword=pw;unlock();}
-      else{showStatus(lockStatus,'err',(resp.body&&resp.body.error)||('HTTP '+resp.status));}
-    })
-    .catch(function(e){showStatus(lockStatus,'err','Network error: '
+  fetch('/api/admin-save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw,verify:true})}).then(function(r){return r.json().then(function(j){return {status:r.status,body:j};});}).then(function(resp){
+    var ok=(resp.status===200)||(resp.status===400&&resp.body&&/prices/i.test(resp.body.error||''));
+    if(ok){sessionPassword=pw;unlock();}
+    else{showStatus(lockStatus,'err',(resp.body&&resp.body.error)||('HTTP '+resp.status));}
+  }).catch(function(e){showStatus(lockStatus,'err','Network error: '+e.message);}).finally(function(){unlockBtn.disabled=false;unlockBtn.textContent='Unlock';});
+});
+pricesForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!sessionPassword){lockReset();return;}
+  saveBtn.disabled=true;
+  saveBtn.textContent='Saving...';
+  status.className='status';
+  status.textContent='';
+  var fd=new FormData(pricesForm);
+  var prices={};
+  KEYS.forEach(function(k){prices[k]=Number(fd.get(k));});
+  fetch('/api/admin-save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:sessionPassword,prices:prices})}).then(function(r){return r.json().then(function(j){return {status:r.status,body:j};});}).then(function(resp){
+    if(resp.status===200){showStatus(status,'ok','Saved. Live in ~60 seconds.');}
+    else if(resp.status===401){showStatus(status,'err','Session expired.');setTimeout(lockReset,1500);}
+    else{showStatus(status,'err',(resp.body&&resp.body.error)||('HTTP '+resp.status));}
+  }).catch(function(e){showStatus(status,'err','Network error: '+e.message);}).finally(function(){saveBtn.disabled=false;saveBtn.textContent='Save & deploy';});
+});
+logout.addEventListener('click',lockReset);
+})();
+</script>
+</body>
+</html>
