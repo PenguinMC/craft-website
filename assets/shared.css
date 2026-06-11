@@ -396,4 +396,125 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   margin-top: 8px;
   padding: 0 28px !important;
   background: linear-gradient(135deg, var(--beacon) 0%, var(--beacon-dark) 100%) !important;
-  border: 1px solid var(--beacon) !important
+  border: 1px solid var(--beacon) !important;
+  border-radius: 6px !important;
+  color: #fff !important;
+  f
+/* =========================================================================
+   HubSpot embedded form overrides (matches CRAFT tactical dark theme)
+   ========================================================================= */
+.hbspt-form, .hs-form-private, form.hs-form {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  color: rgba(255,255,255,0.85) !important;
+}
+.hbspt-form .hs-form-field, .hs-form-private .hs-form-field {
+  margin-bottom: 16px !important;
+}
+.hbspt-form label, .hs-form-private label {
+  display: block !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: rgba(255,255,255,0.55) !important;
+  margin-bottom: 6px !important;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace !important;
+}
+.hbspt-form .hs-form-required, .hs-form-private .hs-form-required {
+  color: var(--beacon) !important;
+  margin-left: 4px !important;
+}
+.hbspt-form input[type=text],
+.hbspt-form input[type=email],
+.hbspt-form input[type=tel],
+.hbspt-form input[type=number],
+.hbspt-form textarea,
+.hbspt-form select,
+.hs-form-private input[type=text],
+.hs-form-private input[type=email],
+.hs-form-private input[type=tel],
+.hs-form-private input[type=number],
+.hs-form-private textarea,
+.hs-form-private select {
+  width: 100% !important;
+  background: var(--approach, #14191F) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-radius: 6px !important;
+  padding: 12px 14px !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-family: inherit !important;
+  outline: none !important;
+  transition: border-color 0.15s ease, background 0.15s ease !important;
+  box-shadow: none !important;
+}
+.hbspt-form input:focus,
+.hbspt-form textarea:focus,
+.hbspt-form select:focus,
+.hs-form-private input:focus,
+.hs-form-private textarea:focus,
+.hs-form-private select:focus {
+  border-color: var(--beacon, #E63027) !important;
+  background: rgba(230,48,39,0.04) !important;
+}
+.hbspt-form textarea, .hs-form-private textarea {
+  min-height: 110px !important;
+  resize: vertical !important;
+}
+.hbspt-form ::placeholder, .hs-form-private ::placeholder {
+  color: rgba(255,255,255,0.3) !important;
+}
+.hbspt-form .hs-submit, .hs-form-private .hs-submit {
+  margin-top: 8px !important;
+}
+.hbspt-form .hs-button,
+.hbspt-form input[type=submit],
+.hs-form-private .hs-button,
+.hs-form-private input[type=submit] {
+  display: inline-block !important;
+  width: 100% !important;
+  background: var(--beacon, #E63027) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 14px 20px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, transform 0.1s ease !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+.hbspt-form .hs-button:hover,
+.hbspt-form input[type=submit]:hover,
+.hs-form-private .hs-button:hover,
+.hs-form-private input[type=submit]:hover {
+  background: var(--beacon-dark, #B61F18) !important;
+}
+.hbspt-form .hs-button:active,
+.hs-form-private .hs-button:active {
+  transform: scale(0.98) !important;
+}
+.hbspt-form .hs-error-msgs, .hs-form-private .hs-error-msgs {
+  list-style: none !important;
+  margin: 6px 0 0 !important;
+  padding: 0 !important;
+}
+.hbspt-form .hs-error-msg, .hs-form-private .hs-error-msg {
+  font-size: 12px !important;
+  color: var(--beacon, #E63027) !important;
+  margin: 0 !important;
+}
+.hbspt-form .submitted-message, .hs-form-private .submitted-message {
+  background: rgba(46,204,113,0.08) !important;
+  border: 1px solid rgba(46,204,113,0.3) !important;
+  border-radius: 6px !important;
+  padding: 16px 18px !important;
+  color: #b8efc7 !important;
+  font-size: 14px !important;
+}
+/* Hide HubSpot's branding chip if it shows */
+.hbspt-form .hs-form-iframe { background: transparent !important; }

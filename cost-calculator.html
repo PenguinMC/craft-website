@@ -38,7 +38,7 @@
 </style>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-900.woff2" crossorigin>
-<link rel="stylesheet" href="/assets/shared.css?v=19">
+<link rel="stylesheet" href="/assets/shared.css?v=20">
 <style>
 /* ============================
    COST CALCULATOR PAGE
@@ -376,7 +376,7 @@
     <h2 class="cc-form-h">Enter your <span class="accent">info</span><br>to access the calculator.</h2>
     <p class="cc-form-sub">Just your name, email, and phone number — that's it.</p>
     <div class="cc-form-card">
-      <form class="cc-form" id="cc-form" data-hs-portal="50822208" data-hs-form="910de1fd-7ca7-4f62-88d4-e9cad413831f" method="POST" novalidate>
+      <form class="cc-form" id="cc-form" data-hs-portal="50822208" data-hs-form="910de1fd-7ca7-4f62-88d4-e9cad413831f" action="javascript:void(0)" method="POST" novalidate>
         <div class="cc-form-row">
           <div class="cc-form-field">
             <label class="cc-form-label">First Name <span class="req">*</span></label>
@@ -863,5 +863,4 @@ function recalcCcPay() {
   $cp('cc-pay-year-name').textContent = 'YEAR ' + year + (year === 12 ? '+' : '');
   $cp('cc-pay-year-display').textContent = 'Year ' + year + (year === 12 ? '+' : '');
   $cp('cc-pay-detail').textContent = t.note(hr);
-  $cp('cc-pay-min-day').textContent = t.minDay;
-  updateCcPay
+  $cp('cc-pay-min-day').textConte
