@@ -2,8 +2,8 @@
 // Sends 4 brand-styled HTML emails via Resend per new lead.
 
 const RESEND_API = 'https://api.resend.com/emails';
-const FROM = 'Parker at CRAFT <parker@flycraftchs.com>';
-const REPLY_TO = 'parker@flycraftchs.com';
+const FROM = 'CRAFT Flight Training <craft@flycraftchs.com>';
+const REPLY_TO = 'craft@flycraftchs.com';
 
 function r(tmpl, vars) {
   return String(tmpl).replace(/\{(\w+)\}/g, function(_, k) { return vars[k] || ''; });
