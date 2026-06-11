@@ -6,7 +6,9 @@ const FROM = 'CRAFT Flight Training & Simulation <craft@flycraftchs.com>';
 const REPLY_TO = 'craft@flycraftchs.com';
 
 function r(tmpl, vars) {
-  return String(tmpl).replace(/\{(\w+)\}/g, function(_, k) { return vars[k] || ''; });
+  return String(tmpl).replace(/\{(\w+)\}/g, function(_, k) {
+    return vars[k] !== undefined ? vars[k] : (vars[k.toLowerCase()] !== undefined ? vars[k.toLowerCase()] : '');
+  });
 }
 
 function wrap(o) {
