@@ -37,7 +37,7 @@
 </style>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-900.woff2" crossorigin>
-<link rel="stylesheet" href="/assets/shared.css?v=30">
+<link rel="stylesheet" href="/assets/shared.css?v=31">
 <style>
 
 /* === COHESION PASS — match all sections to the .ptrack tactical aesthetic === */
@@ -1394,45 +1394,45 @@ document.querySelectorAll('.nav-item .nav-link').forEach(b => {
     <div class="ptrack-head">
       <span class="eyebrow">THE PATH · ZERO HOURS &rarr; AIRLINE</span>
       <h2 class="h-display">From <span class="accent">never flown</span><br>to airline cockpit.</h2>
-      <p class="ptrack-sub">Most people who walk in have never touched a plane. That&rsquo;s normal &mdash; everyone starts at zero. Hover (or tap on mobile) any stop below to see what that rating actually <em>is</em>, what it lets you do, and how long it takes.</p>
+      <p class="ptrack-sub">Most people who walk in have never touched a plane. That&rsquo;s normal &mdash; everyone starts at zero. Hover, tap, or tab through any stop below to see what that rating actually <em>is</em>, what it lets you do, and how long it takes.</p>
     </div>
 
     <!-- Timeline track -->
     <div class="ptrack-rail">
       <div class="ptrack-line-bg"></div>
       <div class="ptrack-line-fill" id="ptrack-fill"></div>
-      <div class="ptrack-stops">
-        <button class="ptrack-stop active" data-step="0" data-pct="0">
+      <div class="ptrack-stops" role="tablist" aria-label="Pilot ratings path from PPL to ATP">
+        <button class="ptrack-stop active" data-step="0" role="tab" aria-pressed="true" data-pct="0">
           <span class="ptrack-num">01</span>
           <span class="ptrack-label">Discovery</span>
           <span class="ptrack-time">~1h 45min</span>
         </button>
-        <button class="ptrack-stop" data-step="1" data-pct="16">
+        <button class="ptrack-stop" data-step="1" role="tab" aria-pressed="false" data-pct="16">
           <span class="ptrack-num">02</span>
           <span class="ptrack-label">Private Pilot</span>
           <span class="ptrack-time">~3 months</span>
         </button>
-        <button class="ptrack-stop" data-step="2" data-pct="33">
+        <button class="ptrack-stop" data-step="2" role="tab" aria-pressed="false" data-pct="33">
           <span class="ptrack-num">03</span>
           <span class="ptrack-label">Instrument</span>
           <span class="ptrack-time">1 week</span>
         </button>
-        <button class="ptrack-stop" data-step="3" data-pct="50">
+        <button class="ptrack-stop" data-step="3" role="tab" aria-pressed="false" data-pct="50">
           <span class="ptrack-num">04</span>
           <span class="ptrack-label">Commercial</span>
           <span class="ptrack-time">~6 days</span>
         </button>
-        <button class="ptrack-stop" data-step="4" data-pct="66">
+        <button class="ptrack-stop" data-step="4" role="tab" aria-pressed="false" data-pct="66">
           <span class="ptrack-num">05</span>
           <span class="ptrack-label">Multi-Engine</span>
           <span class="ptrack-time">4 days</span>
         </button>
-        <button class="ptrack-stop" data-step="5" data-pct="83">
+        <button class="ptrack-stop" data-step="5" role="tab" aria-pressed="false" data-pct="83">
           <span class="ptrack-num">06</span>
           <span class="ptrack-label">CFI</span>
           <span class="ptrack-time">10&ndash;12 days</span>
         </button>
-        <button class="ptrack-stop end" data-step="6" data-pct="100">
+        <button class="ptrack-stop end" data-step="6" role="tab" aria-pressed="false" data-pct="100">
           <span class="ptrack-num">07</span>
           <span class="ptrack-label">Airline (1500 hr)</span>
           <span class="ptrack-time">Time-build</span>
@@ -1678,7 +1678,7 @@ function renderCard(i) {
   }, 180);
 }
 function activate(i) {
-  ptStops.forEach((b, idx) => b.classList.toggle('active', idx === i));
+  ptStops.forEach((b, idx) => { b.classList.toggle('active', idx === i); b.setAttribute('aria-pressed', idx === i ? 'true' : 'false'); });
   const pct = +ptStops[i].dataset.pct;
   ptFill.style.width = pct + '%';
   renderCard(i);
