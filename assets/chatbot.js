@@ -159,24 +159,6 @@
       <button class="cb-head-close" aria-label="Close">×</button>
     </div>
     <div class="cb-gate" id="cb-gate">
-      <div class="cb-gate-inner">
-        <div class="cb-gate-title">Quick intro first</div>
-        <div class="cb-gate-sub">So we can text or email you if you have follow-up questions.</div>
-        <form id="cb-gate-form" class="cb-gate-form" autocomplete="off">
-          <div class="cb-gate-row">
-            <input type="text" name="firstname" placeholder="First name" required>
-            <input type="text" name="lastname" placeholder="Last name" required>
-          </div>
-          <input type="email" name="email" placeholder="Email" required>
-          <input type="tel" name="phone" placeholder="Phone" required>
-          <button type="submit" class="cb-gate-btn" id="cb-gate-btn">Start Chat</button>
-          <div class="cb-gate-err" id="cb-gate-err"></div>
-          <div class="cb-gate-fine">No spam. We only reach out if you ask.</div>
-        </form>
-      </div>
-    </div>
-
-    <div class="cb-gate" id="cb-gate">
       <div class="cb-gate-eyebrow">▸ Quick intro</div>
       <h3 class="cb-gate-h">Who am I talking to?</h3>
       <p class="cb-gate-p">Drop your contact so a CFI can follow up if you ask something the bot can't answer. We won't spam you.</p>
