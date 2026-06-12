@@ -347,12 +347,12 @@ const T = {
 };
 
 const FORM_MAP = {
-  '870b2177-3a5b-4bbb-961e-43923f1d3b84': { welcome: 'homepage_welcome', day3: 'day3_homepage', source: 'Homepage Contact', temp: 'WARM' },
-  'abc1c335-31db-4e46-8b57-b364118570c7': { welcome: 'accelerated_welcome', day3: 'day3_accelerated', source: 'Accelerated', temp: 'HOT' },
-  '4b1ded9e-709f-4292-885a-52a243ddada2': { welcome: 'careers_welcome', day3: null, source: 'Careers', temp: 'WARM' },
-  '01e019b1-e27a-4df1-a310-56cc88f2a7d2': { welcome: 'flight_school_welcome', day3: 'day3_flight_school', source: 'Flight School', temp: 'WARM' },
-  '910de1fd-7ca7-4f62-88d4-e9cad413831f': { welcome: 'cost_calc_welcome', day3: 'day3_cost_calc', source: 'Cost Calculator', temp: 'HOT' },
-  'a22614d5-4579-4ad1-95d1-d497805dae61': { welcome: 'chatbot_welcome', day3: 'day3_chatbot', source: 'Chatbot Gate', temp: 'COLD' }
+  '870b2177-3a5b-4bbb-961e-43923f1d3b84': { welcome: 'homepage_welcome', day3: 'day3_homepage', src: 'homepage_contact', source: 'Homepage Contact', temp: 'WARM' },
+  'abc1c335-31db-4e46-8b57-b364118570c7': { welcome: 'accelerated_welcome', day3: 'day3_accelerated', src: 'accelerated', source: 'Accelerated', temp: 'HOT' },
+  '4b1ded9e-709f-4292-885a-52a243ddada2': { welcome: 'careers_welcome', day3: null, src: 'careers', source: 'Careers', temp: 'WARM' },
+  '01e019b1-e27a-4df1-a310-56cc88f2a7d2': { welcome: 'flight_school_welcome', day3: 'day3_flight_school', src: 'flight_school', source: 'Flight School', temp: 'WARM' },
+  '910de1fd-7ca7-4f62-88d4-e9cad413831f': { welcome: 'cost_calc_welcome', day3: 'day3_cost_calc', src: 'cost_calculator', source: 'Cost Calculator', temp: 'HOT' },
+  'a22614d5-4579-4ad1-95d1-d497805dae61': { welcome: 'chatbot_welcome', day3: 'day3_chatbot', src: 'chatbot', source: 'Chatbot Gate', temp: 'COLD' }
 };
 
 // ---------- Resend plumbing ----------
@@ -434,6 +434,98 @@ function dripPlan(cfg) {
   ].filter(d => d[0]);
 }
 
+
+// ---------- HubSpot sync + Slack alert ----------
+const HS_PORTAL = '50822208';
+const PIPELINE_ID = '908741278';
+const STAGE_NEW_LEAD = '1378445218';
+const OWNERS = { deanna: '164470445', amber: '86327753', parker: '164470446', max: '164470444' };
+const OWNER_NAMES = { '164470445': 'Deanna', '86327753': 'Amber', '164470446': 'Parker', '164470444': 'Max' };
+
+// Routing: Deanna owns accelerated + cost calculator (HOT money leads),
+// Amber owns careers, everything else round-robins Parker / Max by email hash.
+function routeOwner(src, email) {
+  if (src === 'accelerated' || src === 'cost_calculator') return OWNERS.deanna;
+  if (src === 'careers') return OWNERS.amber;
+  let h = 0;
+  for (const ch of String(email).toLowerCase()) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return h % 2 === 0 ? OWNERS.parker : OWNERS.max;
+}
+
+async function hubspot(path, method, payload) {
+  const res = await fetch('https://api.hubapi.com' + path, {
+    method,
+    headers: { 'Authorization': `Bearer ${process.env.HUBSPOT_TOKEN}`, 'Content-Type': 'application/json' },
+    body: payload ? JSON.stringify(payload) : undefined
+  });
+  let data = {};
+  try { data = await res.json(); } catch (e) { /* fine */ }
+  return { ok: res.ok, status: res.status, data };
+}
+
+// Create-or-update the contact with temperature, source, owner. The HubSpot
+// form submit from the browser may create the bare contact first or after us;
+// both orders are handled (409 -> patch existing).
+async function upsertContact(vars, cfg, ownerId) {
+  const properties = {
+    email: vars.email, firstname: vars.firstname, lastname: vars.lastname, phone: vars.phone,
+    lead_temperature: cfg.temp.toLowerCase(),
+    lead_source_detail: cfg.src,
+    last_form_submitted: Date.now(),
+    hubspot_owner_id: ownerId
+  };
+  const create = await hubspot('/crm/v3/objects/contacts', 'POST', { properties });
+  if (create.ok) return create.data.id;
+  if (create.status === 409) {
+    const m = String(create.data.message || '').match(/(\d+)\s*$/);
+    if (m) {
+      const patch = await hubspot(`/crm/v3/objects/contacts/${m[1]}`, 'PATCH', { properties });
+      if (patch.ok) return m[1];
+    }
+  }
+  throw new Error(`HubSpot contact ${create.status}: ${JSON.stringify(create.data)}`);
+}
+
+// One open deal card per person in the Flight Training Funnel.
+async function ensureDeal(contactId, vars, cfg, ownerId) {
+  const assoc = await hubspot(`/crm/v4/objects/contacts/${contactId}/associations/deals`, 'GET');
+  if (assoc.ok && assoc.data.results && assoc.data.results.length > 0) return { existing: true };
+  const deal = await hubspot('/crm/v3/objects/deals', 'POST', {
+    properties: {
+      dealname: `${vars.firstname} ${vars.lastname} - ${cfg.source}`.trim(),
+      pipeline: PIPELINE_ID,
+      dealstage: STAGE_NEW_LEAD,
+      hubspot_owner_id: ownerId
+    },
+    associations: [{
+      to: { id: contactId },
+      types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 3 }]
+    }]
+  });
+  if (!deal.ok) throw new Error(`HubSpot deal ${deal.status}: ${JSON.stringify(deal.data)}`);
+  return { id: deal.data.id };
+}
+
+// Slack alert. Returns false when SLACK_WEBHOOK_URL is not configured,
+// in which case the caller falls back to the email alert.
+async function slackAlert(vars, cfg, contactId, ownerId) {
+  const hook = process.env.SLACK_WEBHOOK_URL;
+  if (!hook) return false;
+  const emoji = cfg.temp === 'HOT' ? ':fire:' : cfg.temp === 'WARM' ? ':mostly_sunny:' : ':ice_cube:';
+  const sla = cfg.temp === 'HOT' ? 'call inside 5 minutes' : cfg.temp === 'WARM' ? 'call inside the hour' : 'same day is fine';
+  const link = contactId ? `\n<https://app.hubspot.com/contacts/${HS_PORTAL}/record/0-1/${contactId}|Open in HubSpot>` : '';
+  const text = `${emoji} *${cfg.temp} LEAD* ${vars.firstname} ${vars.lastname} (${cfg.source})\n` +
+    `:telephone_receiver: ${vars.phone || 'no phone'}  :email: ${vars.email}\n` +
+    `Interest: ${vars.program}  |  Assigned: *${OWNER_NAMES[ownerId] || ownerId}*  |  ${sla}${link}`;
+  const res = await fetch(hook, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text })
+  });
+  if (!res.ok) throw new Error(`Slack webhook ${res.status}`);
+  return true;
+}
+
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -454,12 +546,31 @@ module.exports = async (req, res) => {
     const ownerEmail = process.env.OWNER_EMAIL || 'parkerhughes@flycraftchs.com';
     const out = { sent: [], errors: [], skipped: [] };
 
-    // 1. Internal alert, always, no unsubscribe footer.
+    // 1. HubSpot: contact with temperature/source/owner + deal card in New Lead.
+    let contactId = null;
+    const ownerId = routeOwner(cfg.src, email);
     try {
-      const e = buildEmail('internal_alert', vars, { withUnsub: false });
-      const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email });
-      out.sent.push({ type: 'internal_alert', id: r1.id });
-    } catch (e) { out.errors.push({ type: 'internal_alert', err: String(e) }); }
+      contactId = await upsertContact(vars, cfg, ownerId);
+      out.hubspot = { contactId, owner: OWNER_NAMES[ownerId] };
+    } catch (e) { out.errors.push({ type: 'hubspot_contact', err: String(e) }); }
+    if (contactId) {
+      try {
+        const d = await ensureDeal(contactId, vars, cfg, ownerId);
+        out.hubspot.deal = d;
+      } catch (e) { out.errors.push({ type: 'hubspot_deal', err: String(e) }); }
+    }
+
+    // 2. Alert: Slack when configured, email alert as fallback so we are never blind.
+    let alerted = false;
+    try { alerted = await slackAlert(vars, cfg, contactId, ownerId); if (alerted) out.sent.push({ type: 'slack_alert' }); }
+    catch (e) { out.errors.push({ type: 'slack_alert', err: String(e) }); }
+    if (!alerted) {
+      try {
+        const e = buildEmail('internal_alert', vars, { withUnsub: false });
+        const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email });
+        out.sent.push({ type: 'internal_alert', id: r1.id });
+      } catch (e) { out.errors.push({ type: 'internal_alert', err: String(e) }); }
+    }
 
     // 2. Respect prior unsubscribes: alert still fires, lead emails do not.
     if (await isUnsubscribed(email)) {
