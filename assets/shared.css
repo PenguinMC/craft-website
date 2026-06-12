@@ -753,3 +753,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   background-color: #14181F !important;
   color: #fff !important;
 }
+
+
+/* Price displays — normalize letter spacing so $ sits tight against digits */
+.price { display: inline-block; letter-spacing: 0 !important; }
