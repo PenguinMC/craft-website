@@ -511,12 +511,10 @@ async function ensureDeal(contactId, vars, cfg, ownerId) {
 async function slackAlert(vars, cfg, contactId, ownerId) {
   const hook = process.env.SLACK_WEBHOOK_URL;
   if (!hook) return false;
-  const emoji = cfg.temp === 'HOT' ? ':fire:' : cfg.temp === 'WARM' ? ':mostly_sunny:' : ':ice_cube:';
-  const sla = cfg.temp === 'HOT' ? 'call inside 5 minutes' : cfg.temp === 'WARM' ? 'call inside the hour' : 'same day is fine';
   const link = contactId ? `\n<https://app.hubspot.com/contacts/${HS_PORTAL}/record/0-1/${contactId}|Open in HubSpot>` : '';
-  const text = `${emoji} *${cfg.temp} LEAD* ${vars.firstname} ${vars.lastname} (${cfg.source})\n` +
-    `:telephone_receiver: ${vars.phone || 'no phone'}  :email: ${vars.email}\n` +
-    `Interest: ${vars.program}  |  Assigned: *${OWNER_NAMES[ownerId] || ownerId}*  |  ${sla}${link}`;
+  const text = `New lead: *${vars.firstname} ${vars.lastname}*\n` +
+    `Form: ${cfg.source}\n` +
+    `${vars.phone || 'no phone'} | ${vars.email}${link}`;
   const res = await fetch(hook, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
