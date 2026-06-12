@@ -57,12 +57,6 @@ async function processDeal(dealId, out) {
   if (!send.ok) { out.errors.push(`${dealId}: send failed ${JSON.stringify(send.data)}`); return; }
 
   await hubspot(`/crm/v3/objects/deals/${dealId}`, 'PATCH', { properties: { materials_sent: Date.now() } });
-  if (process.env.SLACK_WEBHOOK_URL) {
-    try {
-      await fetch(process.env.SLACK_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: `Course materials sent to ${cp.firstname || ''} ${cp.email} (${course})` }) });
-    } catch (e) { /* non-fatal */ }
-  }
   out.sent.push({ dealId, email: cp.email, course });
 }
 
