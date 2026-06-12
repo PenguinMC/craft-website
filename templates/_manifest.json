@@ -1,0 +1,27 @@
+{
+  "ifr-course-info": {
+    "name": "Course Info - IFR",
+    "subject": "YOUR IFR RATING IN 7 DAYS",
+    "file": "/tmp/craft/templates/ifr-course-info.html"
+  },
+  "commercial-course-info": {
+    "name": "Course Info - Commercial",
+    "subject": "YOUR COMMERCIAL CERTIFICATE IN 5 DAYS",
+    "file": "/tmp/craft/templates/commercial-course-info.html"
+  },
+  "multi-engine-course-info": {
+    "name": "Course Info - Multi-Engine",
+    "subject": "YOUR MULTI-ENGINE RATING IN 4 DAYS",
+    "file": "/tmp/craft/templates/multi-engine-course-info.html"
+  },
+  "cfi-course-info": {
+    "name": "Course Info - CFI",
+    "subject": "YOUR CFI IN 10-12 DAYS. THEN GET PAID TO FLY.",
+    "file": "/tmp/craft/templates/cfi-course-info.html"
+  },
+  "ppl-course-info": {
+    "name": "Course Info - Private Pilot",
+    "subject": "PRIVATE PILOT TRAINING AT KCHS. THE FULL RUNDOWN.",
+    "file": "/tmp/craft/templates/ppl-course-info.html"
+  }
+}
