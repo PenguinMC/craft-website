@@ -36,7 +36,7 @@ async function cancelScheduled(email) {
 }
 
 function page(message) {
-  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CRAFT</title></head>
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark"><title>CRAFT</title></head>
 <body style="margin:0;background:#0A0D12;color:#fff;font-family:'Helvetica Neue',Arial,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;">
 <div style="max-width:480px;padding:40px;background:#14181F;border:1px solid rgba(230,48,39,0.25);border-radius:10px;border-top:4px solid #E63027;">
 <div style="font-weight:900;font-size:24px;letter-spacing:0.06em;">CRAFT<span style="color:#E63027;">.</span></div>
@@ -53,7 +53,7 @@ module.exports = async (req, res) => {
     const s = String(q.s || '');
     if (!email || unsubSig(email) !== s) {
       res.status(400).setHeader('Content-Type', 'text/html');
-      res.send(page('That unsubscribe link is invalid or expired. Email <a href="mailto:parkerhughes@flycraftchs.com" style="color:#E63027;">parkerhughes@flycraftchs.com</a> and we will remove you by hand.'));
+      res.send(page('That unsubscribe link is invalid or expired. Email <a href="mailto:craft@flycraftchs.com" style="color:#E63027;">craft@flycraftchs.com</a> and we will remove you by hand.'));
       return;
     }
     await markUnsubscribed(email);

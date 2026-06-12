@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Send Course Info | CRAFT Admin</title>
+<style>
+:root { --beacon:#E63027; --approach:#14181F; --ink:#0A0D12; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--ink); color:#fff; font-family:'Helvetica Neue',Arial,sans-serif; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+.card { width:100%; max-width:440px; background:var(--approach); border:1px solid rgba(230,48,39,.25); border-radius:10px; border-top:4px solid var(--beacon); padding:36px; }
+h1 { font-size:22px; font-weight:900; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
+.sub { font-family:'Courier New',monospace; font-size:10px; letter-spacing:.22em; color:var(--beacon); text-transform:uppercase; margin-bottom:24px; }
+label { display:block; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.55); margin:16px 0 6px; }
+input, select { width:100%; padding:12px 14px; background:var(--ink); border:1px solid rgba(255,255,255,.15); border-radius:6px; color:#fff; font-size:15px; }
+input:focus, select:focus { outline:none; border-color:var(--beacon); }
+button { width:100%; margin-top:24px; padding:14px; background:var(--beacon); color:#fff; border:none; border-radius:6px; font-weight:900; font-size:14px; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; }
+button:disabled { opacity:.5; cursor:wait; }
+.msg { margin-top:16px; font-size:14px; line-height:1.5; display:none; padding:12px 14px; border-radius:6px; }
+.msg.ok { display:block; background:rgba(40,160,80,.15); border:1px solid rgba(40,160,80,.4); }
+.msg.err { display:block; background:rgba(230,48,39,.12); border:1px solid rgba(230,48,39,.4); }
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Send Course Info</h1>
+<div class="sub">CRAFT Admin &middot; one email, no drip attached</div>
+<label for="course">Course</label>
+<select id="course">
+<option value="ifr">IFR - 7 days, $9,900</option>
+<option value="commercial">Commercial - 5 days, $8,600</option>
+<option value="multi">Multi-Engine - 4 days, $9,500</option>
+<option value="cfi">CFI - 10 to 12 days, $12,000</option>
+<option value="ppl">Private Pilot - self-paced</option>
+</select>
+<label for="firstname">Lead's first name</label>
+<input id="firstname" type="text" placeholder="Jordan" autocomplete="off">
+<label for="email">Lead's email</label>
+<input id="email" type="email" placeholder="jordan@example.com" autocomplete="off">
+<label for="password">Admin password</label>
+<input id="password" type="password" autocomplete="current-password">
+<button id="send">Send It &rarr;</button>
+<div class="msg" id="msg"></div>
+</div>
+<script>
+const $ = (id) => document.getElementById(id);
+$('password').value = localStorage.getItem('craft_admin_pw') || '';
+$('send').addEventListener('click', async () => {
+  const msg = $('msg'); msg.className = 'msg'; msg.textContent = '';
+  const body = { course: $('course').value, firstname: $('firstname').value.trim(), email: $('email').value.trim(), password: $('password').value };
+  if (!body.firstname || !body.email) { msg.className = 'msg err'; msg.textContent = 'Need a first name and an email.'; return; }
+  $('send').disabled = true;
+  try {
+    const r = await fetch('/api/send-info', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const j = await r.json();
+    if (r.ok && j.ok) {
+      localStorage.setItem('craft_admin_pw', body.password);
+      msg.className = 'msg ok'; msg.textContent = 'Sent: ' + j.sent;
+      $('firstname').value = ''; $('email').value = '';
+    } else {
+      msg.className = 'msg err'; msg.textContent = j.error || ('Error ' + r.status);
+    }
+  } catch (e) { msg.className = 'msg err'; msg.textContent = String(e); }
+  $('send').disabled = false;
+});
+</script>
+</body>
+</html>

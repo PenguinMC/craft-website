@@ -4,8 +4,8 @@
 // Resend caps scheduled_at at 30 days, so T+0 through T+30 are scheduled here.
 // T+60 and T+120 are sent by /api/drip-cron (daily Vercel cron, see vercel.json).
 
-const FROM = 'Parker at CRAFT <parkerhughes@flycraftchs.com>';
-const REPLY_TO = 'parkerhughes@flycraftchs.com';
+const FROM = 'CRAFT Flight Training & Simulation <craft@flycraftchs.com>';
+const REPLY_TO = 'craft@flycraftchs.com';
 const SITE = 'https://flycraftchs.com';   // marketing links (real domain)
 const APP = 'https://parkerh.com';        // functional endpoints + assets, works pre and post DNS cutover
 const LOGO = APP + '/assets/craft-logo.png';
@@ -34,6 +34,12 @@ function wrap({ title, body, ctaLabel, ctaUrl, unsub }) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="supported-color-schemes" content="dark">
+<style>
+:root { color-scheme: dark; supported-color-schemes: dark; }
+body, .body-bg { background-color: #0A0D12 !important; }
+</style>
 <title>${title}</title>
 </head>
 <body style="margin:0;padding:0;background-color:#0A0D12;color:#ffffff;font-family:'Helvetica Neue',Arial,sans-serif;line-height:1.55;">
@@ -77,7 +83,7 @@ ${ctaLabel ? `<tr>
 Parker Hughes<br>
 <span style="color:rgba(255,255,255,0.6);">Training Advisor and CFI</span><br>
 <a href="tel:+18438006498" style="color:#E63027;text-decoration:none;">843.800.6498</a> &middot;
-<a href="mailto:parkerhughes@flycraftchs.com" style="color:#E63027;text-decoration:none;">parkerhughes@flycraftchs.com</a>
+<a href="mailto:craft@flycraftchs.com" style="color:#E63027;text-decoration:none;">craft@flycraftchs.com</a>
 </div>
 ${unsub ? `<div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:14px;line-height:1.5;">You're getting these because you reached out to CRAFT about flight training. <a href="${unsub}" style="color:rgba(255,255,255,0.55);text-decoration:underline;">Unsubscribe</a> with one click and you won't hear from us again.</div>` : ''}
 </td>
