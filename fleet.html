@@ -349,6 +349,18 @@
 
 /* PHOTO VARIANT — real aircraft photos */
 .fc-art--photo { background: #000; }
+.fleet-card.photo-card .fc-head { display: none; }
+.fleet-card.photo-card .fc-art--photo { aspect-ratio: 4/3; }
+.fc-art-type {
+  position: absolute; top: 14px; right: 14px; z-index: 3;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #fff; background: rgba(10,13,18,0.65);
+  border: 1px solid rgba(230,48,39,0.45);
+  padding: 5px 10px; border-radius: 4px;
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
 .fc-art--photo .fc-art-grid,
 .fc-art--photo .fc-art-glow,
 .fc-art--photo .fc-art-cross,
@@ -726,13 +738,14 @@
   <div class="fleet-grid" id="fleet-grid">
 
     <!-- =========== DA40NG #1: N650LA =========== -->
-    <article class="fleet-card" data-type="da40">
+    <article class="fleet-card photo-card" data-type="da40">
       <div class="fc-head">
         <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N650LA</span></div>
         <span class="fc-type-badge">DA40 NG</span>
       </div>
       <div class="fc-art fc-art--photo">
-        <img class="fc-art-img" src="/assets/fleet/n650la.jpg" alt="N650LA — Diamond DA40 NG with G1000 NXi glass cockpit at KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
+        <span class="fc-art-type">DA40 NG</span>
+        <img class="fc-art-img" src="/assets/fleet/n650la.jpg" alt="N650LA — Diamond DA40 NG with G1000 NXi glass cockpit at KCHS" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.remove('fc-art--photo');this.closest('article').classList.remove('photo-card')" />
         <span class="fc-art-live">Turbocharged</span>
         <div class="fc-art-watermark">N650LA</div>
       </div>
@@ -745,13 +758,14 @@
     </article>
 
     <!-- =========== DA40NG #4: N216DA (real photo) =========== -->
-    <article class="fleet-card" data-type="da40">
+    <article class="fleet-card photo-card" data-type="da40">
       <div class="fc-head">
         <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N216DA</span></div>
         <span class="fc-type-badge">DA40 NG</span>
       </div>
       <div class="fc-art fc-art--photo">
-        <img class="fc-art-img" src="/assets/fleet/N216DA.jpg" alt="N216DA — Diamond DA40 NG on the ramp at sunset, KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
+        <span class="fc-art-type">DA40 NG</span>
+        <img class="fc-art-img" src="/assets/fleet/N216DA.jpg" alt="N216DA — Diamond DA40 NG on the ramp at sunset, KCHS" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.remove('fc-art--photo');this.closest('article').classList.remove('photo-card')" />
         <span class="fc-art-live">Air Conditioning</span>
         <div class="fc-art-watermark">N216DA</div>
       </div>
@@ -764,13 +778,14 @@
     </article>
 
     <!-- =========== DA40NG #3: N162AT =========== -->
-    <article class="fleet-card" data-type="da40">
+    <article class="fleet-card photo-card" data-type="da40">
       <div class="fc-head">
         <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N162AT</span></div>
         <span class="fc-type-badge">DA40 NG</span>
       </div>
       <div class="fc-art fc-art--photo">
-        <img class="fc-art-img" src="/assets/fleet/n162at.jpg" alt="N162AT — Diamond DA40 NG with G1000 NXi glass cockpit at KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
+        <span class="fc-art-type">DA40 NG</span>
+        <img class="fc-art-img" src="/assets/fleet/n162at.jpg" alt="N162AT — Diamond DA40 NG with G1000 NXi glass cockpit at KCHS" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.remove('fc-art--photo');this.closest('article').classList.remove('photo-card')" />
         <span class="fc-art-live">IFR Equipped</span>
         <div class="fc-art-watermark">N162AT</div>
       </div>
@@ -783,13 +798,14 @@
     </article>
 
     <!-- =========== DA40NG #2: N406BL =========== -->
-    <article class="fleet-card" data-type="da40">
+    <article class="fleet-card photo-card" data-type="da40">
       <div class="fc-head">
         <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N406BL</span></div>
         <span class="fc-type-badge">DA40 NG</span>
       </div>
       <div class="fc-art fc-art--photo">
-        <img class="fc-art-img" src="/assets/fleet/n406bl.jpg" alt="N406BL - Diamond DA40 NG at golden hour on the KCHS ramp" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.remove('fc-art--photo')" />
+        <span class="fc-art-type">DA40 NG</span>
+        <img class="fc-art-img" src="/assets/fleet/n406bl.jpg" alt="N406BL - Diamond DA40 NG at golden hour on the KCHS ramp" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.remove('fc-art--photo');this.closest('article').classList.remove('photo-card')" />
         <span class="fc-art-live">IFR Equipped</span>
         <div class="fc-art-watermark">N406BL</div>
       </div>
@@ -802,13 +818,14 @@
     </article>
 
     <!-- =========== DA40NG #5: N970DA =========== -->
-    <article class="fleet-card" data-type="da40">
+    <article class="fleet-card photo-card" data-type="da40">
       <div class="fc-head">
         <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N970DA</span></div>
         <span class="fc-type-badge">DA40 NG</span>
       </div>
       <div class="fc-art fc-art--photo">
-        <img class="fc-art-img" src="/assets/fleet/n970da.webp" alt="N970DA — Diamond DA40 NG with FADEC single-lever power control at KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
+        <span class="fc-art-type">DA40 NG</span>
+        <img class="fc-art-img" src="/assets/fleet/n970da.webp" alt="N970DA — Diamond DA40 NG with FADEC single-lever power control at KCHS" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.remove('fc-art--photo');this.closest('article').classList.remove('photo-card')" />
         <span class="fc-art-live">Electric Rudder Trim</span>
         <div class="fc-art-watermark">N970DA</div>
       </div>
@@ -821,13 +838,14 @@
     </article>
 
     <!-- =========== DA42-VI NG: N42MV =========== -->
-    <article class="fleet-card" data-type="da42">
+    <article class="fleet-card photo-card" data-type="da42">
       <div class="fc-head">
         <div class="fc-head-l"><span class="fc-status"></span><span class="fc-tail">N42MV</span></div>
         <span class="fc-type-badge">DA42-VI NG</span>
       </div>
       <div class="fc-art fc-art--photo">
-        <img class="fc-art-img" src="/assets/fleet/n42mv.png" alt="N42MV — Diamond DA42-VI NG twin-engine trainer at KCHS" loading="lazy" onerror="this.parentElement.classList.remove('fc-art--photo')" />
+        <span class="fc-art-type">DA42-VI NG</span>
+        <img class="fc-art-img" src="/assets/fleet/n42mv.png" alt="N42MV — Diamond DA42-VI NG twin-engine trainer at KCHS" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.remove('fc-art--photo');this.closest('article').classList.remove('photo-card')" />
         <span class="fc-art-live">Twin Turbodiesel</span>
         <div class="fc-art-watermark">N42MV</div>
       </div>
