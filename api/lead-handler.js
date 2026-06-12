@@ -7,7 +7,7 @@
 const FROM = 'CRAFT Flight Training & Simulation <craft@flycraftchs.com>';
 const REPLY_TO = 'craft@flycraftchs.com';
 const SITE = 'https://flycraftchs.com';   // marketing links (real domain)
-const APP = 'https://parkerh.com';        // functional endpoints + assets, works pre and post DNS cutover
+const APP = 'https://flycraftchs.com';    // primary domain on Vercel since the June 2026 cutover
 const LOGO = APP + '/assets/craft-logo.png';
 const AUDIENCE_ID = '1d34fbda-a782-4413-9784-764f9d336df6'; // Resend "General" audience
 const crypto = require('crypto');
