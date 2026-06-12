@@ -82,7 +82,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
 @media (max-width: 880px) { .footer-top { grid-template-columns: 1fr 1fr; } }
 .footer-brand { margin-bottom: 16px; }
-.footer-brand img { height: 50px; }
+.footer-brand img { height: 50px; width: auto; max-width: 200px; }
 .footer-tag { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 320px; line-height: 1.6; }
 .footer-contact { margin-top: 20px; font-size: 14px; }
 .footer-contact a { color: var(--white); display: block; margin-bottom: 6px; transition: color .2s var(--ease); }
@@ -183,7 +183,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .footer-col a { font-size: 14px !important; line-height: 1.4 !important; color: rgba(255,255,255,0.78) !important; }
 .footer-col a:hover { color: var(--white) !important; }
 .footer-brand { margin-bottom: 14px !important; }
-.footer-brand img { height: 44px !important; }
+.footer-brand img { height: 44px !important; width: auto !important; max-width: 200px !important; }
 .footer-tag { font-size: 13px !important; color: rgba(255,255,255,0.6) !important; max-width: 320px !important; line-height: 1.6 !important; margin-top: 14px !important; }
 .footer-contact { margin-top: 18px !important; font-size: 13px !important; }
 .footer-contact a, .footer-contact > a { color: rgba(255,255,255,0.85) !important; display: block !important; margin-bottom: 5px !important; }

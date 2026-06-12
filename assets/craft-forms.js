@@ -110,4 +110,27 @@
           var msg = (j && j.message) ? j.message : "Couldn't send (HTTP " + r.status + "). Try again.";
           showError(msg);
         }).catch(function () { showError("HTTP " + r.status); });
-      }).c
+      }).catch(function (err) {
+        if (didFinish) return;
+        log('fetch threw:', err && err.message);
+        clearTimeout(killer);
+        didFinish = true;
+        showError("Network blocked — please call 843.800.6498 or email craft@flycraftchs.com");
+      });
+    } catch (e) {
+      log('synchronous throw:', e.message);
+      clearTimeout(killer);
+      didFinish = true;
+      showError("Something blocked the request. Please call 843.800.6498.");
+    }
+  }
+
+  function init() {
+    document.querySelectorAll('.craft-form').forEach(bindForm);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
