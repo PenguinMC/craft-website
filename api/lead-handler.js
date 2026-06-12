@@ -1,20 +1,34 @@
 // /api/lead-handler.js
-// Vercel serverless function. Fires alongside HubSpot form submit.
-// Sends 4 brand-styled HTML emails via Resend per new lead.
+// Vercel serverless. Fires alongside the HubSpot form submit on every site form.
+// Sends the internal alert + an 8-touch lead sequence via Resend.
+// Resend caps scheduled_at at 30 days, so T+0 through T+30 are scheduled here.
+// T+60 and T+120 are sent by /api/drip-cron (daily Vercel cron, see vercel.json).
 
-const RESEND_API = 'https://api.resend.com/emails';
-const FROM = 'Parker at CRAFT <onboarding@resend.dev>';
-const REPLY_TO = 'parker@flycraftchs.com';
+const FROM = 'Parker at CRAFT <parkerhughes@flycraftchs.com>';
+const REPLY_TO = 'parkerhughes@flycraftchs.com';
+const SITE = 'https://flycraftchs.com';   // marketing links (real domain)
+const APP = 'https://parkerh.com';        // functional endpoints + assets, works pre and post DNS cutover
+const LOGO = APP + '/assets/craft-logo.png';
+const AUDIENCE_ID = '1d34fbda-a782-4413-9784-764f9d336df6'; // Resend "General" audience
+const crypto = require('crypto');
 
 // Render {var} placeholders. No em dashes anywhere in templates.
 function r(tmpl, vars) {
   return String(tmpl).replace(/\{(\w+)\}/g, (_, k) => vars[k] || '');
 }
 
+function unsubSig(email) {
+  return crypto.createHmac('sha256', process.env.ADMIN_PASSWORD || 'craft-unsub')
+    .update(String(email).trim().toLowerCase()).digest('hex').slice(0, 16);
+}
+function unsubUrl(email) {
+  return APP + '/api/unsubscribe?email=' + encodeURIComponent(email) + '&s=' + unsubSig(email);
+}
+
 // ---------- Brand-styled HTML wrapper ----------
-// Keeps inline styles only (best for Gmail/Outlook/Apple Mail).
-// Dark surface, beacon-red accents, large display headline, CTA button.
-function wrap({ title, body, ctaLabel, ctaUrl, footerNote }) {
+// Inline styles only (Gmail/Outlook/Apple Mail). Dark surface, beacon red,
+// real logo, Suite 109 address, unsubscribe link on every lead-facing email.
+function wrap({ title, body, ctaLabel, ctaUrl, unsub }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,12 +45,7 @@ function wrap({ title, body, ctaLabel, ctaUrl, footerNote }) {
 </tr>
 <tr>
 <td style="padding:32px 40px 20px;">
-<div style="font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:28px;letter-spacing:0.06em;color:#ffffff;">
-CRAFT<span style="color:#E63027;">.</span>
-</div>
-<div style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.22em;color:#E63027;text-transform:uppercase;margin-top:4px;">
-Flight Training and Simulation
-</div>
+<img src="${LOGO}" alt="CRAFT Flight Training and Simulation" width="180" style="display:block;width:180px;height:auto;border:0;">
 </td>
 </tr>
 <tr>
@@ -68,14 +77,14 @@ ${ctaLabel ? `<tr>
 Parker Hughes<br>
 <span style="color:rgba(255,255,255,0.6);">Training Advisor and CFI</span><br>
 <a href="tel:+18438006498" style="color:#E63027;text-decoration:none;">843.800.6498</a> &middot;
-<a href="mailto:parker@flycraftchs.com" style="color:#E63027;text-decoration:none;">parker@flycraftchs.com</a>
+<a href="mailto:parkerhughes@flycraftchs.com" style="color:#E63027;text-decoration:none;">parkerhughes@flycraftchs.com</a>
 </div>
-${footerNote ? `<div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:14px;line-height:1.5;">${footerNote}</div>` : ''}
+${unsub ? `<div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:14px;line-height:1.5;">You're getting these because you reached out to CRAFT about flight training. <a href="${unsub}" style="color:rgba(255,255,255,0.55);text-decoration:underline;">Unsubscribe</a> with one click and you won't hear from us again.</div>` : ''}
 </td>
 </tr>
 <tr>
 <td style="padding:18px 40px;background-color:#0A0D12;border-top:1px solid rgba(255,255,255,0.05);border-radius:0 0 10px 10px;font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.22em;color:rgba(255,255,255,0.35);text-transform:uppercase;">
-CRAFT &middot; KCHS &middot; 6060 S Aviation Ave, North Charleston SC
+CRAFT &middot; KCHS &middot; 6060 S. Aviation Ave, Suite 109, North Charleston, SC 29406
 </td>
 </tr>
 </table>
@@ -85,8 +94,8 @@ CRAFT &middot; KCHS &middot; 6060 S Aviation Ave, North Charleston SC
 </html>`;
 }
 
-// Plain-text version (auto-generated from HTML body). Strips HTML.
-function toText(html, signoff) {
+// Plain-text version. Strips HTML.
+function toText(html, unsub) {
   return html
     .replace(/<br\s*\/?>/gi, '\n')
     .replace(/<\/p>/gi, '\n\n')
@@ -95,165 +104,229 @@ function toText(html, signoff) {
     .replace(/&amp;/g, '&')
     .replace(/&middot;/g, '·')
     .replace(/\n{3,}/g, '\n\n')
-    .trim() + '\n\n' + (signoff || 'Parker Hughes\nTraining Advisor and CFI\nCRAFT Flight Training and Simulation\n843.800.6498');
+    .trim()
+    + '\n\nParker Hughes\nTraining Advisor and CFI\nCRAFT Flight Training and Simulation\n843.800.6498'
+    + (unsub ? '\n\nUnsubscribe: ' + unsub : '');
 }
 
 // ---------- Templates ----------
-// All templates use {firstname}, {program}, {phone}, {email}, etc.
-// Copy is direct. No em dashes. No "I am not a salesperson" defensiveness.
+// Vars: {firstname}, {lastname}, {email}, {phone}, {program}, {source}, {temp}.
+// Voice: a CFI talking to you, not marketing copy. ALL CAPS subjects. No em dashes.
 const T = {
+
+  // ===== T+0 welcomes, one per form =====
   homepage_welcome: {
-    subject: "Got your message at CRAFT",
-    title: "What is next for you?",
+    subject: 'GOT YOUR MESSAGE. HERE IS THE FAST PATH.',
+    title: 'What is next for you?',
     body: `<p>Hey {firstname},</p>
-<p>Got your message. I am Parker, Training Advisor at CRAFT.</p>
-<p>Three ways this usually goes:</p>
-<p><strong style="color:#E63027;">Curious about flying.</strong> Book a Discovery Flight. $325 for one hour at the controls of a DA40 NG with a CFI in the right seat. You will know if this is for you.</p>
-<p><strong style="color:#E63027;">Ready to get your PPL.</strong> We can skip the Discovery and put you straight into Private Pilot training. KCHS Class C, 96 percent first-time pass rate.</p>
-<p><strong style="color:#E63027;">Already a pilot, want a rating fast.</strong> Reply with which rating (IFR, CPL, Multi, CFI) and I will send you the schedule.</p>
-<p>Easiest next step: reply to this email or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>. I pick up.</p>`,
-    ctaLabel: "Book Discovery Flight",
-    ctaUrl: "https://parkerh.com/discovery-flight"
+<p>Parker here. I run training at CRAFT at Charleston International. Got your message, so let me save you some clicking. This usually goes one of three ways:</p>
+<p><strong style="color:#E63027;">Never flown, curious.</strong> Book a Discovery Flight. $325, one hour at the controls of a Diamond DA40 NG with a CFI in the right seat. You will know by the time you land.</p>
+<p><strong style="color:#E63027;">Ready for your license.</strong> Private Pilot at your pace, 1 to 3 lessons a week. Class C airspace, real ATC, 96% first-time pass rate.</p>
+<p><strong style="color:#E63027;">Already rated, want the next one fast.</strong> Reply with the rating (IFR, Commercial, Multi, CFI) and your target month. I will send dates and a flat price.</p>
+<p>Fastest answer: reply to this email or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>. I pick up.</p>`,
+    ctaLabel: 'Book a Discovery Flight',
+    ctaUrl: SITE + '/discovery-flight'
   },
+
   accelerated_welcome: {
-    subject: "Accelerated {program} at CRAFT",
-    title: "Let us lock dates",
+    subject: 'LET US LOCK YOUR DATES',
+    title: 'Let us lock dates',
     body: `<p>{firstname},</p>
-<p>Got your inquiry for our accelerated {program} program. Quick rundown.</p>
-<p>You arrive in Charleston with prerequisites done. We fly twice a day. DA40 NG or DA42 for Multi. Real Class C ATC at KCHS. Checkride pre-scheduled. 96 percent first-time pass.</p>
-<p><strong style="color:#E63027;">Typical timelines:</strong></p>
-<p style="color:rgba(255,255,255,0.85);">IFR 7 days &middot; Commercial 6 days &middot; Multi 4 days<br>CFI 10 to 12 days &middot; CFI-I 3 days &middot; MEI 3 days</p>
-<p>To lock dates, reply with:</p>
-<p style="color:rgba(255,255,255,0.85);">1. Current ratings plus total time<br>2. Target start window<br>3. Whether you need housing help (we have a list)</p>
-<p>I will come back with a quote and the actual schedule. Or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a> for the fastest path.</p>`,
-    ctaLabel: "See Accelerated Programs",
-    ctaUrl: "https://parkerh.com/accelerated"
+<p>You asked about accelerated training, so here is how it works. You arrive with prerequisites done. We fly twice a day, sim mornings, airplane afternoons. The DPE is booked before your course starts, so the checkride date is locked from day one. 96% first-time pass rate.</p>
+<p><strong style="color:#E63027;">Timelines and flat prices:</strong></p>
+<p style="color:rgba(255,255,255,0.85);">IFR: 7 days, $9,900<br>Commercial: 5 days, $8,600<br>Multi-Engine add-on: 4 days, $9,500<br>CFI initial: 10 to 12 days, $12,000<br>CFII: $4,950 when bundled with the CFI, about 4 extra days</p>
+<p>Slots book 2 to 4 weeks out. To get on the calendar, reply with:</p>
+<p style="color:rgba(255,255,255,0.85);">1. Current ratings and total time<br>2. Target start window</p>
+<p>I will come back with a real schedule, not a brochure. Or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a> and we will sort it in five minutes.</p>`,
+    ctaLabel: 'See the Programs',
+    ctaUrl: SITE + '/accelerated'
   },
+
   flight_school_welcome: {
-    subject: "Your PPL journey at CRAFT",
-    title: "Step by step",
+    subject: 'YOUR FIRST LICENSE. THE REAL NUMBERS.',
+    title: 'Step by step, no fog',
     body: `<p>Hey {firstname},</p>
-<p>Here is exactly what the Private Pilot path looks like at CRAFT.</p>
-<p><strong style="color:#E63027;">Phase 1.</strong> Discovery Flight, $325. One hour DA40 NG. Counts toward your 40 hour minimum if you continue.</p>
-<p><strong style="color:#E63027;">Phase 2.</strong> Ground school plus first solo. Sporty's online ground school. Fly two or three times a week. First solo around 15 to 25 hours.</p>
-<p><strong style="color:#E63027;">Phase 3.</strong> Cross country plus checkride prep. Solo XCs, night ops, instrument intro. Final stage check with our chief.</p>
-<p><strong style="color:#E63027;">Phase 4.</strong> Checkride. DPE pre-scheduled. We do not run programs without one locked.</p>
-<p>Budget 14 to 18 thousand all in. National average is 18 to 22. We are lower because we do not pad hours. Our students average 58 hours to checkride. National average is 70.</p>
-<p>Next step: book a Discovery so you feel it for yourself. Or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
-    ctaLabel: "Book Discovery Flight",
-    ctaUrl: "https://parkerh.com/discovery-flight"
+<p>Here is exactly what Private Pilot training looks like at CRAFT, numbers included, because most schools make you ask twice.</p>
+<p><strong style="color:#E63027;">The path.</strong> Discovery Flight first. Then ground school plus flying toward your first solo. Then cross-countries and checkride prep. Then the ride itself. We work directly with local DPEs, so when you are ready, the date is locked. No waitlist scramble.</p>
+<p><strong style="color:#E63027;">The money.</strong> DA40 NG at $260 per hour, instruction at $65 per hour. The FAA minimum is 40 hours, call it a $13.5K floor. Our students average about 58 hours, so a realistic budget is around $19.6K. We quote you the floor and the realistic number, because surprising you at hour 50 is how schools lose students.</p>
+<p><strong style="color:#E63027;">The pace.</strong> 1, 2, or 3 lessons a week, your schedule. Online written prep is included, and your CFI backs it up with one-on-one ground.</p>
+<p>Best first step is the Discovery Flight. $325, one hour, you do most of the flying, and it counts toward your 40 if you continue.</p>`,
+    ctaLabel: 'Book a Discovery Flight',
+    ctaUrl: SITE + '/discovery-flight'
   },
+
   cost_calc_welcome: {
-    subject: "Your CRAFT cost estimate",
-    title: "What is next",
+    subject: 'ABOUT THAT NUMBER YOU JUST RAN',
+    title: 'Your estimate, with context',
     body: `<p>{firstname},</p>
-<p>Saw you ran the cost calculator. Those numbers come from real student data at our school, not industry averages.</p>
-<p>A couple things the calculator does not show.</p>
-<p>The estimate is for self-paced training. Accelerated programs are priced as flat fees and include everything.</p>
-<p>It assumes you will meet FAA minimums. National average is 70 hours for PPL. Our students average 58. We do not pad hours.</p>
-<p>Discovery Flight counts toward your minimum if you start training after.</p>
-<p>Two next steps depending on where you are.</p>
-<p><strong style="color:#E63027;">Still researching:</strong> book a Discovery Flight, $325, one hour DA40 NG. Best $325 you spend before committing anywhere.</p>
-<p><strong style="color:#E63027;">Ready to start:</strong> reply with your target start date and I will get you on the schedule.</p>
-<p>Either way, reply here or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
-    ctaLabel: "Book Discovery Flight",
-    ctaUrl: "https://parkerh.com/discovery-flight"
+<p>Saw you ran the cost calculator. Those numbers come from our actual rates, not industry averages, so they are worth more than most quotes you will collect this week. Three things the calculator cannot tell you:</p>
+<p><strong style="color:#E63027;">Cadence is the hidden variable.</strong> Fly 2 to 3 times a week and the skills stick, so you finish in fewer total hours. Stretch it thin and you pay to relearn. Same rates, very different totals.</p>
+<p><strong style="color:#E63027;">Accelerated is a different animal.</strong> Ratings like IFR and Commercial run as flat-fee programs. One price, everything included, checkride pre-booked.</p>
+<p><strong style="color:#E63027;">The Discovery Flight counts.</strong> $325, one hour in the DA40 NG, and the time goes in your logbook if you continue.</p>
+<p>Still researching? Book the Discovery. Ready to start? Reply with your target date and I will get you on the schedule. Or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
+    ctaLabel: 'Book a Discovery Flight',
+    ctaUrl: SITE + '/discovery-flight'
   },
+
   chatbot_welcome: {
-    subject: "Thanks for chatting with CRAFT",
-    title: "Let us actually talk",
+    subject: 'THE BOT DID ITS BEST. I AM THE HUMAN.',
+    title: 'Let us actually talk',
     body: `<p>Hey {firstname},</p>
-<p>The bot can answer the easy questions. For everything else, the specifics about your situation, schedule, financing, transferring ratings, that is a five minute phone call.</p>
-<p>Easiest next step: call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>. I pick up.</p>
-<p>If you would rather type, reply to this email with:</p>
-<p style="color:rgba(255,255,255,0.85);">What you are trying to get (PPL? IFR add on? Just curious?)<br>Any timeline you are working with<br>What questions the bot could not answer</p>
-<p>I will get back same day during business hours.</p>`,
-    ctaLabel: "Book Discovery Flight",
-    ctaUrl: "https://parkerh.com/discovery-flight"
+<p>The chat widget handles the easy questions. Your actual situation, your schedule, your budget, whether your old logbook hours still count, that is a five minute phone call with a person.</p>
+<p>I am the person. <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>, I pick up.</p>
+<p>Prefer typing? Reply to this with three things:</p>
+<p style="color:rgba(255,255,255,0.85);">What you are after (first license, a rating, just curious)<br>Any timeline you care about<br>Whatever the bot could not answer</p>
+<p>Same-day reply during business hours. That is not a slogan, it is just my inbox.</p>`,
+    ctaLabel: 'Book a Discovery Flight',
+    ctaUrl: SITE + '/discovery-flight'
   },
+
   careers_welcome: {
-    subject: "Application received at CRAFT",
-    title: "Barry will be in touch",
+    subject: 'APPLICATION RECEIVED',
+    title: 'Barry will be in touch',
     body: `<p>{firstname},</p>
-<p>Got your application. Quick on next steps.</p>
-<p>Barry Emerson, our Director of Flight Operations, reviews every application personally. He will reach out within a week for an initial chat.</p>
-<p>If we move forward, the process is:</p>
-<p style="color:rgba(255,255,255,0.85);">1. Phone screen with Barry, around 30 minutes<br>2. In-person interview at KCHS plus facility tour<br>3. Sim eval in the Redbird AATD<br>4. Reference checks plus offer</p>
-<p>In the meantime if you want to add anything to your application (recent ratings, hours updates, references), just reply.</p>`,
+<p>Got your application, thanks for sending it. Barry reviews every application personally and will reach out within the week.</p>
+<p>If we move forward, the process looks like this:</p>
+<p style="color:rgba(255,255,255,0.85);">1. Phone screen, about 30 minutes<br>2. In-person at KCHS plus a facility tour<br>3. Sim eval in the Redbird AATD<br>4. References and offer</p>
+<p>Want to add anything in the meantime, new ratings, updated hours, references? Just reply to this email.</p>`,
     ctaLabel: null,
     ctaUrl: null
   },
-  // Day-3 nudges
+
+  // ===== T+1 universal nudge =====
+  day1_universal: {
+    subject: 'ONE QUESTION',
+    title: 'One question',
+    body: `<p>{firstname},</p>
+<p>Quick one. Yesterday I sent you the rundown. Today I just want to know one thing:</p>
+<p><strong style="color:#E63027;">What is the actual goal?</strong></p>
+<p>First license. A rating you have been putting off. The airlines. Or just finally scratching the itch. One line back is plenty. I will point you at the right thing and skip everything that does not apply to you.</p>`,
+    ctaLabel: null,
+    ctaUrl: null
+  },
+
+  // ===== T+3 form-specific =====
   day3_homepage: {
-    subject: "Still thinking about flying?",
-    title: "Quick check in",
+    subject: 'STILL THINKING ABOUT FLYING?',
+    title: 'Three days. Still here.',
     body: `<p>{firstname},</p>
-<p>Three days since you reached out. No reply yet, which is normal. Life happens.</p>
-<p>If you are still curious, easiest next step is a Discovery Flight. One hour, $325, no commitment. Fastest way to know if flight training is something you actually want.</p>
-<p>Or text <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a> with questions.</p>`,
-    ctaLabel: "Book Discovery Flight",
-    ctaUrl: "https://parkerh.com/discovery-flight"
+<p>Three days since you reached out. No reply needed, life happens. But here is the thing about thinking it over: no amount of reading settles it. One hour at the controls does.</p>
+<p>$325, Diamond DA40 NG, CFI next to you, you fly the airplane. You will walk away knowing, one way or the other.</p>
+<p>Questions first? Text or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
+    ctaLabel: 'Book a Discovery Flight',
+    ctaUrl: SITE + '/discovery-flight'
   },
+
   day3_accelerated: {
-    subject: "Locking accelerated dates?",
-    title: "Still want to fly soon?",
+    subject: 'CALENDAR REALITY CHECK',
+    title: 'Dates go fast',
     body: `<p>{firstname},</p>
-<p>Following up on your accelerated inquiry. We book slots two to four weeks out. If you want to start within the next month, now is the time to lock dates.</p>
-<p>If you are not ready yet, just reply with your target window and I will keep an eye on availability.</p>
-<p>Reply here or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
-    ctaLabel: "See Accelerated Programs",
-    ctaUrl: "https://parkerh.com/accelerated"
+<p>Following up on your accelerated inquiry with the part nobody tells you: the bottleneck is never the instruction, it is the calendar. Our slots book 2 to 4 weeks out, and we lock a DPE before every course, which means dates disappear in pairs.</p>
+<p>If you want to train in the next 60 days, now is the moment to claim dates. If your window is further out, reply with the month and I will watch availability for you. Zero pressure, just physics.</p>
+<p><a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a> if a call is faster.</p>`,
+    ctaLabel: 'See the Programs',
+    ctaUrl: SITE + '/accelerated'
   },
+
   day3_flight_school: {
-    subject: "Have you flown yet?",
-    title: "Discovery Flight first",
+    subject: 'FLY FIRST. DECIDE AFTER.',
+    title: 'The $325 answer',
     body: `<p>{firstname},</p>
-<p>Quick check in. If you have not done a Discovery Flight yet, do that before anything else.</p>
-<p>$325 to know for sure whether flight training is right for you, before you commit to a full program. Some people get up there and love it. Others realize it is not for them. Either answer saves you a lot of money.</p>
-<p>One hour, DA40 NG, you do most of the flying. Counts toward your PPL hours if you continue.</p>`,
-    ctaLabel: "Book Discovery Flight",
-    ctaUrl: "https://parkerh.com/discovery-flight"
+<p>One piece of advice before you commit to any flight school, ours included: fly first.</p>
+<p>Some people get up there and it rewires them. Some realize it is not for them. Both answers are worth $325, because the second one saves you twenty grand and the first one starts your logbook. The Discovery hour counts toward your 40 if you continue.</p>
+<p>One hour, DA40 NG, you do most of the flying.</p>`,
+    ctaLabel: 'Book a Discovery Flight',
+    ctaUrl: SITE + '/discovery-flight'
   },
+
   day3_cost_calc: {
-    subject: "Comparing CRAFT to other schools?",
-    title: "What to actually look at",
+    subject: 'HOW TO COMPARE FLIGHT SCHOOLS',
+    title: 'What the sticker hides',
     body: `<p>{firstname},</p>
-<p>If you are comparing flight schools, here is what matters more than sticker price.</p>
-<p><strong style="color:#E63027;">Hourly rates.</strong> Easy to compare. Ours: $325 per hour DA40 NG wet, $65 per hour instructor.</p>
-<p><strong style="color:#E63027;">Average hours to checkride.</strong> Schools that look cheaper often pad to 70 plus hours. We average 58.</p>
-<p><strong style="color:#E63027;">Pass rate.</strong> Ours is 96 percent first time. National is 78. Failing your checkride costs another $500 plus in re-test fees.</p>
-<p><strong style="color:#E63027;">Aircraft.</strong> DA40 NGs with G1000 NXi avionics. Most schools fly C172s from the 80s.</p>
-<p><strong style="color:#E63027;">Class C airspace.</strong> KCHS is real airline traffic. Schools at uncontrolled fields do not prep you for the real world.</p>
-<p>Worth a call before you commit anywhere. <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
-    ctaLabel: "Book Discovery Flight",
-    ctaUrl: "https://parkerh.com/discovery-flight"
+<p>If you are comparing schools this week, compare these four things, not the hourly rate on the homepage:</p>
+<p><strong style="color:#E63027;">Hours to checkride.</strong> Padding is where budgets die. Our students average about 58 hours. Ask every school you call for their average, and watch a few of them change the subject.</p>
+<p><strong style="color:#E63027;">First-time pass rate.</strong> Ours is 96%, documented. A failed checkride costs you a retest fee and weeks of momentum.</p>
+<p><strong style="color:#E63027;">The aircraft.</strong> DA40 NG with G1000 NXi glass. Hours on a modern panel transfer to everything you fly afterward. Hours on a 1970s panel mostly do not.</p>
+<p><strong style="color:#E63027;">The airspace.</strong> KCHS is Class C. Real ATC from lesson one, not a quiet strip where the radio is optional.</p>
+<p>Worth a five minute call before you commit anywhere: <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
+    ctaLabel: 'Book a Discovery Flight',
+    ctaUrl: SITE + '/discovery-flight'
   },
+
   day3_chatbot: {
-    subject: "Still researching flight training?",
-    title: "Stop researching and go fly",
+    subject: 'STOP RESEARCHING. GO FLY.',
+    title: 'Research mode has a cure',
     body: `<p>{firstname},</p>
-<p>Most people who chat with our bot are in research mode. Figuring out if flying is something they actually want to do.</p>
-<p>If that is you, here is my honest take: stop researching online and go fly.</p>
-<p>You can spend three weeks reading school comparisons, watching YouTube pilots, calculating costs. Or you can spend $325 and one hour at the controls of a real airplane and know for sure.</p>`,
-    ctaLabel: "Book Discovery Flight",
-    ctaUrl: "https://parkerh.com/discovery-flight"
+<p>Most people who hit our chat widget are deep in research mode. Tabs open, YouTube comparisons, cost spreadsheets. I have watched it for years, so believe me when I say there is no spreadsheet exit from research mode.</p>
+<p>There is one cure: an hour at the controls. $325, one DA40 NG, one CFI, one answer.</p>`,
+    ctaLabel: 'Book a Discovery Flight',
+    ctaUrl: SITE + '/discovery-flight'
   },
-  day7_final: {
-    subject: "Blue skies",
-    title: "Last automated email",
+
+  // ===== T+7 universal =====
+  day7_reality: {
+    subject: 'THE HONEST MATH ON WAITING',
+    title: 'Waiting costs more than training',
     body: `<p>{firstname},</p>
-<p>This is my last automated email. I will not keep nudging.</p>
-<p>If flight training is not the right move right now, that is fine. Save this email. When you are ready, we will be here. Charleston is not going anywhere.</p>
-<p>If you want to chat anytime in the future, <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>. Or reply to this and it comes to my inbox.</p>
+<p>A week since you reached out, so here is the honest math, then I will ease off.</p>
+<p>Training prices do not go down. DPE calendars do not open up. And the FAA minimum is the same number whether you start this month or in two years. The only thing waiting buys is a later version of the same decision, usually at a higher rate.</p>
+<p>If the holdup is <strong style="color:#E63027;">timing</strong>, reply with the month and I will plan around it. If it is <strong style="color:#E63027;">budget</strong>, ask me about financing, we have options. If you <strong style="color:#E63027;">picked another school</strong>, reply and tell me, no hard feelings, and I will stop emailing you about it.</p>`,
+    ctaLabel: 'See Financing Options',
+    ctaUrl: SITE + '/financing'
+  },
+
+  // ===== T+14 last call =====
+  day14_lastcall: {
+    subject: 'LAST CALL FROM ME',
+    title: 'Last push, promise',
+    body: `<p>{firstname},</p>
+<p>This is the last frequent email you will get from me. After today I check in rarely, and only to see if timing changed.</p>
+<p>So while it is in front of you: if there is one question keeping you from starting, cost, schedule, the medical, whether you are too old (you are not, we have started students in their 60s), reply with it right now. One question, one honest answer.</p>
+<p>And if the answer is just "not now," that is allowed. Reply "later" and I will leave you alone until you say otherwise.</p>`,
+    ctaLabel: null,
+    ctaUrl: null
+  },
+
+  // ===== T+30 cooldown =====
+  day30_cooldown: {
+    subject: '30 DAYS LATER. STILL INTERESTED?',
+    title: 'Quick pulse check',
+    body: `<p>{firstname},</p>
+<p>It has been a month since you asked about {program}. One-line reply, any of these:</p>
+<p style="color:rgba(255,255,255,0.85);">"Still interested" and I will pick up where we left off<br>"Wrong timing" with a month and I will circle back then<br>"Went elsewhere" and I will wish you blue skies<br>"Stop" and the emails stop</p>
+<p>Ten seconds of your time, and either way you stop getting guessed at.</p>`,
+    ctaLabel: null,
+    ctaUrl: null
+  },
+
+  // ===== T+60 winback (sent by /api/drip-cron) =====
+  day60_winback: {
+    subject: 'THE SEAT IS STILL OPEN',
+    title: 'Two months later',
+    body: `<p>{firstname},</p>
+<p>Two months since you first asked about flight training. I am not going to pretend something dramatic changed, the fleet is the same five DA40s and the twin, the pass rate is still 96%, Charleston weather is still better than where most people train.</p>
+<p>What might have changed is your situation. If the itch is still there, the shortest path back is one word: reply "dates" and I will send the current calendar. Or book the Discovery hour and let the airplane argue my case.</p>`,
+    ctaLabel: 'Book a Discovery Flight',
+    ctaUrl: SITE + '/discovery-flight'
+  },
+
+  // ===== T+120 quarterly (sent by /api/drip-cron) =====
+  day120_quarterly: {
+    subject: 'STILL HERE WHEN YOU ARE READY',
+    title: 'No pitch. Just a beacon.',
+    body: `<p>{firstname},</p>
+<p>No pitch in this one. People start training six months, a year, three years after their first inquiry. It is the most normal thing in aviation.</p>
+<p>So keep this email. When the time is right, reply to it. It lands in my actual inbox, not a queue, and we will pick up exactly where you left off.</p>
 <p>Blue skies and tailwinds.</p>`,
     ctaLabel: null,
     ctaUrl: null
   },
-  // Internal alert (plain text, sent to Parker)
+
+  // ===== Internal alert to owner =====
   internal_alert: {
-    subject: "{temp} LEAD: {firstname} {lastname} ({source})",
-    title: "{temp} lead",
-    body: `<p>{temp} lead just hit.</p>
+    subject: '{temp} LEAD: {firstname} {lastname} ({source})',
+    title: '{temp} lead in',
+    body: `<p>New {temp} lead off the {source} form.</p>
 <table role="presentation" cellpadding="6" cellspacing="0" border="0" style="font-family:'Courier New',monospace;font-size:14px;color:#ffffff;background:#1C2129;border-radius:8px;border:1px solid rgba(230,48,39,0.3);">
 <tr><td style="color:rgba(255,255,255,0.55);">NAME</td><td style="color:#ffffff;font-weight:bold;">{firstname} {lastname}</td></tr>
 <tr><td style="color:rgba(255,255,255,0.55);">EMAIL</td><td><a href="mailto:{email}" style="color:#E63027;">{email}</a></td></tr>
@@ -261,9 +334,9 @@ const T = {
 <tr><td style="color:rgba(255,255,255,0.55);">INTEREST</td><td>{program}</td></tr>
 <tr><td style="color:rgba(255,255,255,0.55);">SOURCE</td><td>{source}</td></tr>
 </table>
-<p style="margin-top:18px;">Call within 5 minutes if HOT, within 1 hour if WARM, within 24 hr if COLD.</p>`,
-    ctaLabel: "Call now",
-    ctaUrl: "tel:{phone}"
+<p style="margin-top:18px;">Speed-to-lead: HOT inside 5 minutes, WARM inside the hour, COLD same day. The welcome email already went out, the drip is queued, your job is the phone call.</p>`,
+    ctaLabel: 'Call Now',
+    ctaUrl: 'tel:{phone}'
   }
 };
 
@@ -276,40 +349,76 @@ const FORM_MAP = {
   'a22614d5-4579-4ad1-95d1-d497805dae61': { welcome: 'chatbot_welcome', day3: 'day3_chatbot', source: 'Chatbot Gate', temp: 'COLD' }
 };
 
-async function sendEmail({ to, subject, html, text, scheduled_at, replyTo }) {
+// ---------- Resend plumbing ----------
+async function resend(path, method, payload) {
+  const res = await fetch('https://api.resend.com' + path, {
+    method,
+    headers: { 'Authorization': `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+    body: payload ? JSON.stringify(payload) : undefined
+  });
+  let data = {};
+  try { data = await res.json(); } catch (e) { /* empty body is fine */ }
+  return { ok: res.ok, status: res.status, data };
+}
+
+async function isUnsubscribed(email) {
+  const r1 = await resend(`/audiences/${AUDIENCE_ID}/contacts/${encodeURIComponent(email)}`, 'GET');
+  return !!(r1.ok && r1.data && r1.data.unsubscribed === true);
+}
+
+async function addToAudience(email, firstname, lastname) {
+  // 409/422 if the contact already exists: fine, ignore.
+  await resend(`/audiences/${AUDIENCE_ID}/contacts`, 'POST', {
+    email, first_name: firstname || '', last_name: lastname || '', unsubscribed: false
+  });
+}
+
+async function sendEmail({ to, subject, html, text, scheduled_at, replyTo, headers }) {
   const payload = {
     from: FROM,
     to: Array.isArray(to) ? to : [to],
-    subject,
-    html,
-    text,
+    subject, html, text,
     reply_to: replyTo || REPLY_TO
   };
   if (scheduled_at) payload.scheduled_at = scheduled_at;
-  const res = await fetch(RESEND_API, {
-    method: 'POST',
-    headers: { 'Authorization': `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(`Resend ${res.status}: ${JSON.stringify(data)}`);
-  return data;
+  if (headers) payload.headers = headers;
+  const r1 = await resend('/emails', 'POST', payload);
+  if (!r1.ok) throw new Error(`Resend ${r1.status}: ${JSON.stringify(r1.data)}`);
+  return r1.data;
 }
 
-function buildEmail(templateKey, vars) {
+function buildEmail(templateKey, vars, { withUnsub = true } = {}) {
   const t = T[templateKey];
   if (!t) throw new Error('Unknown template: ' + templateKey);
   const subject = r(t.subject, vars);
   const title = r(t.title, vars);
   const body = r(t.body, vars);
   const ctaUrl = t.ctaUrl ? r(t.ctaUrl, vars) : null;
-  const html = wrap({ title, body, ctaLabel: t.ctaLabel, ctaUrl });
-  const text = toText(body);
-  return { subject, html, text };
+  const unsub = withUnsub && vars.email ? unsubUrl(vars.email) : null;
+  const html = wrap({ title, body, ctaLabel: t.ctaLabel, ctaUrl, unsub });
+  const text = toText(body, unsub);
+  const headers = unsub ? {
+    'List-Unsubscribe': `<${unsub}>`,
+    'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click'
+  } : undefined;
+  return { subject, html, text, headers };
 }
 
-function isoFromNow(seconds) {
-  return new Date(Date.now() + seconds * 1000).toISOString();
+function isoFromNow(days) {
+  return new Date(Date.now() + days * 86400 * 1000).toISOString();
+}
+
+// Drip scheduled at submit time. Resend caps scheduled_at at 30 days;
+// day60_winback and day120_quarterly are handled by /api/drip-cron.
+function dripPlan(cfg) {
+  if (cfg.source === 'Careers') return [];
+  return [
+    ['day1_universal', 1],
+    [cfg.day3, 3],
+    ['day7_reality', 7],
+    ['day14_lastcall', 14],
+    ['day30_cooldown', 30]
+  ].filter(d => d[0]);
 }
 
 module.exports = async (req, res) => {
@@ -320,48 +429,49 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') { res.status(405).json({ error: 'POST only' }); return; }
 
   try {
-    const { formId, firstname = '', lastname = '', email = '', phone = '', program_interest = '', message = '' } = req.body || {};
+    const { formId, firstname = '', lastname = '', email = '', phone = '', program_interest = '' } = req.body || {};
     if (!email || !firstname) { res.status(400).json({ error: 'firstname + email required' }); return; }
 
     const cfg = FORM_MAP[formId] || FORM_MAP['870b2177-3a5b-4bbb-961e-43923f1d3b84'];
     const vars = {
       firstname, lastname, email, phone,
-      program: program_interest || 'flight training',
+      program: (program_interest || '').replace(/_/g, ' ') || 'flight training',
       source: cfg.source, temp: cfg.temp
     };
     const ownerEmail = process.env.OWNER_EMAIL || 'parkerhughes@flycraftchs.com';
-    const out = { sent: [], errors: [] };
+    const out = { sent: [], errors: [], skipped: [] };
 
-    // 1. Internal alert
+    // 1. Internal alert, always, no unsubscribe footer.
     try {
-      const e = buildEmail('internal_alert', vars);
+      const e = buildEmail('internal_alert', vars, { withUnsub: false });
       const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email });
       out.sent.push({ type: 'internal_alert', id: r1.id });
     } catch (e) { out.errors.push({ type: 'internal_alert', err: String(e) }); }
 
-    // 2. Welcome (instant)
-    try {
-      const e = buildEmail(cfg.welcome, vars);
-      const r1 = await sendEmail({ to: email, subject: e.subject, html: e.html, text: e.text });
-      out.sent.push({ type: 'welcome', id: r1.id });
-    } catch (e) { out.errors.push({ type: 'welcome', err: String(e) }); }
-
-    // 3. Day-3 (scheduled)
-    if (cfg.day3) {
-      try {
-        const e = buildEmail(cfg.day3, vars);
-        const r1 = await sendEmail({ to: email, subject: e.subject, html: e.html, text: e.text, scheduled_at: isoFromNow(3 * 86400) });
-        out.sent.push({ type: 'day3', id: r1.id });
-      } catch (e) { out.errors.push({ type: 'day3', err: String(e) }); }
+    // 2. Respect prior unsubscribes: alert still fires, lead emails do not.
+    if (await isUnsubscribed(email)) {
+      out.skipped.push('lead previously unsubscribed, no emails sent to lead');
+      res.status(200).json({ ok: true, ...out });
+      return;
     }
 
-    // 4. Day-7 (scheduled, skip for Careers)
-    if (cfg.source !== 'Careers') {
+    // 3. Track the lead in the Resend audience (future broadcasts).
+    try { await addToAudience(email, firstname, lastname); } catch (e) { /* non-fatal */ }
+
+    // 4. Welcome, instant.
+    try {
+      const e = buildEmail(cfg.welcome, vars);
+      const r1 = await sendEmail({ to: email, subject: e.subject, html: e.html, text: e.text, headers: e.headers });
+      out.sent.push({ type: cfg.welcome, id: r1.id });
+    } catch (e) { out.errors.push({ type: cfg.welcome, err: String(e) }); }
+
+    // 5. Drip, scheduled.
+    for (const [key, days] of dripPlan(cfg)) {
       try {
-        const e = buildEmail('day7_final', vars);
-        const r1 = await sendEmail({ to: email, subject: e.subject, html: e.html, text: e.text, scheduled_at: isoFromNow(7 * 86400) });
-        out.sent.push({ type: 'day7', id: r1.id });
-      } catch (e) { out.errors.push({ type: 'day7', err: String(e) }); }
+        const e = buildEmail(key, vars);
+        const r1 = await sendEmail({ to: email, subject: e.subject, html: e.html, text: e.text, headers: e.headers, scheduled_at: isoFromNow(days) });
+        out.sent.push({ type: key, id: r1.id, in_days: days });
+      } catch (e) { out.errors.push({ type: key, err: String(e) }); }
     }
 
     res.status(200).json({ ok: true, ...out });
@@ -369,3 +479,6 @@ module.exports = async (req, res) => {
     res.status(500).json({ error: String(e) });
   }
 };
+
+// Shared internals for /api/drip-cron.js and /api/unsubscribe.js
+module.exports._internal = { T, FORM_MAP, wrap, toText, r, buildEmail, sendEmail, resend, isUnsubscribed, unsubSig, unsubUrl, AUDIENCE_ID };
