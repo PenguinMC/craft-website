@@ -350,12 +350,19 @@ const FORM_MAP = {
 };
 
 // ---------- Resend plumbing ----------
-async function resend(path, method, payload) {
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+// Resend caps at 5 requests/second. One lead fires 8+ requests, so retry 429s.
+async function resend(path, method, payload, attempt = 0) {
   const res = await fetch('https://api.resend.com' + path, {
     method,
     headers: { 'Authorization': `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
     body: payload ? JSON.stringify(payload) : undefined
   });
+  if (res.status === 429 && attempt < 3) {
+    await sleep(700 * (attempt + 1));
+    return resend(path, method, payload, attempt + 1);
+  }
   let data = {};
   try { data = await res.json(); } catch (e) { /* empty body is fine */ }
   return { ok: res.ok, status: res.status, data };
@@ -468,6 +475,7 @@ module.exports = async (req, res) => {
     // 5. Drip, scheduled.
     for (const [key, days] of dripPlan(cfg)) {
       try {
+        await sleep(250); // stay under Resend's 5 req/s
         const e = buildEmail(key, vars);
         const r1 = await sendEmail({ to: email, subject: e.subject, html: e.html, text: e.text, headers: e.headers, scheduled_at: isoFromNow(days) });
         out.sent.push({ type: key, id: r1.id, in_days: days });
