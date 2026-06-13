@@ -4,8 +4,11 @@
 // status, and create/advance their deal to Discovery Scheduled.
 // Auth: ?k=<sig> query param (HMAC, same secret family as unsubscribe links).
 
-const lh = require('./lead-handler.js');
-const { unsubSig } = lh._internal;
+const crypto = require('crypto');
+function hookKey() {
+  return crypto.createHmac('sha256', process.env.RESEND_API_KEY || '')
+    .update('calendly').digest('hex').slice(0, 20);
+}
 
 const PIPELINE_ID = '908741278';
 const STAGE_DISCOVERY = '1378445221'; // Discovery Scheduled
@@ -24,7 +27,7 @@ async function hubspot(path, method, payload) {
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') { res.status(405).json({ error: 'POST only' }); return; }
-  if ((req.query || {}).k !== unsubSig('calendly')) { res.status(401).json({ error: 'bad key' }); return; }
+  if ((req.query || {}).k !== hookKey()) { res.status(401).json({ error: 'bad key' }); return; }
   try {
     const body = req.body || {};
     if (body.event !== 'invitee.created') { res.status(200).json({ ok: true, ignored: body.event }); return; }
