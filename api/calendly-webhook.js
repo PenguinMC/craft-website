@@ -69,18 +69,6 @@ module.exports = async (req, res) => {
     if (existing) {
       await hubspot(`/crm/v3/objects/deals/${existing}`, 'PATCH', { properties: { dealstage: STAGE_DISCOVERY } });
       out.deal = { id: existing, moved: 'Discovery Scheduled' };
-    } else {
-      let h = 0;
-      for (const ch of email) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
-      const deal = await hubspot('/crm/v3/objects/deals', 'POST', {
-        properties: {
-          dealname: `${first} ${last} - Discovery Flight`.trim(),
-          pipeline: PIPELINE_ID, dealstage: STAGE_DISCOVERY,
-          hubspot_owner_id: h % 2 === 0 ? OWNERS.parker : OWNERS.max
-        },
-        associations: [{ to: { id: contactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 3 }] }]
-      });
-      out.deal = { id: (deal.data || {}).id, created: 'Discovery Scheduled' };
     }
     res.status(200).json({ ok: true, ...out });
   } catch (e) {

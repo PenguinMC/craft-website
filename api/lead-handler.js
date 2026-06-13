@@ -506,6 +506,27 @@ async function ensureDeal(contactId, vars, cfg, ownerId) {
   return { id: deal.data.id };
 }
 
+// Create a call task for the owner, associated to the contact (and deal).
+async function createCallTask(contactId, dealId, vars, cfg, ownerId) {
+  const due = Date.now() + (cfg.temp === 'HOT' ? 1 : 4) * 3600 * 1000;
+  const associations = [{ to: { id: contactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }] }];
+  if (dealId) associations.push({ to: { id: dealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] });
+  const r1 = await hubspot('/crm/v3/objects/tasks', 'POST', {
+    properties: {
+      hs_task_subject: `CALL ${vars.firstname} ${vars.lastname} - new ${cfg.source} lead`.trim(),
+      hs_task_body: `${vars.phone || 'no phone'} | ${vars.email} | interest: ${vars.program}. ${cfg.temp} lead: ${cfg.temp === 'HOT' ? 'call inside the hour' : 'call today'}.`,
+      hs_timestamp: due,
+      hs_task_status: 'NOT_STARTED',
+      hs_task_type: 'CALL',
+      hs_task_priority: cfg.temp === 'HOT' ? 'HIGH' : 'MEDIUM',
+      hubspot_owner_id: ownerId
+    },
+    associations
+  });
+  if (!r1.ok) throw new Error(`HubSpot task ${r1.status}: ${JSON.stringify(r1.data)}`);
+  return r1.data.id;
+}
+
 // Slack alert. Returns false when SLACK_WEBHOOK_URL is not configured,
 // in which case the caller falls back to the email alert.
 async function slackAlert(vars, cfg, contactId, ownerId) {
@@ -551,11 +572,19 @@ module.exports = async (req, res) => {
       contactId = await upsertContact(vars, cfg, ownerId);
       out.hubspot = { contactId, owner: OWNER_NAMES[ownerId] };
     } catch (e) { out.errors.push({ type: 'hubspot_contact', err: String(e) }); }
-    if (contactId) {
+    let dealId = null;
+    // Deal cards are for the accelerated money funnel only.
+    if (contactId && (cfg.src === 'accelerated' || cfg.src === 'cost_calculator')) {
       try {
         const d = await ensureDeal(contactId, vars, cfg, ownerId);
         out.hubspot.deal = d;
+        dealId = d.id || null;
       } catch (e) { out.errors.push({ type: 'hubspot_deal', err: String(e) }); }
+    }
+    // Every lead gets a call task for its owner (except careers, Barry handles).
+    if (contactId && cfg.src !== 'careers') {
+      try { out.hubspot.task = await createCallTask(contactId, dealId, vars, cfg, ownerId); }
+      catch (e) { out.errors.push({ type: 'hubspot_task', err: String(e) }); }
     }
 
     // 2. Alert: Slack when configured, email alert as fallback so we are never blind.
