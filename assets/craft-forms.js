@@ -36,6 +36,13 @@
     }
     function showSuccess() {
       log('success path');
+      // Fire Google Ads conversion (form submit). No-op if label not yet set
+      // in /assets/gtag.js. See CRAFT_GTAG_LABELS there.
+      try {
+        if (typeof window.craftFireConversion === 'function') {
+          window.craftFireConversion('form_submit', { value: 250.0 });
+        }
+      } catch (e) { log('conversion fire threw:', e && e.message); }
       var card = el(
         '<div class="craft-form-success">' +
           '<div class="craft-form-success-icon">' +
@@ -64,6 +71,21 @@
       var val = String(v).trim();
       if (val) fields.push({ name: k, value: val });
     });
+
+    // Append gclid (Google Ads click id) so HubSpot stores it on the contact
+    // and we can run offline conversion imports later if we want sale-level
+    // attribution. Captured into the _gclid cookie by /assets/gtag.js.
+    try {
+      var click = (typeof window.craftGetClickId === 'function')
+        ? window.craftGetClickId() : { type: '', value: '' };
+      if (click && click.value) {
+        fields.push({ name: 'gclid', value: click.value });
+        if (click.type !== 'gclid') {
+          fields.push({ name: 'click_id_type', value: click.type });
+        }
+      }
+    } catch (e) { log('gclid append threw:', e && e.message); }
+
     log('submitting', fields.length, 'fields');
 
     if (status) { status.className = 'craft-form-status'; status.textContent = ''; }

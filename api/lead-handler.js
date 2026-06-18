@@ -339,6 +339,7 @@ const T = {
 <tr><td style="color:rgba(255,255,255,0.55);">PHONE</td><td><a href="tel:{phone}" style="color:#E63027;">{phone}</a></td></tr>
 <tr><td style="color:rgba(255,255,255,0.55);">INTEREST</td><td>{program}</td></tr>
 <tr><td style="color:rgba(255,255,255,0.55);">SOURCE</td><td>{source}</td></tr>
+{ads_badge}
 </table>
 <p style="margin-top:18px;">Speed-to-lead: HOT inside 5 minutes, WARM inside the hour, COLD same day. The welcome email already went out, the drip is queued, your job is the phone call.</p>`,
     ctaLabel: 'Call Now',
@@ -553,14 +554,21 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') { res.status(405).json({ error: 'POST only' }); return; }
 
   try {
-    const { formId, firstname = '', lastname = '', email = '', phone = '', program_interest = '' } = req.body || {};
+    const { formId, firstname = '', lastname = '', email = '', phone = '', program_interest = '',
+            gclid = '', click_id_type = '' } = req.body || {};
     if (!email || !firstname) { res.status(400).json({ error: 'firstname + email required' }); return; }
 
     const cfg = FORM_MAP[formId] || FORM_MAP['870b2177-3a5b-4bbb-961e-43923f1d3b84'];
+    const isFromGoogleAds = Boolean(gclid);
     const vars = {
       firstname, lastname, email, phone,
       program: (program_interest || '').replace(/_/g, ' ') || 'flight training',
-      source: cfg.source, temp: cfg.temp
+      source: cfg.source, temp: cfg.temp,
+      gclid, click_id_type,
+      // Pre-rendered HTML row for the internal alert. Renders only if gclid present.
+      ads_badge: isFromGoogleAds
+        ? `<tr><td style="color:rgba(255,255,255,0.55);">FROM ADS</td><td style="color:#E63027;font-weight:bold;">YES (${click_id_type || 'gclid'}: ${String(gclid).slice(0, 24)}${gclid.length > 24 ? '…' : ''})</td></tr>`
+        : ''
     };
     const ownerEmail = process.env.OWNER_EMAIL || 'parkerhughes@flycraftchs.com';
     const out = { sent: [], errors: [], skipped: [] };
