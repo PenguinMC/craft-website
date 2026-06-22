@@ -64,10 +64,14 @@
       setBusy(false);
     }
 
-    // Collect fields
+    // Collect fields. File inputs are handled separately (read as base64
+    // and posted to /api/lead-handler — not to HubSpot's JSON Forms API,
+    // which doesn't accept files).
     var fd = new FormData(form);
     var fields = [];
     fd.forEach(function (v, k) {
+      // Skip File values — these are read via FileReader below
+      if (v && typeof v === 'object' && 'name' in v && 'size' in v && 'type' in v) return;
       var val = String(v).trim();
       if (val) fields.push({ name: k, value: val });
     });
@@ -99,18 +103,57 @@
       showError("Network slow — please call 843.800.6498 or email craft@flycraftchs.com");
     }, TIMEOUT_MS);
 
+    // Read any attached files (e.g. careers resume) into base64 so we can ship
+    // them to /api/lead-handler as JSON. ~4 MB hard cap per file (after base64
+    // expansion, ~5.4 MB on the wire — under Vercel's 4.5 MB default body limit
+    // would be exceeded, so we keep it tight). Empty input is fine — array stays empty.
+    function readFileBase64(file){
+      return new Promise(function(res, rej){
+        var r = new FileReader();
+        r.onload = function(){ res(String(r.result || '').split(',')[1] || ''); };
+        r.onerror = function(){ rej(r.error || new Error('FileReader failed')); };
+        r.readAsDataURL(file);
+      });
+    }
+    var MAX_FILE_BYTES = 4 * 1024 * 1024; // 4 MB raw cap
+    var fileInputs = form.querySelectorAll('input[type="file"]');
+    var filePromises = [];
+    var fileErrEl = form.querySelector('.cr-file-err');
+    if (fileErrEl) { fileErrEl.style.display = 'none'; fileErrEl.textContent = ''; }
+    for (var i = 0; i < fileInputs.length; i++) {
+      var fi = fileInputs[i];
+      var f = fi.files && fi.files[0];
+      if (!f) continue;
+      if (f.size > MAX_FILE_BYTES) {
+        var msg = 'That file is ' + (f.size/1024/1024).toFixed(1) + ' MB. Max is 4 MB. Compress the PDF or email it to craft@flycraftchs.com.';
+        if (fileErrEl) { fileErrEl.style.display = 'block'; fileErrEl.textContent = msg; }
+        showError(msg);
+        return;
+      }
+      filePromises.push(readFileBase64(f).then((function(input, file){
+        return function(b64){
+          return { name: input.name || 'file', filename: file.name, mimeType: file.type || 'application/octet-stream', base64: b64 };
+        };
+      })(fi, f)));
+    }
+
     // Also fire our own lead-handler in parallel (Resend emails). Don't await
     // success — best-effort, we still treat HubSpot's response as authoritative.
     try {
-      var leadPayload = { formId: formId };
-      fields.forEach(function (f) { leadPayload[f.name] = f.value; });
-      fetch('/api/lead-handler', {
-        method: 'POST',
-        mode: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(leadPayload)
-      }).then(function (r) { log('lead-handler', r.status); })
-        .catch(function (err) { log('lead-handler error', err && err.message); });
+      Promise.all(filePromises).then(function (uploadedFiles) {
+        var leadPayload = { formId: formId };
+        fields.forEach(function (f) { leadPayload[f.name] = f.value; });
+        if (uploadedFiles && uploadedFiles.length) {
+          leadPayload.files = uploadedFiles;
+        }
+        fetch('/api/lead-handler', {
+          method: 'POST',
+          mode: 'same-origin',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadPayload)
+        }).then(function (r) { log('lead-handler', r.status); })
+          .catch(function (err) { log('lead-handler error', err && err.message); });
+      }).catch(function (err) { log('file read failed:', err && err.message); });
     } catch (e) { log('lead-handler kickoff threw:', e.message); }
 
     try {

@@ -340,6 +340,7 @@ const T = {
 <tr><td style="color:rgba(255,255,255,0.55);">INTEREST</td><td>{program}</td></tr>
 <tr><td style="color:rgba(255,255,255,0.55);">SOURCE</td><td>{source}</td></tr>
 {ads_badge}
+{resume_badge}
 </table>
 <p style="margin-top:18px;">Speed-to-lead: HOT inside 5 minutes, WARM inside the hour, COLD same day. The welcome email already went out, the drip is queued, your job is the phone call.</p>`,
     ctaLabel: 'Call Now',
@@ -387,7 +388,7 @@ async function addToAudience(email, firstname, lastname) {
   });
 }
 
-async function sendEmail({ to, subject, html, text, scheduled_at, replyTo, headers }) {
+async function sendEmail({ to, subject, html, text, scheduled_at, replyTo, headers, attachments }) {
   const payload = {
     from: FROM,
     to: Array.isArray(to) ? to : [to],
@@ -396,6 +397,7 @@ async function sendEmail({ to, subject, html, text, scheduled_at, replyTo, heade
   };
   if (scheduled_at) payload.scheduled_at = scheduled_at;
   if (headers) payload.headers = headers;
+  if (attachments && attachments.length) payload.attachments = attachments;
   const r1 = await resend('/emails', 'POST', payload);
   if (!r1.ok) throw new Error(`Resend ${r1.status}: ${JSON.stringify(r1.data)}`);
   return r1.data;
@@ -555,11 +557,20 @@ module.exports = async (req, res) => {
 
   try {
     const { formId, firstname = '', lastname = '', email = '', phone = '', program_interest = '',
-            gclid = '', click_id_type = '' } = req.body || {};
+            gclid = '', click_id_type = '', files = [] } = req.body || {};
     if (!email || !firstname) { res.status(400).json({ error: 'firstname + email required' }); return; }
 
     const cfg = FORM_MAP[formId] || FORM_MAP['870b2177-3a5b-4bbb-961e-43923f1d3b84'];
     const isFromGoogleAds = Boolean(gclid);
+    // Sanitize incoming files: keep only entries with both filename + base64 content.
+    // Cap each file at ~6 MB base64 (~4.5 MB raw) so we never blow Resend's 40 MB
+    // total per email, even with multiple attachments.
+    const incomingFiles = Array.isArray(files) ? files : [];
+    const safeFiles = incomingFiles
+      .filter(f => f && typeof f.base64 === 'string' && f.base64.length > 0 && f.filename)
+      .filter(f => f.base64.length < 6 * 1024 * 1024)
+      .slice(0, 4);
+    const resumeAttached = safeFiles.length > 0;
     const vars = {
       firstname, lastname, email, phone,
       program: (program_interest || '').replace(/_/g, ' ') || 'flight training',
@@ -568,6 +579,9 @@ module.exports = async (req, res) => {
       // Pre-rendered HTML row for the internal alert. Renders only if gclid present.
       ads_badge: isFromGoogleAds
         ? `<tr><td style="color:rgba(255,255,255,0.55);">FROM ADS</td><td style="color:#E63027;font-weight:bold;">YES (${click_id_type || 'gclid'}: ${String(gclid).slice(0, 24)}${gclid.length > 24 ? '…' : ''})</td></tr>`
+        : '',
+      resume_badge: resumeAttached
+        ? `<tr><td style="color:rgba(255,255,255,0.55);">RESUME</td><td style="color:#E63027;font-weight:bold;">ATTACHED (${safeFiles.map(f => f.filename).join(', ')})</td></tr>`
         : ''
     };
     const ownerEmail = process.env.OWNER_EMAIL || 'parkerhughes@flycraftchs.com';
@@ -602,7 +616,7 @@ module.exports = async (req, res) => {
     if (!alerted) {
       try {
         const e = buildEmail('internal_alert', vars, { withUnsub: false });
-        const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email });
+        const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email, attachments: safeFiles.map(f => ({ filename: f.filename, content: f.base64 })) });
         out.sent.push({ type: 'internal_alert', id: r1.id });
       } catch (e) { out.errors.push({ type: 'internal_alert', err: String(e) }); }
     }

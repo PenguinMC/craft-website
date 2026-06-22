@@ -293,6 +293,16 @@
 <input type="tel" name="phone" placeholder="Phone" required>
 <label class="craft-form-lbl">Ratings + total time + brief background</label>
 <textarea name="message" placeholder="…" required></textarea>
+<label class="craft-form-lbl">Resume / CV (optional, PDF preferred · 4&nbsp;MB max)</label>
+<div class="cr-file" id="cr-file-resume">
+  <div class="cr-file-icon">↑</div>
+  <div class="cr-file-text">
+    <span class="cr-file-prim">Choose a file or drag &amp; drop</span>
+    <span class="cr-file-sec">.pdf, .doc, .docx</span>
+  </div>
+  <input type="file" name="resume_file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+</div>
+<div class="craft-form-fine cr-file-err" style="color:#E63027;font-size:12px;margin-top:-6px;display:none"></div>
 <button type="submit" class="craft-form-btn">Apply</button>
 <div class="craft-form-status"></div>
 </form>
