@@ -693,10 +693,14 @@ module.exports = async (req, res) => {
       catch (e) { out.errors.push({ type: 'hubspot_task', err: String(e) }); }
     }
 
-    // 2. Alert: Slack when configured, email alert as fallback so we are never blind.
+    // 2. Alert: Slack when configured (except careers — those go straight to
+    //    email so the resume attachment / hiring-manager loop stays tidy and
+    //    we don't ping the team Slack channel about every applicant).
     let alerted = false;
-    try { alerted = await slackAlert(vars, cfg, contactId, ownerId); if (alerted) out.sent.push({ type: 'slack_alert' }); }
-    catch (e) { out.errors.push({ type: 'slack_alert', err: String(e) }); }
+    if (cfg.src !== 'careers') {
+      try { alerted = await slackAlert(vars, cfg, contactId, ownerId); if (alerted) out.sent.push({ type: 'slack_alert' }); }
+      catch (e) { out.errors.push({ type: 'slack_alert', err: String(e) }); }
+    }
     if (!alerted) {
       try {
         const e = buildEmail('internal_alert', vars, { withUnsub: false });
