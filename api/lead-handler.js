@@ -189,10 +189,10 @@ const T = {
 
   careers_welcome: {
     subject: 'APPLICATION RECEIVED',
-    title: 'Barry will be in touch',
+    title: 'Application received',
     body: `<p>{firstname},</p>
-<p>Got your application, thanks for sending it. Barry reviews every application personally and will reach out within the week.</p>
-<p>If we move forward, the process looks like this:</p>
+<p>Got your application, thanks for sending it. Our hiring team reviews every application personally. If we want to move forward, someone will reach out within the week. If not, we will keep your resume on file and may come back to you later when something opens up that fits.</p>
+<p>If we do move forward, the process looks like this:</p>
 <p style="color:rgba(255,255,255,0.85);">1. Phone screen, about 30 minutes<br>2. In-person at KCHS plus a facility tour<br>3. Sim eval in the Redbird AATD<br>4. References and offer</p>
 <p>Want to add anything in the meantime, new ratings, updated hours, references? Just reply to this email.</p>`,
     ctaLabel: null,
@@ -687,7 +687,7 @@ module.exports = async (req, res) => {
         dealId = d.id || null;
       } catch (e) { out.errors.push({ type: 'hubspot_deal', err: String(e) }); }
     }
-    // Every lead gets a call task for its owner (except careers, Barry handles).
+    // Every lead gets a call task for its owner (except careers — hiring team handles those separately).
     if (contactId && cfg.src !== 'careers') {
       try { out.hubspot.task = await createCallTask(contactId, dealId, vars, cfg, ownerId); }
       catch (e) { out.errors.push({ type: 'hubspot_task', err: String(e) }); }
