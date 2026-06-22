@@ -466,6 +466,56 @@ async function hubspot(path, method, payload) {
   return { ok: res.ok, status: res.status, data };
 }
 
+// Multipart upload to HubSpot Files API. Returns { ok, status, data } shaped
+// like hubspot() above. Data contains { id, url, name, ... } on success.
+async function hubspotUploadFile(filename, base64Content, mimeType) {
+  const buf = Buffer.from(base64Content, 'base64');
+  // Node 18+ globals: Blob + FormData are native (no node-form-data needed).
+  const blob = new Blob([buf], { type: mimeType || 'application/octet-stream' });
+  const fd = new FormData();
+  fd.append('file', blob, filename);
+  fd.append('folderPath', '/CRAFT-careers-resumes');
+  fd.append('options', JSON.stringify({
+    access: 'PRIVATE',
+    overwrite: false,
+    duplicateValidationStrategy: 'NONE',
+    duplicateValidationScope: 'EXACT_FOLDER'
+  }));
+  const res = await fetch('https://api.hubapi.com/files/v3/files', {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${process.env.HUBSPOT_TOKEN}` },
+    body: fd
+  });
+  let data = {};
+  try { data = await res.json(); } catch (e) { /* fine */ }
+  return { ok: res.ok, status: res.status, data };
+}
+
+// Idempotently ensure the two contact properties we need for resume tracking
+// exist. The HubSpot create-property endpoint returns 409 when the property
+// already exists; we ignore that and treat it as success.
+let _resumePropertiesEnsured = false;
+async function ensureResumeProperties() {
+  if (_resumePropertiesEnsured) return;
+  await hubspot('/crm/v3/properties/contacts', 'POST', {
+    name: 'resume_url',
+    label: 'Resume URL',
+    type: 'string',
+    fieldType: 'text',
+    groupName: 'contactinformation',
+    description: 'URL of the latest resume uploaded via the /careers form. Set automatically by the lead handler.'
+  });
+  await hubspot('/crm/v3/properties/contacts', 'POST', {
+    name: 'resume_filename',
+    label: 'Resume Filename',
+    type: 'string',
+    fieldType: 'text',
+    groupName: 'contactinformation',
+    description: 'Original filename of the most recent resume upload.'
+  });
+  _resumePropertiesEnsured = true;
+}
+
 // Create-or-update the contact with temperature, source, owner. The HubSpot
 // form submit from the browser may create the bare contact first or after us;
 // both orders are handled (409 -> patch existing).
@@ -581,7 +631,7 @@ module.exports = async (req, res) => {
         ? `<tr><td style="color:rgba(255,255,255,0.55);">FROM ADS</td><td style="color:#E63027;font-weight:bold;">YES (${click_id_type || 'gclid'}: ${String(gclid).slice(0, 24)}${gclid.length > 24 ? '…' : ''})</td></tr>`
         : '',
       resume_badge: resumeAttached
-        ? `<tr><td style="color:rgba(255,255,255,0.55);">RESUME</td><td style="color:#E63027;font-weight:bold;">ATTACHED (${safeFiles.map(f => f.filename).join(', ')})</td></tr>`
+        ? `<tr><td style="color:rgba(255,255,255,0.55);">RESUME</td><td style="color:#E63027;font-weight:bold;">Uploaded to HubSpot (${safeFiles.map(f => f.filename).join(', ')})</td></tr>`
         : ''
     };
     const ownerEmail = process.env.OWNER_EMAIL || 'parkerhughes@flycraftchs.com';
@@ -594,6 +644,28 @@ module.exports = async (req, res) => {
       contactId = await upsertContact(vars, cfg, ownerId);
       out.hubspot = { contactId, owner: OWNER_NAMES[ownerId] };
     } catch (e) { out.errors.push({ type: 'hubspot_contact', err: String(e) }); }
+
+    // If a resume came in and we have a contact, upload it to HubSpot Files and
+    // attach the URL to the contact record. Best-effort: failures are logged
+    // but do not block the rest of the lead pipeline (welcome email, deal, etc.).
+    if (contactId && safeFiles.length > 0) {
+      try {
+        await ensureResumeProperties();
+        const f = safeFiles[0]; // first attached resume only (cap was 4 client-side)
+        const up = await hubspotUploadFile(f.filename, f.base64, f.mimeType);
+        if (up.ok && up.data && up.data.url) {
+          const patch = await hubspot(`/crm/v3/objects/contacts/${contactId}`, 'PATCH', {
+            properties: {
+              resume_url: up.data.url,
+              resume_filename: f.filename
+            }
+          });
+          out.hubspot.resume = { fileId: up.data.id, url: up.data.url, patched: patch.ok };
+        } else {
+          out.errors.push({ type: 'hubspot_file_upload', status: up.status, err: JSON.stringify(up.data).slice(0, 200) });
+        }
+      } catch (e) { out.errors.push({ type: 'hubspot_file_upload', err: String(e) }); }
+    }
     let dealId = null;
     // Deal cards are for the accelerated money funnel only.
     if (contactId && (cfg.src === 'accelerated' || cfg.src === 'cost_calculator')) {
@@ -616,7 +688,7 @@ module.exports = async (req, res) => {
     if (!alerted) {
       try {
         const e = buildEmail('internal_alert', vars, { withUnsub: false });
-        const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email, attachments: safeFiles.map(f => ({ filename: f.filename, content: f.base64 })) });
+        const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email });
         out.sent.push({ type: 'internal_alert', id: r1.id });
       } catch (e) { out.errors.push({ type: 'internal_alert', err: String(e) }); }
     }
