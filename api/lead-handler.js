@@ -646,12 +646,14 @@ module.exports = async (req, res) => {
     } catch (e) { out.errors.push({ type: 'hubspot_contact', err: String(e) }); }
 
     // If a resume came in and we have a contact, upload it to HubSpot Files and
-    // attach the URL to the contact record. Best-effort: failures are logged
-    // but do not block the rest of the lead pipeline (welcome email, deal, etc.).
+    // attach the URL to the contact record. If that fails (e.g. missing scopes),
+    // fall back to attaching the resume to the internal alert email so Parker
+    // never loses an applicant's resume.
+    let resumeUploadedToHubspot = false;
     if (contactId && safeFiles.length > 0) {
       try {
         await ensureResumeProperties();
-        const f = safeFiles[0]; // first attached resume only (cap was 4 client-side)
+        const f = safeFiles[0];
         const up = await hubspotUploadFile(f.filename, f.base64, f.mimeType);
         if (up.ok && up.data && up.data.url) {
           const patch = await hubspot(`/crm/v3/objects/contacts/${contactId}`, 'PATCH', {
@@ -661,11 +663,21 @@ module.exports = async (req, res) => {
             }
           });
           out.hubspot.resume = { fileId: up.data.id, url: up.data.url, patched: patch.ok };
+          resumeUploadedToHubspot = true;
         } else {
           out.errors.push({ type: 'hubspot_file_upload', status: up.status, err: JSON.stringify(up.data).slice(0, 200) });
         }
       } catch (e) { out.errors.push({ type: 'hubspot_file_upload', err: String(e) }); }
     }
+    // Recompute the resume_badge based on actual outcome.
+    vars.resume_badge = !resumeAttached ? '' :
+      resumeUploadedToHubspot
+        ? `<tr><td style="color:rgba(255,255,255,0.55);">RESUME</td><td style="color:#E63027;font-weight:bold;">Uploaded to HubSpot (${safeFiles.map(f => f.filename).join(', ')})</td></tr>`
+        : `<tr><td style="color:rgba(255,255,255,0.55);">RESUME</td><td style="color:#E63027;font-weight:bold;">ATTACHED to this email (HubSpot upload failed — fix scopes) </td></tr>`;
+    // Conditional attachments: only when HubSpot upload failed, attach the files
+    // to the internal alert so we don't lose them.
+    const fallbackAttachments = resumeUploadedToHubspot ? [] :
+      safeFiles.map(f => ({ filename: f.filename, content: f.base64 }));
     let dealId = null;
     // Deal cards are for the accelerated money funnel only.
     if (contactId && (cfg.src === 'accelerated' || cfg.src === 'cost_calculator')) {
@@ -688,7 +700,7 @@ module.exports = async (req, res) => {
     if (!alerted) {
       try {
         const e = buildEmail('internal_alert', vars, { withUnsub: false });
-        const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email });
+        const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email, attachments: fallbackAttachments });
         out.sent.push({ type: 'internal_alert', id: r1.id });
       } catch (e) { out.errors.push({ type: 'internal_alert', err: String(e) }); }
     }
