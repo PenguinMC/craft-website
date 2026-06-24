@@ -692,14 +692,21 @@ module.exports = async (req, res) => {
       catch (e) { out.errors.push({ type: 'hubspot_task', err: String(e) }); }
     }
 
-    // 2. Alert: Slack when configured (except careers — those go straight to
-    //    email so the resume attachment / hiring-manager loop stays tidy and
-    //    we don't ping the team Slack channel about every applicant).
-    let alerted = false;
-    if (cfg.src !== 'careers') {
-      try { alerted = await slackAlert(vars, cfg, contactId, ownerId); if (alerted) out.sent.push({ type: 'slack_alert' }); }
-      catch (e) { out.errors.push({ type: 'slack_alert', err: String(e) }); }
+    // Careers track is fully silent on Resend per owner: no internal alert,
+    // no welcome, no drip. The applicant trusts the on-page success message;
+    // Parker reviews new applicants directly in HubSpot (contact + resume_url
+    // property on the contact record). Slack stays off for careers too.
+    if (cfg.src === 'careers') {
+      out.skipped.push('careers — Resend emails suppressed by design');
+      res.status(200).json({ ok: true, ...out });
+      return;
     }
+
+    // 2. Alert: Slack when configured, email fallback when Slack is absent or
+    //    errors. Either way, Parker is never blind on a non-careers lead.
+    let alerted = false;
+    try { alerted = await slackAlert(vars, cfg, contactId, ownerId); if (alerted) out.sent.push({ type: 'slack_alert' }); }
+    catch (e) { out.errors.push({ type: 'slack_alert', err: String(e) }); }
     if (!alerted) {
       try {
         const e = buildEmail('internal_alert', vars, { withUnsub: false });
