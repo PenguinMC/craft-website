@@ -673,11 +673,10 @@ module.exports = async (req, res) => {
     vars.resume_badge = !resumeAttached ? '' :
       resumeUploadedToHubspot
         ? `<tr><td style="color:rgba(255,255,255,0.55);">RESUME</td><td style="color:#E63027;font-weight:bold;">Uploaded to HubSpot (${safeFiles.map(f => f.filename).join(', ')})</td></tr>`
-        : `<tr><td style="color:rgba(255,255,255,0.55);">RESUME</td><td style="color:#E63027;font-weight:bold;">ATTACHED to this email (HubSpot upload failed — fix scopes) </td></tr>`;
-    // Conditional attachments: only when HubSpot upload failed, attach the files
-    // to the internal alert so we don't lose them.
-    const fallbackAttachments = resumeUploadedToHubspot ? [] :
-      safeFiles.map(f => ({ filename: f.filename, content: f.base64 }));
+        : `<tr><td style="color:rgba(255,255,255,0.55);">RESUME</td><td style="color:#E63027;font-weight:bold;">UPLOAD FAILED — ${safeFiles.map(f => f.filename).join(', ')} (check HubSpot Files scope)</td></tr>`;
+    // Per owner: resumes never attach to email. They live in HubSpot Files
+    // only — see the resume_badge above for upload status visibility.
+    const fallbackAttachments = [];
     let dealId = null;
     // Deal cards are for the accelerated money funnel only.
     if (contactId && (cfg.src === 'accelerated' || cfg.src === 'cost_calculator')) {
