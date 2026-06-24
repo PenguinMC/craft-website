@@ -692,27 +692,22 @@ module.exports = async (req, res) => {
       catch (e) { out.errors.push({ type: 'hubspot_task', err: String(e) }); }
     }
 
-    // Careers track is fully silent on Resend per owner: no internal alert,
-    // no welcome, no drip. The applicant trusts the on-page success message;
-    // Parker reviews new applicants directly in HubSpot (contact + resume_url
-    // property on the contact record). Slack stays off for careers too.
-    if (cfg.src === 'careers') {
-      out.skipped.push('careers — Resend emails suppressed by design');
-      res.status(200).json({ ok: true, ...out });
-      return;
-    }
-
-    // 2. Alert: Slack when configured, email fallback when Slack is absent or
-    //    errors. Either way, Parker is never blind on a non-careers lead.
-    let alerted = false;
-    try { alerted = await slackAlert(vars, cfg, contactId, ownerId); if (alerted) out.sent.push({ type: 'slack_alert' }); }
-    catch (e) { out.errors.push({ type: 'slack_alert', err: String(e) }); }
-    if (!alerted) {
-      try {
-        const e = buildEmail('internal_alert', vars, { withUnsub: false });
-        const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email, attachments: fallbackAttachments });
-        out.sent.push({ type: 'internal_alert', id: r1.id });
-      } catch (e) { out.errors.push({ type: 'internal_alert', err: String(e) }); }
+    // 2. Owner alert (Slack or email fallback). Careers track is silent on
+    //    both: Parker reviews new applicants in HubSpot (contact + resume_url
+    //    on the contact record). The applicant still gets careers_welcome
+    //    further down so they have email confirmation we received the
+    //    application — dripPlan() returns [] for careers so no further nurture.
+    if (cfg.src !== 'careers') {
+      let alerted = false;
+      try { alerted = await slackAlert(vars, cfg, contactId, ownerId); if (alerted) out.sent.push({ type: 'slack_alert' }); }
+      catch (e) { out.errors.push({ type: 'slack_alert', err: String(e) }); }
+      if (!alerted) {
+        try {
+          const e = buildEmail('internal_alert', vars, { withUnsub: false });
+          const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email, attachments: fallbackAttachments });
+          out.sent.push({ type: 'internal_alert', id: r1.id });
+        } catch (e) { out.errors.push({ type: 'internal_alert', err: String(e) }); }
+      }
     }
 
     // 2. Respect prior unsubscribes: alert still fires, lead emails do not.
