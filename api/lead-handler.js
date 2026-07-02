@@ -567,7 +567,7 @@ async function createCallTask(contactId, dealId, vars, cfg, ownerId) {
   const r1 = await hubspot('/crm/v3/objects/tasks', 'POST', {
     properties: {
       hs_task_subject: `CALL ${vars.firstname} ${vars.lastname} - new ${cfg.source} lead`.trim(),
-      hs_task_body: `${vars.phone || 'no phone'} | ${vars.email} | interest: ${vars.program}. ${cfg.temp} lead: ${cfg.temp === 'HOT' ? 'call inside the hour' : 'call today'}.`,
+      hs_task_body: `${vars.phone || 'no phone'} | ${vars.email} | interest: ${vars.program}. ${cfg.temp} lead: ${cfg.temp === 'HOT' ? 'call inside the hour' : 'call today'}.` + (vars.message ? ` They wrote: "${vars.message}"` : ''),
       hs_timestamp: due,
       hs_task_status: 'NOT_STARTED',
       hs_task_type: 'CALL',
@@ -580,6 +580,27 @@ async function createCallTask(contactId, dealId, vars, cfg, ownerId) {
   return r1.data.id;
 }
 
+// One-week follow-up task on every lead, created up front. If they convert
+// before then, the owner just closes it.
+async function createFollowupTask(contactId, dealId, vars, cfg, ownerId) {
+  const associations = [{ to: { id: contactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }] }];
+  if (dealId) associations.push({ to: { id: dealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] });
+  const r1 = await hubspot('/crm/v3/objects/tasks', 'POST', {
+    properties: {
+      hs_task_subject: `FOLLOW UP ${vars.firstname} ${vars.lastname} - ${cfg.source} lead from last week`.trim(),
+      hs_task_body: `One-week check-in. ${vars.phone || 'no phone'} | ${vars.email} | interest: ${vars.program}. Close this task if they already converted or replied.`,
+      hs_timestamp: Date.now() + 7 * 86400 * 1000,
+      hs_task_status: 'NOT_STARTED',
+      hs_task_type: 'TODO',
+      hs_task_priority: 'MEDIUM',
+      hubspot_owner_id: ownerId
+    },
+    associations
+  });
+  if (!r1.ok) throw new Error(`HubSpot followup task ${r1.status}: ${JSON.stringify(r1.data)}`);
+  return r1.data.id;
+}
+
 // Slack alert. Returns false when SLACK_WEBHOOK_URL is not configured,
 // in which case the caller falls back to the email alert.
 async function slackAlert(vars, cfg, contactId, ownerId) {
@@ -587,8 +608,9 @@ async function slackAlert(vars, cfg, contactId, ownerId) {
   if (!hook) return false;
   const link = contactId ? `\n<https://app.hubspot.com/contacts/${HS_PORTAL}/record/0-1/${contactId}|Open in HubSpot>` : '';
   const text = `New lead: *${vars.firstname} ${vars.lastname}*\n` +
-    `Form: ${cfg.source}\n` +
-    `${vars.phone || 'no phone'} | ${vars.email}${link}`;
+    `Form: ${cfg.source}  |  Interested in: ${vars.program}\n` +
+    `${vars.phone || 'no phone'} | ${vars.email}` +
+    (vars.message ? `\n>${vars.message.replace(/\n/g, '\n>')}` : '') + link;
   const res = await fetch(hook, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -607,7 +629,7 @@ module.exports = async (req, res) => {
 
   try {
     const { formId, firstname = '', lastname = '', email = '', phone = '', program_interest = '',
-            gclid = '', click_id_type = '', files = [] } = req.body || {};
+            message = '', gclid = '', click_id_type = '', files = [] } = req.body || {};
     if (!email || !firstname) { res.status(400).json({ error: 'firstname + email required' }); return; }
 
     const cfg = FORM_MAP[formId] || FORM_MAP['870b2177-3a5b-4bbb-961e-43923f1d3b84'];
@@ -624,6 +646,7 @@ module.exports = async (req, res) => {
     const vars = {
       firstname, lastname, email, phone,
       program: (program_interest || '').replace(/_/g, ' ') || 'flight training',
+      message: String(message || '').slice(0, 1200),
       source: cfg.source, temp: cfg.temp,
       gclid, click_id_type,
       // Pre-rendered HTML row for the internal alert. Renders only if gclid present.
@@ -690,6 +713,8 @@ module.exports = async (req, res) => {
     if (contactId && cfg.src !== 'careers') {
       try { out.hubspot.task = await createCallTask(contactId, dealId, vars, cfg, ownerId); }
       catch (e) { out.errors.push({ type: 'hubspot_task', err: String(e) }); }
+      try { out.hubspot.followup = await createFollowupTask(contactId, dealId, vars, cfg, ownerId); }
+      catch (e) { out.errors.push({ type: 'hubspot_followup', err: String(e) }); }
     }
 
     // 2. Owner alert (Slack or email fallback). Careers track is silent on
