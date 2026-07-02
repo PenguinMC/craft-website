@@ -766,3 +766,16 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .hs-form input, .hs-form select, .hs-form textarea { font-size: 16px !important; }
   .nav-inner { padding: 12px var(--gut); gap: 12px; }
 }
+
+
+/* === ACX CTA (form section on accelerated + course pages) === */
+.acx-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: var(--beacon); text-transform: uppercase; background: rgba(230,48,39,0.06); border: 1px solid rgba(230,48,39,0.3); padding: 8px 14px; border-radius: 4px; margin-bottom: 28px; }
+.acx-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--beacon); box-shadow: 0 0 8px var(--beacon); animation: acxDot 1.4s ease-in-out infinite; display: inline-block; }
+@keyframes acxDot { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.acx-cta { background: var(--ink); padding: 110px 0; position: relative; overflow: hidden; }
+.acx-cta-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(230,48,39,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(230,48,39,0.05) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; }
+.acx-cta-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; padding: 0 var(--gut); text-align: center; }
+.acx-cta h2 { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6vw, 78px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 18px; }
+.acx-cta h2 .accent { color: var(--beacon); }
+.acx-cta p { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 28px; }
+.acx-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
