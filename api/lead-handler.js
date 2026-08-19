@@ -368,6 +368,13 @@ async function resend(path, method, payload, attempt = 0) {
     body: payload ? JSON.stringify(payload) : undefined
   });
   if (res.status === 429 && attempt < 3) {
+    // Retry per-second rate limits, but a daily-quota 429 will not clear in
+    // seconds: fail fast so the function never blows its time budget.
+    let peek = {};
+    try { peek = await res.clone().json(); } catch (e) { /* fine */ }
+    if (peek && peek.name === 'daily_quota_exceeded') {
+      return { ok: false, status: 429, data: peek };
+    }
     await sleep(700 * (attempt + 1));
     return resend(path, method, payload, attempt + 1);
   }

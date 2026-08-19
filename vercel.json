@@ -412,5 +412,10 @@
       "path": "/api/drip-cron",
       "schedule": "0 14 * * *"
     }
-  ]
+  ],
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 60
+    }
+  }
 }
