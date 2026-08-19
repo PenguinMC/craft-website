@@ -614,7 +614,7 @@ async function slackAlert(vars, cfg, contactId, ownerId) {
   // Channel routing: the main webhook is the accelerated-leads channel.
   // Everything else goes to SLACK_WEBHOOK_URL_GENERAL when configured,
   // and falls back to the main channel so no lead is ever dropped.
-  const isAccel = cfg.src === 'accelerated' || cfg.src === 'cost_calculator';
+  const isAccel = cfg.accel === true || cfg.src === 'accelerated' || cfg.src === 'cost_calculator';
   const hook = isAccel
     ? process.env.SLACK_WEBHOOK_URL
     : (process.env.SLACK_WEBHOOK_URL_GENERAL || process.env.SLACK_WEBHOOK_URL);
@@ -666,7 +666,15 @@ module.exports = async (req, res) => {
       return;
     }
 
-    const cfg = FORM_MAP[formId] || FORM_MAP['870b2177-3a5b-4bbb-961e-43923f1d3b84'];
+    const baseCfg = FORM_MAP[formId] || FORM_MAP['870b2177-3a5b-4bbb-961e-43923f1d3b84'];
+    // A lead is "accelerated" if it came through the accelerated/cost-calc form
+    // OR if they picked an accelerated program on any other form.
+    const ACCEL_PROGRAMS = ['accel_ifr', 'accel_cpl', 'accel_multi', 'multi_engine', 'cfi', 'cfii', 'mei'];
+    const accelIntent = ACCEL_PROGRAMS.includes(String(program_interest || '').toLowerCase());
+    const isAccelForm = baseCfg.src === 'accelerated' || baseCfg.src === 'cost_calculator';
+    const cfg = (accelIntent && !isAccelForm)
+      ? { ...baseCfg, temp: 'HOT', accel: true }
+      : { ...baseCfg, accel: isAccelForm };
     const isFromGoogleAds = Boolean(gclid);
     // Sanitize incoming files: keep only entries with both filename + base64 content.
     // Cap each file at ~6 MB base64 (~4.5 MB raw) so we never blow Resend's 40 MB
@@ -696,7 +704,7 @@ module.exports = async (req, res) => {
 
     // 1. HubSpot: contact with temperature/source/owner + deal card in New Lead.
     let contactId = null;
-    const ownerId = routeOwner(cfg.src, email);
+    const ownerId = cfg.accel ? OWNERS.deanna : routeOwner(cfg.src, email);
     try {
       contactId = await upsertContact(vars, cfg, ownerId);
       out.hubspot = { contactId, owner: OWNER_NAMES[ownerId] };
@@ -736,7 +744,7 @@ module.exports = async (req, res) => {
     const fallbackAttachments = [];
     let dealId = null;
     // Deal cards are for the accelerated money funnel only.
-    if (contactId && (cfg.src === 'accelerated' || cfg.src === 'cost_calculator')) {
+    if (contactId && cfg.accel) {
       try {
         const d = await ensureDeal(contactId, vars, cfg, ownerId);
         out.hubspot.deal = d;
