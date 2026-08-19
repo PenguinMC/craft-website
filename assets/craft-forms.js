@@ -13,6 +13,15 @@
     form.dataset.bound = '1';
     log('binding form', form.dataset.hsForm);
 
+    // Spam trap: hidden field bots auto-fill + timestamp for a minimum
+    // human fill time. Both checked here and again server-side.
+    var hp = document.createElement('input');
+    hp.type = 'text'; hp.name = 'company_website'; hp.tabIndex = -1;
+    hp.autocomplete = 'off'; hp.setAttribute('aria-hidden', 'true');
+    hp.style.cssText = 'position:absolute;left:-9999px;top:-9999px;height:0;width:0;opacity:0;pointer-events:none;';
+    form.appendChild(hp);
+    form.dataset.renderedAt = String(Date.now());
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       submitForm(form);
@@ -22,6 +31,19 @@
   function submitForm(form) {
     var portal = form.dataset.hsPortal;
     var formId = form.dataset.hsForm;
+
+    // Spam checks: honeypot filled or submitted in under 4 seconds.
+    // Show the normal success message so bots think it worked, send nothing.
+    var hpField = form.querySelector('input[name="company_website"]');
+    var elapsed = Date.now() - Number(form.dataset.renderedAt || 0);
+    if ((hpField && hpField.value) || (elapsed > 0 && elapsed < 4000)) {
+      log('spam trap tripped, dropping submission');
+      var wrapEl = form.closest('.craft-form-wrap') || form.parentElement;
+      form.style.display = 'none';
+      var okMsg = form.dataset.success || 'Got it. A CFI will reach out shortly.';
+      wrapEl.insertAdjacentHTML('beforeend', '<div class="craft-form-success"><div style="font-family:var(--display,inherit);font-weight:900;font-size:20px;text-transform:uppercase;">Message Sent</div><p>' + okMsg + '</p></div>');
+      return;
+    }
     var successMsg = form.dataset.success || 'Got it. A CFI will reach out shortly.';
     var btn = form.querySelector('.craft-form-btn');
     var status = form.querySelector('.craft-form-status');
@@ -72,6 +94,7 @@
     fd.forEach(function (v, k) {
       // Skip File values — these are read via FileReader below
       if (v && typeof v === 'object' && 'name' in v && 'size' in v && 'type' in v) return;
+      if (k === 'company_website') return; // honeypot, never forwarded
       var val = String(v).trim();
       if (val) fields.push({ name: k, value: val });
     });

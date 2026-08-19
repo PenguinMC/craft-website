@@ -632,6 +632,15 @@ module.exports = async (req, res) => {
             message = '', gclid = '', click_id_type = '', files = [] } = req.body || {};
     if (!email || !firstname) { res.status(400).json({ error: 'firstname + email required' }); return; }
 
+    // Server-side spam backstop: honeypot field present, or a message that is
+    // nothing but links. Respond ok so bots move on; create and send nothing.
+    const bodyAll = req.body || {};
+    const linkCount = (String(bodyAll.message || '').match(/https?:\/\//g) || []).length;
+    if (bodyAll.company_website || linkCount >= 2) {
+      res.status(200).json({ ok: true });
+      return;
+    }
+
     const cfg = FORM_MAP[formId] || FORM_MAP['870b2177-3a5b-4bbb-961e-43923f1d3b84'];
     const isFromGoogleAds = Boolean(gclid);
     // Sanitize incoming files: keep only entries with both filename + base64 content.
