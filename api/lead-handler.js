@@ -611,21 +611,39 @@ async function createFollowupTask(contactId, dealId, vars, cfg, ownerId) {
 // Slack alert. Returns false when SLACK_WEBHOOK_URL is not configured,
 // in which case the caller falls back to the email alert.
 async function slackAlert(vars, cfg, contactId, ownerId) {
-  const hook = process.env.SLACK_WEBHOOK_URL;
+  // Channel routing: the main webhook is the accelerated-leads channel.
+  // Everything else goes to SLACK_WEBHOOK_URL_GENERAL when configured,
+  // and falls back to the main channel so no lead is ever dropped.
+  const isAccel = cfg.src === 'accelerated' || cfg.src === 'cost_calculator';
+  const hook = isAccel
+    ? process.env.SLACK_WEBHOOK_URL
+    : (process.env.SLACK_WEBHOOK_URL_GENERAL || process.env.SLACK_WEBHOOK_URL);
   if (!hook) return false;
-  const link = contactId ? `\n<https://app.hubspot.com/contacts/${HS_PORTAL}/record/0-1/${contactId}|Open in HubSpot>` : '';
-  const text = `New lead: *${vars.firstname} ${vars.lastname}*\n` +
-    `Form: ${cfg.source}  |  Interested in: ${vars.program}\n` +
-    `${vars.phone || 'no phone'} | ${vars.email}` +
-    (vars.message ? `\n>${vars.message.replace(/\n/g, '\n>')}` : '') + link;
+  const link = contactId ? `https://app.hubspot.com/contacts/${HS_PORTAL}/record/0-1/${contactId}` : null;
+  const blocks = [
+    { type: 'header', text: { type: 'plain_text', text: `${vars.firstname} ${vars.lastname}`.trim() } },
+    { type: 'section', fields: [
+      { type: 'mrkdwn', text: `*Form*\n${cfg.source}` },
+      { type: 'mrkdwn', text: `*Interested in*\n${vars.program}` },
+      { type: 'mrkdwn', text: `*Phone*\n${vars.phone || 'none'}` },
+      { type: 'mrkdwn', text: `*Email*\n${vars.email}` }
+    ]}
+  ];
+  if (vars.message) {
+    blocks.push({ type: 'section', text: { type: 'mrkdwn', text: '>' + vars.message.replace(/\n/g, '\n>') } });
+  }
+  blocks.push({ type: 'context', elements: [{ type: 'mrkdwn',
+    text: `Assigned to ${OWNER_NAMES[ownerId] || 'team'}${link ? ` · <${link}|Open in HubSpot>` : ''}` }] });
+  blocks.push({ type: 'divider' });
   const res = await fetch(hook, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text })
+    body: JSON.stringify({ text: `New lead: ${vars.firstname} ${vars.lastname} (${cfg.source})`, blocks })
   });
   if (!res.ok) throw new Error(`Slack webhook ${res.status}`);
   return true;
 }
+
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
