@@ -140,7 +140,7 @@ const T = {
     body: `<p>{firstname},</p>
 <p>You asked about accelerated training, so here is how it works. You arrive with prerequisites done. We fly twice a day, sim mornings, airplane afternoons. The DPE is booked before your course starts, so the checkride date is locked from day one. 96% first-time pass rate.</p>
 <p><strong style="color:#E63027;">Timelines and flat prices:</strong></p>
-<p style="color:rgba(255,255,255,0.85);">IFR: 7 days, $9,900<br>Commercial: 5 days, $8,600<br>Multi-Engine add-on: 4 days, $9,500<br>CFI initial: 10 to 12 days, $12,000<br>CFII: $4,950 when bundled with the CFI, about 4 extra days</p>
+<p style="color:rgba(255,255,255,0.85);">IFR: 7 days, $9,900<br>Commercial: 6 days (5 training + checkride), $8,600<br>Multi-Engine add-on: 4 days, $9,500<br>CFI initial: 10 to 12 days, $12,000<br>CFII: $4,950 when bundled with the CFI, about 4 extra days</p>
 <p style="margin:18px 0 6px;"><strong style="color:#E63027;">Start studying now, on us:</strong></p>
 <p style="color:rgba(255,255,255,0.85);">
 <a href="https://drive.google.com/file/d/1n6ljYlsIsjS-7R2JgltowsR79W4x4iJQ/view?usp=sharing" style="color:#E63027;">CRAFT Program Checklist</a><br>
@@ -334,24 +334,6 @@ const T = {
     ctaUrl: null
   },
 
-  // ===== Internal alert to owner =====
-  internal_alert: {
-    subject: '{temp} LEAD: {firstname} {lastname} ({source})',
-    title: '{temp} lead in',
-    body: `<p>New {temp} lead off the {source} form.</p>
-<table role="presentation" cellpadding="6" cellspacing="0" border="0" style="font-family:'Courier New',monospace;font-size:14px;color:#ffffff;background:#1C2129;border-radius:8px;border:1px solid rgba(230,48,39,0.3);">
-<tr><td style="color:rgba(255,255,255,0.55);">NAME</td><td style="color:#ffffff;font-weight:bold;">{firstname} {lastname}</td></tr>
-<tr><td style="color:rgba(255,255,255,0.55);">EMAIL</td><td><a href="mailto:{email}" style="color:#E63027;">{email}</a></td></tr>
-<tr><td style="color:rgba(255,255,255,0.55);">PHONE</td><td><a href="tel:{phone}" style="color:#E63027;">{phone}</a></td></tr>
-<tr><td style="color:rgba(255,255,255,0.55);">INTEREST</td><td>{program}</td></tr>
-<tr><td style="color:rgba(255,255,255,0.55);">SOURCE</td><td>{source}</td></tr>
-{ads_badge}
-{resume_badge}
-</table>
-<p style="margin-top:18px;">Speed-to-lead: HOT inside 5 minutes, WARM inside the hour, COLD same day. The welcome email already went out, the drip is queued, your job is the phone call.</p>`,
-    ctaLabel: 'Call Now',
-    ctaUrl: 'tel:{phone}'
-  }
 };
 
 const FORM_MAP = {
@@ -771,16 +753,8 @@ module.exports = async (req, res) => {
     //    further down so they have email confirmation we received the
     //    application — dripPlan() returns [] for careers so no further nurture.
     if (cfg.src !== 'careers') {
-      let alerted = false;
-      try { alerted = await slackAlert(vars, cfg, contactId, ownerId); if (alerted) out.sent.push({ type: 'slack_alert' }); }
+      try { if (await slackAlert(vars, cfg, contactId, ownerId)) out.sent.push({ type: 'slack_alert' }); }
       catch (e) { out.errors.push({ type: 'slack_alert', err: String(e) }); }
-      if (!alerted) {
-        try {
-          const e = buildEmail('internal_alert', vars, { withUnsub: false });
-          const r1 = await sendEmail({ to: ownerEmail, subject: e.subject, html: e.html, text: e.text, replyTo: email, attachments: fallbackAttachments });
-          out.sent.push({ type: 'internal_alert', id: r1.id });
-        } catch (e) { out.errors.push({ type: 'internal_alert', err: String(e) }); }
-      }
     }
 
     // 2. Respect prior unsubscribes: alert still fires, lead emails do not.

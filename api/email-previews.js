@@ -15,8 +15,7 @@ const GROUPS = [
   ['Day 1 nudge (everyone)', ['day1_universal']],
   ['Day 3 follow-up (per form)', ['day3_homepage', 'day3_accelerated', 'day3_flight_school', 'day3_cost_calc', 'day3_chatbot']],
   ['Days 7 / 14 / 30 (everyone)', ['day7_reality', 'day14_lastcall', 'day30_cooldown']],
-  ['Days 60 / 120 (sent by daily cron)', ['day60_winback', 'day120_quarterly']],
-  ['Internal (to the team, not leads)', ['internal_alert']]
+  ['Days 60 / 120 (sent by daily cron)', ['day60_winback', 'day120_quarterly']]
 ];
 
 module.exports = async (req, res) => {
