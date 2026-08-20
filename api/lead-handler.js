@@ -141,6 +141,12 @@ const T = {
 <p>You asked about accelerated training, so here is how it works. You arrive with prerequisites done. We fly twice a day, sim mornings, airplane afternoons. The DPE is booked before your course starts, so the checkride date is locked from day one. 96% first-time pass rate.</p>
 <p><strong style="color:#E63027;">Timelines and flat prices:</strong></p>
 <p style="color:rgba(255,255,255,0.85);">IFR: 7 days, $9,900<br>Commercial: 5 days, $8,600<br>Multi-Engine add-on: 4 days, $9,500<br>CFI initial: 10 to 12 days, $12,000<br>CFII: $4,950 when bundled with the CFI, about 4 extra days</p>
+<p style="margin:18px 0 6px;"><strong style="color:#E63027;">Start studying now, on us:</strong></p>
+<p style="color:rgba(255,255,255,0.85);">
+<a href="https://drive.google.com/file/d/1n6ljYlsIsjS-7R2JgltowsR79W4x4iJQ/view?usp=sharing" style="color:#E63027;">CRAFT Program Checklist</a><br>
+<a href="https://drive.google.com/file/d/1lL0i3J3APuXk33Nth2IScbmxQztHf4Dz/view?usp=sharing" style="color:#E63027;">CRAFT Training Supplement</a><br>
+<a href="https://drive.google.com/file/d/1eRCTP478HhKoC7y_qOQOZup1NtOidLdH/view?usp=sharing" style="color:#E63027;">DA40 NG Airplane Flight Manual</a></p>
+<p>Once your dates are locked we send the FAA handbooks for your specific course, and your printed ACS and mock oral guide are waiting for you here on Day 1.</p>
 <p>Slots book 2 to 4 weeks out. To get on the calendar, reply with:</p>
 <p style="color:rgba(255,255,255,0.85);">1. Current ratings and total time<br>2. Target start window</p>
 <p>I will come back with a real schedule, not a brochure. Or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a> and we will sort it in five minutes.</p>`,
