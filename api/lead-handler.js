@@ -80,8 +80,8 @@ ${ctaLabel ? `<tr>
 <tr>
 <td style="padding:24px 40px 28px;border-top:1px solid rgba(255,255,255,0.08);">
 <div style="font-size:14px;color:#ffffff;line-height:1.6;">
-Parker Hughes<br>
-<span style="color:rgba(255,255,255,0.6);">Training Advisor and CFI</span><br>
+The CRAFT Team<br>
+<span style="color:rgba(255,255,255,0.6);">Flight Training and Simulation, KCHS</span><br>
 <a href="tel:+18438006498" style="color:#E63027;text-decoration:none;">843.800.6498</a> &middot;
 <a href="mailto:craft@flycraftchs.com" style="color:#E63027;text-decoration:none;">craft@flycraftchs.com</a>
 </div>
@@ -111,7 +111,7 @@ function toText(html, unsub) {
     .replace(/&middot;/g, '·')
     .replace(/\n{3,}/g, '\n\n')
     .trim()
-    + '\n\nParker Hughes\nTraining Advisor and CFI\nCRAFT Flight Training and Simulation\n843.800.6498'
+    + '\n\nThe CRAFT Team\nCRAFT Flight Training and Simulation\n843.800.6498'
     + (unsub ? '\n\nUnsubscribe: ' + unsub : '');
 }
 
@@ -125,11 +125,11 @@ const T = {
     subject: 'GOT YOUR MESSAGE. HERE IS THE FAST PATH.',
     title: 'What is next for you?',
     body: `<p>Hey {firstname},</p>
-<p>Parker here. I run training at CRAFT at Charleston International. Got your message, so let me save you some clicking. This usually goes one of three ways:</p>
+<p>You reached the CRAFT team at Charleston International. Got your message, so here is the fast path. This usually goes one of three ways:</p>
 <p><strong style="color:#E63027;">Never flown, curious.</strong> Book a Discovery Flight. $325, one hour at the controls of a Diamond DA40 NG with a CFI in the right seat. You will know by the time you land.</p>
 <p><strong style="color:#E63027;">Ready for your license.</strong> Private Pilot at your pace, 1 to 3 lessons a week. Class C airspace, real ATC, 96% first-time pass rate.</p>
-<p><strong style="color:#E63027;">Already rated, want the next one fast.</strong> Reply with the rating (IFR, Commercial, Multi, CFI) and your target month. I will send dates and a flat price.</p>
-<p>Fastest answer: reply to this email or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>. I pick up.</p>`,
+<p><strong style="color:#E63027;">Already rated, want the next one fast.</strong> Reply with the rating (IFR, Commercial, Multi, CFI) and your target month. We will send dates and a flat price.</p>
+<p>Fastest answer: reply to this email or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>. A CFI answers, not a call center.</p>`,
     ctaLabel: 'Book a Discovery Flight',
     ctaUrl: SITE + '/discovery-flight'
   },
@@ -149,7 +149,7 @@ const T = {
 <p>Once your dates are locked we send the FAA handbooks for your specific course, and your printed ACS and mock oral guide are waiting for you here on Day 1.</p>
 <p>Slots book 2 to 4 weeks out. To get on the calendar, reply with:</p>
 <p style="color:rgba(255,255,255,0.85);">1. Current ratings and total time<br>2. Target start window</p>
-<p>I will come back with a real schedule, not a brochure. Or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a> and we will sort it in five minutes.</p>`,
+<p>We will come back with a real schedule, not a brochure. Or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a> and we will sort it in five minutes.</p>`,
     ctaLabel: 'See the Programs',
     ctaUrl: SITE + '/accelerated'
   },
@@ -175,20 +175,20 @@ const T = {
 <p><strong style="color:#E63027;">Cadence is the hidden variable.</strong> Fly 2 to 3 times a week and the skills stick, so you finish in fewer total hours. Stretch it thin and you pay to relearn. Same rates, very different totals.</p>
 <p><strong style="color:#E63027;">Accelerated is a different animal.</strong> Ratings like IFR and Commercial run as flat-fee programs. One price, everything included, checkride pre-booked.</p>
 <p><strong style="color:#E63027;">The Discovery Flight counts.</strong> $325, one hour in the DA40 NG, and the time goes in your logbook if you continue.</p>
-<p>Still researching? Book the Discovery. Ready to start? Reply with your target date and I will get you on the schedule. Or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
+<p>Still researching? Book the Discovery. Ready to start? Reply with your target date and we will get you on the schedule. Or call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>.</p>`,
     ctaLabel: 'Book a Discovery Flight',
     ctaUrl: SITE + '/discovery-flight'
   },
 
   chatbot_welcome: {
-    subject: 'THE BOT DID ITS BEST. I AM THE HUMAN.',
+    subject: 'THE BOT DID ITS BEST. HERE ARE THE HUMANS.',
     title: 'Let us actually talk',
     body: `<p>Hey {firstname},</p>
-<p>The chat widget handles the easy questions. Your actual situation, your schedule, your budget, whether your old logbook hours still count, that is a five minute phone call with a person.</p>
-<p>I am the person. <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a>, I pick up.</p>
+<p>The chat widget handles the easy questions. Your actual situation, your schedule, your budget, whether your old logbook hours still count, that is a five minute phone call with a real CFI.</p>
+<p>Call <a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a> and you get one, not a call center.</p>
 <p>Prefer typing? Reply to this with three things:</p>
 <p style="color:rgba(255,255,255,0.85);">What you are after (first license, a rating, just curious)<br>Any timeline you care about<br>Whatever the bot could not answer</p>
-<p>Same-day reply during business hours. That is not a slogan, it is just my inbox.</p>`,
+<p>Same-day reply during business hours, from a human.</p>`,
     ctaLabel: 'Book a Discovery Flight',
     ctaUrl: SITE + '/discovery-flight'
   },
@@ -210,9 +210,9 @@ const T = {
     subject: 'ONE QUESTION',
     title: 'One question',
     body: `<p>{firstname},</p>
-<p>Quick one. Yesterday I sent you the rundown. Today I just want to know one thing:</p>
+<p>Quick one. Yesterday we sent you the rundown. Today, just one question:</p>
 <p><strong style="color:#E63027;">What is the actual goal?</strong></p>
-<p>First license. A rating you have been putting off. The airlines. Or just finally scratching the itch. One line back is plenty. I will point you at the right thing and skip everything that does not apply to you.</p>`,
+<p>First license. A rating you have been putting off. The airlines. Or just finally scratching the itch. One line back is plenty. We will point you at the right thing and skip everything that does not apply to you.</p>`,
     ctaLabel: null,
     ctaUrl: null
   },
@@ -234,7 +234,7 @@ const T = {
     title: 'Dates go fast',
     body: `<p>{firstname},</p>
 <p>Following up on your accelerated inquiry with the part nobody tells you: the bottleneck is never the instruction, it is the calendar. Our slots book 2 to 4 weeks out, and we lock a DPE before every course, which means dates disappear in pairs.</p>
-<p>If you want to train in the next 60 days, now is the moment to claim dates. If your window is further out, reply with the month and I will watch availability for you. Zero pressure, just physics.</p>
+<p>If you want to train in the next 60 days, now is the moment to claim dates. If your window is further out, reply with the month and we will watch availability for you. Zero pressure, just physics.</p>
 <p><a href="tel:+18438006498" style="color:#E63027;">843.800.6498</a> if a call is faster.</p>`,
     ctaLabel: 'See the Programs',
     ctaUrl: SITE + '/accelerated'
@@ -269,7 +269,7 @@ const T = {
     subject: 'STOP RESEARCHING. GO FLY.',
     title: 'Research mode has a cure',
     body: `<p>{firstname},</p>
-<p>Most people who hit our chat widget are deep in research mode. Tabs open, YouTube comparisons, cost spreadsheets. I have watched it for years, so believe me when I say there is no spreadsheet exit from research mode.</p>
+<p>Most people who hit our chat widget are deep in research mode. Tabs open, YouTube comparisons, cost spreadsheets. We watch it happen every week, and there is no spreadsheet exit from research mode.</p>
 <p>There is one cure: an hour at the controls. $325, one DA40 NG, one CFI, one answer.</p>`,
     ctaLabel: 'Book a Discovery Flight',
     ctaUrl: SITE + '/discovery-flight'
@@ -280,21 +280,21 @@ const T = {
     subject: 'THE HONEST MATH ON WAITING',
     title: 'Waiting costs more than training',
     body: `<p>{firstname},</p>
-<p>A week since you reached out, so here is the honest math, then I will ease off.</p>
+<p>A week since you reached out, so here is the honest math, then we will ease off.</p>
 <p>Training prices do not go down. DPE calendars do not open up. And the FAA minimum is the same number whether you start this month or in two years. The only thing waiting buys is a later version of the same decision, usually at a higher rate.</p>
-<p>If the holdup is <strong style="color:#E63027;">timing</strong>, reply with the month and I will plan around it. If it is <strong style="color:#E63027;">budget</strong>, ask me about financing, we have options. If you <strong style="color:#E63027;">picked another school</strong>, reply and tell me, no hard feelings, and I will stop emailing you about it.</p>`,
+<p>If the holdup is <strong style="color:#E63027;">timing</strong>, reply with the month and we will plan around it. If it is <strong style="color:#E63027;">budget</strong>, ask us about financing, we have options. If you <strong style="color:#E63027;">picked another school</strong>, reply and tell us, no hard feelings, and the emails stop.</p>`,
     ctaLabel: 'See Financing Options',
     ctaUrl: SITE + '/financing'
   },
 
   // ===== T+14 last call =====
   day14_lastcall: {
-    subject: 'LAST CALL FROM ME',
+    subject: 'LAST CALL FROM US',
     title: 'Last push, promise',
     body: `<p>{firstname},</p>
-<p>This is the last frequent email you will get from me. After today I check in rarely, and only to see if timing changed.</p>
+<p>This is the last frequent email you will get from us. After today we check in rarely, and only to see if timing changed.</p>
 <p>So while it is in front of you: if there is one question keeping you from starting, cost, schedule, the medical, whether you are too old (you are not, we have started students in their 60s), reply with it right now. One question, one honest answer.</p>
-<p>And if the answer is just "not now," that is allowed. Reply "later" and I will leave you alone until you say otherwise.</p>`,
+<p>And if the answer is just "not now," that is allowed. Reply "later" and we will leave you alone until you say otherwise.</p>`,
     ctaLabel: null,
     ctaUrl: null
   },
@@ -305,7 +305,7 @@ const T = {
     title: 'Quick pulse check',
     body: `<p>{firstname},</p>
 <p>It has been a month since you asked about {program}. One-line reply, any of these:</p>
-<p style="color:rgba(255,255,255,0.85);">"Still interested" and I will pick up where we left off<br>"Wrong timing" with a month and I will circle back then<br>"Went elsewhere" and I will wish you blue skies<br>"Stop" and the emails stop</p>
+<p style="color:rgba(255,255,255,0.85);">"Still interested" and we pick up where we left off<br>"Wrong timing" with a month and we circle back then<br>"Went elsewhere" and we wish you blue skies<br>"Stop" and the emails stop</p>
 <p>Ten seconds of your time, and either way you stop getting guessed at.</p>`,
     ctaLabel: null,
     ctaUrl: null
@@ -316,8 +316,8 @@ const T = {
     subject: 'THE SEAT IS STILL OPEN',
     title: 'Two months later',
     body: `<p>{firstname},</p>
-<p>Two months since you first asked about flight training. I am not going to pretend something dramatic changed, the fleet is the same five DA40s and the twin, the pass rate is still 96%, Charleston weather is still better than where most people train.</p>
-<p>What might have changed is your situation. If the itch is still there, the shortest path back is one word: reply "dates" and I will send the current calendar. Or book the Discovery hour and let the airplane argue my case.</p>`,
+<p>Two months since you first asked about flight training. We will not pretend something dramatic changed, the fleet is the same five DA40s and the twin, the pass rate is still 96%, Charleston weather is still better than where most people train.</p>
+<p>What might have changed is your situation. If the itch is still there, the shortest path back is one word: reply "dates" and we will send the current calendar. Or book the Discovery hour and let the airplane make the case.</p>`,
     ctaLabel: 'Book a Discovery Flight',
     ctaUrl: SITE + '/discovery-flight'
   },
@@ -328,7 +328,7 @@ const T = {
     title: 'No pitch. Just a beacon.',
     body: `<p>{firstname},</p>
 <p>No pitch in this one. People start training six months, a year, three years after their first inquiry. It is the most normal thing in aviation.</p>
-<p>So keep this email. When the time is right, reply to it. It lands in my actual inbox, not a queue, and we will pick up exactly where you left off.</p>
+<p>So keep this email. When the time is right, reply to it. A real person at CRAFT reads it, not a queue, and we will pick up exactly where you left off.</p>
 <p>Blue skies and tailwinds.</p>`,
     ctaLabel: null,
     ctaUrl: null
