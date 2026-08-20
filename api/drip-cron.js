@@ -30,6 +30,67 @@ async function hubspotContactsCreatedBetween(fromMs, toMs) {
   return data.results || [];
 }
 
+const PIPELINE_ID = '908741278';
+const DAY = 86400 * 1000;
+
+async function hubspotDealDateTasks(out) {
+  // Deals with a Course Start Date drive two automatic tasks:
+  //   T-5 days: pre-course check-in.  T+14 days: review + next-rating follow-up.
+  const r = await fetch('https://api.hubapi.com/crm/v3/objects/deals/search', {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${process.env.HUBSPOT_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      filterGroups: [{ filters: [
+        { propertyName: 'pipeline', operator: 'EQ', value: PIPELINE_ID },
+        { propertyName: 'course_start_date', operator: 'HAS_PROPERTY' }
+      ]}],
+      properties: ['dealname', 'course_start_date', 'hubspot_owner_id', 'precourse_task_created', 'post_course_followup_created'],
+      limit: 100
+    })
+  });
+  if (!r.ok) { out.errors.push('deal date search ' + r.status); return; }
+  const deals = (await r.json()).results || [];
+  for (const d of deals) {
+    const p = d.properties || {};
+    const start = Date.parse(p.course_start_date);
+    if (!start) continue;
+    const now = Date.now();
+    const mk = async (subject, body, marker) => {
+      const t = await fetch('https://api.hubapi.com/crm/v3/objects/tasks', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${process.env.HUBSPOT_TOKEN}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          properties: {
+            hs_task_subject: subject, hs_task_body: body,
+            hs_timestamp: now + 3600 * 1000,
+            hs_task_status: 'NOT_STARTED', hs_task_type: 'TODO', hs_task_priority: 'MEDIUM',
+            ...(p.hubspot_owner_id ? { hubspot_owner_id: p.hubspot_owner_id } : {})
+          },
+          associations: [{ to: { id: d.id }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] }]
+        })
+      });
+      if (t.ok) {
+        await fetch(`https://api.hubapi.com/crm/v3/objects/deals/${d.id}`, {
+          method: 'PATCH',
+          headers: { 'Authorization': `Bearer ${process.env.HUBSPOT_TOKEN}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ properties: { [marker]: now } })
+        });
+        out.sent.push({ deal: p.dealname, task: subject });
+      }
+    };
+    if (!p.precourse_task_created && now >= start - 5 * DAY && now < start) {
+      await mk(`PRE-COURSE: ${p.dealname} starts in ~5 days`,
+        'Check in before the course: confirm arrival plans, housing sorted, materials received and studied, DPE still locked.',
+        'precourse_task_created');
+    }
+    if (!p.post_course_followup_created && now >= start + 14 * DAY) {
+      await mk(`COURSE DONE: follow up with ${p.dealname}`,
+        'Course window has passed. Congratulate them, send the post-checkride review-request email template, and pitch the next rating.',
+        'post_course_followup_created');
+    }
+  }
+}
+
 module.exports = async (req, res) => {
   // Guard: Vercel sends Authorization: Bearer ${CRON_SECRET} when the env var is set.
   if (process.env.CRON_SECRET) {
@@ -40,6 +101,7 @@ module.exports = async (req, res) => {
 
   const out = { sent: [], skipped: [], errors: [] };
   try {
+    await hubspotDealDateTasks(out);
     for (const touch of TOUCHES) {
       // Contacts created in the 24h window exactly `days` ago. Runs daily, so
       // every contact passes through each window exactly once.

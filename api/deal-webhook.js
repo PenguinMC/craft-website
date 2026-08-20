@@ -31,7 +31,7 @@ async function hubspot(path, method, payload) {
 }
 
 async function processDeal(dealId, out) {
-  const d = await hubspot(`/crm/v3/objects/deals/${dealId}?properties=dealname,dealstage,pipeline,materials_sent&associations=contacts`);
+  const d = await hubspot(`/crm/v3/objects/deals/${dealId}?properties=dealname,dealstage,pipeline,materials_sent,hubspot_owner_id&associations=contacts`);
   if (!d.ok) { out.errors.push(`deal ${dealId}: ${d.status}`); return; }
   const p = d.data.properties || {};
   if (p.pipeline !== PIPELINE_ID || p.dealstage !== STAGE_ENROLLED) { out.skipped.push(`${dealId}: not enrolled`); return; }
@@ -57,6 +57,20 @@ async function processDeal(dealId, out) {
   if (!send.ok) { out.errors.push(`${dealId}: send failed ${JSON.stringify(send.data)}`); return; }
 
   await hubspot(`/crm/v3/objects/deals/${dealId}`, 'PATCH', { properties: { materials_sent: Date.now() } });
+
+  // Booking logistics task: the owner sets Course Start Date on the deal,
+  // which arms the automated pre-course and post-course tasks in drip-cron.
+  const dealOwner = (d.data.properties || {}).hubspot_owner_id;
+  await hubspot('/crm/v3/objects/tasks', 'POST', {
+    properties: {
+      hs_task_subject: `BOOKED: set Course Start Date for ${p.dealname || 'this deal'}`,
+      hs_task_body: 'Deposit is in and the materials packet was emailed. Open the deal and fill in the Course Start Date field, that date drives the automatic pre-course check-in and post-course review follow-up. Also confirm housing needs and DPE booking.',
+      hs_timestamp: Date.now() + 3600 * 1000,
+      hs_task_status: 'NOT_STARTED', hs_task_type: 'TODO', hs_task_priority: 'HIGH',
+      ...(dealOwner ? { hubspot_owner_id: dealOwner } : {})
+    },
+    associations: [{ to: { id: dealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] }]
+  });
   out.sent.push({ dealId, email: cp.email, course });
 }
 
