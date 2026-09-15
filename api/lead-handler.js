@@ -140,7 +140,7 @@ const T = {
     body: `<p>{firstname},</p>
 <p>You asked about accelerated training, so here is how it works. You arrive with prerequisites done. We fly twice a day, sim mornings, airplane afternoons. The DPE is booked before your course starts, so the checkride date is locked from day one. 96% first-time pass rate.</p>
 <p><strong style="color:#E63027;">Timelines and flat prices:</strong></p>
-<p style="color:rgba(255,255,255,0.85);">IFR: 7 days, $9,900<br>Commercial: 6 days (5 training + checkride), $8,600<br>Multi-Engine add-on: 4 days, $9,500<br>CFI initial: 10 to 12 days, $12,000<br>CFII: $4,950 when bundled with the CFI, about 4 extra days</p>
+<p style="color:rgba(255,255,255,0.85);">IFR: 7 days, $9,900<br>Commercial: 6 days (5 training + checkride), $8,600<br>Multi-Engine add-on: 4 days, $9,500<br>CFI initial: 10 to 12 days, $12,000<br>CFII: $5,600 add-on, about 4 extra days for both ratings</p>
 <p style="margin:18px 0 6px;"><strong style="color:#E63027;">Start studying now, on us:</strong></p>
 <p style="color:rgba(255,255,255,0.85);">
 <a href="https://drive.google.com/file/d/1n6ljYlsIsjS-7R2JgltowsR79W4x4iJQ/view?usp=sharing" style="color:#E63027;">CRAFT Program Checklist</a><br>
