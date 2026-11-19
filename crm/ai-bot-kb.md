@@ -84,7 +84,7 @@ A: $9,800 in our DA40 NG, or $5,850 if you bring your own aircraft. 7 days total
 A: $8,600 in the DA40 NG. 5 days of training plus checkride day six. Includes dedicated CFI, 15 hours of dual flight, 2 hours of Redbird sim, 10 hours of ground instruction, aircraft for the checkride, and Commercial PTS/ACS materials. Need at least 240 hours total time to enroll. Examiner fee ~$800 separately. https://flycraftchs.com/commercial
 
 **Q: What's the Multi-Engine training cost?**
-A: Four tracks in the Diamond DA42-VI: Multi-Engine Add-On ($9,000, 4 days), Commercial Multi Initial ($25,500, 11 days), MEI add-on ($9,000, 4 days), and Accelerated ATP Checkride Prep ($7,750, 3 days). Examiner fee is $1,500 cash separately. https://flycraftchs.com/multi-engine
+A: Four tracks in the Diamond DA42-VI: Multi-Engine Add-On ($9,000, 4 days), Commercial Multi Initial ($27,500, 11 days), MEI add-on ($9,000, 4 days), and Accelerated ATP Checkride Prep ($7,750, 3 days). Examiner fee is $1,500 cash separately. https://flycraftchs.com/multi-engine
 
 **Q: How much is the CFI initial?**
 A: $12,000, 10-12 days. Includes 50+ hours of classroom instruction (FOI, FIA, FARs, lesson plan development), Redbird simulator instruction, up to 18 hours of dual flight in the DA40 NG, training materials, and aircraft for the checkride. Examiner fee runs $1,500-1,700 separately. Bundle with CFI-I and save $200. https://flycraftchs.com/cfi
